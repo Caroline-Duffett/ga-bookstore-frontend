@@ -2,6 +2,7 @@ import './App.css';
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import Add from './components/Add'
+import Edit from './components/Edit'
 
 function App() {
   const [books, setBooks] = useState([])
@@ -18,6 +19,15 @@ function App() {
     axios.post('https://ga-bookstore-backend.herokuapp.com/api/books', addBook)
     .then((response) => {
       setBooks([...books, response.data])
+    })
+  }
+
+  const handleUpdate = (editBook) => {
+    axios.put('https://ga-bookstore-backend.herokuapp.com/api/books/' + editBook.id, editBook)
+    .then((response) => {
+      setBooks(books.map((book) => {
+        return book.id !== response.data.id ? book : response.data
+      }))
     })
   }
 
@@ -52,6 +62,7 @@ function App() {
               <h5>ISBN: {book.isbn}</h5>
               <h5>Rating: {book.rating}</h5>
               <h5>Price: {book.price}</h5>
+              <Edit handleUpdate={handleUpdate} book={book}/>
               <button onClick={() => {handleDelete(book)}}>
               X
               </button>
