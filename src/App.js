@@ -1,24 +1,44 @@
 import './App.css';
+import { useState, useEffect } from 'react'
+import axios from 'axios'
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const [books, setBooks] = useState([])
+
+   const getBooks = () => {
+     axios.get('https://ga-bookstore-backend.herokuapp.com/api/books')
+     .then(response => setBooks(response.data),
+     err=> console.log(err)
+   )
+   .catch(error=> console.error(error))
+   }
+
+   useEffect(() => {
+     getBooks()
+   }, [])
+
+
+   return (
+     <>
+        <h1>Books</h1>
+        {books.map((book) => {
+          return(
+            <div className='book' key={book.id}>
+              <img src={book.cover_art} alt="book cover"/>
+              <h4>Title: {book.title}</h4>
+              <h5>Author: {book.author_name}</h5>
+              <h5>Publisher: {book.publisher}</h5>
+              <h5>Publication date: {book.publication_date}</h5>
+              <h5>Genre: {book.genre}</h5>
+              <h5>Page count: {book.page_count}</h5>
+              <h5>Language: {book.language}</h5>
+              <h5>IBSN: {book.isbn}</h5>
+              <h5>Rating: {book.rating}</h5>
+           </div>
+         )
+       })}
+     </>
+   )
 }
 
 export default App;
