@@ -1,6 +1,7 @@
 import './App.css';
 import { useState, useEffect } from 'react'
 import axios from 'axios'
+import Add from './components/Add'
 
 function App() {
   const [books, setBooks] = useState([])
@@ -13,6 +14,14 @@ function App() {
    .catch(error=> console.error(error))
    }
 
+   const handleCreate = (addBook) => {
+    axios.post('https://ga-bookstore-backend.herokuapp.com/api/books', addBook)
+    .then((response) => {
+      setBooks([...books, response.data])
+    })
+  }
+
+
    useEffect(() => {
      getBooks()
    }, [])
@@ -21,6 +30,7 @@ function App() {
    return (
      <>
         <h1>Books</h1>
+        <Add handleCreate={handleCreate}/>
         {books.map((book) => {
           return(
             <div className='book' key={book.id}>
