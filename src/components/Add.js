@@ -1,7 +1,7 @@
 import {useState} from 'react'
 
 const Add = (props) => {
-  let emptyBook = {title: '', author_name: '', publisher: '', publication_date: '', genre: '', cover_art: '', page_count: '', language: '', ibsn: '', rating: ''}
+  let emptyBook = {title: '', author_name: '', publisher: '', publication_date: '', genre: '', cover_art: '', page_count: '', language: '', isbn: '', rating: '', price: ''}
   const [book, setBook] = useState(emptyBook)
 
 
@@ -12,7 +12,7 @@ const Add = (props) => {
   const handleSubmit = (event) => {
     event.preventDefault()
     props.handleCreate(book)
-    setBook({title: '', author_name: '', publisher: '', publication_date: '', genre: '', cover_art: '', page_count: '', language: '', ibsn: '', rating: ''})
+    setBook({title: '', author_name: '', publisher: '', publication_date: '', genre: '', cover_art: '', page_count: '', language: '', isbn: '', rating: '', price: ''})
   }
 
   return(
@@ -58,13 +58,18 @@ const Add = (props) => {
         <br/>
         <br/>
 
-        <label htmlFor='ibsn'>IBSN: </label>
-        <input type='number' name='ibsn' value={book.ibsn} onChange={handleChange}/>
+        <label htmlFor='isbn'>ISBN: </label>
+        <input type='number' name='isbn' value={book.isbn} onChange={handleChange}/>
         <br/>
         <br/>
 
         <label htmlFor='rating'>Rating: </label>
         <input type='number' name='rating' value={book.rating} onChange={handleChange}/>
+        <br/>
+        <br/>
+
+        <label htmlFor='price'>Price: </label>
+        <input type='text' name='price' value={book.price} onChange={handleChange}/>
         <br/>
         <br/>
 

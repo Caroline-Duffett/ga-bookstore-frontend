@@ -21,6 +21,13 @@ function App() {
     })
   }
 
+  const handleDelete = (deletedBook) => {
+    axios.delete('https://ga-bookstore-backend.herokuapp.com/api/books/' + deletedBook.id)
+    .then((response) => {
+      setBooks(books.filter(book => book.id !== deletedBook.id))
+    })
+  }
+
 
    useEffect(() => {
      getBooks()
@@ -42,8 +49,12 @@ function App() {
               <h5>Genre: {book.genre}</h5>
               <h5>Page count: {book.page_count}</h5>
               <h5>Language: {book.language}</h5>
-              <h5>IBSN: {book.isbn}</h5>
+              <h5>ISBN: {book.isbn}</h5>
               <h5>Rating: {book.rating}</h5>
+              <h5>Price: {book.price}</h5>
+              <button onClick={() => {handleDelete(book)}}>
+              X
+              </button>
            </div>
          )
        })}
