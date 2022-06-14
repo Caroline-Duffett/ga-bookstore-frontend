@@ -2,6 +2,9 @@ import {useState} from 'react'
 import Edit from './Edit.js'
 
 const Book = (props) => {
+
+  const [user, setUser] = 'admin'
+
   return (
     <>
       {props.books.map((book) => {
@@ -18,7 +21,7 @@ const Book = (props) => {
             <h5>ISBN: {book.isbn}</h5>
             <h5>Rating: {book.rating}</h5>
             <h5>Price: {book.price}</h5>
-            {props.user.type === 'admin' ?
+            {user === 'admin' ?
               <>
                 <Edit handleUpdate={props.handleUpdate} book={book}/>
                 <button onClick={() => {props.handleDelete(book)}}>
