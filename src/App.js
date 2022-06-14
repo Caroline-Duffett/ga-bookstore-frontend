@@ -61,7 +61,6 @@ function App() {
 
    return (
      <>
-        <h1>Books</h1>
         {user === 'admin' ?
         <Add handleCreate={handleCreate}/>
         : null}
