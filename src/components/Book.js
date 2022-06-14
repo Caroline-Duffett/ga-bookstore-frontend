@@ -3,8 +3,6 @@ import Edit from './Edit.js'
 
 const Book = (props) => {
 
-  //const [books, setBooks] = useState(props.books)
-
   return (
     <>
     {props.books.map((book) => {
