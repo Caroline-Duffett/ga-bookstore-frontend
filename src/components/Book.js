@@ -1,14 +1,16 @@
 import {useState} from 'react'
-import Edit from './Edit.js'
+import Edit from './Edit'
+import BestSellers from './BestSellers'
 
 const Book = (props) => {
 
   //States
-  const [user, setUser] = 'admin' //temp., just for testing. Waiting for user auth to be finished
+  const [user, setUser] = useState('admin') //temp., just for testing. Waiting for user auth to be finished
   const [query, setQuery] = useState("")
 
   return (
     <>
+      <BestSellers/>
       <div className="search-bar-div">
         <input className="search-bar" placeholder="Search" onChange={event => setQuery(event.target.value)}/>
       </div>
@@ -28,13 +30,6 @@ const Book = (props) => {
             <img src={book.cover_art} alt="book cover"/>
             <h4>Title: {book.title}</h4>
             <h5>Author: {book.author_name}</h5>
-            <h5>Publisher: {book.publisher}</h5>
-            <h5>Publication date: {book.publication_date}</h5>
-            <h5>Genre: {book.genre}</h5>
-            <h5>Page count: {book.page_count}</h5>
-            <h5>Language: {book.language}</h5>
-            <h5>ISBN: {book.isbn}</h5>
-            <h5>Rating: {book.rating}</h5>
             <h5>Price: {book.price}</h5>
             {user === 'admin' ?
               <>
@@ -51,3 +46,16 @@ const Book = (props) => {
 )}
 
 export default Book
+
+//==============================================================================//
+//                                Grave Yard
+//==============================================================================//
+//----------------------------------------- Displays Taken Out for Index Page --//
+  // <h5>Publisher: {book.publisher}</h5>
+  // <h5>Publication date: {book.publication_date}</h5>
+  // <h5>Genre: {book.genre}</h5>
+  // <h5>Page count: {book.page_count}</h5>
+  // <h5>Language: {book.language}</h5>
+  // <h5>ISBN: {book.isbn}</h5>
+  // <h5>Rating: {book.rating}</h5>
+//------------------------------------------------------------------------------//
