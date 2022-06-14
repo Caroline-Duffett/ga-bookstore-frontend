@@ -14,7 +14,7 @@ const BestSellers = (props) => {
       {props.books.map((book) => {
           return(
             <>
-            {book.id === 36 || book.id === 35 || book.id === 34 || book.id === 33 ?
+            {book.id === 36 || book.id === 35 || book.id === 34 || book.id === 33 || book.id === 37 ?
             <div className='book' key={book.id}>
               <img src={book.cover_art} alt="book cover"/>
               <h4>Title: {book.title}</h4>
