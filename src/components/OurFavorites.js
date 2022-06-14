@@ -2,15 +2,15 @@ import {useState} from 'react'
 import Edit from './Edit'
 
 
-const BestSellers = (props) => {
+const OurFavorites = (props) => {
   //States
   const [user, setUser] = useState('admin') //temp., just for testing. Waiting for user auth to be finished
   const [query, setQuery] = useState("")
-  
+
 
   return (
     <>
-      <h1>Best Sellers</h1>
+      <h1>Our Favorites</h1>
       <div className="search-bar-div">
         <input className="search-bar" placeholder="Search" onChange={event => setQuery(event.target.value)}/>
       </div>
@@ -27,7 +27,7 @@ const BestSellers = (props) => {
       }).map((book) => {
           return(
             <>
-            {book.id === 36 || book.id === 35 || book.id === 34 || book.id === 33 ?
+            {book.id === 3 || book.id === 2 || book.id === 4 || book.id === 11 || book.id === 6 || book.id === 5 ?
             <div className='book' key={book.id}>
               <img src={book.cover_art} alt="book cover"/>
               <h4>Title: {book.title}</h4>
@@ -50,4 +50,4 @@ const BestSellers = (props) => {
   )
 }
 
-export default BestSellers
+export default OurFavorites

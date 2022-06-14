@@ -4,6 +4,7 @@ import axios from 'axios'
 import Add from './components/Add'
 import Book from './components/Book'
 import BestSellers from './components/BestSellers'
+import OurFavorites from './components/OurFavorites'
 
 
 
@@ -57,6 +58,7 @@ function App() {
         <h1>Books</h1>
         <Add handleCreate={handleCreate}/>
         <BestSellers books={books} handleUpdate={handleUpdate} handleDelete={handleDelete}/>
+        <OurFavorites books={books} handleUpdate={handleUpdate} handleDelete={handleDelete}/>
         <Book books={books} handleUpdate={handleUpdate} handleDelete={handleDelete}/>
      </>
    )
