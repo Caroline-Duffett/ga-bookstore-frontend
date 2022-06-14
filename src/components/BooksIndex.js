@@ -1,7 +1,7 @@
 import {useState} from 'react'
 import Edit from './Edit'
 
-const Book = (props) => {
+const BooksIndex = (props) => {
 
 
   return (
@@ -30,7 +30,7 @@ const Book = (props) => {
     </>
 )}
 
-export default Book
+export default BooksIndex
 
 //==============================================================================//
 //                                Grave Yard
