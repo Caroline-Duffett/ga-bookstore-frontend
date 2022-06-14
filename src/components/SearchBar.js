@@ -7,6 +7,8 @@ const SearchBar = (props) => {
   const [showSearch, setShowSearch] = useState(false)
 
   //Functions:
+
+  //hides/shows searchbar
   const searchToggle = () => {
     if (showSearch === false) {
       setShowSearch(true)

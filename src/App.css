@@ -1,4 +1,4 @@
-/*Best sellers books and Our favorite books*/
+/*---------- Best sellers books and Our favorite books (Horiztonal scroll bars) ----------*/
 .scroll-flexbox {
   background-color: lightgray;
   display: flex;
@@ -19,14 +19,22 @@ img {
 h5, h4 {
   margin: 5px;
 }
+/*----------------------------------------------------------------------------------------*/
 
+
+
+/*---------------------------------- All books flexbox -----------------------------------*/
 .all-books-flexbox {
   background-color: lightgray;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
 }
+/*----------------------------------------------------------------------------------------*/
 
+
+
+/*------------------------------------- Search Bar ---------------------------------------*/
 .search-bar-modal {
   background-color: white;
   position: absolute;
@@ -79,3 +87,4 @@ h5, h4 {
   border: 1px solid rgba(0, 0, 0, 0.56);
   position: fixed;
 }
+/*----------------------------------------------------------------------------------------*/
