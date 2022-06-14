@@ -2,7 +2,7 @@ import './App.css';
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import Add from './components/Add'
-import BooksIndex from './components/BooksIndex'
+import AllBooks from './components/AllBooks'
 import BestSellers from './components/BestSellers'
 import OurFavorites from './components/OurFavorites'
 import SearchBar from './components/SearchBar'
@@ -62,9 +62,9 @@ function App() {
         {user === 'admin' ?
         <Add handleCreate={handleCreate}/>
         : null}
-        <BestSellers books={books} handleUpdate={handleUpdate} handleDelete={handleDelete}/>
-        <OurFavorites books={books} handleUpdate={handleUpdate} handleDelete={handleDelete}/>
-        <BooksIndex books={books} handleUpdate={handleUpdate} handleDelete={handleDelete}/>
+        <BestSellers books={books}/>
+        <OurFavorites books={books}/>
+        <AllBooks books={books}/>
      </>
    )
 }

@@ -1,5 +1,4 @@
 import {useState} from 'react'
-import Edit from './Edit'
 
 const BooksIndex = (props) => {
 
@@ -20,7 +19,8 @@ const BooksIndex = (props) => {
         })}
       </div>
     </>
-)}
+)
+}
 
 export default BooksIndex
 

@@ -1,5 +1,4 @@
 import {useState} from 'react'
-import Edit from './Edit'
 
 
 const OurFavorites = (props) => {
