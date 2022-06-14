@@ -2,7 +2,6 @@ import {useState} from 'react'
 
 const AllBooks = (props) => {
 
-
   return (
     <>
       <h1>All Books</h1>
