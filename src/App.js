@@ -64,7 +64,10 @@ function App() {
         : null}
         <BestSellers books={books}/>
         <OurFavorites books={books}/>
-        <BooksIndex books={books}/>
+        <h1>All Books</h1>
+        <div className='all-books-flexbox'>
+          <BooksIndex books={books}/>
+        </div>
      </>
    )
 }
