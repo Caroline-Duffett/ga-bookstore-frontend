@@ -1,6 +1,5 @@
 import {useState} from 'react'
 import Edit from './Edit'
-import BestSellers from './BestSellers'
 
 const Book = (props) => {
 
@@ -10,7 +9,7 @@ const Book = (props) => {
 
   return (
     <>
-      <BestSellers/>
+      <h1>All Books</h1>
       <div className="search-bar-div">
         <input className="search-bar" placeholder="Search" onChange={event => setQuery(event.target.value)}/>
       </div>
