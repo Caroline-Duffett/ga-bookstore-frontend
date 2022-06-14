@@ -5,15 +5,14 @@ import Add from './components/Add'
 import BestSellers from './components/BestSellers'
 import OurFavorites from './components/OurFavorites'
 import SearchBar from './components/SearchBar'
-import BooksIndex from './components/BooksIndex'
-//import BookCard from './components/BookCard'
+import AllBooks from './components/AllBooks'
 
 
 
 function App() {
   //States:
   const [books, setBooks] = useState([])
-  const [user, setUser] = useState('admin') //temp. for testing purposes
+  const [user, setUser] = useState('admi') //temp. for testing purposes
 
 
   //Read Route
@@ -64,7 +63,7 @@ function App() {
         : null}
         <BestSellers books={books}/>
         <OurFavorites books={books}/>
-        <BooksIndex books={books}/>
+        <AllBooks books={books}/>
      </>
    )
 }

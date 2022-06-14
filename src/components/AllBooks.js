@@ -1,6 +1,6 @@
 import {useState} from 'react'
 
-const BooksIndex = (props) => {
+const AllBooks = (props) => {
 
 
   return (
@@ -21,7 +21,9 @@ const BooksIndex = (props) => {
     </>
 )}
 
-export default BooksIndex
+export default AllBooks
+
+
 
 //==============================================================================//
 //                                Grave Yard
