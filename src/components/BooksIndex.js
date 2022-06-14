@@ -15,14 +15,6 @@ const BooksIndex = (props) => {
               <h4>Title: {book.title}</h4>
               <h5>Author: {book.author_name}</h5>
               <h5>Price: {book.price}</h5>
-              {props.user === 'admin' ?
-                <>
-                  <Edit handleUpdate={props.handleUpdate} book={book}/>
-                  <button onClick={() => {props.handleDelete(book)}}>
-                  X
-                  </button>
-                </>
-                : null}
            </div>
          )
         })}
@@ -43,4 +35,15 @@ export default BooksIndex
   // <h5>Language: {book.language}</h5>
   // <h5>ISBN: {book.isbn}</h5>
   // <h5>Rating: {book.rating}</h5>
+//------------------------------------------------------------------------------//
+
+//----------------------------------- Admin ternary for editing and deleting  --//
+// {props.user === 'admin' ?
+//   <>
+//     <Edit handleUpdate={props.handleUpdate} book={book}/>
+//     <button onClick={() => {props.handleDelete(book)}}>
+//     X
+//     </button>
+//   </>
+//   : null}
 //------------------------------------------------------------------------------//
