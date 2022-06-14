@@ -23,7 +23,7 @@ h5, h4 {
 
 
 
-/*---------------------------------- All books flexbox -----------------------------------*/
+/*-------- All books flexbox (book cards are the same as horizontal scrollbar's)----------*/
 .all-books-flexbox {
   background-color: lightgray;
   display: flex;
