@@ -2,7 +2,7 @@ import {useState} from 'react'
 import Edit from './Edit.js'
 
 const Book = (props) => {
-  const [user, setUser] = useState('admin')
+  const [user, setUser] = useState('customer')
   return (
     <>
       {props.books.map((book) => {
