@@ -12,9 +12,7 @@ import SearchBar from './components/SearchBar'
 function App() {
   //States:
   const [books, setBooks] = useState([])
-  const [user, setUser] = useState('admi') //temp. for testing purposes
-  //const [user, setUser] = useState(user.type)
-
+  const [user, setUser] = useState('admin') //temp. for testing purposes
 
 
   //Read Route
@@ -64,9 +62,9 @@ function App() {
         {user === 'admin' ?
         <Add handleCreate={handleCreate}/>
         : null}
-        <BestSellers books={books} handleUpdate={handleUpdate} handleDelete={handleDelete}/>
+        <BestSellers books={books} handleUpdate={handleUpdate} handleDelete={handleDelete} user={user}/>
         <OurFavorites books={books} handleUpdate={handleUpdate} handleDelete={handleDelete}/>
-        <Book books={books} handleUpdate={handleUpdate} handleDelete={handleDelete}/>
+        <Book books={books} handleUpdate={handleUpdate} handleDelete={handleDelete} user={user}/>
      </>
    )
 }

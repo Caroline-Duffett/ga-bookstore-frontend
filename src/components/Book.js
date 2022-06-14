@@ -3,9 +3,6 @@ import Edit from './Edit'
 
 const Book = (props) => {
 
-  //States
-  const [user, setUser] = useState('admin') //temp., just for testing. Waiting for user auth to be finished
-
 
   return (
     <>
@@ -18,7 +15,7 @@ const Book = (props) => {
               <h4>Title: {book.title}</h4>
               <h5>Author: {book.author_name}</h5>
               <h5>Price: {book.price}</h5>
-              {user === 'admin' ?
+              {props.user === 'admin' ?
                 <>
                   <Edit handleUpdate={props.handleUpdate} book={book}/>
                   <button onClick={() => {props.handleDelete(book)}}>
