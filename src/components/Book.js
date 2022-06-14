@@ -3,11 +3,24 @@ import Edit from './Edit.js'
 
 const Book = (props) => {
 
-  const [user, setUser] = 'admin'
+  //States
+  const [user, setUser] = 'admin' //temp., just for testing. Waiting for user auth to be finished
+  const [query, setQuery] = useState("")
 
   return (
     <>
-      {props.books.map((book) => {
+      <div className="search-bar-div">
+        <input className="search-bar" placeholder="Search" onChange={event => setQuery(event.target.value)}/>
+      </div>
+      {props.books.filter(book => {
+        if (query === '') {
+          return book
+        } else if (book.title.toLowerCase().includes(query.toLowerCase())) {
+          return book
+        } else if (book.author_name.toLowerCase().includes(query.toLowerCase())) {
+          return book
+        }
+      }).map((book) => {
         return(
           <div className='book' key={book.id}>
             <img src={book.cover_art} alt="book cover"/>
