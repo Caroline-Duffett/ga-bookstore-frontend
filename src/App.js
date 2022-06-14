@@ -12,6 +12,12 @@ function App() {
   //States
   const [books, setBooks] = useState([])
 
+  const [user, setUser] = useState('admin') //temp. for testing purposes
+
+  //const [user, setUser] = useState(user.type)
+
+
+
   //Read Route
    const getBooks = () => {
      axios.get('https://ga-bookstore-backend.herokuapp.com/api/books')
@@ -56,7 +62,9 @@ function App() {
    return (
      <>
         <h1>Books</h1>
+        {user === 'admin' ?
         <Add handleCreate={handleCreate}/>
+        : null}
         <BestSellers books={books} handleUpdate={handleUpdate} handleDelete={handleDelete}/>
         <OurFavorites books={books} handleUpdate={handleUpdate} handleDelete={handleDelete}/>
         <Book books={books} handleUpdate={handleUpdate} handleDelete={handleDelete}/>
