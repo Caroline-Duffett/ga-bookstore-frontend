@@ -10,9 +10,8 @@ import SearchBar from './components/SearchBar'
 
 
 function App() {
-  //States
+  //States:
   const [books, setBooks] = useState([])
-
   const [user, setUser] = useState('admi') //temp. for testing purposes
   //const [user, setUser] = useState(user.type)
 
