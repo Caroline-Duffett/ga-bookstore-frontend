@@ -6,7 +6,7 @@ import BestSellers from './components/BestSellers'
 import OurFavorites from './components/OurFavorites'
 import SearchBar from './components/SearchBar'
 import BooksIndex from './components/BooksIndex'
-import BookCard from './components/BookCard'
+//import BookCard from './components/BookCard'
 
 
 
@@ -58,7 +58,6 @@ function App() {
 
    return (
      <>
-        <BookCard books={books}/>
         <SearchBar books={books}/>
         {user === 'admin' ?
         <Add handleCreate={handleCreate}/>
