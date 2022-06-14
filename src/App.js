@@ -4,8 +4,15 @@ import axios from 'axios'
 import Add from './components/Add'
 import Edit from './components/Edit'
 
+// import modals
+import ShowModal from './components/ShowModal'
+
+
 function App() {
   const [books, setBooks] = useState([])
+
+  // show modal
+  const [show, setShow] = useState(false)
 
    const getBooks = () => {
      axios.get('https://ga-bookstore-backend.herokuapp.com/api/books')
