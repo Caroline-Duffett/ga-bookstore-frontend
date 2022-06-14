@@ -2,10 +2,11 @@ import './App.css';
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import Add from './components/Add'
-import AllBooks from './components/AllBooks'
+//import AllBooks from './components/AllBooks'
 import BestSellers from './components/BestSellers'
 import OurFavorites from './components/OurFavorites'
 import SearchBar from './components/SearchBar'
+import BooksIndex from './components/BooksIndex'
 
 
 
@@ -55,7 +56,6 @@ function App() {
      getBooks()
    }, [])
 
-
    return (
      <>
         <SearchBar books={books}/>
@@ -64,7 +64,7 @@ function App() {
         : null}
         <BestSellers books={books}/>
         <OurFavorites books={books}/>
-        <AllBooks books={books}/>
+        <BooksIndex books={books}/>
      </>
    )
 }
