@@ -2,7 +2,7 @@ import './App.css';
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import Add from './components/Add'
-//import AllBooks from './components/AllBooks'
+import AllBooks from './components/AllBooks'
 import BestSellers from './components/BestSellers'
 import OurFavorites from './components/OurFavorites'
 import SearchBar from './components/SearchBar'
@@ -65,6 +65,7 @@ function App() {
         <BestSellers books={books}/>
         <OurFavorites books={books}/>
         <BooksIndex books={books}/>
+        <AllBooks books={books}/>
      </>
    )
 }
