@@ -19,6 +19,8 @@ const Book = (props) => {
           return book
         } else if (book.author_name.toLowerCase().includes(query.toLowerCase())) {
           return book
+        } else if (book.genre.toLowerCase().includes(query.toLowerCase())) {
+          return book
         }
       }).map((book) => {
         return(
