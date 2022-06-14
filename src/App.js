@@ -3,11 +3,20 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import Add from './components/Add'
 import Book from './components/Book'
+import BestSellers from './components/BestSellers'
+import OurFavorites from './components/OurFavorites'
+import SearchBar from './components/SearchBar'
+
 
 
 function App() {
   //States
   const [books, setBooks] = useState([])
+
+  const [user, setUser] = useState('admi') //temp. for testing purposes
+  //const [user, setUser] = useState(user.type)
+
+
 
   //Read Route
    const getBooks = () => {
@@ -52,8 +61,12 @@ function App() {
 
    return (
      <>
-        <h1>Books</h1>
+        <SearchBar books={books}/>
+        {user === 'admin' ?
         <Add handleCreate={handleCreate}/>
+        : null}
+        <BestSellers books={books} handleUpdate={handleUpdate} handleDelete={handleDelete}/>
+        <OurFavorites books={books} handleUpdate={handleUpdate} handleDelete={handleDelete}/>
         <Book books={books} handleUpdate={handleUpdate} handleDelete={handleDelete}/>
      </>
    )

@@ -2,18 +2,17 @@ import {useState} from 'react'
 import Edit from './Edit'
 
 
-const BestSellers = (props) => {
+const OurFavorites = (props) => {
   //States
   const [user, setUser] = useState('admin') //temp., just for testing. Waiting for user auth to be finished
 
-
   return (
     <>
-      <h1>Best Sellers</h1>
+      <h1>Our Favorites</h1>
       {props.books.map((book) => {
           return(
             <>
-            {book.id === 36 || book.id === 35 || book.id === 34 || book.id === 33 || book.id === 37 || book.id === 38 ?
+            {book.id === 3 || book.id === 2 || book.id === 4 || book.id === 11 || book.id === 6 || book.id === 5 ?
             <div className='book' key={book.id}>
               <img src={book.cover_art} alt="book cover"/>
               <h4>Title: {book.title}</h4>
@@ -36,4 +35,4 @@ const BestSellers = (props) => {
   )
 }
 
-export default BestSellers
+export default OurFavorites

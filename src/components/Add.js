@@ -17,6 +17,7 @@ const Add = (props) => {
 
   return(
     <>
+      <h3>Add a New Book</h3>
       <form onSubmit={handleSubmit}>
         <label htmlFor='title'>Title: </label>
         <input type='text' name='title' value={book.title} onChange={handleChange}/>
