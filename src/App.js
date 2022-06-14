@@ -5,6 +5,7 @@ import Add from './components/Add'
 import Book from './components/Book'
 import BestSellers from './components/BestSellers'
 import OurFavorites from './components/OurFavorites'
+import SearchBar from './components/SearchBar'
 
 
 
@@ -12,8 +13,7 @@ function App() {
   //States
   const [books, setBooks] = useState([])
 
-  const [user, setUser] = useState('admin') //temp. for testing purposes
-
+  const [user, setUser] = useState('admi') //temp. for testing purposes
   //const [user, setUser] = useState(user.type)
 
 
@@ -61,6 +61,7 @@ function App() {
 
    return (
      <>
+        <SearchBar books={books}/>
         {user === 'admin' ?
         <Add handleCreate={handleCreate}/>
         : null}

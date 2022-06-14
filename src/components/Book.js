@@ -5,7 +5,7 @@ const Book = (props) => {
 
   //States
   const [user, setUser] = useState('admin') //temp., just for testing. Waiting for user auth to be finished
-  const [query, setQuery] = useState("")
+  
 
   return (
     <>
