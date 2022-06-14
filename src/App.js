@@ -62,9 +62,9 @@ function App() {
         {user === 'admin' ?
         <Add handleCreate={handleCreate}/>
         : null}
-        <BestSellers books={books} handleUpdate={handleUpdate} handleDelete={handleDelete} user={user}/>
+        <BestSellers books={books} handleUpdate={handleUpdate} handleDelete={handleDelete}/>
         <OurFavorites books={books} handleUpdate={handleUpdate} handleDelete={handleDelete}/>
-        <BooksIndex books={books} handleUpdate={handleUpdate} handleDelete={handleDelete} user={user}/>
+        <BooksIndex books={books} handleUpdate={handleUpdate} handleDelete={handleDelete}/>
      </>
    )
 }
