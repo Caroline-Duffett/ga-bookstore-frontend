@@ -11,20 +11,7 @@ const OurFavorites = (props) => {
   return (
     <>
       <h1>Our Favorites</h1>
-      <div className="search-bar-div">
-        <input className="search-bar" placeholder="Search" onChange={event => setQuery(event.target.value)}/>
-      </div>
-      {props.books.filter(book => {
-        if (query === '') {
-          return book
-        } else if (book.title.toLowerCase().includes(query.toLowerCase())) {
-          return book
-        } else if (book.author_name.toLowerCase().includes(query.toLowerCase())) {
-          return book
-        } else if (book.genre.toLowerCase().includes(query.toLowerCase())) {
-          return book
-        }
-      }).map((book) => {
+      {props.books.map((book) => {
           return(
             <>
             {book.id === 3 || book.id === 2 || book.id === 4 || book.id === 11 || book.id === 6 || book.id === 5 ?

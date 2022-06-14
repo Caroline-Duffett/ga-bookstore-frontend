@@ -6,25 +6,12 @@ const BestSellers = (props) => {
   //States
   const [user, setUser] = useState('admin') //temp., just for testing. Waiting for user auth to be finished
   const [query, setQuery] = useState("")
-  
+
 
   return (
     <>
       <h1>Best Sellers</h1>
-      <div className="search-bar-div">
-        <input className="search-bar" placeholder="Search" onChange={event => setQuery(event.target.value)}/>
-      </div>
-      {props.books.filter(book => {
-        if (query === '') {
-          return book
-        } else if (book.title.toLowerCase().includes(query.toLowerCase())) {
-          return book
-        } else if (book.author_name.toLowerCase().includes(query.toLowerCase())) {
-          return book
-        } else if (book.genre.toLowerCase().includes(query.toLowerCase())) {
-          return book
-        }
-      }).map((book) => {
+      {props.books.map((book) => {
           return(
             <>
             {book.id === 36 || book.id === 35 || book.id === 34 || book.id === 33 ?
