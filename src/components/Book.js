@@ -1,12 +1,37 @@
-import {useState} from 'react'
+import {useState, useEffect, useCallback} from 'react'
 import Edit from './Edit.js'
 import ShowModal from './ShowModal'
+import ShoppingCart from './ShoppingCart'
 
 
 const Book = (props, book) => {
   //States:
     const [bookData, setBookData] = useState({...props.book})
     const[show, setShow] = useState(false)
+
+    // const [cartAmount, setCartAmount] = useState(0)
+
+    // const addToCart = () => {
+    //   setCartAmount((prevCartAmount) => prevCartAmount + 1)
+    // }
+
+//     const AddBook = useCallback(() => {
+//       const book = createRandomBook();
+//       setCart((prev) => [...prev, book]);
+//     }, []);
+
+//     let id = 0;
+// const createRandomBook = () => {
+//   id = id + 1;
+//   return {
+//     id,
+//     qty: 1,
+//     desc: `Book number: ${id}`,
+//     price: Number((Math.random() * 10 + 1).toFixed(2))
+//   };
+// };
+
+    // useEffect
 
   return (
       <>
@@ -26,7 +51,8 @@ const Book = (props, book) => {
           <br/>
           <h5>${bookData.price}</h5>
           <input type="number" placeholder="Qty"/>
-          <button>Add</button>
+          <button onClick={() => addToCart(book.id, "book")}>Add</button>
+          {/* <ShoppingCart></ShoppingCart> */}
 
           {props.user === 'admin' ?
       <>
