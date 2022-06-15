@@ -14,7 +14,8 @@ import BookInfoModal from './components/BookInfoModal.js'
 function App() {
   //States:
   const [books, setBooks] = useState([])
-  const [user, setUser] = useState('admi') //temp. for testing purposes
+
+  const [user, setUser] = useState('admin') //temp. for testing purposes
   const [userAccounts, setUserAccounts] = useState([]) // user accounts from the backend
   // boolean to show / hide book info modal, default false
 

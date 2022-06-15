@@ -88,3 +88,35 @@ h5, h4 {
   position: fixed;
 }
 /*----------------------------------------------------------------------------------------*/
+
+
+
+/*-------------------------------------- Add Form ----------------------------------------*/
+/*Note: modal wrapper is same as Search Bar's*/
+.add-book-modal {
+  background-color: white;
+  position: absolute;
+  width: 350px;
+  height: 600px;
+  margin: 5% 40%;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.add-book-x-btn-div {
+  text-align: right;
+}
+
+.add-submit-btn-div {
+  text-align: center;
+}
+
+.Add-form-div {
+  text-align: right;
+  width: 275px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+/*----------------------------------------------------------------------------------------*/
