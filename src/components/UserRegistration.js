@@ -34,7 +34,11 @@ const UserRegistration = (props) => {
         event.preventDefault()
         // console.log(newUser);
         if (login) {
-            props.handleSignIn(newUser)
+            userObj = {
+                username: newUser.username,
+
+            }
+            props.handleSignIn()
         } else {
             props.handleRegistration(newUser)
         }

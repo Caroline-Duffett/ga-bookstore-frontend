@@ -105,11 +105,10 @@ function App() {
   }
 
   //handles user sign in reuest
-  const handleSignIn = (tryUser) => {
-      console.log(`logging in username: ${user.username}`);
-      axios.get(`https://ga-bookstore-backend.herokuapp.com/api/useraccount/login`)
+  const handleSignIn = (userObj) => {
+      axios.get(`https://ga-bookstore-backend.herokuapp.com/api/useraccount/login`, userObj)
           .then((response) => {
-              console.log(response);
+              console.log('logged in as: ');
           })
   }
 
@@ -148,6 +147,7 @@ function App() {
 
    return (
      <>
+        <><>
         <SearchBar books={books}  searchToggle={searchToggle} showSearch={showSearch} />
         {user === 'admin' ?
         <Add handleCreate={handleCreate} addFormToggle={addFormToggle} showAddForm={showAddForm}/>
