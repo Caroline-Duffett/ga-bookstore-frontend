@@ -24,6 +24,7 @@ function App() {
   const [signedIn, setSignedIn] = useState(false) //temp. for testing purposes
   const [showCart, setShowCart] = useState(false)
   const [showSearch, setShowSearch] = useState(false)
+  const [showAddForm, setShowAddForm] = useState(false)
 
 
   // Testing route to get user accounts
@@ -49,6 +50,15 @@ function App() {
         setShowSearch(true)
       } else {
         setShowSearch(false)
+      }
+    }
+
+  //hides/shows Add form
+    const addFormToggle = () => {
+      if (showAddForm === false) {
+        setShowAddForm(true)
+      } else {
+        setShowAddForm(false)
       }
     }
 
@@ -98,7 +108,7 @@ function App() {
      <>
         <SearchBar books={books}  searchToggle={searchToggle} showSearch={showSearch} />
         {user === 'admin' ?
-        <Add handleCreate={handleCreate}/>
+        <Add handleCreate={handleCreate} addFormToggle={addFormToggle} showAddForm={showAddForm}/>
         : null}
         <ShoppingCart signedIn={signedIn} cartToggle={cartToggle} showCart={showCart}/>
         <BestSellers books={books}/>
