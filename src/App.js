@@ -21,7 +21,7 @@ function App() {
   // boolean to show / hide book info modal, default false
 
 
-  const [signedIn, setSignedIn] = useState(false) //temp. for testing purposes
+  const [signedIn, setSignedIn] = useState(true) //temp. for testing purposes
   const [showCart, setShowCart] = useState(false)
   const [showSearch, setShowSearch] = useState(false)
   const [showAddForm, setShowAddForm] = useState(false)
@@ -39,6 +39,8 @@ function App() {
     const cartToggle = () => {
       if (showCart === false) {
         setShowCart(true)
+        setShowSearch(false)
+        setShowAddForm(false)
       } else {
         setShowCart(false)
       }
@@ -48,6 +50,8 @@ function App() {
     const searchToggle = () => {
       if (showSearch === false) {
         setShowSearch(true)
+        setShowAddForm(false)
+        setShowCart(false)
       } else {
         setShowSearch(false)
       }
@@ -57,6 +61,8 @@ function App() {
     const addFormToggle = () => {
       if (showAddForm === false) {
         setShowAddForm(true)
+        setShowSearch(false)
+        setShowCart(false)
       } else {
         setShowAddForm(false)
       }
