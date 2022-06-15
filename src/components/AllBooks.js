@@ -9,7 +9,11 @@ const AllBooks = (props) => {
       <div className='all-books-flexbox'>
         {props.books.map((book) => {
           return(
-            <Book book={book} section={'allbooks'}/>
+            <Book
+            book={book}
+            section={'allbooks'}
+            selectBook={props.selectBook}
+            />
           )
         })}
       </div>

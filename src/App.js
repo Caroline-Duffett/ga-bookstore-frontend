@@ -6,13 +6,27 @@ import BestSellers from './components/BestSellers'
 import OurFavorites from './components/OurFavorites'
 import SearchBar from './components/SearchBar'
 import AllBooks from './components/AllBooks'
+import Book from './components/Book.js'
+import BookInfoModal from './components/BookInfoModal.js'
 
 
 
 function App() {
   //States:
   const [books, setBooks] = useState([])
+
   const [user, setUser] = useState('admin') //temp. for testing purposes
+  const [userAccounts, setUserAccounts] = useState([]) // user accounts from the backend
+  // boolean to show / hide book info modal, default false
+
+
+  // Testing route to get user accounts
+  const getUserAccounts = () => {
+      axios.get('https://ga-bookstore-backend.herokuapp.com/api/useraccount')
+        .then(response => setUserAccounts(response.data),
+            err => console.log(err)
+        ).catch(error => console.error(error))
+  }
 
 
   //Read Route
@@ -53,19 +67,29 @@ function App() {
   //Gets all books then loads page
    useEffect(() => {
      getBooks()
+     getUserAccounts()
    }, [])
 
    return (
      <>
-      <SearchBar books={books}/>
-      {user === 'admin' ?
-      <Add handleCreate={handleCreate}/>
-      : null}
-      <BestSellers books={books}/>
-      <OurFavorites books={books}/>
-      <AllBooks books={books}/>
+        <SearchBar books={books}/>
+        {user === 'admin' ?
+        <Add handleCreate={handleCreate}/>
+        : null}
+        <BestSellers books={books}/>
+        <OurFavorites books={books}/>
+        <AllBooks books={books} origin={'allbooks'}/>
      </>
    )
 }
 
 export default App;
+
+
+// <Book
+//     book={book}
+    // handleUpdate={handleUpdate}
+    // handleDelete={handleDelete}
+    // closeBookInfoModal={() => setShowBookInfoModal(false)}
+//     origin={'bookinfo'}
+// />
