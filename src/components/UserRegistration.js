@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 
-const UserRegistration = () => {
+const UserRegistration = (props) => {
 
     const emptyUser = {
         username: "",
@@ -19,6 +19,7 @@ const UserRegistration = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault()
+        // console.log(newUser);
         props.handleRegistration(newUser)
     }
 
@@ -27,21 +28,21 @@ const UserRegistration = () => {
             <h3> New User Registration </h3>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="username"> Username: </label>
-                <input type="text" name="username"/><br/>
+                <input type="text" name="username" onChange={handleChange}/><br/>
 
                 <label htmlFor="email"> Email: </label>
-                <input type="email" name="email"/><br/>
+                <input type="email" name="email" onChange={handleChange}/><br/>
 
                 <label htmlFor="password"> Password: </label>
-                <input type="text" name="password"/><br/>
+                <input type="text" name="password" onChange={handleChange}/><br/>
 
                 <label htmlFor="first_name"> First Name: </label>
-                <input type="text" name="first_name"/><br/>
+                <input type="text" name="first_name" onChange={handleChange}/><br/>
 
                 <label htmlFor="last_name"> Last Name: </label>
-                <input type="text" name="last_name"/><br/>
+                <input type="text" name="last_name" onChange={handleChange}/><br/>
 
-                <input type="submit">
+                <input type="submit"/>
             </form>
         </>
     )
