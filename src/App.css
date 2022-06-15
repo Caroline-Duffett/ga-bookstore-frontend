@@ -1,38 +1,194 @@
-.App {
+/*---------- Best sellers books and Our favorite books (Horiztonal scroll bars) ----------*/
+.scroll-flexbox {
+  background-color: lightgray;
+  display: flex;
+  flex-direction: row;
+  overflow: scroll;
+}
+
+.book {
+  background-color: white;
+  margin: 15px;
+  width: 300px;
+}
+
+img {
+  width: 300px;
+}
+
+h5, h4 {
+  margin: 5px;
+}
+/*----------------------------------------------------------------------------------------*/
+
+
+
+/*-------- All books flexbox (book cards are the same as horizontal scrollbar's)----------*/
+.all-books-flexbox {
+  background-color: lightgray;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+/*----------------------------------------------------------------------------------------*/
+
+
+
+/*------------------------------------- Search Bar ---------------------------------------*/
+.search-bar-modal {
+  background-color: white;
+  position: absolute;
+  width: 99vw;
+  height: 650px;
+}
+
+.searchbook {
+  width: 200px;
+  margin: 25px 25px;
+}
+
+.searchbook-img {
+  width: 200px;
+}
+
+.search-bar-div {
+  text-align: center;
+  margin: 30px;
+}
+
+.search-bar {
+  font-size: 25px;
+  width: 45%;
+}
+
+.search-flexbox {
+  background-color: lightgray;
+  display: flex;
+  flex-direction: row;
+  overflow: scroll;
+  width: 80%;
+  margin: 20px auto;
+  margin-bottom: 50px;
+}
+
+.search-bar-x-btn-div {
+  text-align: right;
+}
+
+.modal-wrapper {
+  width: 100vw;
+  height: 100vh;
+  /* From https://css.glass */
+  background: rgba(0, 0, 0, 0.41);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(9.7px);
+  -webkit-backdrop-filter: blur(9.7px);
+  border: 1px solid rgba(0, 0, 0, 0.56);
+  position: fixed;
+}
+/*----------------------------------------------------------------------------------------*/
+
+
+
+/*-------------------------------------- Add Form ----------------------------------------*/
+/*Note: modal wrapper is same as Search Bar's*/
+.add-book-modal {
+  background-color: white;
+  position: absolute;
+  width: 350px;
+  height: 600px;
+  margin: 5% 40%;
+  border-radius: 10px;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.add-book-x-btn-div {
+  text-align: right;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.add-submit-btn-div {
+  text-align: center;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.Add-form-div {
+  text-align: right;
+  width: 275px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+/*----------------------------------------------------------------------------------------*/
+
+/* MODAL */
+
+.modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(66, 66, 66, 0.74);
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+.modal-content {
+  width: 500px;
+  background-color: white;
+  
+}
+
+.modal-header, .modal-footer {
+  padding: 16px;
+
+}
+
+.modal-title {
+  margin: 0;
+  font-size: 24px;
+}
+
+.modal-body {
+  padding: 8px;
+  border-top: 1px solid #eee;
+  margin: 0 24px;
+}
+
+.modal-button {
+  font-family: 'Work Sans', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  background: none;
+  border: none;
+  float: right;
+  cursor: pointer;
+}
+
+.add-button {
+  background: black;
+  border: none;
   color: white;
+  font-family: 'Work Sans', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  width: 100%;
+  height: 32px;
+  /* margin-top: 8px; */
+  margin-bottom: 16px;
+  cursor: pointer;
 }
 
-.App-link {
-  color: #61dafb;
-}
+.input-add {
+  background: none;
+  border: .5px solid black;
+  border-right: none;
+  border-top: none;
+  border-left: none;
+  margin-bottom: px;
+  width: 100%;
+  border-radius: none;
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
