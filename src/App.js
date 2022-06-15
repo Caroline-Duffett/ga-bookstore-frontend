@@ -19,7 +19,10 @@ function App() {
   const [user, setUser] = useState('admin') //temp. for testing purposes
   const [userAccounts, setUserAccounts] = useState([]) // user accounts from the backend
   // boolean to show / hide book info modal, default false
-  const [signedIn, setSignedIn] = useState(false)
+
+
+  const [signedIn, setSignedIn] = useState(false) //temp. for testing purposes
+  const [showCart, setShowCart] = useState(false)
 
 
   // Testing route to get user accounts
@@ -30,6 +33,14 @@ function App() {
         ).catch(error => console.error(error))
   }
 
+  //hides/shows Cart form
+    const cartToggle = () => {
+      if (showCart === false) {
+        setShowCart(true)
+      } else {
+        setShowCart(false)
+      }
+    }
 
   //Read Route
    const getBooks = () => {
@@ -78,7 +89,7 @@ function App() {
         {user === 'admin' ?
         <Add handleCreate={handleCreate}/>
         : null}
-        <ShoppingCart signedIn={signedIn}/>
+        <ShoppingCart signedIn={signedIn} cartToggle={cartToggle} showCart={showCart}/>
         <BestSellers books={books}/>
         <OurFavorites books={books}/>
         <AllBooks books={books} origin={'allbooks'}/>
