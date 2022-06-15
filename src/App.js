@@ -8,7 +8,8 @@ import SearchBar from './components/SearchBar'
 import AllBooks from './components/AllBooks'
 import Book from './components/Book.js'
 import BookInfoModal from './components/BookInfoModal.js'
-
+import ShoppingCart from './components/ShoppingCart.js'
+import UserRegistration from './components/UserRegistration.js'
 
 
 // import modals
@@ -23,6 +24,13 @@ function App() {
   const [userAccounts, setUserAccounts] = useState([]) // user accounts from the backend
   // boolean to show / hide book info modal, default false
 
+
+  const [signedIn, setSignedIn] = useState(true) //temp. for testing purposes
+  const [showCart, setShowCart] = useState(false)
+  const [showSearch, setShowSearch] = useState(false)
+  const [showAddForm, setShowAddForm] = useState(false)
+
+
   // Testing route to get user accounts
   const getUserAccounts = () => {
       axios.get('https://ga-bookstore-backend.herokuapp.com/api/useraccount')
@@ -30,6 +38,40 @@ function App() {
             err => console.log(err)
         ).catch(error => console.error(error))
   }
+
+  //hides/shows Cart form
+    const cartToggle = () => {
+      if (showCart === false) {
+        setShowCart(true)
+        setShowSearch(false)
+        setShowAddForm(false)
+      } else {
+        setShowCart(false)
+      }
+    }
+
+  //hides/shows searchbar
+    const searchToggle = () => {
+      if (showSearch === false) {
+        setShowSearch(true)
+        setShowAddForm(false)
+        setShowCart(false)
+      } else {
+        setShowSearch(false)
+      }
+    }
+
+  //hides/shows Add form
+    const addFormToggle = () => {
+      if (showAddForm === false) {
+        setShowAddForm(true)
+        setShowSearch(false)
+        setShowCart(false)
+      } else {
+        setShowAddForm(false)
+      }
+    }
+
 
   //Read Route
    const getBooks = () => {
@@ -46,6 +88,15 @@ function App() {
     .then((response) => {
       setBooks([...books, response.data])
     })
+  }
+
+  //Create New User Registration
+  const handleRegistration = (newUser) => {
+      console.log(`handleRegistration ${newUser.username}`);
+      axios.post('https://ga-bookstore-backend.herokuapp.com/api/useraccount', newUser)
+      .then((response) => {
+          setUserAccounts([...userAccounts, response.data])
+      })
   }
 
   //Update Route
@@ -74,28 +125,17 @@ function App() {
 
    return (
      <>
-        <SearchBar books={books}/>
+        <SearchBar books={books}  searchToggle={searchToggle} showSearch={showSearch} />
         {user === 'admin' ?
-        <Add handleCreate={handleCreate}/>
+        <Add handleCreate={handleCreate} addFormToggle={addFormToggle} showAddForm={showAddForm}/>
         : null}
+        <ShoppingCart signedIn={signedIn} cartToggle={cartToggle} showCart={showCart}/>
         <BestSellers books={books}/>
         <OurFavorites books={books}/>
         <AllBooks books={books} origin={'allbooks'}/>
+        <UserRegistration handleRegistration={handleRegistration}/>
      </>
    )
 }
 
 export default App;
-
-//==============================================================================//
-//                                Grave Yard
-//==============================================================================//
-
-
-// <Book
-//     book={book}
-    // handleUpdate={handleUpdate}
-    // handleDelete={handleDelete}
-    // closeBookInfoModal={() => setShowBookInfoModal(false)}
-//     origin={'bookinfo'}
-// />

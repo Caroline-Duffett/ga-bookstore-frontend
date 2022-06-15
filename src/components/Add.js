@@ -5,9 +5,6 @@ const Add = (props) => {
   let emptyBook = {title: '', author_name: '', publisher: '', publication_date: '', genre: '', cover_art: '', page_count: '', language: '', isbn: '', rating: '', price: ''}
   const [book, setBook] = useState(emptyBook)
 
-  //Add form
-  const [showAddForm, setShowAddForm] = useState(false)
-
 
   //Functions:
   const handleChange = (event) => {
@@ -20,25 +17,16 @@ const Add = (props) => {
     setBook(emptyBook)
   }
 
-  //hides/shows Add form
-  const addFormToggle = () => {
-    if (showAddForm === false) {
-      setShowAddForm(true)
-    } else {
-      setShowAddForm(false)
-    }
-  }
-
 
   return(
     <>
-    <button onClick={addFormToggle} className="search-btn">Add</button>
-    {showAddForm ?
+    <button onClick={props.addFormToggle} className="search-btn">Add</button>
+    {props.showAddForm ?
       <>
         <div className="modal-wrapper">
           <div className="add-book-modal">
             <div className='add-book-x-btn-div'>
-              <button className='add-book-x-btn' onClick={addFormToggle}>
+              <button className='add-book-x-btn' onClick={props.addFormToggle}>
               x
               </button>
             </div>
