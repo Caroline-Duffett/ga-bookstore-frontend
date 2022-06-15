@@ -12,7 +12,7 @@ import AllBooks from './components/AllBooks'
 function App() {
   //States:
   const [books, setBooks] = useState([])
-  const [user, setUser] = useState('admi') //temp. for testing purposes
+  const [user, setUser] = useState('admin') //temp. for testing purposes
 
 
   //Read Route
@@ -57,13 +57,13 @@ function App() {
 
    return (
      <>
-        <SearchBar books={books}/>
-        {user === 'admin' ?
-        <Add handleCreate={handleCreate}/>
-        : null}
-        <BestSellers books={books}/>
-        <OurFavorites books={books}/>
-        <AllBooks books={books}/>
+      <SearchBar books={books}/>
+      {user === 'admin' ?
+      <Add handleCreate={handleCreate}/>
+      : null}
+      <BestSellers books={books}/>
+      <OurFavorites books={books}/>
+      <AllBooks books={books}/>
      </>
    )
 }
