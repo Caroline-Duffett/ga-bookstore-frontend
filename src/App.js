@@ -13,6 +13,15 @@ function App() {
   //States:
   const [books, setBooks] = useState([])
   const [user, setUser] = useState('admi') //temp. for testing purposes
+  const [userAccounts, setUserAccounts] = useState([]) // user accounts from the backend
+
+  // Testing route to get user accounts
+  const getUserAccounts = () => {
+      axios.get('https://ga-bookstore-backend.herokuapp.com/api/useraccount')
+        .then(response => setUserAccounts(response.data),
+            err => console.log(err)
+        ).catch(error => console.error(error))
+  }
 
 
   //Read Route
@@ -53,6 +62,7 @@ function App() {
   //Gets all books then loads page
    useEffect(() => {
      getBooks()
+     getUserAccounts()
    }, [])
 
    return (
