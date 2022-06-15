@@ -25,6 +25,7 @@ function App() {
   const [showCart, setShowCart] = useState(false)
   const [showSearch, setShowSearch] = useState(false)
   const [showAddForm, setShowAddForm] = useState(false)
+  const [showSignIn, setShowSignIn] = useState(false)
 
 
   // Testing route to get user accounts
@@ -41,6 +42,7 @@ function App() {
         setShowCart(true)
         setShowSearch(false)
         setShowAddForm(false)
+        setShowSignIn(false)
       } else {
         setShowCart(false)
       }
@@ -52,6 +54,7 @@ function App() {
         setShowSearch(true)
         setShowAddForm(false)
         setShowCart(false)
+        setShowSignIn(false)
       } else {
         setShowSearch(false)
       }
@@ -63,8 +66,21 @@ function App() {
         setShowAddForm(true)
         setShowSearch(false)
         setShowCart(false)
+        setShowSignIn(false)
       } else {
         setShowAddForm(false)
+      }
+    }
+
+  //hides/shows Add form
+    const signInToggle = () => {
+      if (showSignIn === false) {
+        setShowSignIn(true)
+        setShowAddForm(false)
+        setShowSearch(false)
+        setShowCart(false)
+      } else {
+        setShowSignIn(false)
       }
     }
 
@@ -125,11 +141,11 @@ function App() {
         {user === 'admin' ?
         <Add handleCreate={handleCreate} addFormToggle={addFormToggle} showAddForm={showAddForm}/>
         : null}
+        <UserRegistration handleRegistration={handleRegistration} signInToggle={signInToggle} showSignIn={showSignIn} signedIn={signedIn}/>
         <ShoppingCart signedIn={signedIn} cartToggle={cartToggle} showCart={showCart}/>
         <BestSellers books={books}/>
         <OurFavorites books={books}/>
         <AllBooks books={books} origin={'allbooks'}/>
-        <UserRegistration handleRegistration={handleRegistration}/>
      </>
    )
 }
