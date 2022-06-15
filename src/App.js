@@ -2,12 +2,20 @@ import './App.css';
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import Add from './components/Add'
-import Book from './components/Book'
+import BestSellers from './components/BestSellers'
+import OurFavorites from './components/OurFavorites'
+import SearchBar from './components/SearchBar'
+import AllBooks from './components/AllBooks'
+
 
 
 function App() {
+  //States:
   const [books, setBooks] = useState([])
+  const [user, setUser] = useState('admi') //temp. for testing purposes
 
+
+  //Read Route
    const getBooks = () => {
      axios.get('https://ga-bookstore-backend.herokuapp.com/api/books')
      .then(response => setBooks(response.data),
@@ -16,6 +24,7 @@ function App() {
    .catch(error=> console.error(error))
    }
 
+   //Create Route
    const handleCreate = (addBook) => {
     axios.post('https://ga-bookstore-backend.herokuapp.com/api/books', addBook)
     .then((response) => {
@@ -23,6 +32,7 @@ function App() {
     })
   }
 
+  //Update Route
   const handleUpdate = (editBook) => {
     axios.put('https://ga-bookstore-backend.herokuapp.com/api/books/' + editBook.id, editBook)
     .then((response) => {
@@ -32,6 +42,7 @@ function App() {
     })
   }
 
+  //Delete Route
   const handleDelete = (deletedBook) => {
     axios.delete('https://ga-bookstore-backend.herokuapp.com/api/books/' + deletedBook.id)
     .then((response) => {
@@ -39,17 +50,20 @@ function App() {
     })
   }
 
-
+  //Gets all books then loads page
    useEffect(() => {
      getBooks()
    }, [])
 
-
    return (
      <>
-        <h1>Books</h1>
+        <SearchBar books={books}/>
+        {user === 'admin' ?
         <Add handleCreate={handleCreate}/>
-        <Book books={books} handleUpdate={handleUpdate} handleDelete={handleDelete}/>
+        : null}
+        <BestSellers books={books}/>
+        <OurFavorites books={books}/>
+        <AllBooks books={books}/>
      </>
    )
 }
