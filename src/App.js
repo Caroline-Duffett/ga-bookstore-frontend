@@ -46,6 +46,14 @@ function App() {
     })
   }
 
+  //Create New User Registration
+  const handleRegistration = (newUser) => {
+      axios.post('https://ga-bookstore-backend.herokuapp.com/api/useraccount')
+      .then((response) => {
+          setUserAccounts([...userAccounts, response.data])
+      })
+  }
+
   //Update Route
   const handleUpdate = (editBook) => {
     axios.put('https://ga-bookstore-backend.herokuapp.com/api/books/' + editBook.id, editBook)
