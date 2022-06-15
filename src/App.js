@@ -8,7 +8,7 @@ import SearchBar from './components/SearchBar'
 import AllBooks from './components/AllBooks'
 import Book from './components/Book.js'
 import BookInfoModal from './components/BookInfoModal.js'
-
+import UserRegistration from './components/UserRegistration.js'
 
 
 function App() {
@@ -46,6 +46,15 @@ function App() {
     })
   }
 
+  //Create New User Registration
+  const handleRegistration = (newUser) => {
+      console.log(`handleRegistration ${newUser.username}`);
+      axios.post('https://ga-bookstore-backend.herokuapp.com/api/useraccount', newUser)
+      .then((response) => {
+          setUserAccounts([...userAccounts, response.data])
+      })
+  }
+
   //Update Route
   const handleUpdate = (editBook) => {
     axios.put('https://ga-bookstore-backend.herokuapp.com/api/books/' + editBook.id, editBook)
@@ -79,17 +88,9 @@ function App() {
         <BestSellers books={books}/>
         <OurFavorites books={books}/>
         <AllBooks books={books} origin={'allbooks'}/>
+        <UserRegistration handleRegistration={handleRegistration}/>
      </>
    )
 }
 
 export default App;
-
-
-// <Book
-//     book={book}
-    // handleUpdate={handleUpdate}
-    // handleDelete={handleDelete}
-    // closeBookInfoModal={() => setShowBookInfoModal(false)}
-//     origin={'bookinfo'}
-// />
