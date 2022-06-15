@@ -4,27 +4,16 @@ const SearchBar = (props) => {
 
   //State:
   const [query, setQuery] = useState("")
-  const [showSearch, setShowSearch] = useState(false)
-
-  //Functions:
-    //hides/shows searchbar
-    const searchToggle = () => {
-      if (showSearch === false) {
-        setShowSearch(true)
-      } else {
-        setShowSearch(false)
-      }
-    }
 
   return (
     <>
-      <button onClick={searchToggle} className="search-btn">Search</button>
-      {showSearch ?
+      <button onClick={props.searchToggle} className="search-btn">Search</button>
+      {props.showSearch ?
         <>
           <div className="modal-wrapper">
             <div className="search-bar-modal">
               <div className='search-bar-x-btn-div'>
-                <button className='search-bar-x-btn' onClick={searchToggle}>
+                <button className='search-bar-x-btn' onClick={props.searchToggle}>
                 x
                 </button>
               </div>
