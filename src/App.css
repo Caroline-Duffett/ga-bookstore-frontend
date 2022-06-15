@@ -195,8 +195,40 @@ h5, h4 {
 }
 /*----------------------------------------------------------------------------------------*/
 
-/* MODAL */
 
+
+/*-------------------------- Sign In / Create Account Modal ------------------------------*/
+.create-acc-si-modal {
+  background-color: white;
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  margin: 5% 40%;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.create-acc-si-div {
+  text-align: right;
+  width: 275px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.create-acc-si-x-btn-div {
+  text-align: right;
+}
+
+.account-toggle-btn {
+  text-align: center;
+  margin-top: 30px;
+}
+
+/*----------------------------------------------------------------------------------------*/
+
+
+
+/* MODAL */
 .modal {
   position: fixed;
   left: 0;
@@ -266,3 +298,4 @@ h5, h4 {
   border-radius: none;
 
 }
+
