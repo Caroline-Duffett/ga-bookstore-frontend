@@ -19,6 +19,7 @@ function App() {
   const [user, setUser] = useState('admin') //temp. for testing purposes
   const [userAccounts, setUserAccounts] = useState([]) // user accounts from the backend
   // boolean to show / hide book info modal, default false
+  const [signedIn, setSignedIn] = useState(false)
 
 
   // Testing route to get user accounts
@@ -77,7 +78,7 @@ function App() {
         {user === 'admin' ?
         <Add handleCreate={handleCreate}/>
         : null}
-        <ShoppingCart/>
+        <ShoppingCart signedIn={signedIn}/>
         <BestSellers books={books}/>
         <OurFavorites books={books}/>
         <AllBooks books={books} origin={'allbooks'}/>

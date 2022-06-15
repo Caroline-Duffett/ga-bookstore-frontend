@@ -157,3 +157,39 @@ h5, h4 {
   text-align: left;
 }
 /*----------------------------------------------------------------------------------------*/
+
+
+
+/*---------------------------------- Sign In Message --------------------------------------*/
+.sign-in-modal {
+  background-color: white;
+  position: absolute;
+  width: 600px;
+  height: 200px;
+  margin: 5% 30%;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.sign-in-message {
+  margin-top: 45px;
+}
+
+.sign-in-x-btn-div {
+  margin-top: 75px;
+  text-align: center;
+}
+
+.sign-in-modal-wrapper {
+  width: 100vw;
+  height: 100vh;
+  /* From https://css.glass */
+  background: rgba(0, 0, 0, 0.41);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(9.7px);
+  -webkit-backdrop-filter: blur(9.7px);
+  border: 1px solid rgba(0, 0, 0, 0.56);
+  position: fixed;
+}
+/*----------------------------------------------------------------------------------------*/
