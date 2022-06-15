@@ -1,7 +1,10 @@
 import {useState} from 'react'
 
 const ShoppingCart = (props) => {
-  
+
+  //State:
+    const [userCartBooks, setUserCartBooks] = useState(['book 1', 'book 2', 'book 3']) //temp. for testing purposes. Should be set to user.cart
+
   return(
     <>
       <button onClick={props.cartToggle} className="search-btn">Cart</button>
@@ -19,9 +22,13 @@ const ShoppingCart = (props) => {
                     </div>
                     <h3>Your Cart</h3>
                     <div className="cart-books-flexbox">
-                      <h5 className="item">Item 1</h5>
-                      <h5 className="item">Item 2</h5>
-                      <h5 className="item">Item 3</h5>
+                      {userCartBooks.map((cartBook) => {
+                        return (
+                          <div className="cartBook">
+                            <h3>{cartBook}</h3>
+                          </div>
+                        )
+                      })}
                     </div>
                   </div>
                 </div>
