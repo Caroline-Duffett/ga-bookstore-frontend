@@ -8,6 +8,7 @@ import SearchBar from './components/SearchBar'
 import AllBooks from './components/AllBooks'
 import Book from './components/Book.js'
 import BookInfoModal from './components/BookInfoModal.js'
+import ShoppingCart from './components/ShoppingCart.js'
 
 
 
@@ -76,6 +77,7 @@ function App() {
         {user === 'admin' ?
         <Add handleCreate={handleCreate}/>
         : null}
+        <ShoppingCart/>
         <BestSellers books={books}/>
         <OurFavorites books={books}/>
         <AllBooks books={books} origin={'allbooks'}/>
