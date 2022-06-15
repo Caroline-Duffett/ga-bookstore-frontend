@@ -27,6 +27,8 @@ function App() {
   const [showAddForm, setShowAddForm] = useState(false)
   const [showSignIn, setShowSignIn] = useState(false)
 
+  //testing user auth user login
+  const [loggedInUser, setLoggedInuser] = useState({})
 
   // Testing route to get user accounts
   const getUserAccounts = () => {
@@ -102,6 +104,15 @@ function App() {
     })
   }
 
+  //handles user sign in reuest
+  const handleSignIn = (tryUser) => {
+      console.log(`logging in username: ${user.username}`);
+      axios.get(`https://ga-bookstore-backend.herokuapp.com/api/useraccount/login`)
+          .then((response) => {
+              console.log(response);
+          })
+  }
+
   //Create New User Registration
   const handleRegistration = (newUser) => {
       console.log(`handleRegistration ${newUser.username}`);
@@ -141,7 +152,7 @@ function App() {
         {user === 'admin' ?
         <Add handleCreate={handleCreate} addFormToggle={addFormToggle} showAddForm={showAddForm}/>
         : null}
-        <UserRegistration handleRegistration={handleRegistration} signInToggle={signInToggle} showSignIn={showSignIn} signedIn={signedIn}/>
+        <UserRegistration handleRegistration={handleRegistration} signInToggle={signInToggle} showSignIn={showSignIn} signedIn={signedIn} handleSignIn={handleSignIn}/>
         <ShoppingCart signedIn={signedIn} cartToggle={cartToggle} showCart={showCart}/>
         <BestSellers books={books}/>
         <OurFavorites books={books}/>

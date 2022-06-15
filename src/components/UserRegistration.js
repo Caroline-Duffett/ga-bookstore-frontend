@@ -33,7 +33,11 @@ const UserRegistration = (props) => {
     const handleSubmit = (event) => {
         event.preventDefault()
         // console.log(newUser);
-        props.handleRegistration(newUser)
+        if (login) {
+            props.handleSignIn(newUser)
+        } else {
+            props.handleRegistration(newUser)
+        }
     }
 
     return (
