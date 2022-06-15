@@ -23,6 +23,7 @@ function App() {
 
   const [signedIn, setSignedIn] = useState(false) //temp. for testing purposes
   const [showCart, setShowCart] = useState(false)
+  const [showSearch, setShowSearch] = useState(false)
 
 
   // Testing route to get user accounts
@@ -41,6 +42,16 @@ function App() {
         setShowCart(false)
       }
     }
+
+  //hides/shows searchbar
+    const searchToggle = () => {
+      if (showSearch === false) {
+        setShowSearch(true)
+      } else {
+        setShowSearch(false)
+      }
+    }
+
 
   //Read Route
    const getBooks = () => {
@@ -85,7 +96,7 @@ function App() {
 
    return (
      <>
-        <SearchBar books={books}/>
+        <SearchBar books={books}  searchToggle={searchToggle} showSearch={showSearch} />
         {user === 'admin' ?
         <Add handleCreate={handleCreate}/>
         : null}
