@@ -77,9 +77,13 @@ const Add = (props) => {
                 <input type='number' name='isbn' value={book.isbn} onChange={handleChange}/>
                 <br/>
                 <br/>
-
-                <label htmlFor='rating'>Rating: </label>
-                <input type='number' name='rating' value={book.rating} onChange={handleChange}/>
+                <fieldset className="rate">
+                <label htmlFor='rating1' title="5 stars">Rating: </label>
+                <input type='radio' id="rating2" name='rating' value={book.rating} onChange={handleChange}/>
+                <label htmlFor='rating1' title="5 stars"></label>
+                <input type='radio' id="rating2" name='rating' value={book.rating} onChange={handleChange}/>
+                </fieldset>
+                
                 <br/>
                 <br/>
 
