@@ -26,86 +26,27 @@ const Book = (props, book) => {
 
     const reviewToggle = () => {
       if (showReviews === false) {
+        getReviews()
         setShowReviews(true)
+        //console.log(reviews);
       } else {
         setShowReviews(false)
       }
     }
 
-    // const matchReviews = (newReviews) => {
-    //   //console.log(newReviews);
-    //   newReviews.map((review) => {
-    //     //console.log(review.book_id + " " + bookData.id);
-    //     if (review.book_id == bookData.id) {
-    //         //console.log(review);
-    //       setReviews([...reviews, review])
-    //     }
-    //   })
-    // }
-    //
-    // //Read Route for reviews
-    // const getReviews = () => {
-    //   //axios.get('https://ga-bookstore-backend.herokuapp.com/api/books')
-    //   axios.get("http://localhost:8000/api/books/reviews")
-    //   .then(response => matchReviews(response.data),
-    //   err=> console.log(err)
-    // )
-    // .catch(error=> console.error(error))
-    // }
 
-//----------- Attempt
-    // const matchReviews = (newReviews) => {
-    //   //console.log(newReviews);
-    //   newReviews.map((review) => {
-    //     //console.log(review.book_id + " " + bookData.id);
-    //     if (review.book_id == bookData.id) {
-    //         //console.log(review);
-    //       setReviews([...reviews, review])
-    //     }
-    //   })
-    // }
-
-    //Read Route for reviews
+    //Read Route for reviews tablereviews
     const getReviews = () => {
       //axios.get('https://ga-bookstore-backend.herokuapp.com/api/books')
-      axios.get("http://localhost:8000/api/books/reviews")
-      .then(response => setReviews(response.data),
-      err=> console.log(err)
+      axios.get(`http://localhost:8000/api/books/reviews/list`, {"bookID":bookData.id})
+      .then((response) => {
+        //setReviews(response.data)
+        console.log({...response})
+      }
     )
     .catch(error=> console.error(error))
     }
-//----------- Attempt
 
-
-
-
-
-
-
-
-    // const [cartAmount, setCartAmount] = useState(0)
-
-    // const addToCart = () => {
-    //   setCartAmount((prevCartAmount) => prevCartAmount + 1)
-    // }
-
-//     const AddBook = useCallback(() => {
-//       const book = createRandomBook();
-//       setCart((prev) => [...prev, book]);
-//     }, []);
-
-//     let id = 0;
-// const createRandomBook = () => {
-//   id = id + 1;
-//   return {
-//     id,
-//     qty: 1,
-//     desc: `Book number: ${id}`,
-//     price: Number((Math.random() * 10 + 1).toFixed(2))
-//   };
-// };
-
-    // useEffect
 
   return (
       <>
@@ -150,19 +91,11 @@ const Book = (props, book) => {
                       {reviews.map((review) => {
                         return (
                           <>
-                          {bookData.reviews.map((bookDataReview) => {
-                            if (bookDataReview === review.id) {
-                              console.log(bookDataReview + " bookDataReview");
-                              console.log(review.id + " review.id");
-                              return (
-                                <div className="review-card" key={review.id}>
-                                  <h5>User: {review.user_id}</h5>
-                                  <h5>Review: {review.review}</h5>
-                                  <h5>review.id: {review.id}</h5>
-                                </div>
-                              )
-                            }
-                          })}
+                            <div className="review-card" key={review.id}>
+                              <h5>User: {review.user_id}</h5>
+                              <h5>Review: {review.review}</h5>
+                              <h5>review.id: {review.id}</h5>
+                            </div>
                           </>
                         )
                       })
@@ -268,3 +201,84 @@ export default Book
 
 
 //<button onClick={() => addToCart(book.id, "book")}>Add</button>
+
+
+
+
+//----------- Attempt
+
+
+
+
+
+
+
+
+    // const [cartAmount, setCartAmount] = useState(0)
+
+    // const addToCart = () => {
+    //   setCartAmount((prevCartAmount) => prevCartAmount + 1)
+    // }
+
+//     const AddBook = useCallback(() => {
+//       const book = createRandomBook();
+//       setCart((prev) => [...prev, book]);
+//     }, []);
+
+//     let id = 0;
+// const createRandomBook = () => {
+//   id = id + 1;
+//   return {
+//     id,
+//     qty: 1,
+//     desc: `Book number: ${id}`,
+//     price: Number((Math.random() * 10 + 1).toFixed(2))
+//   };
+// };
+
+    // useEffect
+
+
+
+    // const matchReviews = (newReviews) => {
+    //   //console.log(newReviews);
+    //   newReviews.map((review) => {
+    //     //console.log(review.book_id + " " + bookData.id);
+    //     if (review.book_id == bookData.id) {
+    //         //console.log(review);
+    //       setReviews([...reviews, review])
+    //     }
+    //   })
+    // }
+    //
+    // //Read Route for reviews
+    // const getReviews = () => {
+    //   //axios.get('https://ga-bookstore-backend.herokuapp.com/api/books')
+    //   axios.get("http://localhost:8000/api/books/reviews")
+    //   .then(response => matchReviews(response.data),
+    //   err=> console.log(err)
+    // )
+    // .catch(error=> console.error(error))
+    // }
+
+//----------- Attempt
+    // const matchReviews = (newReviews) => {
+    //   //console.log(newReviews);
+    //   newReviews.map((review) => {
+    //     //console.log(review.book_id + " " + bookData.id);
+    //     if (review.book_id == bookData.id) {
+    //         //console.log(review);
+    //       setReviews([...reviews, review])
+    //     }
+    //   })
+    // }
+
+    // //Read Route for reviews
+    // const getReviews = () => {
+    //   //axios.get('https://ga-bookstore-backend.herokuapp.com/api/books')
+    //   axios.get(`http://localhost:8000/api/books/${bookData.id}/reviews`)
+    //   .then(response => setReviews(response.data),
+    //   err=> console.log(err)
+    // )
+    // .catch(error=> console.error(error))
+    // }
