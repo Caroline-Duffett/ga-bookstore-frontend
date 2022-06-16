@@ -108,7 +108,7 @@ function App() {
   //handles user sign in reuest
   const handleSignIn = (userObj) => {
       // console.log(userObj)
-      axios.put(`http://localhost:8000/api/useraccount/login`, userObj)
+      axios.put(`https://ga-bookstore-backend.herokuapp.com/api/useraccount/login`, userObj)
           .then((response) => {
               console.log(response);
           })
@@ -117,7 +117,7 @@ function App() {
   //Create New User Registration
   const handleRegistration = (newUser) => {
       console.log(`handleRegistration ${newUser.username}`);
-      axios.post('http://localhost:8000/api/useraccount', newUser)
+      axios.post('https://ga-bookstore-backend.herokuapp.com/api/useraccount', newUser)
       .then((response) => {
           console.log(response);
           setUserAccounts([...userAccounts, response.data])
