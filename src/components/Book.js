@@ -36,7 +36,7 @@ const Book = (props, book) => {
   return (
       <>
         <div className='book' key={bookData.id}>
-        
+
           <img src={bookData.cover_art} alt="book cover"
           onClick={() => setShow(true)}
           />
@@ -51,7 +51,7 @@ const Book = (props, book) => {
           <br/>
           <h5>${bookData.price}</h5>
           <input type="number" placeholder="Qty"/>
-          <button onClick={() => addToCart(book.id, "book")}>Add</button>
+
           {/* <ShoppingCart></ShoppingCart> */}
 
           {props.user === 'admin' ?
@@ -62,11 +62,11 @@ const Book = (props, book) => {
           </button>
       </>
           : null}
-          
+
           </ShowModal>
         </div>
-        
-        
+
+
     </>
   )
 }
@@ -76,6 +76,8 @@ export default Book
 //==============================================================================//
 //                                Grave Yard
 //==============================================================================//
+
+// <button onClick={() => addToCart(book.id, "book")}>Add</button>
 
 // import BookInfoModal from './BookInfoModal'
 
@@ -100,7 +102,7 @@ export default Book
 
 // <img src={bookData.cover_art} alt="book cover"
 // onClick={() => {props.selectBook(bookData)}}
-// /> 
+// />
 
 // {origin === 'bookinfo' ? {renderEdit} : null}
 
