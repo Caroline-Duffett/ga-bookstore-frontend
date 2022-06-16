@@ -157,7 +157,7 @@ function App() {
         <Add handleCreate={handleCreate} addFormToggle={addFormToggle} showAddForm={showAddForm}/>
         : null}
         <UserRegistration handleRegistration={handleRegistration} signInToggle={signInToggle} showSignIn={showSignIn} signedIn={signedIn} handleSignIn={handleSignIn}/>
-        <ShoppingCart signedIn={signedIn} cartToggle={cartToggle} showCart={showCart}/>
+        <ShoppingCart signedIn={signedIn} cartToggle={cartToggle} showCart={showCart} user={loggedInUser}/>
         <BestSellers books={books}/>
         <OurFavorites books={books}/>
         <AllBooks books={books} origin={'allbooks'}/>
