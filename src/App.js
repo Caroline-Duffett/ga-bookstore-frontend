@@ -18,7 +18,7 @@ import Review from './components/Review'
 function App() {
   //States:
   const [books, setBooks] = useState([])
-  const [reviews, setReviews] = useState([])
+  
   const [user, setUser] = useState('admin') //temp. for testing purposes
   const [userAccounts, setUserAccounts] = useState([]) // user accounts from the backend
   // boolean to show / hide book info modal, default false
@@ -99,16 +99,6 @@ function App() {
    .catch(error=> console.error(error))
    }
 
-   //Read Route for reviews
-   const getReviews = () => {
-     //axios.get('https://ga-bookstore-backend.herokuapp.com/api/books')
-     axios.get("http://localhost:8000/api/books/reviews")
-     .then(response => setReviews(response.data),
-     err=> console.log(err)
-   )
-   .catch(error=> console.error(error))
-   }
-
    //Create Route
    const handleCreate = (addBook) => {
     //axios.post('https://ga-bookstore-backend.herokuapp.com/api/books', addBook)
@@ -149,7 +139,6 @@ function App() {
 
   //Gets all books then loads page
    useEffect(() => {
-     getReviews()
      getBooks()
      getUserAccounts()
    }, [])
@@ -164,7 +153,7 @@ function App() {
         <ShoppingCart signedIn={signedIn} cartToggle={cartToggle} showCart={showCart}/>
         <BestSellers books={books}/>
         <OurFavorites books={books}/>
-        <AllBooks books={books} origin={'allbooks'} reviews={reviews}/>
+        <AllBooks books={books} origin={'allbooks'}/>
      </>
    )
 }

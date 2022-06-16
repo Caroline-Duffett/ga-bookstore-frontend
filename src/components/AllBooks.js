@@ -1,13 +1,16 @@
 import {useState} from 'react'
 import Book from './Book'
-import Review from './Review'
 
 
 const AllBooks = (props) => {
 
-
 //console.log(props.books);
 //console.log(props.reviews);
+  const [reviews, setReviews] = useState(props.reviews)
+
+  const getBookReviews = () => {
+
+  }
 
   return (
     <>
@@ -23,22 +26,23 @@ const AllBooks = (props) => {
           )
         })}
       </div>
-      <div className='all-reviews-flexbox'>
-      {props.reviews.map((review) => {
-        return(
-          <Review
-          review={review}
-          section={'allbooks'}
-          />
-        )
-      })}
-      </div>
     </>
 )}
 
 export default AllBooks
 
 
+//
+// <div className='all-reviews-flexbox'>
+//   {props.reviews.map((review) => {
+//     return(
+//       <Review
+//       review={review}
+//       section={'allbooks'}
+//       />
+//     )
+//   })}
+// </div>
 
 //==============================================================================//
 //                                Grave Yard

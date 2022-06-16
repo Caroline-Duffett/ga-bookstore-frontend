@@ -2,15 +2,27 @@ import {useState, useEffect, useCallback} from 'react'
 import Edit from './Edit.js'
 import ShowModal from './ShowModal'
 import ShoppingCart from './ShoppingCart'
+//import Review from './Review'
+import axios from 'axios'
+
+
+
 
 
 const Book = (props, book) => {
+
+
   //States:
     const [bookData, setBookData] = useState({...props.book})
     const[show, setShow] = useState(false)
     const [showReviews, setShowReviews] = useState(false)
 
+    const [reviews, setReviews] = useState([])
+    //console.log(reviews);
+    //const [reviews, setReviews] = useState([{...props.reviews}])
     //console.log(props.reviews);
+    //console.log(...props.reviews);
+    //console.log(reviews);
 
     const reviewToggle = () => {
       if (showReviews === false) {
@@ -19,6 +31,57 @@ const Book = (props, book) => {
         setShowReviews(false)
       }
     }
+
+    // const matchReviews = (newReviews) => {
+    //   //console.log(newReviews);
+    //   newReviews.map((review) => {
+    //     //console.log(review.book_id + " " + bookData.id);
+    //     if (review.book_id == bookData.id) {
+    //         //console.log(review);
+    //       setReviews([...reviews, review])
+    //     }
+    //   })
+    // }
+    //
+    // //Read Route for reviews
+    // const getReviews = () => {
+    //   //axios.get('https://ga-bookstore-backend.herokuapp.com/api/books')
+    //   axios.get("http://localhost:8000/api/books/reviews")
+    //   .then(response => matchReviews(response.data),
+    //   err=> console.log(err)
+    // )
+    // .catch(error=> console.error(error))
+    // }
+
+//----------- Attempt
+    // const matchReviews = (newReviews) => {
+    //   //console.log(newReviews);
+    //   newReviews.map((review) => {
+    //     //console.log(review.book_id + " " + bookData.id);
+    //     if (review.book_id == bookData.id) {
+    //         //console.log(review);
+    //       setReviews([...reviews, review])
+    //     }
+    //   })
+    // }
+
+    //Read Route for reviews
+    const getReviews = () => {
+      //axios.get('https://ga-bookstore-backend.herokuapp.com/api/books')
+      axios.get("http://localhost:8000/api/books/reviews")
+      .then(response => setReviews(response.data),
+      err=> console.log(err)
+    )
+    .catch(error=> console.error(error))
+    }
+//----------- Attempt
+
+
+
+
+
+
+
 
     // const [cartAmount, setCartAmount] = useState(0)
 
@@ -49,9 +112,14 @@ const Book = (props, book) => {
         <div className='book' key={bookData.id}>
 
           <img src={bookData.cover_art} alt="book cover"
-          onClick={() => setShow(true)}
+          onClick={() => {
+            setShow(true)
+            getReviews()
+
+          }}
           />
           <ShowModal title={bookData.title} onClose={() => setShow(false)} show={show}>
+          <h2>{bookData.id}</h2>
           <img src={bookData.cover_art} alt="book cover"/>
           <h5>Author: {bookData.author_name}</h5>
           <h5>Publisher: {bookData.publisher}</h5>
@@ -75,17 +143,33 @@ const Book = (props, book) => {
           : null}
           <div className="all-reviews-div">
             <button onClick={reviewToggle}>See Reviews</button>
-            {bookData.reviews.map((bookdatareview) => {
-              return(
-                <>
                   {showReviews ?
                     <>
-                      <h5>{bookdatareview}</h5>
+                      <h3>Reviews</h3>
+                      <div className='all-reviews-flexbox'>
+                      {reviews.map((review) => {
+                        return (
+                          <>
+                          {bookData.reviews.map((bookDataReview) => {
+                            if (bookDataReview === review.id) {
+                              console.log(bookDataReview + " bookDataReview");
+                              console.log(review.id + " review.id");
+                              return (
+                                <div className="review-card" key={review.id}>
+                                  <h5>User: {review.user_id}</h5>
+                                  <h5>Review: {review.review}</h5>
+                                  <h5>review.id: {review.id}</h5>
+                                </div>
+                              )
+                            }
+                          })}
+                          </>
+                        )
+                      })
+                    }
+                      </div>
                     </>
                   : null}
-                </>
-              )
-            })}
           </div>
           </ShowModal>
         </div>

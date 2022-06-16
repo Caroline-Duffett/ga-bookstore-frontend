@@ -244,7 +244,7 @@ h5, h4 {
 .modal-content {
   width: 500px;
   background-color: white;
-  
+
 }
 
 .modal-header, .modal-footer {
@@ -299,3 +299,20 @@ h5, h4 {
 
 }
 
+
+/*--------------------------------- Reviews Flexbox --------------------------------------*/
+.all-reviews-flexbox {
+  background-color: lightgray;
+  display: flex;
+  flex-direction: column;
+  height: 200px;
+  overflow: scroll
+}
+
+.review-card {
+  background-color: white;
+  margin: 3px 5px;
+}
+
+
+/*----------------------------------------------------------------------------------------*/
