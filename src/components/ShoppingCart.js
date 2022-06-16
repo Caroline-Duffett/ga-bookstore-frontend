@@ -5,6 +5,7 @@ const ShoppingCart = (props) => {
   //State:
     const [userCartBooks, setUserCartBooks] = useState(['book 1', 'book 2', 'book 3']) //temp. for testing purposes. Should be set to user.cart
 
+
   return(
     <>
       <button onClick={props.cartToggle} className="search-btn">Cart</button>

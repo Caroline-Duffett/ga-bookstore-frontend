@@ -7,9 +7,10 @@ import OurFavorites from './components/OurFavorites'
 import SearchBar from './components/SearchBar'
 import AllBooks from './components/AllBooks'
 import Book from './components/Book.js'
-import BookInfoModal from './components/BookInfoModal.js'
+// import BookInfoModal from './components/BookInfoModal.js'
 import ShoppingCart from './components/ShoppingCart.js'
 import UserRegistration from './components/UserRegistration.js'
+// import ShowModal from './components/ShowModal'
 
 
 function App() {
