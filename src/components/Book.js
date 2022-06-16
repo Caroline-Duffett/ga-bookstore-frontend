@@ -10,6 +10,7 @@ const Book = (props, book) => {
     const[show, setShow] = useState(false)
     const [showReviews, setShowReviews] = useState(false)
 
+    //console.log(props.reviews);
 
     const reviewToggle = () => {
       if (showReviews === false) {

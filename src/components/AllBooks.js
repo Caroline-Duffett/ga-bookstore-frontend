@@ -1,10 +1,13 @@
 import {useState} from 'react'
 import Book from './Book'
+import Review from './Review'
+
 
 const AllBooks = (props) => {
-  const [reviews, setReviews] = useState([{...props.reviews}])
-  //console.log(props.reviews)
 
+
+//console.log(props.books);
+//console.log(props.reviews);
 
   return (
     <>
@@ -16,10 +19,19 @@ const AllBooks = (props) => {
             book={book}
             section={'allbooks'}
             selectBook={props.selectBook}
-            reviews={reviews}
             />
           )
         })}
+      </div>
+      <div className='all-reviews-flexbox'>
+      {props.reviews.map((review) => {
+        return(
+          <Review
+          review={review}
+          section={'allbooks'}
+          />
+        )
+      })}
       </div>
     </>
 )}

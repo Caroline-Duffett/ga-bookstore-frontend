@@ -12,7 +12,7 @@ import ShoppingCart from './components/ShoppingCart.js'
 import UserRegistration from './components/UserRegistration.js'
 // import ShowModal from './components/ShowModal'
 
-import Reviews from './components/Reviews'
+import Review from './components/Review'
 
 
 function App() {
