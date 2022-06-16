@@ -111,6 +111,7 @@ function App() {
       axios.put(`https://ga-bookstore-backend.herokuapp.com/api/useraccount/login`, userObj)
           .then((response) => {
               console.log(response);
+              setLoggedInuser(response.data)
           })
   }
 
