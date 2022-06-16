@@ -34,7 +34,7 @@ const UserRegistration = (props) => {
         event.preventDefault()
         // console.log(newUser);
         if (login) {
-            userObj = {
+            const userObj = {
                 username: newUser.username,
 
             }

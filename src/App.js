@@ -147,7 +147,7 @@ function App() {
 
    return (
      <>
-        <><>
+
         <SearchBar books={books}  searchToggle={searchToggle} showSearch={showSearch} />
         {user === 'admin' ?
         <Add handleCreate={handleCreate} addFormToggle={addFormToggle} showAddForm={showAddForm}/>
