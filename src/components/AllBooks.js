@@ -2,6 +2,9 @@ import {useState} from 'react'
 import Book from './Book'
 
 const AllBooks = (props) => {
+  const [reviews, setReviews] = useState([{...props.reviews}])
+  //console.log(props.reviews)
+
 
   return (
     <>
@@ -13,6 +16,7 @@ const AllBooks = (props) => {
             book={book}
             section={'allbooks'}
             selectBook={props.selectBook}
+            reviews={reviews}
             />
           )
         })}

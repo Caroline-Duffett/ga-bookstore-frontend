@@ -8,6 +8,16 @@ const Book = (props, book) => {
   //States:
     const [bookData, setBookData] = useState({...props.book})
     const[show, setShow] = useState(false)
+    const [showReviews, setShowReviews] = useState(false)
+
+
+    const reviewToggle = () => {
+      if (showReviews === false) {
+        setShowReviews(true)
+      } else {
+        setShowReviews(false)
+      }
+    }
 
     // const [cartAmount, setCartAmount] = useState(0)
 
@@ -62,7 +72,20 @@ const Book = (props, book) => {
           </button>
       </>
           : null}
-
+          <div className="all-reviews-div">
+            <button onClick={reviewToggle}>See Reviews</button>
+            {bookData.reviews.map((bookdatareview) => {
+              return(
+                <>
+                  {showReviews ?
+                    <>
+                      <h5>{bookdatareview}</h5>
+                    </>
+                  : null}
+                </>
+              )
+            })}
+          </div>
           </ShowModal>
         </div>
 
@@ -71,7 +94,28 @@ const Book = (props, book) => {
   )
 }
 
+
+
+
 export default Book
+
+
+// {props.reviews.map((review) => {
+//   return(
+//     <>
+//       {showReviews ?
+//         <>
+//           {bookdatareview === review._id ?
+//             <div className="review-div">
+//               {review.user}
+//               {review.review}
+//             </div>
+//           : null}
+//         </>
+//       : null}
+//     </>
+//   )
+// })}
 
 //==============================================================================//
 //                                Grave Yard

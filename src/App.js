@@ -12,11 +12,13 @@ import ShoppingCart from './components/ShoppingCart.js'
 import UserRegistration from './components/UserRegistration.js'
 // import ShowModal from './components/ShowModal'
 
+import Reviews from './components/Reviews'
+
 
 function App() {
   //States:
   const [books, setBooks] = useState([])
-
+  const [reviews, setReviews] = useState([])
   const [user, setUser] = useState('admin') //temp. for testing purposes
   const [userAccounts, setUserAccounts] = useState([]) // user accounts from the backend
   // boolean to show / hide book info modal, default false
@@ -31,7 +33,8 @@ function App() {
 
   // Testing route to get user accounts
   const getUserAccounts = () => {
-      axios.get('https://ga-bookstore-backend.herokuapp.com/api/useraccount')
+      //axios.get('https://ga-bookstore-backend.herokuapp.com/api/useraccount')
+      axios.get("http://localhost:8000/api/books")
         .then(response => setUserAccounts(response.data),
             err => console.log(err)
         ).catch(error => console.error(error))
@@ -88,8 +91,19 @@ function App() {
 
   //Read Route
    const getBooks = () => {
-     axios.get('https://ga-bookstore-backend.herokuapp.com/api/books')
+     //axios.get('https://ga-bookstore-backend.herokuapp.com/api/books')
+     axios.get("http://localhost:8000/api/books")
      .then(response => setBooks(response.data),
+     err=> console.log(err)
+   )
+   .catch(error=> console.error(error))
+   }
+
+   //Read Route for reviews
+   const getReviews = () => {
+     //axios.get('https://ga-bookstore-backend.herokuapp.com/api/books')
+     axios.get("http://localhost:8000/api/books/reviews")
+     .then(response => setReviews(response.data),
      err=> console.log(err)
    )
    .catch(error=> console.error(error))
@@ -97,7 +111,8 @@ function App() {
 
    //Create Route
    const handleCreate = (addBook) => {
-    axios.post('https://ga-bookstore-backend.herokuapp.com/api/books', addBook)
+    //axios.post('https://ga-bookstore-backend.herokuapp.com/api/books', addBook)
+    axios.post("http://localhost:8000/api/books", addBook)
     .then((response) => {
       setBooks([...books, response.data])
     })
@@ -114,7 +129,8 @@ function App() {
 
   //Update Route
   const handleUpdate = (editBook) => {
-    axios.put('https://ga-bookstore-backend.herokuapp.com/api/books/' + editBook.id, editBook)
+    //axios.put('https://ga-bookstore-backend.herokuapp.com/api/books/' + editBook.id, editBook)
+    axios.put('http://localhost:8000/api/books/' + editBook.id, editBook)
     .then((response) => {
       setBooks(books.map((book) => {
         return book.id !== response.data.id ? book : response.data
@@ -124,7 +140,8 @@ function App() {
 
   //Delete Route
   const handleDelete = (deletedBook) => {
-    axios.delete('https://ga-bookstore-backend.herokuapp.com/api/books/' + deletedBook.id)
+    //axios.delete('https://ga-bookstore-backend.herokuapp.com/api/books/' + deletedBook.id)
+    axios.delete('http://localhost:8000/api/books/' + deletedBook.id)
     .then((response) => {
       setBooks(books.filter(book => book.id !== deletedBook.id))
     })
@@ -132,6 +149,7 @@ function App() {
 
   //Gets all books then loads page
    useEffect(() => {
+     getReviews()
      getBooks()
      getUserAccounts()
    }, [])
@@ -146,9 +164,11 @@ function App() {
         <ShoppingCart signedIn={signedIn} cartToggle={cartToggle} showCart={showCart}/>
         <BestSellers books={books}/>
         <OurFavorites books={books}/>
-        <AllBooks books={books} origin={'allbooks'}/>
+        <AllBooks books={books} origin={'allbooks'} reviews={reviews}/>
      </>
    )
 }
 
 export default App;
+
+//<Reviews reviews={reviews}/>
