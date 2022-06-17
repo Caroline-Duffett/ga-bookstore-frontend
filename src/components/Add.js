@@ -92,6 +92,11 @@ const Add = (props) => {
                 <br/>
                 <br/>
 
+                <label htmlFor='reviews'>Review: </label><br/>
+                <textarea name='reviews' value={book.reviews} onChange={handleChange}></textarea>
+                <br/>
+                <br/>
+
                 <div className='add-submit-btn-div'>
                   <input type='submit'/>
                 </div>
