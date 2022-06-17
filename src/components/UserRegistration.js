@@ -41,8 +41,8 @@ const UserRegistration = (props) => {
         <button onClick={props.signInToggle} className="search-btn">Sign In</button>
         {props.showSignIn ?
           <>
-            <div className="modal-wrapper">
-              <div className="create-acc-si-modal">
+            <div className="modal-wrapper" onClick={props.signInToggle}>
+              <div className="create-acc-si-modal" onClick={e => e.stopPropagation()}>
                 <div className='create-acc-si-x-btn-div'>
                   <button className='create-acc-si-x-btn' onClick={props.signInToggle}>
                   x
