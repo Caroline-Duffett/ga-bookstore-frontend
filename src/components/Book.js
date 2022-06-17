@@ -2,57 +2,57 @@ import {useState} from 'react'
 import Edit from './Edit.js'
 import ShowModal from './ShowModal'
 import ShoppingCart from './ShoppingCart'
-import AllBooks from './AllBooks.js'
-
+//import Review from './Review'
+import axios from 'axios'
 
 
 
 
 
 const Book = (props, book) => {
-  
-  
-   //States:
+
+
+  //States:
     const [bookData, setBookData] = useState({...props.book})
     const[show, setShow] = useState(false)
-    
+    const [showReviews, setShowReviews] = useState(false)
+
+    const [reviews, setReviews] = useState([])
+    const [bookReviews, setBookReviews] = useState([])
+    //console.log(reviews);
+    //const [reviews, setReviews] = useState([{...props.reviews}])
+    //console.log(props.reviews);
+    //console.log(...props.reviews);
+    //console.log(reviews);
+
+    const reviewToggle = () => {
+      if (showReviews === false) {
+        // getReviews()
+        console.log(props.bookReviews);
+        setShowReviews(true)
+        //console.log(reviews);
+      } else {
+        setShowReviews(false)
+      }
+    }
 
 
-
-
-
-    
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    // only grabs the reviews that have this book's ID as the book_id
+    const getBookReviews = () => {
+      setBookReviews(props.bookReviews.filter(review => review.book_id == bookData.id))
+    }
 
 
   return (
       <>
         <div className='book' key={bookData.id}>
-        
+
           <img src={bookData.cover_art} alt="book cover"
-          onClick={() => setShow(true)}
+          onClick={() => {
+            setShow(true)
+            getBookReviews()
+          }}
           />
-
-
-
           <ShowModal title={bookData.title} OnClose={() => setShow(false)} onClose={() => setShow(false)} show={show}>
           <img src={bookData.cover_art} alt="book cover"/>
           <h5>Author: {bookData.author_name}</h5>
@@ -76,16 +76,37 @@ const Book = (props, book) => {
           </button>
       </>
           : null}
-          
+
           </ShowModal>
         </div>
-        
-        
+
+
     </>
   )
 }
 
+
+
+
 export default Book
+
+
+// {props.reviews.map((review) => {
+//   return(
+//     <>
+//       {showReviews ?
+//         <>
+//           {bookdatareview === review._id ?
+//             <div className="review-div">
+//               {review.user}
+//               {review.review}
+//             </div>
+//           : null}
+//         </>
+//       : null}
+//     </>
+//   )
+// })}
 
 //==============================================================================//
 //                                Grave Yard
@@ -188,7 +209,7 @@ export default Book
 
 // <img src={bookData.cover_art} alt="book cover"
 // onClick={() => {props.selectBook(bookData)}}
-// /> 
+// />
 
 // {origin === 'bookinfo' ? {renderEdit} : null}
 
@@ -221,3 +242,90 @@ export default Book
 //     :
 //     null
 // }
+
+
+
+
+
+//<button onClick={() => addToCart(book.id, "book")}>Add</button>
+
+
+
+
+//----------- Attempt
+
+
+
+
+
+
+
+
+    // const [cartAmount, setCartAmount] = useState(0)
+
+    // const addToCart = () => {
+    //   setCartAmount((prevCartAmount) => prevCartAmount + 1)
+    // }
+
+//     const AddBook = useCallback(() => {
+//       const book = createRandomBook();
+//       setCart((prev) => [...prev, book]);
+//     }, []);
+
+//     let id = 0;
+// const createRandomBook = () => {
+//   id = id + 1;
+//   return {
+//     id,
+//     qty: 1,
+//     desc: `Book number: ${id}`,
+//     price: Number((Math.random() * 10 + 1).toFixed(2))
+//   };
+// };
+
+    // useEffect
+
+
+
+    // const matchReviews = (newReviews) => {
+    //   //console.log(newReviews);
+    //   newReviews.map((review) => {
+    //     //console.log(review.book_id + " " + bookData.id);
+    //     if (review.book_id == bookData.id) {
+    //         //console.log(review);
+    //       setReviews([...reviews, review])
+    //     }
+    //   })
+    // }
+    //
+    // //Read Route for reviews
+    // const getReviews = () => {
+    //   //axios.get('https://ga-bookstore-backend.herokuapp.com/api/books')
+    //   axios.get("http://localhost:8000/api/books/reviews")
+    //   .then(response => matchReviews(response.data),
+    //   err=> console.log(err)
+    // )
+    // .catch(error=> console.error(error))
+    // }
+
+//----------- Attempt
+    // const matchReviews = (newReviews) => {
+    //   //console.log(newReviews);
+    //   newReviews.map((review) => {
+    //     //console.log(review.book_id + " " + bookData.id);
+    //     if (review.book_id == bookData.id) {
+    //         //console.log(review);
+    //       setReviews([...reviews, review])
+    //     }
+    //   })
+    // }
+
+    // //Read Route for reviews
+    // const getReviews = () => {
+    //   //axios.get('https://ga-bookstore-backend.herokuapp.com/api/books')
+    //   axios.get(`http://localhost:8000/api/books/${bookData.id}/reviews`)
+    //   .then(response => setReviews(response.data),
+    //   err=> console.log(err)
+    // )
+    // .catch(error=> console.error(error))
+    // }

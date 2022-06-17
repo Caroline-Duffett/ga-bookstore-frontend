@@ -1,18 +1,25 @@
 import {useState} from 'react'
 import Book from './Book'
 
+
 const AllBooks = (props) => {
 
-  return (
+//console.log(props.books);
+//console.log(props.reviews);
+  const [bookReviews, setBookReviews] = useState(["blank"])
+
+    return (
     <>
       <h1>All Books</h1>
       <div className='all-books-flexbox'>
         {props.books.map((book) => {
+
           return(
             <Book
             book={book}
             section={'allbooks'}
             selectBook={props.selectBook}
+            bookReviews={props.bookReviews}
             />
           )
         })}
@@ -23,6 +30,17 @@ const AllBooks = (props) => {
 export default AllBooks
 
 
+//
+// <div className='all-reviews-flexbox'>
+//   {props.reviews.map((review) => {
+//     return(
+//       <Review
+//       review={review}
+//       section={'allbooks'}
+//       />
+//     )
+//   })}
+// </div>
 
 //==============================================================================//
 //                                Grave Yard

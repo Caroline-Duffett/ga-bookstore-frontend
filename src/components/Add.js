@@ -88,6 +88,7 @@ const Add = (props) => {
                 <input type='radio' id="rating1" name='rating' value={book.rating} onChange={handleChange}/>
                 <label htmlFor='rating2' title="5 stars"></label>
                 <input type='radio' id="rating2" name='rating' value={book.rating} onChange={handleChange}/>
+<<<<<<< HEAD
                 <label htmlFor='rating3' title="5 stars"></label>
                 <input type='radio' id="rating3" name='rating' value={book.rating} onChange={handleChange}/>
                 <label htmlFor='rating4' title="5 stars"></label>
@@ -96,6 +97,10 @@ const Add = (props) => {
                 <input type='radio' id="rating5" name='rating' value={book.rating} onChange={handleChange}/>
                 </fieldset> */}
                 
+=======
+                </fieldset>
+
+>>>>>>> 125b6de165b398e13904ff6b024181e402d30de0
                 <br/>
                 <br/>
 
@@ -119,3 +124,19 @@ const Add = (props) => {
 }
 
 export default Add
+
+
+// //https://dmitripavlutin.com/react-useref-guide/
+// document.addEventListener(
+//   "click",
+//   function(event) {
+//     if (!event.target.matches(".add-book-modal")) {
+//       closeModal()
+//     }
+//   }, false
+// )
+//
+//
+// const closeModal = () => {
+//   document.querySelector(".add-book-modal")
+// }
