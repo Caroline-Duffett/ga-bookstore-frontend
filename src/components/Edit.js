@@ -1,13 +1,17 @@
 import {useState} from 'react'
 
 const Edit = (props) => {
+  //--- State:
   const [book, setBook] = useState({...props.book})
 
 
+  //--- Functions:
+  //registers a change in all input fields
   const handleChange = (event) => {
     setBook({...book, [event.target.name]: event.target.value})
   }
 
+  //submit for editing a book
   const handleSubmit = (event) => {
     event.preventDefault()
     props.handleUpdate(book)

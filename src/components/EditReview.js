@@ -1,13 +1,17 @@
 import {useState} from 'react'
 
 const EditReview = (props) => {
+  //--- State:
   const [review, setReview] = useState({...props.review})
 
 
+  //--- Functions:
+  //registers a change in all input fields
   const handleChange = (event) => {
     setReview({...review, [event.target.name]: event.target.value})
   }
 
+  //Sumbit for editing a review
   const handleSubmit = (event) => {
     event.preventDefault()
     props.handleUpdateReview(review)

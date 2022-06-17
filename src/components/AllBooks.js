@@ -4,8 +4,7 @@ import Book from './Book'
 
 const AllBooks = (props) => {
 
-//console.log(props.books);
-//console.log(props.reviews);
+  //--- State:
   const [bookReviews, setBookReviews] = useState(["blank"])
   const [getBooks, setGetBooks] = useState(props.getBooks)
 
@@ -32,17 +31,8 @@ const AllBooks = (props) => {
 export default AllBooks
 
 
-//
-// <div className='all-reviews-flexbox'>
-//   {props.reviews.map((review) => {
-//     return(
-//       <Review
-//       review={review}
-//       section={'allbooks'}
-//       />
-//     )
-//   })}
-// </div>
+
+
 
 //==============================================================================//
 //                                Grave Yard
@@ -95,3 +85,16 @@ export default AllBooks
 //
 // export default BooksIndex
 //------------------------------------------------------------------------------//
+
+
+//
+// <div className='all-reviews-flexbox'>
+//   {props.reviews.map((review) => {
+//     return(
+//       <Review
+//       review={review}
+//       section={'allbooks'}
+//       />
+//     )
+//   })}
+// </div>

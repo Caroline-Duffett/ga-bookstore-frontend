@@ -1,16 +1,18 @@
 import {useState} from 'react'
 
 const Add = (props) => {
-  //State:
+  //--- State:
   let emptyBook = {title: '', author_name: '', publisher: '', publication_date: '', genre: '', cover_art: '', page_count: '', language: '', isbn: '', rating: '', price: ''}
   const [book, setBook] = useState(emptyBook)
 
 
-  //Functions:
+  //--- Functions:
+  //registers a change in all input fields
   const handleChange = (event) => {
     setBook({...book, [event.target.name]: event.target.value})
   }
 
+  //submit for adding a new book
   const handleSubmit = (event) => {
     event.preventDefault()
     props.handleCreate(book)
@@ -105,20 +107,20 @@ const Add = (props) => {
 
 export default Add
 
+
+
+
+
+//==============================================================================//
+//                                Grave Yard
+//==============================================================================//
+
 // <fieldset className="rate">
 // <label htmlFor='rating1' title="5 stars">Rating: </label>
 // <input type='radio' id="rating2" name='rating' value={book.rating} onChange={handleChange}/>
 // <label htmlFor='rating1' title="5 stars"></label>
 // <input type='radio' id="rating2" name='rating' value={book.rating} onChange={handleChange}/>
 // </fieldset>
-
-
-
-
-
-
-
-
 
 // //https://dmitripavlutin.com/react-useref-guide/
 // document.addEventListener(

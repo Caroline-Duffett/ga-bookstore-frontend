@@ -7,16 +7,14 @@ import OurFavorites from './components/OurFavorites'
 import SearchBar from './components/SearchBar'
 import AllBooks from './components/AllBooks'
 import Book from './components/Book.js'
-// import BookInfoModal from './components/BookInfoModal.js'
 import ShoppingCart from './components/ShoppingCart.js'
 import UserRegistration from './components/UserRegistration.js'
 // import ShowModal from './components/ShowModal'
-
-import Review from './components/Review'
+// import BookInfoModal from './components/BookInfoModal.js'
 
 
 function App() {
-  //States:
+  //--- State:
   const [books, setBooks] = useState([])
   const [bookReviews, setBookReviews] = useState([])
   const [user, setUser] = useState('admin') //temp. for testing purposes
@@ -27,10 +25,10 @@ function App() {
   const [showSearch, setShowSearch] = useState(false)
   const [showAddForm, setShowAddForm] = useState(false)
   const [showSignIn, setShowSignIn] = useState(false)
-
   //testing user auth user login
   const [loggedInUser, setLoggedInuser] = useState({})
 
+  //---Functions:
   // Testing route to get user accounts
   const getUserAccounts = () => {
       //axios.get('https://ga-bookstore-backend.herokuapp.com/api/useraccount')
@@ -39,6 +37,7 @@ function App() {
             err => console.log(err)
         ).catch(error => console.error(error))
   }
+
 
   // pulls in the list of all reviews for the books
   // will filter this list when the bookInfoModal is opened
@@ -50,56 +49,57 @@ function App() {
       })
   }
 
+
   //hides/shows Cart form
-    const cartToggle = () => {
-      if (showCart === false) {
-        setShowCart(true)
-        setShowSearch(false)
-        setShowAddForm(false)
-        setShowSignIn(false)
-      } else {
-        setShowCart(false)
-      }
+  const cartToggle = () => {
+    if (showCart === false) {
+      setShowCart(true)
+      setShowSearch(false)
+      setShowAddForm(false)
+      setShowSignIn(false)
+    } else {
+      setShowCart(false)
     }
+  }
 
   //hides/shows searchbar
-    const searchToggle = () => {
-      if (showSearch === false) {
-        setShowSearch(true)
-        setShowAddForm(false)
-        setShowCart(false)
-        setShowSignIn(false)
-      } else {
-        setShowSearch(false)
-      }
+  const searchToggle = () => {
+    if (showSearch === false) {
+      setShowSearch(true)
+      setShowAddForm(false)
+      setShowCart(false)
+      setShowSignIn(false)
+    } else {
+      setShowSearch(false)
     }
+  }
 
   //hides/shows Add form
-    const addFormToggle = () => {
-      if (showAddForm === false) {
-        setShowAddForm(true)
-        setShowSearch(false)
-        setShowCart(false)
-        setShowSignIn(false)
-      } else {
-        setShowAddForm(false)
-      }
+  const addFormToggle = () => {
+    if (showAddForm === false) {
+      setShowAddForm(true)
+      setShowSearch(false)
+      setShowCart(false)
+      setShowSignIn(false)
+    } else {
+      setShowAddForm(false)
     }
+  }
 
   //hides/shows Add form
-    const signInToggle = () => {
-      if (showSignIn === false) {
-        setShowSignIn(true)
-        setShowAddForm(false)
-        setShowSearch(false)
-        setShowCart(false)
-      } else {
-        setShowSignIn(false)
-      }
+  const signInToggle = () => {
+    if (showSignIn === false) {
+      setShowSignIn(true)
+      setShowAddForm(false)
+      setShowSearch(false)
+      setShowCart(false)
+    } else {
+      setShowSignIn(false)
     }
+  }
 
 
-  //Read Route
+  //Read Route for books
    const getBooks = () => {
      //axios.get('https://ga-bookstore-backend.herokuapp.com/api/books')
      axios.get("http://localhost:8000/api/books")
@@ -109,7 +109,8 @@ function App() {
    .catch(error=> console.error(error))
    }
 
-   //Create Route
+
+   //Create Route for books
    const handleCreate = (addBook) => {
     //axios.post('https://ga-bookstore-backend.herokuapp.com/api/books', addBook)
     axios.post("http://localhost:8000/api/books", addBook)
@@ -138,7 +139,7 @@ function App() {
       })
   }
 
-  //Update Route
+  //Update Route for books
   const handleUpdate = (editBook) => {
     //axios.put('https://ga-bookstore-backend.herokuapp.com/api/books/' + editBook.id, editBook)
     axios.put('http://localhost:8000/api/books/' + editBook.id, editBook)
@@ -149,7 +150,7 @@ function App() {
     })
   }
 
-  //Delete Route
+  //Delete Route for books
   const handleDelete = (deletedBook) => {
     //axios.delete('https://ga-bookstore-backend.herokuapp.com/api/books/' + deletedBook.id)
     axios.delete('http://localhost:8000/api/books/' + deletedBook.id)
@@ -182,5 +183,3 @@ function App() {
 }
 
 export default App;
-
-//<Reviews reviews={reviews}/>

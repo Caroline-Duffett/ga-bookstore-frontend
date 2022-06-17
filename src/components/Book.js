@@ -1,9 +1,7 @@
 //=================================================================================================================//
-
 //                                This version of code goes through book.reviews
 //                              (can add reviews to page but only after page load)
 //                                    (can delete but only after page load)
-
 //=================================================================================================================//
 // import {useState, useEffect, useCallback} from 'react'
 // import Edit from './Edit.js'
@@ -14,43 +12,46 @@
 //
 //
 // const Book = (props, book) => {
-//   //States:
-//     const [bookData, setBookData] = useState({...props.book})
-//     const[show, setShow] = useState(false)
-//     const [showReviews, setShowReviews] = useState(false)
-//     const [reviews, setReviews] = useState([])
-//     const [bookReviews, setBookReviews] = useState([])
+//   //--- State:
+//   const [bookData, setBookData] = useState({...props.book})
+//   const[show, setShow] = useState(false)
+//   const [showReviews, setShowReviews] = useState(false)
+//   const [reviews, setReviews] = useState([])
+//   const [bookReviews, setBookReviews] = useState([])
 //
-//     const reviewToggle = () => {
-//       if (showReviews === false) {
-//         setShowReviews(true)
-//       } else {
-//         setShowReviews(false)
-//       }
+//
+//   //--- Functions:
+//   //toggles list of book's reviews
+//   const reviewToggle = () => {
+//     if (showReviews === false) {
+//       setShowReviews(true)
+//     } else {
+//       setShowReviews(false)
 //     }
+//   }
 //
 //
-// //Create Route for reviews ***
-// const handleReviewCreate = (addReview) => {
-//  //axios.post('https://ga-bookstore-backend.herokuapp.com/api/books', addBook)
-//  axios.post("http://localhost:8000/api/books/reviews", addReview)
-//  .then((response) => {
-//    setReviews([...reviews, response.data])
-//  })
-// }
+//   //Create Route for reviews
+//   const handleReviewCreate = (addReview) => {
+//    //axios.post('https://ga-bookstore-backend.herokuapp.com/api/books', addBook)
+//    axios.post("http://localhost:8000/api/books/reviews", addReview)
+//    .then((response) => {
+//      setReviews([...reviews, response.data])
+//    })
+//   }
 //
-// //function the accesses books.reviews
-// const getBookReviews = () => {
-//   setBookReviews(props.bookReviews)
-// }
+//   //function the accesses books.reviews
+//   const getBookReviews = () => {
+//     setBookReviews(props.bookReviews)
+//   }
 //
-// //Delete Route for reviews
-// const handleReviewDelete = (deletedReview) => {
-//   axios.delete('http://localhost:8000/api/books/reviews/' + deletedReview.id)
-//   .then((response) => {
-//     setReviews(reviews.filter(review => review.id !== deletedReview.id))
-//   })
-// }
+//   //Delete Route for reviews
+//   const handleReviewDelete = (deletedReview) => {
+//     axios.delete('http://localhost:8000/api/books/reviews/' + deletedReview.id)
+//     .then((response) => {
+//       setReviews(reviews.filter(review => review.id !== deletedReview.id))
+//     })
+//   }
 //
 //   return (
 //       <>
@@ -123,12 +124,10 @@
 
 
 //=================================================================================================================//
-
 //                                This version of code goes through reviews
 //                                             (can delete reviews)
 //                                (cannot add reviews, only through database)
 //                              (added reviews still show up in reviews database)
-
 //=================================================================================================================//
 import {useState, useEffect, useCallback} from 'react'
 import Edit from './Edit.js'
@@ -140,58 +139,58 @@ import EditReview from './EditReview'
 
 
 const Book = (props, book) => {
-  //States:
+  //--- State:
     const [bookData, setBookData] = useState({...props.book})
     const[show, setShow] = useState(false)
     const [showReviews, setShowReviews] = useState(false)
     const [reviews, setReviews] = useState([])
     const [bookReviews, setBookReviews] = useState([])
 
-    const reviewToggle = () => {
-      if (showReviews === false) {
-        setShowReviews(true)
-      } else {
-        setShowReviews(false)
-      }
+  //--- Functions:
+  const reviewToggle = () => {
+    if (showReviews === false) {
+      setShowReviews(true)
+    } else {
+      setShowReviews(false)
     }
+  }
 
+  //Create Route for reviews (works only for reviews table)
+  const handleReviewCreate = (addReview) => {
+   //axios.post('https://ga-bookstore-backend.herokuapp.com/api/reviews', addReview)
+   axios.post("http://localhost:8000/api/books/reviews", addReview)
+   .then((response) => {
+     setReviews([...reviews, response.data])
+   })
+  }
 
-//*** Create Route for reviews ***
-const handleReviewCreate = (addReview) => {
- //axios.post('https://ga-bookstore-backend.herokuapp.com/api/reviews', addReview)
- axios.post("http://localhost:8000/api/books/reviews", addReview)
- .then((response) => {
-   setReviews([...reviews, response.data])
- })
-}
+  //Read Route for reviews
+  const getBookReviews = () => {
+    //axios.get('https://ga-bookstore-backend.herokuapp.com/api/reviews')
+    axios.get("http://localhost:8000/api/books/reviews")
+    .then(response => setReviews(response.data),
+      err=> console.log(err)
+    ).catch(error=> console.error(error))
+  }
 
-//Read Route for reviews
-const getBookReviews = () => {
-  //axios.get('https://ga-bookstore-backend.herokuapp.com/api/reviews')
-  axios.get("http://localhost:8000/api/books/reviews")
-  .then(response => setReviews(response.data),
-    err=> console.log(err)
-  ).catch(error=> console.error(error))
-}
+  //Update Route for reviews
+  const handleUpdateReview = (editReview) => {
+    //axios.put('http://localhost:8000/api/books/reviews/' + editReview.id, editReview)
+    axios.put('http://localhost:8000/api/books/reviews/' + editReview.id, editReview)
+    .then((response) => {
+      setReviews(reviews.map((review) => {
+        return review.id !== response.data.id ? review : response.data
+      }))
+    })
+  }
 
-//Update Route for reviews
-const handleUpdateReview = (editReview) => {
-  //axios.put('https://ga-bookstore-backend.herokuapp.com/api/reviewss/' + editReview.id, editReview)
-  axios.put('http://localhost:8000/api/books/reviews/' + editReview.id, editReview)
-  .then((response) => {
-    setReviews(reviews.map((review) => {
-      return review.id !== response.data.id ? review : response.data
-    }))
-  })
-}
-
-//Delete Route for reviews
-const handleReviewDelete = (deletedReview) => {
-  axios.delete('http://localhost:8000/api/books/reviews/' + deletedReview.id)
-  .then((response) => {
-    setReviews(reviews.filter(review => review.id !== deletedReview.id))
-  })
-}
+  //Delete Route for reviews
+  const handleReviewDelete = (deletedReview) => {
+    axios.delete('http://localhost:8000/api/books/reviews/' + deletedReview.id)
+    .then((response) => {
+      setReviews(reviews.filter(review => review.id !== deletedReview.id))
+    })
+  }
 
   return (
       <>
@@ -266,17 +265,6 @@ const handleReviewDelete = (deletedReview) => {
 
 export default Book
 //=================================================================================================================//
-
-
-
-
-
-
-
-
-
-
-
 
 
 
