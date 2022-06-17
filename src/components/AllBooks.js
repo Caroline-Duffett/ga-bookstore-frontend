@@ -6,22 +6,20 @@ const AllBooks = (props) => {
 
 //console.log(props.books);
 //console.log(props.reviews);
-  const [reviews, setReviews] = useState(props.reviews)
+  const [bookReviews, setBookReviews] = useState(["blank"])
 
-  const getBookReviews = () => {
-
-  }
-
-  return (
+    return (
     <>
       <h1>All Books</h1>
       <div className='all-books-flexbox'>
         {props.books.map((book) => {
+
           return(
             <Book
             book={book}
             section={'allbooks'}
             selectBook={props.selectBook}
+            bookReviews={props.bookReviews}
             />
           )
         })}

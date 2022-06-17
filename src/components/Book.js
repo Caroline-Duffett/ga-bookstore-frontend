@@ -18,6 +18,7 @@ const Book = (props, book) => {
     const [showReviews, setShowReviews] = useState(false)
 
     const [reviews, setReviews] = useState([])
+    const [bookReviews, setBookReviews] = useState([])
     //console.log(reviews);
     //const [reviews, setReviews] = useState([{...props.reviews}])
     //console.log(props.reviews);
@@ -26,7 +27,8 @@ const Book = (props, book) => {
 
     const reviewToggle = () => {
       if (showReviews === false) {
-        getReviews()
+        // getReviews()
+        console.log(props.bookReviews);
         setShowReviews(true)
         //console.log(reviews);
       } else {
@@ -35,16 +37,9 @@ const Book = (props, book) => {
     }
 
 
-    //Read Route for reviews tablereviews
-    const getReviews = () => {
-      //axios.get('https://ga-bookstore-backend.herokuapp.com/api/books')
-      axios.get(`http://localhost:8000/api/books/reviews/list`, {"bookID":bookData.id})
-      .then((response) => {
-        //setReviews(response.data)
-        console.log({...response})
-      }
-    )
-    .catch(error=> console.error(error))
+    // only grabs the reviews that have this book's ID as the book_id
+    const getBookReviews = () => {
+      setBookReviews(props.bookReviews.filter(review => review.book_id == bookData.id))
     }
 
 
@@ -55,8 +50,7 @@ const Book = (props, book) => {
           <img src={bookData.cover_art} alt="book cover"
           onClick={() => {
             setShow(true)
-            getReviews()
-
+            getBookReviews()
           }}
           />
           <ShowModal title={bookData.title} onClose={() => setShow(false)} show={show}>
@@ -117,6 +111,23 @@ export default Book
 //==============================================================================//
 //                                Grave Yard
 //==============================================================================//
+
+//Read Route for reviews tablereviews
+// const getReviews = () => {
+//   //axios.get('https://ga-bookstore-backend.herokuapp.com/api/books')
+//   const brl = {
+//                 bookId: bookData.id,
+//               }
+//   axios.get("http://localhost:8000/api/books/reviews/list", brl)
+//   .then((response) => {
+//         console.log(response.data);
+//         // setReviews(response.data.map((review) => {
+//         //     return bookData.id == review.book_id ? review:null
+//         // }))
+//   }
+// )
+// .catch(error=> console.error(error))
+// }
 
 // <button onClick={() => addToCart(book.id, "book")}>Add</button>
 

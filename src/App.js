@@ -18,7 +18,7 @@ import Review from './components/Review'
 function App() {
   //States:
   const [books, setBooks] = useState([])
-  
+  const [bookReviews, setBookReviews] = useState([])
   const [user, setUser] = useState('admin') //temp. for testing purposes
   const [userAccounts, setUserAccounts] = useState([]) // user accounts from the backend
   // boolean to show / hide book info modal, default false
@@ -40,6 +40,16 @@ function App() {
         .then(response => setUserAccounts(response.data),
             err => console.log(err)
         ).catch(error => console.error(error))
+  }
+
+  // pulls in the list of all reviews for the books
+  // will filter this list when the bookInfoModal is opened
+  const getBookreviews = () => {
+      axios.get('http://localhost:8000/api/books/reviews')
+      .then((response) => {
+          // console.log(response.data);
+          setBookReviews(response.data)
+      })
   }
 
   //hides/shows Cart form
@@ -153,6 +163,7 @@ function App() {
   //Gets all books then loads page
    useEffect(() => {
      getBooks()
+     getBookreviews()
      getUserAccounts()
    }, [])
 
@@ -167,7 +178,7 @@ function App() {
         <ShoppingCart signedIn={signedIn} cartToggle={cartToggle} showCart={showCart} user={loggedInUser}/>
         <BestSellers books={books}/>
         <OurFavorites books={books}/>
-        <AllBooks books={books} origin={'allbooks'}/>
+        <AllBooks books={books} bookReviews={bookReviews} origin={'allbooks'}/>
      </>
    )
 }
