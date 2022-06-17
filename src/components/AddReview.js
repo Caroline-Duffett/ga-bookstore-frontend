@@ -4,7 +4,7 @@ import axios from 'axios'
 const AddReview = (props) => {
   //--- State:
   const [bookData, setBookData] = useState({...props.bookData})
-  let emptyReview = {review: '', user_id: 1, book_id: bookData.id} //user is hardcoded for testing, book_id is hard coded for testing
+  let emptyReview = {review: '', user_id: 1, book_id: bookData.id} //user is hardcoded for testing
   const [review, setReview] = useState(emptyReview)
   const [showAddReview, setShowAddReview] = useState(false)
 

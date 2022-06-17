@@ -232,8 +232,6 @@ const Book = (props, book) => {
                 <h3>Reviews</h3>
                 <div className='all-reviews-flexbox'>
                 {reviews.map((review) => {
-                  // console.log("review.book_id");
-                  // console.log(review.book_id);
                   return (
                     <>
                       <div className="review-card" key={review.id}>
