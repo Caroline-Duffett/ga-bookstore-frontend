@@ -4,6 +4,7 @@ import ShowModal from './ShowModal'
 import ShoppingCart from './ShoppingCart'
 //import Review from './Review'
 import axios from 'axios'
+import AddReview from './AddReview'
 
 
 
@@ -73,6 +74,15 @@ const getReviews = () => {
   ).catch(error=> console.error(error))
 }
 
+//Create Route for reviews
+const handleReviewCreate = (addReview) => {
+ //axios.post('https://ga-bookstore-backend.herokuapp.com/api/books', addBook)
+ axios.post("http://localhost:8000/api/books/reviews", addReview)
+ .then((response) => {
+   setReviews([...reviews, response.data])
+ })
+}
+
 //Delete Route for reviews
 const handleReviewDelete = (deletedReview) => {
   axios.delete('http://localhost:8000/api/books/reviews/' + deletedReview.id)
@@ -80,6 +90,10 @@ const handleReviewDelete = (deletedReview) => {
     setReviews(reviews.filter(review => review.id !== deletedReview.id))
   })
 }
+
+// useEffect(() => {
+//   getReviews()
+// }, [])
 
 
   return (
@@ -118,6 +132,7 @@ const handleReviewDelete = (deletedReview) => {
             <button onClick={reviewToggle}>See Reviews</button>
             {showReviews ?
               <>
+                <AddReview handleReviewCreate={handleReviewCreate}/>
                 <h3>Reviews</h3>
                 <div className='all-reviews-flexbox'>
                       {reviews.map((review) => {
@@ -125,8 +140,6 @@ const handleReviewDelete = (deletedReview) => {
                           <>
                           {bookData.reviews.map((bookDataReview) => {
                             if (bookDataReview === review.id) {
-                              console.log(bookDataReview + " bookDataReview");
-                              console.log(review.id + " review.id");
                               return (
                                 <div className="review-card" key={review.id}>
                                   <h5>User: {review.user_id}</h5>
