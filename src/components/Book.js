@@ -78,6 +78,10 @@ const handleReviewCreate = (addReview) => {
  .then((response) => {
    setReviews([...reviews, response.data])
  })
+ axios.get("http://localhost:8000/api/books")
+ // .then((response) => {
+ //   setBookData([bookData, response.data])
+ // })
 }
 
 
