@@ -83,7 +83,7 @@ const Add = (props) => {
                 <label htmlFor='rating1' title="5 stars"></label>
                 <input type='radio' id="rating2" name='rating' value={book.rating} onChange={handleChange}/>
                 </fieldset>
-                
+
                 <br/>
                 <br/>
 
@@ -107,3 +107,19 @@ const Add = (props) => {
 }
 
 export default Add
+
+
+// //https://dmitripavlutin.com/react-useref-guide/
+// document.addEventListener(
+//   "click",
+//   function(event) {
+//     if (!event.target.matches(".add-book-modal")) {
+//       closeModal()
+//     }
+//   }, false
+// )
+//
+//
+// const closeModal = () => {
+//   document.querySelector(".add-book-modal")
+// }

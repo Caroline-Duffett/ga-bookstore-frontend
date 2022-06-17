@@ -23,5 +23,5 @@ const ShowModal = (props) => {
     </div>
     )
     }
-     
+
     export default ShowModal;
