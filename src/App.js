@@ -18,7 +18,7 @@ import Review from './components/Review'
 function App() {
   //States:
   const [books, setBooks] = useState([])
-  
+
   const [user, setUser] = useState('admin') //temp. for testing purposes
   const [userAccounts, setUserAccounts] = useState([]) // user accounts from the backend
   // boolean to show / hide book info modal, default false

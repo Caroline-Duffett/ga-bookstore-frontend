@@ -35,17 +35,34 @@ const Book = (props, book) => {
     }
 
 
-    //Read Route for reviews tablereviews
-    const getReviews = () => {
-      //axios.get('https://ga-bookstore-backend.herokuapp.com/api/books')
-      axios.get(`http://localhost:8000/api/books/reviews/list`, {"bookID":bookData.id})
-      .then((response) => {
-        //setReviews(response.data)
-        console.log({...response})
-      }
-    )
-    .catch(error=> console.error(error))
+   //  //Read Route for reviews tablereviews
+   //  const getReviews = () => {
+   //    console.log(bookData.id);
+   //    //axios.get('https://ga-bookstore-backend.herokuapp.com/api/books')
+   //    axios.get(`http://localhost:8000/api/books/reviews/list`, {"bookID":bookData.id})
+   //    .then((response) => {
+   //      //setReviews(response.data)
+   //      console.log({...response})
+   //    }
+   // )
+   //  .catch(error=> console.error(error))
+   //  //fetch('http://localhost:8000/api/books/reviews/list').then(res => res.json()).then(res => console.log(res))
+   //  }
+
+const getReviews = () => {
+  console.log('clicked');
+  axios({
+    method: 'GET',
+    url: `http://localhost:8000/api/books/reviews/list`,
+    header: {'Content-Type': 'application/json',
+      "Access-Control-Allow-Origin": "*"},
+    data: {
+      "bookID": bookData.id
     }
+  }).then((response) => {
+    console.log(response);
+  }).catch(error=> console.error(error))
+}
 
 
   return (
@@ -55,8 +72,6 @@ const Book = (props, book) => {
           <img src={bookData.cover_art} alt="book cover"
           onClick={() => {
             setShow(true)
-            getReviews()
-
           }}
           />
           <ShowModal title={bookData.title} onClose={() => setShow(false)} show={show}>
