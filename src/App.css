@@ -305,7 +305,7 @@ h5, h4 {
   background-color: lightgray;
   display: flex;
   flex-direction: column;
-  height: 200px;
+  height: 100px;
   overflow: scroll
 }
 
