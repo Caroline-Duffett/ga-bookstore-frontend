@@ -7,8 +7,11 @@ const AllBooks = (props) => {
   //--- State:
   const [bookReviews, setBookReviews] = useState(["blank"])
   const [getBooks, setGetBooks] = useState(props.getBooks)
+  const [user, setUser] = useState(props.user)
 
-    return (
+
+
+  return (
     <>
       <h1>All Books</h1>
       <div className='all-books-flexbox'>
@@ -21,12 +24,15 @@ const AllBooks = (props) => {
             selectBook={props.selectBook}
             bookReviews={props.bookReviews}
             getBooks={getBooks}
+            user={user}
+            handleDelete={props.handleDelete}
             />
           )
         })}
       </div>
     </>
-)}
+  )
+}
 
 export default AllBooks
 

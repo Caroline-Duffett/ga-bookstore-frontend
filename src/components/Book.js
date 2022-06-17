@@ -20,7 +20,9 @@ const Book = (props, book) => {
   const [reviews, setReviews] = useState([])
   const [showBookInfo, setShowBookInfo] = useState(true)
   const [showAddReview, setShowAddReview] = useState(false)
-
+  const [user, setUser] = useState(props.user)
+  //const [handleDelete, setHandleDelete] = useState(props.handleDelete)
+  //console.log(user);
 
   //--- Functions:
   //Create Route for reviews (works only for reviews table)
@@ -105,12 +107,13 @@ const Book = (props, book) => {
                 <h5>${bookData.price}</h5>
                 <input type="number" placeholder="Qty"/>
                 {props.user === 'admin' ?
-                  <>
-                    <Edit handleUpdate={props.handleUpdate} book={book}/>
-                    <button onClick={() => {props.handleDelete(book)}}>
-                    Delete
-                    </button>
-                  </>
+                <>
+                  <Edit handleUpdate={props.handleUpdate} book={book}/>
+                  <button onClick={() => {
+                    props.handleDelete(bookData)
+                    console.log(bookData)
+                  }}>Delete</button>
+                </>
                 : null}
               </>
             : null}

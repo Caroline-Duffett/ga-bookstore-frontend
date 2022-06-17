@@ -160,7 +160,7 @@ function App() {
   }
 
   //Gets all books then loads page
-   useEffect(() => {
+   useEffect(() => {    
      getBooks()
      getBookreviews()
      getUserAccounts()
@@ -177,7 +177,7 @@ function App() {
         <ShoppingCart signedIn={signedIn} cartToggle={cartToggle} showCart={showCart} user={loggedInUser}/>
         <BestSellers books={books}/>
         <OurFavorites books={books}/>
-        <AllBooks books={books} bookReviews={bookReviews} origin={'allbooks'} getBooks={getBooks}/>
+        <AllBooks books={books} bookReviews={bookReviews} origin={'allbooks'} getBooks={getBooks} user={user} handleDelete={handleDelete}/>
      </>
    )
 }
