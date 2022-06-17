@@ -1,3 +1,81 @@
+// //=================================================================================================================//
+// //                                This version of code goes through reviews table
+// //=================================================================================================================//
+// import {useState, useEffect, useCallback} from 'react'
+// import Edit from './Edit.js'
+// import ShowModal from './ShowModal'
+// import ShoppingCart from './ShoppingCart'
+// import axios from 'axios'
+// import ReviewsModal from './ReviewsModal'
+//
+//
+// const Book = (props, book) => {
+//   //--- State:
+//   const [bookData, setBookData] = useState({...props.book})
+//   const[show, setShow] = useState(false)
+//   // const [showReviews, setShowReviews] = useState(false)
+//   // const [reviews, setReviews] = useState([])
+//   const [bookReviews, setBookReviews] = useState([])
+//
+//   //--- Functions:
+//   // //toggles the reviews form
+//   // const reviewToggle = () => {
+//   //   if (showReviews === false) {
+//   //     setShowReviews(true)
+//   //   } else {
+//   //     setShowReviews(false)
+//   //   }
+//   // }
+//
+//   // //Read Route for reviews
+//   // const getBookReviews = () => {
+//   //   //axios.get('https://ga-bookstore-backend.herokuapp.com/api/reviews')
+//   //   axios.get("http://localhost:8000/api/books/reviews")
+//   //   .then(response => setReviews(response.data),
+//   //     err=> console.log(err)
+//   //   ).catch(error=> console.error(error))
+//   // }
+//
+//   return (
+//       <>
+//         <div className='book' key={bookData.id}>
+//           <img src={bookData.cover_art} alt="book cover"
+//           onClick={() => {
+//             setShow(true)
+//           }}
+//           />
+//           <ShowModal title={bookData.title} onClose={() => setShow(false)} show={show}>
+//           <img src={bookData.cover_art} alt="book cover"/>
+//           <h5>Author: {bookData.author_name}</h5>
+//           <h5>Publisher: {bookData.publisher}</h5>
+//           <h5>Publication Date: {bookData.publication_date}</h5>
+//           <h5>Pages: {bookData.page_count}</h5>
+//           <h5>Genre: {bookData.genre}</h5>
+//           <h5>Rating: {bookData.rating}</h5>
+//           <br/>
+//           <h5>${bookData.price}</h5>
+//           <input type="number" placeholder="Qty"/>
+//           {props.user === 'admin' ?
+//             <>
+//               <Edit handleUpdate={props.handleUpdate} book={book}/>
+//               <button onClick={() => {props.handleDelete(book)}}>
+//               Delete
+//               </button>
+//             </>
+//           : null}
+//           <ReviewsModal bookData={bookData}/>
+//           </ShowModal>
+//         </div>
+//     </>
+//   )
+// }
+//
+// export default Book
+//
+// //showReviews={showReviews} reviewToggle={reviewToggle} reviews={reviews}
+// //=================================================================================================================//
+
+
 //=================================================================================================================//
 //                                This version of code goes through reviews table
 //=================================================================================================================//
@@ -73,32 +151,16 @@ const Book = (props, book) => {
 export default Book
 
 //showReviews={showReviews} reviewToggle={reviewToggle} reviews={reviews}
-
-
 //=================================================================================================================//
 
-// {bookData.reviews.map((bookDataReview) => {
-//   if (bookDataReview === review.id) {
-//     return (
-//       <div className="review-card" key={review.id}>
-//         <h5>User: {review.user_id}</h5>
-//         <h5>Review: {review.review}</h5>
-//         <h5>review.id: {review.id}</h5>
-//         <EditReview handleUpdateReview={handleUpdateReview} review={review}/>
-//         <button onClick={() => {handleReviewDelete(review)}}>
-//         x
-//         </button>
-//       </div>
-//     )
-//   }
-// })}
 
 
-// <button
-// onClick={() => {
-//   reviewToggle()
-//   getBookReviews()
-// }}>See Reviews</button>
+
+
+
+
+
+
 
 //==============================================================================//
 //                                Grave Yard
@@ -529,3 +591,27 @@ export default Book
 //
 // export default Book
 //=================================================================================================================//
+
+
+// {bookData.reviews.map((bookDataReview) => {
+//   if (bookDataReview === review.id) {
+//     return (
+//       <div className="review-card" key={review.id}>
+//         <h5>User: {review.user_id}</h5>
+//         <h5>Review: {review.review}</h5>
+//         <h5>review.id: {review.id}</h5>
+//         <EditReview handleUpdateReview={handleUpdateReview} review={review}/>
+//         <button onClick={() => {handleReviewDelete(review)}}>
+//         x
+//         </button>
+//       </div>
+//     )
+//   }
+// })}
+
+
+// <button
+// onClick={() => {
+//   reviewToggle()
+//   getBookReviews()
+// }}>See Reviews</button>
