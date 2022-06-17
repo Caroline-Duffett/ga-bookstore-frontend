@@ -18,13 +18,10 @@ const Book = (props, book) => {
     const [showReviews, setShowReviews] = useState(false)
 
     const [reviews, setReviews] = useState([])
-    //console.log(reviews);
-    //const [reviews, setReviews] = useState([{...props.reviews}])
-    //console.log(props.reviews);
-    //console.log(...props.reviews);
-    //console.log(reviews);
+
 
     const reviewToggle = () => {
+      console.log('clicked');
       if (showReviews === false) {
         getReviews()
         setShowReviews(true)
@@ -34,7 +31,9 @@ const Book = (props, book) => {
       }
     }
 
-
+//=================================================================================================================//
+//                                  This is the code that works in postman not react
+//=================================================================================================================//
    //  //Read Route for reviews tablereviews
    //  const getReviews = () => {
    //    console.log(bookData.id);
@@ -49,20 +48,32 @@ const Book = (props, book) => {
    //  //fetch('http://localhost:8000/api/books/reviews/list').then(res => res.json()).then(res => console.log(res))
    //  }
 
+  // const getReviews = () => {
+  //   console.log('clicked');
+  //   axios({
+  //     method: 'GET',
+  //     url: `http://localhost:8000/api/books/reviews/list`,
+  //     header: {'Content-Type': 'application/json',
+  //       "Access-Control-Allow-Origin": "*"},
+  //     data: {
+  //       "bookID": bookData.id
+  //     }
+  //   }).then((response) => {
+  //     console.log(response);
+  //   }).catch(error=> console.error(error))
+  // }
+//=================================================================================================================//
+
+//Read Route for reviews
 const getReviews = () => {
-  console.log('clicked');
-  axios({
-    method: 'GET',
-    url: `http://localhost:8000/api/books/reviews/list`,
-    header: {'Content-Type': 'application/json',
-      "Access-Control-Allow-Origin": "*"},
-    data: {
-      "bookID": bookData.id
-    }
-  }).then((response) => {
-    console.log(response);
-  }).catch(error=> console.error(error))
+  //axios.get('https://ga-bookstore-backend.herokuapp.com/api/books')
+  axios.get("http://localhost:8000/api/books/reviews")
+  .then(response => setReviews(response.data),
+  err=> console.log(err)
+)
+.catch(error=> console.error(error))
 }
+
 
 
   return (
@@ -99,26 +110,36 @@ const getReviews = () => {
           : null}
           <div className="all-reviews-div">
             <button onClick={reviewToggle}>See Reviews</button>
-                  {showReviews ?
-                    <>
-                      <h3>Reviews</h3>
-                      <div className='all-reviews-flexbox'>
+            {showReviews ?
+              <>
+                <h3>Reviews</h3>
+                <div className='all-reviews-flexbox'>
                       {reviews.map((review) => {
                         return (
                           <>
-                            <div className="review-card" key={review.id}>
-                              <h5>User: {review.user_id}</h5>
-                              <h5>Review: {review.review}</h5>
-                              <h5>review.id: {review.id}</h5>
-                            </div>
+                          {bookData.reviews.map((bookDataReview) => {
+                            if (bookDataReview === review.id) {
+                              console.log(bookDataReview + " bookDataReview");
+                              console.log(review.id + " review.id");
+                              return (
+                                <div className="review-card" key={review.id}>
+                                  <h5>User: {review.user_id}</h5>
+                                  <h5>Review: {review.review}</h5>
+                                  <h5>review.id: {review.id}</h5>
+                                </div>
+                              )
+                            }
+                          })}
                           </>
                         )
                       })
                     }
-                      </div>
-                    </>
-                  : null}
+                </div>
+              </>
+            : null}
+
           </div>
+
           </ShowModal>
         </div>
 
@@ -133,22 +154,7 @@ const getReviews = () => {
 export default Book
 
 
-// {props.reviews.map((review) => {
-//   return(
-//     <>
-//       {showReviews ?
-//         <>
-//           {bookdatareview === review._id ?
-//             <div className="review-div">
-//               {review.user}
-//               {review.review}
-//             </div>
-//           : null}
-//         </>
-//       : null}
-//     </>
-//   )
-// })}
+
 
 //==============================================================================//
 //                                Grave Yard
@@ -276,7 +282,11 @@ export default Book
     // .catch(error=> console.error(error))
     // }
 
-//----------- Attempt
+
+
+
+
+//----------- Attempt -----------//
     // const matchReviews = (newReviews) => {
     //   //console.log(newReviews);
     //   newReviews.map((review) => {
@@ -297,3 +307,54 @@ export default Book
     // )
     // .catch(error=> console.error(error))
     // }
+
+
+    // {props.reviews.map((review) => {
+    //   return(
+    //     <>
+    //       {showReviews ?
+    //         <>
+    //           {bookdatareview === review._id ?
+    //             <div className="review-div">
+    //               {review.user}
+    //               {review.review}
+    //             </div>
+    //           : null}
+    //         </>
+    //       : null}
+    //     </>
+    //   )
+    // })}
+
+
+    //
+    // {showReviews ?
+    //   <>
+    //     <h3>Reviews</h3>
+    //     <div className='all-reviews-flexbox'>
+    //     {reviews.map((review) => {
+    //       return (
+    //         <>
+    //           <div className="review-card" key={review.id}>
+    //             <h5>User: {review.user_id}</h5>
+    //             <h5>Review: {review.review}</h5>
+    //             <h5>review.id: {review.id}</h5>
+    //           </div>
+    //         </>
+    //       )
+    //     })
+    //   }
+    //     </div>
+    //   </>
+    // : null}
+
+
+
+
+
+    //console.log(reviews);
+    //const [reviews, setReviews] = useState([{...props.reviews}])
+    //console.log(props.reviews);
+    //console.log(...props.reviews);
+    //console.log(reviews);
+//----------- Attempt -----------//
