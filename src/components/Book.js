@@ -22,12 +22,8 @@ const Book = (props, book) => {
 
 
     const reviewToggle = () => {
-      console.log('clicked');
       if (showReviews === false) {
-        // getReviews()
-        console.log(props.bookReviews);
         setShowReviews(true)
-        //console.log(reviews);
       } else {
         setShowReviews(false)
       }
@@ -67,7 +63,7 @@ const Book = (props, book) => {
 //=================================================================================================================//
 
 //Read Route for reviews
-const getReviews = () => {
+const getBookReviews = () => {
   //axios.get('https://ga-bookstore-backend.herokuapp.com/api/books')
   axios.get("http://localhost:8000/api/books/reviews")
   .then(response => setReviews(response.data),
@@ -84,11 +80,11 @@ const handleReviewCreate = (addReview) => {
  })
 }
 
-
-  // only grabs the reviews that have this book's ID as the book_id
-  const getBookReviews = () => {
-    setBookReviews(props.bookReviews.filter(review => review.book_id == bookData.id))
-  }
+  //
+  // // only grabs the reviews that have this book's ID as the book_id
+  // const getBookReviews = () => {
+  //   setBookReviews(props.bookReviews.filter(review => review.book_id == bookData.id))
+  // }
 
 
 
