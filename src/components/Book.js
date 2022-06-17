@@ -11,10 +11,30 @@ import ReviewsModal from './ReviewsModal'
 
 const Book = (props, book) => {
   //--- State:
-    const [bookData, setBookData] = useState({...props.book})
-    const[show, setShow] = useState(false)
+  const [bookData, setBookData] = useState({...props.book})
+  const[show, setShow] = useState(false)
+  const [showReviews, setShowReviews] = useState(false)
+  const [reviews, setReviews] = useState([])
+  const [bookReviews, setBookReviews] = useState([])
 
-    const [bookReviews, setBookReviews] = useState([])
+  //--- Functions:
+  //toggles the reviews form
+  const reviewToggle = () => {
+    if (showReviews === false) {
+      setShowReviews(true)
+    } else {
+      setShowReviews(false)
+    }
+  }
+
+  //Read Route for reviews
+  const getBookReviews = () => {
+    //axios.get('https://ga-bookstore-backend.herokuapp.com/api/reviews')
+    axios.get("http://localhost:8000/api/books/reviews")
+    .then(response => setReviews(response.data),
+      err=> console.log(err)
+    ).catch(error=> console.error(error))
+  }
 
   return (
       <>
@@ -43,7 +63,12 @@ const Book = (props, book) => {
               </button>
             </>
           : null}
-          <ReviewsModal bookData={bookData}/>
+          <button
+          onClick={() => {
+            reviewToggle()
+            getBookReviews()
+          }}>See Reviews</button>
+          <ReviewsModal bookData={bookData} showReviews={showReviews} reviewToggle={reviewToggle} reviews={reviews}/>
           </ShowModal>
         </div>
     </>

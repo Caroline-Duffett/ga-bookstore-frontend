@@ -300,6 +300,40 @@ h5, h4 {
 }
 
 
+
+
+
+/*---------------------------------- Reviews Modal ---------------------------------------*/
+
+/* .reviews-modal {
+  background-color: white;
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  margin: 5% 40%;
+  border-radius: 10px;
+  text-align: center;
+}
+
+
+.reviews-modal-wrapper {
+  width: 100vw;
+  height: 100vh;
+  /* From https://css.glass */
+  /* background: rgba(0, 0, 0, 0.41);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(9.7px);
+  -webkit-backdrop-filter: blur(9.7px);
+  border: 1px solid rgba(0, 0, 0, 0.56);
+  position: fixed;
+} */ */
+
+
+/*----------------------------------------------------------------------------------------*/
+
+
+
 /*--------------------------------- Reviews Flexbox --------------------------------------*/
 .all-reviews-flexbox {
   background-color: lightgray;
@@ -313,6 +347,4 @@ h5, h4 {
   background-color: white;
   margin: 3px 5px;
 }
-
-
 /*----------------------------------------------------------------------------------------*/

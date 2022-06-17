@@ -5,7 +5,6 @@ import EditReview from './EditReview'
 
 const ReviewsModal = (props) => {
   //--- State:
-  const [showReviews, setShowReviews] = useState(false)
   const [reviews, setReviews] = useState([])
   const [bookData, setBookData] = useState({...props.bookData})
 
@@ -20,14 +19,6 @@ const ReviewsModal = (props) => {
    })
   }
 
-  //Read Route for reviews
-  const getBookReviews = () => {
-    //axios.get('https://ga-bookstore-backend.herokuapp.com/api/reviews')
-    axios.get("http://localhost:8000/api/books/reviews")
-    .then(response => setReviews(response.data),
-      err=> console.log(err)
-    ).catch(error=> console.error(error))
-  }
 
   //Update Route for reviews
   const handleUpdateReview = (editReview) => {
@@ -48,24 +39,13 @@ const ReviewsModal = (props) => {
     })
   }
 
-  //toggles the reviews form
-  const reviewToggle = () => {
-    if (showReviews === false) {
-      setShowReviews(true)
-    } else {
-      setShowReviews(false)
-    }
-  }
+
 
   return (
     <div className="all-reviews-div">
-      <button
-      onClick={() => {
-        reviewToggle()
-        getBookReviews()
-      }}>See Reviews</button>
-      {showReviews ?
-        <>
+      {props.showReviews ?
+      <div className="reviews-modal-wrapper">
+        <div className="reviews-modal">
           <AddReview handleReviewCreate={handleReviewCreate} bookData={bookData}/>
           <h3>Reviews</h3>
           <div className='all-reviews-flexbox'>
@@ -87,7 +67,8 @@ const ReviewsModal = (props) => {
             }
           })}
           </div>
-        </>
+        </div>
+      </div>
       : null}
     </div>
   )
