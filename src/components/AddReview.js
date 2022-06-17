@@ -9,7 +9,6 @@ const AddReview = (props) => {
   const [showAddReview, setShowAddReview] = useState(false)
 
 
-
   //--- Functions:
   //registers a change in all input fields
   const handleChange = (event) => {
