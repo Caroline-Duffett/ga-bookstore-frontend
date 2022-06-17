@@ -13,6 +13,8 @@ import UserRegistration from './components/UserRegistration.js'
 // import ShowModal from './components/ShowModal'
 
 
+
+
 function App() {
   //States:
   const [books, setBooks] = useState([])
@@ -28,6 +30,9 @@ function App() {
   const [showAddForm, setShowAddForm] = useState(false)
 
 
+  
+  
+  
   // Testing route to get user accounts
   const getUserAccounts = () => {
       axios.get('https://ga-bookstore-backend.herokuapp.com/api/useraccount')
@@ -36,6 +41,17 @@ function App() {
         ).catch(error => console.error(error))
   }
 
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   //hides/shows Cart form
     const cartToggle = () => {
       if (showCart === false) {
@@ -58,7 +74,9 @@ function App() {
       }
     }
 
-  //hides/shows Add form
+  
+  
+    //hides/shows Add form
     const addFormToggle = () => {
       if (showAddForm === false) {
         setShowAddForm(true)
@@ -70,7 +88,20 @@ function App() {
     }
 
 
-  //Read Route
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    //Read Route
    const getBooks = () => {
      axios.get('https://ga-bookstore-backend.herokuapp.com/api/books')
      .then(response => setBooks(response.data),
@@ -79,6 +110,7 @@ function App() {
    .catch(error=> console.error(error))
    }
 
+   
    //Create Route
    const handleCreate = (addBook) => {
     axios.post('https://ga-bookstore-backend.herokuapp.com/api/books', addBook)
@@ -86,6 +118,17 @@ function App() {
       setBooks([...books, response.data])
     })
   }
+
+  
+
+
+
+
+
+
+
+
+
 
   //Create New User Registration
   const handleRegistration = (newUser) => {
@@ -96,6 +139,7 @@ function App() {
       })
   }
 
+  
   //Update Route
   const handleUpdate = (editBook) => {
     axios.put('https://ga-bookstore-backend.herokuapp.com/api/books/' + editBook.id, editBook)
@@ -106,6 +150,7 @@ function App() {
     })
   }
 
+  
   //Delete Route
   const handleDelete = (deletedBook) => {
     axios.delete('https://ga-bookstore-backend.herokuapp.com/api/books/' + deletedBook.id)
@@ -114,15 +159,18 @@ function App() {
     })
   }
 
+  
   //Gets all books then loads page
    useEffect(() => {
      getBooks()
      getUserAccounts()
    }, [])
 
+   
    return (
      <>
-        <SearchBar books={books}  searchToggle={searchToggle} showSearch={showSearch} />
+       
+       <SearchBar books={books}  searchToggle={searchToggle} showSearch={showSearch} />
         {user === 'admin' ?
         <Add handleCreate={handleCreate} addFormToggle={addFormToggle} showAddForm={showAddForm}/>
         : null}
@@ -136,3 +184,27 @@ function App() {
 }
 
 export default App;
+
+    // const handleAddToCart = () => {
+    //   return renderCart()
+    // }
+
+    // const handleRemoveFromCart = (book) => {
+    //   let indexOfBook = 
+    //   current
+    //   [ 
+    //     ...currentCart.slice(0, indexOfBookToRemove),
+    //     ...currentCart.slice(indexOfBookToRemove + 1)
+    //   ]
+      
+    // }
+
+    // renderContent() {
+      
+    //       return (
+    //         <Book book={book}
+    //         addToCart={handleAddToCart}/>
+    //       )
+          
+    //         return renderCart()
+    // }

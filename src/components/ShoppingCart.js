@@ -3,12 +3,12 @@ import {useState} from 'react'
 const ShoppingCart = (props) => {
 
   //State:
-    const [userCartBooks, setUserCartBooks] = useState(['book 1', 'book 2', 'book 3']) //temp. for testing purposes. Should be set to user.cart
+    const [userCartBooks, setUserCartBooks] = useState([]) 
 
 
   return(
     <>
-      <button onClick={props.cartToggle} className="search-btn">Cart</button>
+      <button onClick={props.cartToggle} className="search-btn">Cart{userCartBooks.length})</button>
       <>
         {props.showCart ?
           <>
@@ -57,3 +57,146 @@ const ShoppingCart = (props) => {
 }
 
 export default ShoppingCart
+
+{/* <h3>{cartBook}</h3> */}
+
+  {/* {userCartBooks.map((cartBook) => { */}
+
+{/* <button type="submit" onClick={() => removeFromCart(book)}>
+Remove
+</button>
+{/* <div>{listBooksInCart()}</div> */}
+{/* <div>Total: ${cartTotal}</div>
+<div>
+<button onClick={() => setUserCartBooks([])}>Clear</button>
+</div> */} 
+
+// const [bookData, setBookData] = useState({...props.book})
+//     const [books] = useState([bookData.title, bookData.price, bookData.cover_art])
+    // const [userCartBooks, setUserCartBooks] = useState(['book 1', 'book 2', 'book 3']) 
+    //temp. for testing purposes. Should be set to user.cart
+
+    // const cartTotal = userCartBooks.reduce((total, {price = 0}) => total + price, 0)
+
+    // const addToCart = (book) => setUserCartBooks((currentCart) => [...currentCart, book]);
+
+    
+
+    // const removeFromCart = (book) => {
+    //   setUserCartBooks((currentCart) => {
+    //     const indexOfBookToRemove = currentCart.findBook(
+    //       (cartBook) => cartBook.id === book.id
+    //     )
+
+    //     if (indexOfBookToRemove === -1) {
+    //       return currentCart
+    //     }
+
+    //     return [ 
+    //       ...currentCart.slice(0, indexOfBookToRemove),
+    //       ...currentCart.slice(indexOfBookToRemove + 1)
+    //     ]
+    //   })
+    // }
+
+    // const amountOfBooks = (id) => userCartBooks.filter((book) => book.id === id).length
+
+
+
+// const listBooksInCart = () =>
+// book.map((book) => (
+//   <div key={bookData.title}>
+//     ({amountOfBooks(book.id)} x {bookData.price}){bookData.title}
+//     <button type="submit" onClick={() => removeFromCart(book)}>
+//       Remove
+//     </button>
+//   </div>
+// ));
+
+
+
+// const PAGE_BOOKS = 'books'
+// const PAGE_CART = 'userCartBooks'
+
+// const [page, setPage] = useState(PAGE_BOOKS)
+
+// const navigateTo = (nextPage) => {
+//   setPage(nextPage)
+// }
+
+// const getCartTotal = () => {
+//   return userCartBooks.reduce(
+//     (sum, { quantity }) => sum + quantity,
+//     0
+//   );
+// };
+
+// const getSum = () => {
+//   return userCartBooks.reduce(
+//     (sum, {cost, quantity}) => sum + cost * quantity,
+//     0
+//   )
+// }
+
+// const emptyCart = () => {
+//   setUserCartBooks([])
+// }
+
+// const setQuantity = (book, price) => {
+//   const newCart = [...userCartBooks]
+//   newCart.find(
+//     (item) => item.title === book.title
+//   ).quantity = price
+//   setUserCartBooks(newCart)
+// }
+
+// const removeFromCart = (bookRemove) => {
+//   setUserCartBooks(
+//     userCartBooks.filter((book) => book !== bookRemove)
+//   )
+// }
+
+{/* <button onClick={() => navigateTo(PAGE_CART)}>
+Go to Cart ({getCartTotal()})
+</button>  */}
+
+
+{/* <button onClick={() => navigateTo(PAGE_BOOKS)}>
+          View Products
+        </button>
+      
+      {page === PAGE_BOOKS && (
+        <Book userCartBooks={userCartBooks} setUserCartBooks={setUserCartBooks} />
+      )}
+      {page === PAGE_CART && (
+        <ShoppingCart userCartBooks={userCartBooks} setUserCartBooks={setUserCartBooks} />
+      )}
+
+
+
+                       {userCartBooks.length > 0 && (
+        <button onClick={emptyCart}>Clear cart</button>
+      )}
+      <div className="books">
+        {userCartBooks.map((book) => (
+          <div className="book" key={book.id}>
+            <h3>{bookData.title}</h3>
+            <h4>${bookData.price}</h4>
+            <input
+              value={book.quantity}
+              onChange={(e) =>
+                setQuantity(
+                  book,
+                  parseInt(e.target.value)
+                )
+              }
+            />
+            <img src={bookData.cover_art} alt='' />
+            <button onClick={() => removeFromCart(book)}>
+              Remove
+            </button>
+          </div>
+        ))}
+      </div>
+
+      <div>Total Cost: ${getSum()}</div> */}

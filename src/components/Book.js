@@ -1,13 +1,145 @@
-import {useState, useEffect, useCallback} from 'react'
+import {useState} from 'react'
 import Edit from './Edit.js'
 import ShowModal from './ShowModal'
 import ShoppingCart from './ShoppingCart'
+import AllBooks from './AllBooks.js'
+
+
+
+
 
 
 const Book = (props, book) => {
-  //States:
+  
+  
+   //States:
     const [bookData, setBookData] = useState({...props.book})
     const[show, setShow] = useState(false)
+    
+
+
+
+
+
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  return (
+      <>
+        <div className='book' key={bookData.id}>
+        
+          <img src={bookData.cover_art} alt="book cover"
+          onClick={() => setShow(true)}
+          />
+
+
+
+          <ShowModal title={bookData.title} OnClose={() => setShow(false)} onClose={() => setShow(false)} show={show}>
+          <img src={bookData.cover_art} alt="book cover"/>
+          <h5>Author: {bookData.author_name}</h5>
+          <h5>Publisher: {bookData.publisher}</h5>
+          <h5>Publication Date: {bookData.publication_date}</h5>
+          <h5>Pages: {bookData.page_count}</h5>
+          <h5>Genre: {bookData.genre}</h5>
+          <h5>Rating: {bookData.rating}</h5>
+          <br/>
+          <h5>${bookData.price}</h5>
+          <input type="number" placeholder="Qty"/>
+          <button onClick={() => addToCart(book)}>Add</button> 
+         
+        
+
+          {props.user === 'admin' ?
+      <>
+          <Edit handleUpdate={props.handleUpdate} book={book}/>
+          <button onClick={() => {props.handleDelete(book)}}>
+          Delete
+          </button>
+      </>
+          : null}
+          
+          </ShowModal>
+        </div>
+        
+        
+    </>
+  )
+}
+
+export default Book
+
+//==============================================================================//
+//                                Grave Yard
+//==============================================================================//
+
+// const [cart, setCart] = useState([])
+// const [userCartBooks, setUserCartBooks] = useState([])
+
+// appending book
+// const addToCart = (book) => {
+//   console.log('we are in addToCart')
+//   setUserCartBooks([...userCartBooks, book])
+// }
+//   setUserCartBooks((currentCart, ))
+
+    // const [books] = useState([bookData.title, bookData.price, bookData.cover_art])
+
+    // const addToCart = (book) => setUserCartBooks((currentCart) => [...currentCart, book]);
+
+// const listBooksToBuy = () => 
+// book.map((book) => (
+  
+//   <div key={book.id}>
+//     {book.title} - {book.price}
+//     <button onClick={() => addToCart(book)}>Add to cart</button> 
+//   </div>
+// ))
+
+{/* <button onClick={props.cartToggle} className="search-btn">Cart({userCartBooks.length})</button> */}
+
+{/* <div>{listBooksToBuy}</div> */}
+
+   // let newCart = [...userCartBooks]
+      // let bookInCart = newCart.find(
+      //   (book) => bookData.title === book.title
+      // )
+      // if (bookInCart) {
+      //   bookInCart.quantity++
+      // } else {
+      //   bookInCart = {
+      //     ...book,
+      //     quantity: 1
+      //   }
+      //   newCart.push(bookInCart)
+      // }
+      // setUserCartBooks(newCart)
+      // }
+
+
+    // const renderBooks =
+
+    // const [books] = useState([...props.book
+
+    // ])
 
     // const [cartAmount, setCartAmount] = useState(0)
 
@@ -32,50 +164,6 @@ const Book = (props, book) => {
 // };
 
     // useEffect
-
-  return (
-      <>
-        <div className='book' key={bookData.id}>
-        
-          <img src={bookData.cover_art} alt="book cover"
-          onClick={() => setShow(true)}
-          />
-          <ShowModal title={bookData.title} onClose={() => setShow(false)} show={show}>
-          <img src={bookData.cover_art} alt="book cover"/>
-          <h5>Author: {bookData.author_name}</h5>
-          <h5>Publisher: {bookData.publisher}</h5>
-          <h5>Publication Date: {bookData.publication_date}</h5>
-          <h5>Pages: {bookData.page_count}</h5>
-          <h5>Genre: {bookData.genre}</h5>
-          <h5>Rating: {bookData.rating}</h5>
-          <br/>
-          <h5>${bookData.price}</h5>
-          <input type="number" placeholder="Qty"/>
-          <button onClick={() => addToCart(book.id, "book")}>Add</button>
-          {/* <ShoppingCart></ShoppingCart> */}
-
-          {props.user === 'admin' ?
-      <>
-          <Edit handleUpdate={props.handleUpdate} book={book}/>
-          <button onClick={() => {props.handleDelete(book)}}>
-          Delete
-          </button>
-      </>
-          : null}
-          
-          </ShowModal>
-        </div>
-        
-        
-    </>
-  )
-}
-
-export default Book
-
-//==============================================================================//
-//                                Grave Yard
-//==============================================================================//
 
 // import BookInfoModal from './BookInfoModal'
 
