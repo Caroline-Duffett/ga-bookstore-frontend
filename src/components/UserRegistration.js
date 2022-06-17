@@ -32,8 +32,17 @@ const UserRegistration = (props) => {
 
     const handleSubmit = (event) => {
         event.preventDefault()
+        const userObj = {
+            username: newUser.username,
+            password: newUser.password
+        }
         // console.log(newUser);
-        props.handleRegistration(newUser)
+        if (login) {
+            props.handleSignIn(userObj)
+            // console.log(userObj);
+        } else {
+            props.handleRegistration(newUser)
+        }
     }
 
     return (
@@ -59,7 +68,7 @@ const UserRegistration = (props) => {
                           <br/>
 
                           <label htmlFor="password"> Password: </label>
-                          <input type="passowrd" name="password" onChange={handleChange}/>
+                          <input type="password" name="password" onChange={handleChange}/>
                           <br/>
                           <br/>
                           <div className='add-submit-btn-div'>

@@ -18,18 +18,18 @@ import Review from './components/Review'
 function App() {
   //States:
   const [books, setBooks] = useState([])
-
+  const [bookReviews, setBookReviews] = useState([])
   const [user, setUser] = useState('admin') //temp. for testing purposes
   const [userAccounts, setUserAccounts] = useState([]) // user accounts from the backend
   // boolean to show / hide book info modal, default false
-
-
   const [signedIn, setSignedIn] = useState(true) //temp. for testing purposes
   const [showCart, setShowCart] = useState(false)
   const [showSearch, setShowSearch] = useState(false)
   const [showAddForm, setShowAddForm] = useState(false)
   const [showSignIn, setShowSignIn] = useState(false)
 
+  //testing user auth user login
+  const [loggedInUser, setLoggedInuser] = useState({})
 
   // Testing route to get user accounts
   const getUserAccounts = () => {
@@ -38,6 +38,16 @@ function App() {
         .then(response => setUserAccounts(response.data),
             err => console.log(err)
         ).catch(error => console.error(error))
+  }
+
+  // pulls in the list of all reviews for the books
+  // will filter this list when the bookInfoModal is opened
+  const getBookreviews = () => {
+      axios.get('http://localhost:8000/api/books/reviews')
+      .then((response) => {
+          // console.log(response.data);
+          setBookReviews(response.data)
+      })
   }
 
   //hides/shows Cart form
@@ -108,11 +118,22 @@ function App() {
     })
   }
 
+  //handles user sign in reuest
+  const handleSignIn = (userObj) => {
+      // console.log(userObj)
+      axios.put(`https://ga-bookstore-backend.herokuapp.com/api/useraccount/login`, userObj)
+          .then((response) => {
+              console.log(response);
+              setLoggedInuser(response.data)
+          })
+  }
+
   //Create New User Registration
   const handleRegistration = (newUser) => {
       console.log(`handleRegistration ${newUser.username}`);
       axios.post('https://ga-bookstore-backend.herokuapp.com/api/useraccount', newUser)
       .then((response) => {
+          console.log(response);
           setUserAccounts([...userAccounts, response.data])
       })
   }
@@ -140,20 +161,22 @@ function App() {
   //Gets all books then loads page
    useEffect(() => {
      getBooks()
+     getBookreviews()
      getUserAccounts()
    }, [])
 
    return (
      <>
+
         <SearchBar books={books}  searchToggle={searchToggle} showSearch={showSearch} />
         {user === 'admin' ?
         <Add handleCreate={handleCreate} addFormToggle={addFormToggle} showAddForm={showAddForm}/>
         : null}
-        <UserRegistration handleRegistration={handleRegistration} signInToggle={signInToggle} showSignIn={showSignIn} signedIn={signedIn}/>
-        <ShoppingCart signedIn={signedIn} cartToggle={cartToggle} showCart={showCart}/>
+        <UserRegistration handleRegistration={handleRegistration} signInToggle={signInToggle} showSignIn={showSignIn} signedIn={signedIn} handleSignIn={handleSignIn}/>
+        <ShoppingCart signedIn={signedIn} cartToggle={cartToggle} showCart={showCart} user={loggedInUser}/>
         <BestSellers books={books}/>
         <OurFavorites books={books}/>
-        <AllBooks books={books} origin={'allbooks'}/>
+        <AllBooks books={books} bookReviews={bookReviews} origin={'allbooks'}/>
      </>
    )
 }

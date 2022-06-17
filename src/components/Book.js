@@ -17,14 +17,15 @@ const Book = (props, book) => {
     const [bookData, setBookData] = useState({...props.book})
     const[show, setShow] = useState(false)
     const [showReviews, setShowReviews] = useState(false)
-
     const [reviews, setReviews] = useState([])
+    const [bookReviews, setBookReviews] = useState([])
 
 
     const reviewToggle = () => {
       console.log('clicked');
       if (showReviews === false) {
-        getReviews()
+        // getReviews()
+        console.log(props.bookReviews);
         setShowReviews(true)
         //console.log(reviews);
       } else {
@@ -84,6 +85,12 @@ const handleReviewCreate = (addReview) => {
 }
 
 
+  // only grabs the reviews that have this book's ID as the book_id
+  const getBookReviews = () => {
+    setBookReviews(props.bookReviews.filter(review => review.book_id == bookData.id))
+  }
+
+
 
 //Delete Route for reviews
 const handleReviewDelete = (deletedReview) => {
@@ -101,10 +108,10 @@ const handleReviewDelete = (deletedReview) => {
   return (
       <>
         <div className='book' key={bookData.id}>
-
           <img src={bookData.cover_art} alt="book cover"
           onClick={() => {
             setShow(true)
+            getBookReviews()
           }}
           />
           <ShowModal title={bookData.title} onClose={() => setShow(false)} show={show}>
@@ -183,6 +190,25 @@ export default Book
 //==============================================================================//
 //                                Grave Yard
 //==============================================================================//
+
+//Read Route for reviews tablereviews
+// const getReviews = () => {
+//   //axios.get('https://ga-bookstore-backend.herokuapp.com/api/books')
+//   const brl = {
+//                 bookId: bookData.id,
+//               }
+//   axios.get("http://localhost:8000/api/books/reviews/list", brl)
+//   .then((response) => {
+//         console.log(response.data);
+//         // setReviews(response.data.map((review) => {
+//         //     return bookData.id == review.book_id ? review:null
+//         // }))
+//   }
+// )
+// .catch(error=> console.error(error))
+// }
+
+// <button onClick={() => addToCart(book.id, "book")}>Add</button>
 
 // import BookInfoModal from './BookInfoModal'
 
