@@ -27,7 +27,7 @@ const AddReview = (props) => {
     props.handleReviewCreate(review)
     console.log("review.book_id: ");
     console.log(review.book_id);
-    props.handleChosenBook(review.book_id)
+    //props.handleChosenBook(review.book_id)
     setReview(emptyReview)
   }
 

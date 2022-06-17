@@ -7,6 +7,7 @@ const AllBooks = (props) => {
 //console.log(props.books);
 //console.log(props.reviews);
   const [bookReviews, setBookReviews] = useState(["blank"])
+  const [getBooks, setGetBooks] = useState(props.getBooks)
 
     return (
     <>
@@ -20,6 +21,7 @@ const AllBooks = (props) => {
             section={'allbooks'}
             selectBook={props.selectBook}
             bookReviews={props.bookReviews}
+            getBooks={getBooks}
             />
           )
         })}

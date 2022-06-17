@@ -176,7 +176,7 @@ function App() {
         <ShoppingCart signedIn={signedIn} cartToggle={cartToggle} showCart={showCart} user={loggedInUser}/>
         <BestSellers books={books}/>
         <OurFavorites books={books}/>
-        <AllBooks books={books} bookReviews={bookReviews} origin={'allbooks'}/>
+        <AllBooks books={books} bookReviews={bookReviews} origin={'allbooks'} getBooks={getBooks}/>
      </>
    )
 }
