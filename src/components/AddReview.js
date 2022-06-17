@@ -6,7 +6,7 @@ const AddReview = (props) => {
   const [bookData, setBookData] = useState({...props.bookData})
   let emptyReview = {review: '', user_id: 1, book_id: bookData.id} //user is hardcoded for testing
   const [review, setReview] = useState(emptyReview)
-  const [showAddReview, setShowAddReview] = useState(false)
+
 
 
   //--- Functions:
@@ -20,28 +20,19 @@ const AddReview = (props) => {
     event.preventDefault()
     props.handleReviewCreate(review)
     setReview(emptyReview)
+    props.addReviewToggle()
     //console.log(bookData.id);
-  }
-
-  //toggles the add form
-  const addReviewToggle = () => {
-    if (showAddReview === false) {
-      setShowAddReview(true)
-    } else {
-      setShowAddReview(false)
-    }
   }
 
   return (
     <div className="leave-review-div">
-      <button onClick={addReviewToggle}>Add Review</button>
-      {showAddReview ?
+      {props.showAddReview ?
         <>
           <h3>Leave a Review</h3>
           <div className="review-form-div">
             <form onSubmit={handleSubmit}>
               <label htmlFor='review'>Review: </label><br/>
-              <textarea name='review' value={review.review} onChange={handleChange}></textarea>
+              <textarea name='review' value={review.review} onChange={handleChange} required></textarea>
               <br/>
               <br/>
               <div className='lr-submit-btn-div'>

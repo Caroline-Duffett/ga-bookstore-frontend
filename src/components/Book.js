@@ -1,123 +1,27 @@
 // //=================================================================================================================//
 // //                                This version of code goes through reviews table
 // //=================================================================================================================//
-// import {useState, useEffect, useCallback} from 'react'
-// import Edit from './Edit.js'
-// import ShowModal from './ShowModal'
-// import ShoppingCart from './ShoppingCart'
-// import axios from 'axios'
-// import ReviewsModal from './ReviewsModal'
-//
-//
-// const Book = (props, book) => {
-//   //--- State:
-//   const [bookData, setBookData] = useState({...props.book})
-//   const[show, setShow] = useState(false)
-//   // const [showReviews, setShowReviews] = useState(false)
-//   // const [reviews, setReviews] = useState([])
-//   const [bookReviews, setBookReviews] = useState([])
-//
-//   //--- Functions:
-//   // //toggles the reviews form
-//   // const reviewToggle = () => {
-//   //   if (showReviews === false) {
-//   //     setShowReviews(true)
-//   //   } else {
-//   //     setShowReviews(false)
-//   //   }
-//   // }
-//
-//   // //Read Route for reviews
-//   // const getBookReviews = () => {
-//   //   //axios.get('https://ga-bookstore-backend.herokuapp.com/api/reviews')
-//   //   axios.get("http://localhost:8000/api/books/reviews")
-//   //   .then(response => setReviews(response.data),
-//   //     err=> console.log(err)
-//   //   ).catch(error=> console.error(error))
-//   // }
-//
-//   return (
-//       <>
-//         <div className='book' key={bookData.id}>
-//           <img src={bookData.cover_art} alt="book cover"
-//           onClick={() => {
-//             setShow(true)
-//           }}
-//           />
-//           <ShowModal title={bookData.title} onClose={() => setShow(false)} show={show}>
-//           <img src={bookData.cover_art} alt="book cover"/>
-//           <h5>Author: {bookData.author_name}</h5>
-//           <h5>Publisher: {bookData.publisher}</h5>
-//           <h5>Publication Date: {bookData.publication_date}</h5>
-//           <h5>Pages: {bookData.page_count}</h5>
-//           <h5>Genre: {bookData.genre}</h5>
-//           <h5>Rating: {bookData.rating}</h5>
-//           <br/>
-//           <h5>${bookData.price}</h5>
-//           <input type="number" placeholder="Qty"/>
-//           {props.user === 'admin' ?
-//             <>
-//               <Edit handleUpdate={props.handleUpdate} book={book}/>
-//               <button onClick={() => {props.handleDelete(book)}}>
-//               Delete
-//               </button>
-//             </>
-//           : null}
-//           <ReviewsModal bookData={bookData}/>
-//           </ShowModal>
-//         </div>
-//     </>
-//   )
-// }
-//
-// export default Book
-//
-// //showReviews={showReviews} reviewToggle={reviewToggle} reviews={reviews}
-// //=================================================================================================================//
-
-
-
-
-
-
-
-
-
-
-
-// //=================================================================================================================//
-// //                                This version of code goes through reviews table
-// //=================================================================================================================//
 import {useState, useEffect, useCallback} from 'react'
 import Edit from './Edit.js'
 import ShowModal from './ShowModal'
 import ShoppingCart from './ShoppingCart'
 import axios from 'axios'
 import ReviewsModal from './ReviewsModal'
-
+import AddReview from './AddReview'
+import EditReview from './EditReview'
 
 const Book = (props, book) => {
   //--- State:
   const [bookData, setBookData] = useState({...props.book})
-  const[show, setShow] = useState(false)
-  const [bookReviews, setBookReviews] = useState([])
-  const [bookInfo, setBookInfo] = useState(true)
+  const [show, setShow] = useState(false)
+  //const [bookReviews, setBookReviews] = useState([])
+  const [showReviews, setShowReviews] = useState(false)
   const [reviews, setReviews] = useState([])
+  const [showBookInfo, setShowBookInfo] = useState(true)
+  const [showAddReview, setShowAddReview] = useState(false)
 
 
-
-
-  //--- Functions
-  //Toggles between the book info and the reviews in modal
-  const bookInfoReviewToggle = () => {
-    if (bookInfo === true) {
-      setBookInfo(false)
-    } else {
-      setBookInfo(true)
-    }
-  }
-
-
+  //--- Functions:
   //Create Route for reviews (works only for reviews table)
   const handleReviewCreate = (addReview) => {
    //axios.post('https://ga-bookstore-backend.herokuapp.com/api/reviews', addReview)
@@ -155,7 +59,33 @@ const Book = (props, book) => {
     })
   }
 
+  //toggles the reviews form
+  const reviewToggle = () => {
+    if (showReviews === false) {
+      setShowReviews(true)
+    } else {
+      setShowReviews(false)
+    }
+  }
 
+
+  // toggles between the book info and reviews
+  const bookInfoOrReviewsToggle = () => {
+    if (showBookInfo === true) {
+      setShowBookInfo(false)
+    } else {
+      setShowBookInfo(true)
+    }
+  }
+
+  //toggles the add form
+  const addReviewToggle = () => {
+    if (showAddReview === false) {
+      setShowAddReview(true)
+    } else {
+      setShowAddReview(false)
+    }
+  }
 
 
   return (
@@ -167,8 +97,11 @@ const Book = (props, book) => {
           }}
           />
           <ShowModal title={bookData.title} onClose={() => setShow(false)} show={show}>
-          {bookInfo ?
+
+          {showBookInfo ?
+
             <>
+
               <img src={bookData.cover_art} alt="book cover"/>
               <h5>Author: {bookData.author_name}</h5>
               <h5>Publisher: {bookData.publisher}</h5>
@@ -179,6 +112,8 @@ const Book = (props, book) => {
               <br/>
               <h5>${bookData.price}</h5>
               <input type="number" placeholder="Qty"/>
+
+
               {props.user === 'admin' ?
                 <>
                   <Edit handleUpdate={props.handleUpdate} book={book}/>
@@ -186,16 +121,68 @@ const Book = (props, book) => {
                   Delete
                   </button>
                 </>
+
               : null}
-              <button
-              onClick={() => {
-                //reviewToggle()
-                getBookReviews()
-                bookInfoReviewToggle()
-              }}>See Reviews</button>
+
+
             </>
-            : <ReviewsModal bookData={bookData} handleReviewDelete={handleReviewDelete} handleUpdateReview={handleUpdateReview}
-            handleReviewCreate={handleReviewCreate}/>}
+            : null}
+
+
+          <div className="all-reviews-div">
+            <button
+            onClick={() => {
+              reviewToggle()
+              getBookReviews()
+              bookInfoOrReviewsToggle()
+              setShowAddReview(false)
+            }}>
+            {showBookInfo ?
+              <>See Reviews</>
+              :
+              <>Book Details</>
+            }
+            </button>
+
+
+
+            {showReviews ?
+              <>
+              {showAddReview ?
+                  <AddReview handleReviewCreate={handleReviewCreate} bookData={bookData} showAddReview={showAddReview} addReviewToggle={addReviewToggle}/>
+                :
+                <>
+                  <h3>Reviews</h3>
+                  <div className='all-reviews-flexbox'>
+                  {reviews.map((review) => {
+                    if (review.book_id === bookData.id) {
+                      return (
+                        <>
+                          <div className="review-card" key={review.id}>
+                             <h5>User: {review.user_id}</h5>
+                             <h5>Review: </h5>
+                             <p>{review.review}</p>
+                             <EditReview handleUpdateReview={handleUpdateReview} review={review}/>
+                             <button onClick={() => {handleReviewDelete(review)}}>
+                             x
+                             </button>
+                          </div>
+                        </>
+                      )
+                    }
+                  })}
+                  </div>
+                </>
+              }
+              <button onClick={addReviewToggle}>
+              {showAddReview ?
+              <>cancel</>
+              :
+              <>Add Review</>}
+              </button>
+              </>
+            : null}
+          </div>
           </ShowModal>
         </div>
     </>
@@ -203,6 +190,8 @@ const Book = (props, book) => {
 }
 
 export default Book
+
+//showReviews={showReviews} reviewToggle={reviewToggle} reviews={reviews}
 //=================================================================================================================//
 
 
@@ -672,3 +661,84 @@ export default Book
 //   reviewToggle()
 //   getBookReviews()
 // }}>See Reviews</button>
+
+
+
+
+
+// //=================================================================================================================//
+// //                                This version of code goes through reviews table
+// //=================================================================================================================//
+// import {useState, useEffect, useCallback} from 'react'
+// import Edit from './Edit.js'
+// import ShowModal from './ShowModal'
+// import ShoppingCart from './ShoppingCart'
+// import axios from 'axios'
+// import ReviewsModal from './ReviewsModal'
+//
+//
+// const Book = (props, book) => {
+//   //--- State:
+//   const [bookData, setBookData] = useState({...props.book})
+//   const[show, setShow] = useState(false)
+//   // const [showReviews, setShowReviews] = useState(false)
+//   // const [reviews, setReviews] = useState([])
+//   const [bookReviews, setBookReviews] = useState([])
+//
+//   //--- Functions:
+//   // //toggles the reviews form
+//   // const reviewToggle = () => {
+//   //   if (showReviews === false) {
+//   //     setShowReviews(true)
+//   //   } else {
+//   //     setShowReviews(false)
+//   //   }
+//   // }
+//
+//   // //Read Route for reviews
+//   // const getBookReviews = () => {
+//   //   //axios.get('https://ga-bookstore-backend.herokuapp.com/api/reviews')
+//   //   axios.get("http://localhost:8000/api/books/reviews")
+//   //   .then(response => setReviews(response.data),
+//   //     err=> console.log(err)
+//   //   ).catch(error=> console.error(error))
+//   // }
+//
+//   return (
+//       <>
+//         <div className='book' key={bookData.id}>
+//           <img src={bookData.cover_art} alt="book cover"
+//           onClick={() => {
+//             setShow(true)
+//           }}
+//           />
+//           <ShowModal title={bookData.title} onClose={() => setShow(false)} show={show}>
+//           <img src={bookData.cover_art} alt="book cover"/>
+//           <h5>Author: {bookData.author_name}</h5>
+//           <h5>Publisher: {bookData.publisher}</h5>
+//           <h5>Publication Date: {bookData.publication_date}</h5>
+//           <h5>Pages: {bookData.page_count}</h5>
+//           <h5>Genre: {bookData.genre}</h5>
+//           <h5>Rating: {bookData.rating}</h5>
+//           <br/>
+//           <h5>${bookData.price}</h5>
+//           <input type="number" placeholder="Qty"/>
+//           {props.user === 'admin' ?
+//             <>
+//               <Edit handleUpdate={props.handleUpdate} book={book}/>
+//               <button onClick={() => {props.handleDelete(book)}}>
+//               Delete
+//               </button>
+//             </>
+//           : null}
+//           <ReviewsModal bookData={bookData}/>
+//           </ShowModal>
+//         </div>
+//     </>
+//   )
+// }
+//
+// export default Book
+//
+// //showReviews={showReviews} reviewToggle={reviewToggle} reviews={reviews}
+// //=================================================================================================================//
