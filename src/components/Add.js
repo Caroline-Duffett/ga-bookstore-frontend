@@ -77,12 +77,9 @@ const Add = (props) => {
                 <input type='number' name='isbn' value={book.isbn} onChange={handleChange}/>
                 <br/>
                 <br/>
-                <fieldset className="rate">
-                <label htmlFor='rating1' title="5 stars">Rating: </label>
-                <input type='radio' id="rating2" name='rating' value={book.rating} onChange={handleChange}/>
-                <label htmlFor='rating1' title="5 stars"></label>
-                <input type='radio' id="rating2" name='rating' value={book.rating} onChange={handleChange}/>
-                </fieldset>
+
+                <label htmlFor='rating'>Rating: </label>
+                <input type='number' name='rating' value={book.rating} onChange={handleChange}/>
 
                 <br/>
                 <br/>
@@ -91,6 +88,7 @@ const Add = (props) => {
                 <input type='text' name='price' value={book.price} onChange={handleChange}/>
                 <br/>
                 <br/>
+
                 <div className='add-submit-btn-div'>
                   <input type='submit'/>
                 </div>
@@ -106,6 +104,20 @@ const Add = (props) => {
 }
 
 export default Add
+
+// <fieldset className="rate">
+// <label htmlFor='rating1' title="5 stars">Rating: </label>
+// <input type='radio' id="rating2" name='rating' value={book.rating} onChange={handleChange}/>
+// <label htmlFor='rating1' title="5 stars"></label>
+// <input type='radio' id="rating2" name='rating' value={book.rating} onChange={handleChange}/>
+// </fieldset>
+
+
+
+
+
+
+
 
 
 // //https://dmitripavlutin.com/react-useref-guide/

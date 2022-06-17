@@ -2,7 +2,7 @@ import {useState} from 'react'
 
 const AddReview = (props) => {
   //State:
-  let emptyReview = {review: '', user_id: 1, book_id: 1}
+  let emptyReview = {review: '', user_id: 1, book_id: 7}
   const [review, setReview] = useState(emptyReview)
   const [showAddReview, setShowAddReview] = useState(false)
 
