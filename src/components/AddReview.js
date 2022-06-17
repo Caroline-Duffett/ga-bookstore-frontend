@@ -1,10 +1,12 @@
 import {useState} from 'react'
+import axios from 'axios'
 
 const AddReview = (props) => {
   //State:
   let emptyReview = {review: '', user_id: 1, book_id: 7}
   const [review, setReview] = useState(emptyReview)
   const [showAddReview, setShowAddReview] = useState(false)
+  const [bookData, setBookData] = useState({...props.book})
 
 
   //Functions:
@@ -12,9 +14,20 @@ const AddReview = (props) => {
     setReview({...review, [event.target.name]: event.target.value})
   }
 
+  // const handleChosenBook = (chosenBook) => {
+  //   axios.get("http://localhost:8000/api/books/" + chosenBook)
+  //   .then(response => setBookData(response.data),
+  //      err=> console.log(err)
+  //    )
+  //    .catch(error=> console.error(error))
+  // }
+
   const handleSubmit = (event) => {
     event.preventDefault()
     props.handleReviewCreate(review)
+    console.log("review.book_id: ");
+    console.log(review.book_id);
+    props.handleChosenBook(review.book_id)
     setReview(emptyReview)
   }
 

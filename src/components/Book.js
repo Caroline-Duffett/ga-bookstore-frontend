@@ -78,12 +78,15 @@ const handleReviewCreate = (addReview) => {
  .then((response) => {
    setReviews([...reviews, response.data])
  })
- axios.get("http://localhost:8000/api/books")
- // .then((response) => {
- //   setBookData([bookData, response.data])
- // })
 }
 
+const handleChosenBook = (chosenBook) => {
+  axios.get("http://localhost:8000/api/books/" + chosenBook)
+  .then(response => setBookData(response.data),
+     err=> console.log(err)
+   )
+   .catch(error=> console.error(error))
+}
 
   // // only grabs the reviews that have this book's ID as the book_id
   // const getBookReviews = () => {
@@ -155,19 +158,19 @@ const handleReviewDelete = (deletedReview) => {
             }}>See Reviews</button>
             {showReviews ?
               <>
-                <AddReview handleReviewCreate={handleReviewCreate}/>
+                <AddReview handleReviewCreate={handleReviewCreate} handleChosenBook={handleChosenBook}/>
                 <h3>Reviews</h3>
                 <div className='all-reviews-flexbox'>
                 {bookReviews.map((review) => {
-                  console.log("bookReviews: ");
-                  console.log(bookReviews);
-                  console.log("review: ");
-                  console.log(review);
+                  // console.log("bookReviews: ");
+                  // console.log(bookReviews);
+                  // console.log("review: ");
+                  // console.log(review);
                   // return (
                   //   <>
                   //   {bookData.reviews.map((bookDataReview) => {
-                  console.log(review.book_id);
-                  console.log(bookData.id);
+                  // console.log(review.book_id);
+                  // console.log(bookData.id);
                       if (review.book_id === bookData.id) {
                         return (
                           <div className="review-card" key={review.id}>
