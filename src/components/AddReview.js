@@ -25,8 +25,8 @@ const AddReview = (props) => {
   const handleSubmit = (event) => {
     event.preventDefault()
     props.handleReviewCreate(review)
-    console.log("review.book_id: ");
-    console.log(review.book_id);
+    // console.log("review.book_id: ");
+    // console.log(review.book_id);
     //props.handleChosenBook(review.book_id)
     setReview(emptyReview)
   }
