@@ -69,11 +69,17 @@ const getReviews = () => {
   //axios.get('https://ga-bookstore-backend.herokuapp.com/api/books')
   axios.get("http://localhost:8000/api/books/reviews")
   .then(response => setReviews(response.data),
-  err=> console.log(err)
-)
-.catch(error=> console.error(error))
+    err=> console.log(err)
+  ).catch(error=> console.error(error))
 }
 
+//Delete Route for reviews
+const handleReviewDelete = (deletedReview) => {
+  axios.delete('http://localhost:8000/api/books/reviews/' + deletedReview.id)
+  .then((response) => {
+    setReviews(reviews.filter(review => review.id !== deletedReview.id))
+  })
+}
 
 
   return (
@@ -126,6 +132,9 @@ const getReviews = () => {
                                   <h5>User: {review.user_id}</h5>
                                   <h5>Review: {review.review}</h5>
                                   <h5>review.id: {review.id}</h5>
+                                  <button onClick={() => {handleReviewDelete(review)}}>
+                                  x
+                                  </button>
                                 </div>
                               )
                             }
