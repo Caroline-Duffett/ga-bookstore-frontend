@@ -3,10 +3,11 @@ import axios from 'axios'
 
 const AddReview = (props) => {
   //--- State:
-  let emptyReview = {review: '', user_id: 1, book_id: 7}
+  const [bookData, setBookData] = useState({...props.bookData})
+  let emptyReview = {review: '', user_id: 1, book_id: bookData.id} //user is hardcoded for testing, book_id is hard coded for testing
   const [review, setReview] = useState(emptyReview)
   const [showAddReview, setShowAddReview] = useState(false)
-  const [bookData, setBookData] = useState({...props.book})
+
 
 
   //--- Functions:
@@ -20,6 +21,7 @@ const AddReview = (props) => {
     event.preventDefault()
     props.handleReviewCreate(review)
     setReview(emptyReview)
+    //console.log(bookData.id);
   }
 
   //toggles the add form

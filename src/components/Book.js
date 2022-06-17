@@ -228,27 +228,24 @@ const Book = (props, book) => {
             }}>See Reviews</button>
             {showReviews ?
               <>
-                <AddReview handleReviewCreate={handleReviewCreate}/>
+                <AddReview handleReviewCreate={handleReviewCreate} bookData={bookData}/>
                 <h3>Reviews</h3>
                 <div className='all-reviews-flexbox'>
                 {reviews.map((review) => {
+                  // console.log("review.book_id");
+                  // console.log(review.book_id);
                   return (
                     <>
-                    {bookData.reviews.map((bookDataReview) => {
-                      if (bookDataReview === review.id) {
-                        return (
-                          <div className="review-card" key={review.id}>
-                            <h5>User: {review.user_id}</h5>
-                            <h5>Review: {review.review}</h5>
-                            <h5>review.id: {review.id}</h5>
-                            <EditReview handleUpdateReview={handleUpdateReview} review={review}/>
-                            <button onClick={() => {handleReviewDelete(review)}}>
-                            x
-                            </button>
-                          </div>
-                        )
-                      }
-                    })}
+                      <div className="review-card" key={review.id}>
+                         <h5>User: {review.user_id}</h5>
+                         <h5>Review: {review.review}</h5>
+                         <h5>review.id: {review.id}</h5>
+                         <h5>book.id: {review.book_id}</h5>
+                         <EditReview handleUpdateReview={handleUpdateReview} review={review}/>
+                         <button onClick={() => {handleReviewDelete(review)}}>
+                         x
+                         </button>
+                      </div>
                     </>
                   )
                 })
@@ -266,7 +263,21 @@ const Book = (props, book) => {
 export default Book
 //=================================================================================================================//
 
-
+// {bookData.reviews.map((bookDataReview) => {
+//   if (bookDataReview === review.id) {
+//     return (
+//       <div className="review-card" key={review.id}>
+//         <h5>User: {review.user_id}</h5>
+//         <h5>Review: {review.review}</h5>
+//         <h5>review.id: {review.id}</h5>
+//         <EditReview handleUpdateReview={handleUpdateReview} review={review}/>
+//         <button onClick={() => {handleReviewDelete(review)}}>
+//         x
+//         </button>
+//       </div>
+//     )
+//   }
+// })}
 
 
 
