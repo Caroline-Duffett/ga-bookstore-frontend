@@ -74,7 +74,7 @@ const getReviews = () => {
   ).catch(error=> console.error(error))
 }
 
-//Create Route for reviews
+//Create Route for reviews ***
 const handleReviewCreate = (addReview) => {
  //axios.post('https://ga-bookstore-backend.herokuapp.com/api/books', addBook)
  axios.post("http://localhost:8000/api/books/reviews", addReview)
@@ -82,6 +82,8 @@ const handleReviewCreate = (addReview) => {
    setReviews([...reviews, response.data])
  })
 }
+
+
 
 //Delete Route for reviews
 const handleReviewDelete = (deletedReview) => {
