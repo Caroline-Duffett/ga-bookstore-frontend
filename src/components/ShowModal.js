@@ -5,7 +5,7 @@ const ShowModal = (props) => {
     }
 
     return (
-    <div className="modal" onClick={props.OnClose}>
+    <div className="modal" onClick={props.onClose}>
         <div className="modal-content" onClick={e => e.stopPropagation()}>
             <div className="modal-header">
             <div className="modal-footer">
