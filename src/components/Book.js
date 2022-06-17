@@ -232,22 +232,23 @@ const Book = (props, book) => {
                 <h3>Reviews</h3>
                 <div className='all-reviews-flexbox'>
                 {reviews.map((review) => {
-                  return (
-                    <>
-                      <div className="review-card" key={review.id}>
-                         <h5>User: {review.user_id}</h5>
-                         <h5>Review: {review.review}</h5>
-                         <h5>review.id: {review.id}</h5>
-                         <h5>book.id: {review.book_id}</h5>
-                         <EditReview handleUpdateReview={handleUpdateReview} review={review}/>
-                         <button onClick={() => {handleReviewDelete(review)}}>
-                         x
-                         </button>
-                      </div>
-                    </>
-                  )
-                })
-                }
+                  if (review.book_id === bookData.id) {
+                    return (
+                      <>
+                        <div className="review-card" key={review.id}>
+                           <h5>User: {review.user_id}</h5>
+                           <h5>Review: {review.review}</h5>
+                           <h5>review.id: {review.id}</h5>
+                           <h5>book.id: {review.book_id}</h5>
+                           <EditReview handleUpdateReview={handleUpdateReview} review={review}/>
+                           <button onClick={() => {handleReviewDelete(review)}}>
+                           x
+                           </button>
+                        </div>
+                      </>
+                    )
+                  }
+                })}
                 </div>
               </>
             : null}
