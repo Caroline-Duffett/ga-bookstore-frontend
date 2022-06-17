@@ -21,7 +21,6 @@ const AddReview = (props) => {
     props.handleReviewCreate(review)
     setReview(emptyReview)
     props.addReviewToggle()
-    //console.log(bookData.id);
   }
 
   return (

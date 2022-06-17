@@ -10,11 +10,12 @@ import ReviewsModal from './ReviewsModal'
 import AddReview from './AddReview'
 import EditReview from './EditReview'
 
+
+
 const Book = (props, book) => {
   //--- State:
   const [bookData, setBookData] = useState({...props.book})
   const [show, setShow] = useState(false)
-  //const [bookReviews, setBookReviews] = useState([])
   const [showReviews, setShowReviews] = useState(false)
   const [reviews, setReviews] = useState([])
   const [showBookInfo, setShowBookInfo] = useState(true)
@@ -68,7 +69,6 @@ const Book = (props, book) => {
     }
   }
 
-
   // toggles between the book info and reviews
   const bookInfoOrReviewsToggle = () => {
     if (showBookInfo === true) {
@@ -87,111 +87,83 @@ const Book = (props, book) => {
     }
   }
 
-
   return (
       <>
         <div className='book' key={bookData.id}>
-          <img src={bookData.cover_art} alt="book cover"
-          onClick={() => {
-            setShow(true)
-          }}
-          />
+          <img src={bookData.cover_art} alt="book cover" onClick={() => {setShow(true)}}/>
           <ShowModal title={bookData.title} onClose={() => setShow(false)} show={show}>
-
-          {showBookInfo ?
-
-            <>
-
-              <img src={bookData.cover_art} alt="book cover"/>
-              <h5>Author: {bookData.author_name}</h5>
-              <h5>Publisher: {bookData.publisher}</h5>
-              <h5>Publication Date: {bookData.publication_date}</h5>
-              <h5>Pages: {bookData.page_count}</h5>
-              <h5>Genre: {bookData.genre}</h5>
-              <h5>Rating: {bookData.rating}</h5>
-              <br/>
-              <h5>${bookData.price}</h5>
-              <input type="number" placeholder="Qty"/>
-
-
-              {props.user === 'admin' ?
-                <>
-                  <Edit handleUpdate={props.handleUpdate} book={book}/>
-                  <button onClick={() => {props.handleDelete(book)}}>
-                  Delete
-                  </button>
-                </>
-
-              : null}
-
-
-            </>
-            : null}
-
-
-          <div className="all-reviews-div">
-            <button
-            onClick={() => {
-              reviewToggle()
-              getBookReviews()
-              bookInfoOrReviewsToggle()
-              setShowAddReview(false)
-            }}>
             {showBookInfo ?
-              <>See Reviews</>
-              :
-              <>Book Details</>
-            }
-            </button>
-
-
-
-            {showReviews ?
               <>
-              {showAddReview ?
-                  <AddReview handleReviewCreate={handleReviewCreate} bookData={bookData} showAddReview={showAddReview} addReviewToggle={addReviewToggle}/>
-                :
-                <>
-                  <h3>Reviews</h3>
-                  <div className='all-reviews-flexbox'>
-                  {reviews.map((review) => {
-                    if (review.book_id === bookData.id) {
-                      return (
-                        <>
-                          <div className="review-card" key={review.id}>
-                             <h5>User: {review.user_id}</h5>
-                             <h5>Review: </h5>
-                             <p>{review.review}</p>
-                             <EditReview handleUpdateReview={handleUpdateReview} review={review}/>
-                             <button onClick={() => {handleReviewDelete(review)}}>
-                             x
-                             </button>
-                          </div>
-                        </>
-                      )
-                    }
-                  })}
-                  </div>
-                </>
-              }
-              <button onClick={addReviewToggle}>
-              {showAddReview ?
-              <>cancel</>
-              :
-              <>Add Review</>}
-              </button>
+                <img src={bookData.cover_art} alt="book cover"/>
+                <h5>Author: {bookData.author_name}</h5>
+                <h5>Publisher: {bookData.publisher}</h5>
+                <h5>Publication Date: {bookData.publication_date}</h5>
+                <h5>Pages: {bookData.page_count}</h5>
+                <h5>Genre: {bookData.genre}</h5>
+                <h5>Rating: {bookData.rating}</h5>
+                <br/>
+                <h5>${bookData.price}</h5>
+                <input type="number" placeholder="Qty"/>
+                {props.user === 'admin' ?
+                  <>
+                    <Edit handleUpdate={props.handleUpdate} book={book}/>
+                    <button onClick={() => {props.handleDelete(book)}}>
+                    Delete
+                    </button>
+                  </>
+                : null}
               </>
             : null}
-          </div>
+            <div className="all-reviews-div">
+              <button
+                onClick={() => {
+                  reviewToggle()
+                  getBookReviews()
+                  bookInfoOrReviewsToggle()
+                  setShowAddReview(false)
+                }}>
+                {showBookInfo ? <>See Reviews</> : <>Book Details</>}
+              </button>
+              {showReviews ?
+                <>
+                {showAddReview ?
+                  <AddReview handleReviewCreate={handleReviewCreate} bookData={bookData} showAddReview={showAddReview} addReviewToggle={addReviewToggle}/>
+                :
+                  <>
+                    <h3>Reviews</h3>
+                    <div className='all-reviews-flexbox'>
+                    {reviews.map((review) => {
+                      if (review.book_id === bookData.id) {
+                        return (
+                          <>
+                            <div className="review-card" key={review.id}>
+                               <h5>User: {review.user_id}</h5>
+                               <h5>Review: </h5>
+                               <p>{review.review}</p>
+                               <EditReview handleUpdateReview={handleUpdateReview} review={review}/>
+                               <button onClick={() => {handleReviewDelete(review)}}>
+                               x
+                               </button>
+                            </div>
+                          </>
+                        )
+                      }
+                    })}
+                    </div>
+                  </>
+                }
+                <button onClick={addReviewToggle}> {showAddReview ? <>cancel</> : <>Add Review</> } </button>
+                </>
+              :
+              null}
+            </div>
           </ShowModal>
         </div>
-    </>
+      </>
   )
 }
 
 export default Book
-
-//showReviews={showReviews} reviewToggle={reviewToggle} reviews={reviews}
 //=================================================================================================================//
 
 
@@ -742,3 +714,8 @@ export default Book
 //
 // //showReviews={showReviews} reviewToggle={reviewToggle} reviews={reviews}
 // //=================================================================================================================//
+
+//const [bookReviews, setBookReviews] = useState([])
+
+
+//showReviews={showReviews} reviewToggle={reviewToggle} reviews={reviews}
