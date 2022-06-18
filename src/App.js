@@ -146,7 +146,6 @@ function App() {
     axios.put('http://localhost:8000/api/books/' + editBook.id, editBook)
     .then((response) => {
       setBooks(books.map((book) => {
-        console.log(book.id);
         return book.id !== response.data.id ? book : response.data
       }))
     })

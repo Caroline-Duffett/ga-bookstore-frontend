@@ -174,7 +174,7 @@ const Book = (props, book) => {
                                      <p>{review.review}</p>
                                      <EditReview handleUpdateReview={handleUpdateReview} review={review}/>
                                      <button onClick={() => {handleReviewDelete(review)}}>
-                                     x
+                                     Delete
                                      </button>
                                   </div>
                                 </>
