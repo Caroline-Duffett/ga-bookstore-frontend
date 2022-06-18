@@ -17,7 +17,7 @@ function App() {
   //--- State:
   const [books, setBooks] = useState([])
   const [bookReviews, setBookReviews] = useState([])
-  const [user, setUser] = useState('admin') //temp. for testing purposes
+  //const [user, setUser] = useState('admi') //temp. for testing purposes
   const [userAccounts, setUserAccounts] = useState([]) // user accounts from the backend
   // boolean to show / hide book info modal, default false
   const [signedIn, setSignedIn] = useState(true) //temp. for testing purposes
@@ -171,14 +171,14 @@ function App() {
      <>
 
         <SearchBar books={books}  searchToggle={searchToggle} showSearch={showSearch} />
-        {user === 'admin' ?
+        {loggedInUser.staff === true ?
         <Add handleCreate={handleCreate} addFormToggle={addFormToggle} showAddForm={showAddForm}/>
         : null}
         <UserRegistration handleRegistration={handleRegistration} signInToggle={signInToggle} showSignIn={showSignIn} signedIn={signedIn} handleSignIn={handleSignIn}/>
         <ShoppingCart signedIn={signedIn} cartToggle={cartToggle} showCart={showCart} user={loggedInUser}/>
         <BestSellers books={books}/>
         <OurFavorites books={books}/>
-        <AllBooks books={books} bookReviews={bookReviews} origin={'allbooks'} getBooks={getBooks} user={user} handleDelete={handleDelete} handleUpdate={handleUpdate}/>
+        <AllBooks books={books} bookReviews={bookReviews} origin={'allbooks'} getBooks={getBooks} loggedInUser={loggedInUser} handleDelete={handleDelete} handleUpdate={handleUpdate}/>
      </>
    )
 }

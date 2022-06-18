@@ -7,7 +7,7 @@ const AllBooks = (props) => {
   //--- State:
   const [bookReviews, setBookReviews] = useState(["blank"])
   const [getBooks, setGetBooks] = useState(props.getBooks)
-  const [user, setUser] = useState(props.user)
+  const [loggedInUser, setLoggedInUser] = useState(props.loggedInUser)
 
 
 
@@ -24,7 +24,7 @@ const AllBooks = (props) => {
             selectBook={props.selectBook}
             bookReviews={props.bookReviews}
             getBooks={getBooks}
-            user={user}
+            loggedInUser={loggedInUser}
             handleDelete={props.handleDelete}
             handleUpdate={props.handleUpdate}
             />

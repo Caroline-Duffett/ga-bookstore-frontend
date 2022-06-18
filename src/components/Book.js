@@ -11,7 +11,6 @@ import AddReview from './AddReview'
 import EditReview from './EditReview'
 
 
-
 const Book = (props, book) => {
   //--- State:
   const [bookData, setBookData] = useState({...props.book})
@@ -20,13 +19,11 @@ const Book = (props, book) => {
   const [reviews, setReviews] = useState([])
   const [showBookInfo, setShowBookInfo] = useState(true)
   const [showAddReview, setShowAddReview] = useState(false)
-  const [user, setUser] = useState(props.user)
-  //const [handleDelete, setHandleDelete] = useState(props.handleDelete)
-  //console.log(user);
+  const [loggedInUser, setLoggedInUser] = useState(props.loggedInUser)
   const [showEditForm, setShowEditForm] = useState(false)
 
   //--- Functions:
-  //Create Route for reviews (works only for reviews table)
+  //Create Route for reviews
   const handleReviewCreate = (addReview) => {
    //axios.post('https://ga-bookstore-backend.herokuapp.com/api/reviews', addReview)
    axios.post("http://localhost:8000/api/books/reviews", addReview)
@@ -133,7 +130,7 @@ const Book = (props, book) => {
                     <br/>
                     <h5>${bookData.price}</h5>
                     <input type="number" placeholder="Qty"/>
-                    {props.user === 'admin' ?
+                    {loggedInUser.staff === true ?
                       <>
                         <br/>
                         <br/>
@@ -196,9 +193,6 @@ const Book = (props, book) => {
       </>
   )
 }
-
-
-
 
 
 export default Book
@@ -757,3 +751,6 @@ export default Book
 
 
 //showReviews={showReviews} reviewToggle={reviewToggle} reviews={reviews}
+
+//const [handleDelete, setHandleDelete] = useState(props.handleDelete)
+//console.log(user);
