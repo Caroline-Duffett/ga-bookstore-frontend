@@ -169,11 +169,15 @@ function App() {
      <>
 
         <SearchBar books={books}  searchToggle={searchToggle} showSearch={showSearch} />
-        {loggedInUser.staff === true ?
-        <Add handleCreate={handleCreate} addFormToggle={addFormToggle} showAddForm={showAddForm}/>
+        {loggedInUser ?
+          <>
+          {loggedInUser.staff === true ?
+            <Add handleCreate={handleCreate} addFormToggle={addFormToggle} showAddForm={showAddForm}/>
+          : null}
+          </>
         : null}
         <UserRegistration handleRegistration={handleRegistration} signInToggle={signInToggle} showSignIn={showSignIn} signedIn={signedIn} handleSignIn={handleSignIn}/>
-        <ShoppingCart signedIn={signedIn} cartToggle={cartToggle} showCart={showCart} user={loggedInUser}/>
+        <ShoppingCart loggedInUser={loggedInUser} cartToggle={cartToggle} showCart={showCart} user={loggedInUser}/>
         <BestSellers books={books}/>
         <OurFavorites books={books}/>
         <AllBooks books={books} bookReviews={bookReviews} origin={'allbooks'} getBooks={getBooks} loggedInUser={loggedInUser} handleDelete={handleDelete} handleUpdate={handleUpdate}/>

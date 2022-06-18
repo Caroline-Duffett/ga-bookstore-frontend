@@ -63,12 +63,12 @@ const UserRegistration = (props) => {
                     <div className="create-acc-si-div">
                       <form onSubmit={handleSubmit}>
                           <label htmlFor="username"> Username: </label>
-                          <input type="text" name="username" onChange={handleChange}/>
+                          <input type="text" name="username" onChange={handleChange} required/>
                           <br/>
                           <br/>
 
                           <label htmlFor="password"> Password: </label>
-                          <input type="password" name="password" onChange={handleChange}/>
+                          <input type="password" name="password" onChange={handleChange} required/>
                           <br/>
                           <br/>
                           <div className='add-submit-btn-div'>
@@ -86,27 +86,27 @@ const UserRegistration = (props) => {
                     <div className="create-acc-si-div">
                       <form onSubmit={handleSubmit}>
                           <label htmlFor="username"> Username: </label>
-                          <input type="text" name="username" onChange={handleChange}/>
+                          <input type="text" name="username" onChange={handleChange} required/>
                           <br/>
                           <br/>
 
                           <label htmlFor="email"> Email: </label>
-                          <input type="email" name="email" onChange={handleChange}/>
+                          <input type="email" name="email" onChange={handleChange} required/>
                           <br/>
                           <br/>
 
                           <label htmlFor="password"> Password: </label>
-                          <input type="text" name="password" onChange={handleChange}/>
+                          <input type="text" name="password" onChange={handleChange} required/>
                           <br/>
                           <br/>
 
                           <label htmlFor="first_name"> First Name: </label>
-                          <input type="text" name="first_name" onChange={handleChange}/>
+                          <input type="text" name="first_name" onChange={handleChange} required/>
                           <br/>
                           <br/>
 
                           <label htmlFor="last_name"> Last Name: </label>
-                          <input type="text" name="last_name" onChange={handleChange}/>
+                          <input type="text" name="last_name" onChange={handleChange} required/>
                           <br/>
                           <br/>
 

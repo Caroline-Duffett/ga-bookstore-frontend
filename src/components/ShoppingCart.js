@@ -12,7 +12,7 @@ const ShoppingCart = (props) => {
       <>
         {props.showCart ?
           <>
-            {props.signedIn ?
+            {props.loggedInUser === true ?
               <>
                 <div className="cart-modal-wrapper">
                   <div className="cart-modal">
@@ -36,8 +36,8 @@ const ShoppingCart = (props) => {
               </>
               :
               <>
-                <div className="sign-in-modal-wrapper">
-                  <div className="sign-in-modal">
+                <div className="sign-in-modal-wrapper" onClick={props.cartToggle}>
+                  <div className="sign-in-modal" onClick={e => e.stopPropagation()}>
                     <h2 className="sign-in-message">Please Sign In or Create an Account to view cart</h2>
                     <div className='sign-in-x-btn-div'>
                       <button className='sign-in-x-btn' onClick={props.cartToggle}>
