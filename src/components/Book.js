@@ -25,8 +25,8 @@ const Book = (props, book) => {
   //--- Functions:
   //Create Route for reviews
   const handleReviewCreate = (addReview) => {
-   //axios.post('https://ga-bookstore-backend.herokuapp.com/api/reviews', addReview)
-   axios.post("http://localhost:8000/api/books/reviews", addReview)
+   axios.post('https://ga-bookstore-backend.herokuapp.com/api/books/reviews', addReview)
+   //axios.post("http://localhost:8000/api/books/reviews", addReview)
    .then((response) => {
      setReviews([...reviews, response.data])
    })
@@ -34,8 +34,8 @@ const Book = (props, book) => {
 
   //Read Route for reviews
   const getBookReviews = () => {
-    //axios.get('https://ga-bookstore-backend.herokuapp.com/api/reviews')
-    axios.get("http://localhost:8000/api/books/reviews")
+    axios.get('https://ga-bookstore-backend.herokuapp.com/api/books/reviews')
+    //axios.get("http://localhost:8000/api/books/reviews")
     .then(response => setReviews(response.data),
       err=> console.log(err)
     ).catch(error=> console.error(error))
@@ -44,7 +44,7 @@ const Book = (props, book) => {
   //Update Route for reviews
   const handleUpdateReview = (editReview) => {
     //axios.put('http://localhost:8000/api/books/reviews/' + editReview.id, editReview)
-    axios.put('http://localhost:8000/api/books/reviews/' + editReview.id, editReview)
+    axios.put('https://ga-bookstore-backend.herokuapp.com/api/books/reviews/' + editReview.id, editReview)
     .then((response) => {
       setReviews(reviews.map((review) => {
         return review.id !== response.data.id ? review : response.data
@@ -54,7 +54,7 @@ const Book = (props, book) => {
 
   //Delete Route for reviews
   const handleReviewDelete = (deletedReview) => {
-    axios.delete('http://localhost:8000/api/books/reviews/' + deletedReview.id)
+    axios.delete('https://ga-bookstore-backend.herokuapp.com/api/books/reviews/' + deletedReview.id)
     .then((response) => {
       setReviews(reviews.filter(review => review.id !== deletedReview.id))
     })
