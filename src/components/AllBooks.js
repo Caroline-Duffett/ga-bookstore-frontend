@@ -26,6 +26,7 @@ const AllBooks = (props) => {
             getBooks={getBooks}
             user={user}
             handleDelete={props.handleDelete}
+            handleUpdate={props.handleUpdate}
             />
           )
         })}

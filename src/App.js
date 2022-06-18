@@ -142,9 +142,11 @@ function App() {
   //Update Route for books
   const handleUpdate = (editBook) => {
     //axios.put('https://ga-bookstore-backend.herokuapp.com/api/books/' + editBook.id, editBook)
+    //console.log(editBook.id);
     axios.put('http://localhost:8000/api/books/' + editBook.id, editBook)
     .then((response) => {
       setBooks(books.map((book) => {
+        console.log(book.id);
         return book.id !== response.data.id ? book : response.data
       }))
     })
@@ -160,7 +162,7 @@ function App() {
   }
 
   //Gets all books then loads page
-   useEffect(() => {    
+   useEffect(() => {
      getBooks()
      getBookreviews()
      getUserAccounts()
@@ -177,7 +179,7 @@ function App() {
         <ShoppingCart signedIn={signedIn} cartToggle={cartToggle} showCart={showCart} user={loggedInUser}/>
         <BestSellers books={books}/>
         <OurFavorites books={books}/>
-        <AllBooks books={books} bookReviews={bookReviews} origin={'allbooks'} getBooks={getBooks} user={user} handleDelete={handleDelete}/>
+        <AllBooks books={books} bookReviews={bookReviews} origin={'allbooks'} getBooks={getBooks} user={user} handleDelete={handleDelete} handleUpdate={handleUpdate}/>
      </>
    )
 }
