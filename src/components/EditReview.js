@@ -23,7 +23,7 @@ const EditReview = (props) => {
       <div className="edit-review-form-div">
         <form onSubmit={handleSubmit}>
           <label htmlFor='review'>Review: </label><br/>
-          <textarea name='review' value={review.review} onChange={handleChange}></textarea>
+          <textarea name='review' value={review.review} onChange={handleChange} required></textarea>
           <br/>
           <br/>
           <div className='editrev-submit-btn-div'>
