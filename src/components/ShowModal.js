@@ -1,5 +1,4 @@
-
-const ShowModal = (props) => {
+const ShowModal = (props, book) => {
 
     if (!props.show) {
         return null

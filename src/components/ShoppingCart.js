@@ -1,12 +1,16 @@
 import {useState} from 'react'
+import Book from './Book'
+
 
 const ShoppingCart = (props) => {
 
   //State:
-    const [userCartBooks, setUserCartBooks] = useState([]) 
+    const [userCartBooks, setUserCartBooks] = useState([])
+    
+    // const [user, setUser] = useState('')
+    // const [cart, setCart] = useState([])
 
-
-  return(
+  return (
     <>
       <button onClick={props.cartToggle} className="search-btn">Cart{userCartBooks.length})</button>
       <>
@@ -58,48 +62,64 @@ const ShoppingCart = (props) => {
 
 export default ShoppingCart
 
+// CODE GRAVEYARD ------------------------------------>
+
 {/* <h3>{cartBook}</h3> */}
 
   {/* {userCartBooks.map((cartBook) => { */}
 
-{/* <button type="submit" onClick={() => removeFromCart(book)}>
-Remove
-</button>
-{/* <div>{listBooksInCart()}</div> */}
-{/* <div>Total: ${cartTotal}</div>
-<div>
-<button onClick={() => setUserCartBooks([])}>Clear</button>
-</div> */} 
+  // const cartTotal = userCartBooks.reduce((total, {price = 0}) => total + price, 0)
+
+//   <div>Total: ${cartTotal}</div>
+// <div>
+// <button onClick={() => setUserCartBooks([])}>Clear</button>
+// </div>
+
+
+// <button type="submit" onClick={() => removeFromCart(book)}>
+// Remove
+// </button>
+
+  //   const getCartTotal = () => {
+  //     return userCartBooks.reduce(
+  //       (sum, { quantity }) => sum + quantity, 0);
+  //   };
+
+  //   const removeFromCart = (book) => {
+  //     setUserCartBooks((currentCart) => {
+  //       const indexOfBookToRemove = currentCart.findBook(
+  //         (cartBook) => cartBook.id === book.id
+  //       )
+
+  //       if (indexOfBookToRemove === -1) {
+  //         return currentCart
+  //       }
+
+  //       return [ 
+  //         ...currentCart.slice(0, indexOfBookToRemove),
+  //         ...currentCart.slice(indexOfBookToRemove + 1)
+  //       ]
+  //     })
+  //   }
+
+  //   const amountOfBooks = (id) => userCartBooks.filter((book) => book.id === id).length
+    
+
+
+ 
 
 // const [bookData, setBookData] = useState({...props.book})
 //     const [books] = useState([bookData.title, bookData.price, bookData.cover_art])
     // const [userCartBooks, setUserCartBooks] = useState(['book 1', 'book 2', 'book 3']) 
     //temp. for testing purposes. Should be set to user.cart
 
-    // const cartTotal = userCartBooks.reduce((total, {price = 0}) => total + price, 0)
+    
 
     // const addToCart = (book) => setUserCartBooks((currentCart) => [...currentCart, book]);
 
     
 
-    // const removeFromCart = (book) => {
-    //   setUserCartBooks((currentCart) => {
-    //     const indexOfBookToRemove = currentCart.findBook(
-    //       (cartBook) => cartBook.id === book.id
-    //     )
-
-    //     if (indexOfBookToRemove === -1) {
-    //       return currentCart
-    //     }
-
-    //     return [ 
-    //       ...currentCart.slice(0, indexOfBookToRemove),
-    //       ...currentCart.slice(indexOfBookToRemove + 1)
-    //     ]
-    //   })
-    // }
-
-    // const amountOfBooks = (id) => userCartBooks.filter((book) => book.id === id).length
+    
 
 
 
@@ -124,12 +144,7 @@ Remove
 //   setPage(nextPage)
 // }
 
-// const getCartTotal = () => {
-//   return userCartBooks.reduce(
-//     (sum, { quantity }) => sum + quantity,
-//     0
-//   );
-// };
+
 
 // const getSum = () => {
 //   return userCartBooks.reduce(

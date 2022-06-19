@@ -1,15 +1,37 @@
-import {useState} from 'react'
+import {useState, useReducer} from 'react'
 import Edit from './Edit.js'
 import ShowModal from './ShowModal'
 import ShoppingCart from './ShoppingCart'
+import BookCart from './BookCart'
 //import Review from './Review'
 import axios from 'axios'
 
+function cartReducer(state, action) {
+  switch(action.type) {
+      case 'add':
+          return [...state, action.book]
+      case 'remove':
+          const bookIndex = state.findIndex(item => item.title === action.book.title)
+          if(bookIndex < 0) {
+              return state
+          }
+          const update = [...state]
+          update.splice(bookIndex, 1)
+          return update
+          default:
+              return state
+  }
+}
 
 
+const Book = (props) => {
 
+  // const addToCart = async (event) => {
+  //   event.preventDefault()
+  //   console.log(event.target.value)
+  //   const url = ''
+  // }
 
-const Book = (props, book) => {
 
 
   //States:
@@ -25,6 +47,13 @@ const Book = (props, book) => {
     //console.log(...props.reviews);
     //console.log(reviews);
 
+    const [cart, setCart] = useReducer(cartReducer, [])
+    const [book, setBook] = useState({...props.book})
+
+  
+
+
+
     const reviewToggle = () => {
       if (showReviews === false) {
         // getReviews()
@@ -38,22 +67,40 @@ const Book = (props, book) => {
 
 
     // only grabs the reviews that have this book's ID as the book_id
-    const getBookReviews = () => {
-      setBookReviews(props.bookReviews.filter(review => review.book_id == bookData.id))
+    // const getBookReviews = () => {
+    //   setBookReviews(props.bookReviews.filter(review => review.book_id == bookData.id))
+    // }
+
+    // const [cart, setCart] = useState([])
+    // const [userCartBooks, setUserCartBooks] = useState([])
+
+    //appending book
+    // const addToCart = (book) => {
+    // console.log('we are in addToCart')
+    // setUserCartBooks([...userCartBooks, book])
+    // }
+
+     function add(book) {
+        const {title, price} = book
+        setCart({title, type: 'add'})
+        // setTotal({price, type: 'add'})
+    //     console.log('added to cart')
     }
+
 
 
   return (
       <>
+
         <div className='book' key={bookData.id}>
 
           <img src={bookData.cover_art} alt="book cover"
           onClick={() => {
             setShow(true)
-            getBookReviews()
+            // getBookReviews()
           }}
           />
-          <ShowModal title={bookData.title} OnClose={() => setShow(false)} onClose={() => setShow(false)} show={show}>
+          <ShowModal key={bookData.id} title={bookData.title} OnClose={() => setShow(false)} onClose={() => setShow(false)} show={show}>
           <img src={bookData.cover_art} alt="book cover"/>
           <h5>Author: {bookData.author_name}</h5>
           <h5>Publisher: {bookData.publisher}</h5>
@@ -63,10 +110,11 @@ const Book = (props, book) => {
           <h5>Rating: {bookData.rating}</h5>
           <br/>
           <h5>${bookData.price}</h5>
-          <input type="number" placeholder="Qty"/>
-          <button onClick={() => addToCart(book)}>Add</button> 
-         
-        
+          <button onClick={() => {props.cartUpdate(book)}}>Add</button>
+          {/* <button onClick={() => add(book)}>Add</button> */}
+          {/* <input type="number" placeholder="Qty"/> */}
+
+          {/* <button value={bookData.title} onClick={() => addToCart(book)}>Add to cart</button>  */}
 
           {props.user === 'admin' ?
       <>
@@ -80,15 +128,16 @@ const Book = (props, book) => {
           </ShowModal>
         </div>
 
-
     </>
   )
 }
 
-
-
-
 export default Book
+
+// CODE GRAVEYARD ------------------------------------>
+
+
+ {/* <button onClick={() => addToCart(book)}>Add to cart</button>  */}
 
 
 // {props.reviews.map((review) => {
@@ -112,14 +161,7 @@ export default Book
 //                                Grave Yard
 //==============================================================================//
 
-// const [cart, setCart] = useState([])
-// const [userCartBooks, setUserCartBooks] = useState([])
 
-// appending book
-// const addToCart = (book) => {
-//   console.log('we are in addToCart')
-//   setUserCartBooks([...userCartBooks, book])
-// }
 //   setUserCartBooks((currentCart, ))
 
     // const [books] = useState([bookData.title, bookData.price, bookData.cover_art])

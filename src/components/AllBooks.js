@@ -20,6 +20,7 @@ const AllBooks = (props) => {
             section={'allbooks'}
             selectBook={props.selectBook}
             bookReviews={props.bookReviews}
+            cartUpdate={props.cartUpdate}
             />
           )
         })}
