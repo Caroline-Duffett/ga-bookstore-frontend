@@ -23,8 +23,8 @@ const Add = (props) => {
     <button onClick={props.addFormToggle} className="search-btn">Add</button>
     {props.showAddForm ?
       <>
-        <div className="modal-wrapper">
-          <div className="add-book-modal">
+        <div className="modal-wrapper" onClick={props.addFormToggle}>
+          <div className="add-book-modal" onClick={e => e.stopPropagation()}>
             <div className='add-book-x-btn-div'>
               <button className='add-book-x-btn' onClick={props.addFormToggle}>
               x
@@ -90,7 +90,6 @@ const Add = (props) => {
                 <input type='text' name='price' value={book.price} onChange={handleChange}/>
                 <br/>
                 <br/>
-
                 <div className='add-submit-btn-div'>
                   <input type='submit'/>
                 </div>

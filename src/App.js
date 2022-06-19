@@ -26,8 +26,6 @@ function App() {
   const [user, setUser] = useState('admin') //temp. for testing purposes
   const [userAccounts, setUserAccounts] = useState([]) // user accounts from the backend
   // boolean to show / hide book info modal, default false
-
-
   const [signedIn, setSignedIn] = useState(true) //temp. for testing purposes
   const [showCart, setShowCart] = useState(false)
   const [showSearch, setShowSearch] = useState(false)

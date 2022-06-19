@@ -5,6 +5,7 @@ import ShoppingCart from './ShoppingCart'
 import BookCart from './BookCart'
 //import Review from './Review'
 import axios from 'axios'
+import AddReview from './AddReview'
 
 function cartReducer(state, action) {
   switch(action.type) {
@@ -38,14 +39,9 @@ const Book = (props) => {
     const [bookData, setBookData] = useState({...props.book})
     const[show, setShow] = useState(false)
     const [showReviews, setShowReviews] = useState(false)
-
     const [reviews, setReviews] = useState([])
     const [bookReviews, setBookReviews] = useState([])
-    //console.log(reviews);
-    //const [reviews, setReviews] = useState([{...props.reviews}])
-    //console.log(props.reviews);
-    //console.log(...props.reviews);
-    //console.log(reviews);
+
 
     const [cart, setCart] = useReducer(cartReducer, [])
     const [book, setBook] = useState({...props.book})
@@ -55,6 +51,7 @@ const Book = (props) => {
 
 
     const reviewToggle = () => {
+      console.log('clicked');
       if (showReviews === false) {
         // getReviews()
         console.log(props.bookReviews);
@@ -64,6 +61,48 @@ const Book = (props) => {
         setShowReviews(false)
       }
     }
+
+//=================================================================================================================//
+//                                  This is the code that works in postman not react
+//=================================================================================================================//
+   //  //Read Route for reviews tablereviews
+   //  const getReviews = () => {
+   //    console.log(bookData.id);
+   //    //axios.get('https://ga-bookstore-backend.herokuapp.com/api/books')
+   //    axios.get(`http://localhost:8000/api/books/reviews/list`, {"bookID":bookData.id})
+   //    .then((response) => {
+   //      //setReviews(response.data)
+   //      console.log({...response})
+   //    }
+   // )
+   //  .catch(error=> console.error(error))
+   //  //fetch('http://localhost:8000/api/books/reviews/list').then(res => res.json()).then(res => console.log(res))
+   //  }
+
+  // const getReviews = () => {
+  //   console.log('clicked');
+  //   axios({
+  //     method: 'GET',
+  //     url: `http://localhost:8000/api/books/reviews/list`,
+  //     header: {'Content-Type': 'application/json',
+  //       "Access-Control-Allow-Origin": "*"},
+  //     data: {
+  //       "bookID": bookData.id
+  //     }
+  //   }).then((response) => {
+  //     console.log(response);
+  //   }).catch(error=> console.error(error))
+  // }
+//=================================================================================================================//
+
+//Read Route for reviews
+const getReviews = () => {
+  //axios.get('https://ga-bookstore-backend.herokuapp.com/api/books')
+  axios.get("http://localhost:8000/api/books/reviews")
+  .then(response => setReviews(response.data),
+    err=> console.log(err)
+  ).catch(error=> console.error(error))
+}
 
 
     // only grabs the reviews that have this book's ID as the book_id
@@ -88,13 +127,41 @@ const Book = (props) => {
     // }
 
 
+//Create Route for reviews ***
+const handleReviewCreate = (addReview) => {
+ //axios.post('https://ga-bookstore-backend.herokuapp.com/api/books', addBook)
+ axios.post("http://localhost:8000/api/books/reviews", addReview)
+ .then((response) => {
+   setReviews([...reviews, response.data])
+ })
+}
+
+
+  // only grabs the reviews that have this book's ID as the book_id
+  const getBookReviews = () => {
+    setBookReviews(props.bookReviews.filter(review => review.book_id == bookData.id))
+  }
+
+
+
+//Delete Route for reviews
+const handleReviewDelete = (deletedReview) => {
+  axios.delete('http://localhost:8000/api/books/reviews/' + deletedReview.id)
+  .then((response) => {
+    setReviews(reviews.filter(review => review.id !== deletedReview.id))
+  })
+}
+
+// useEffect(() => {
+//   getReviews()
+// }, [])
+
 
 
   return (
       <>
 
         <div className='book' key={bookData.id}>
-
           <img src={bookData.cover_art} alt="book cover"
           onClick={() => {
             setShow(true)
@@ -125,6 +192,39 @@ const Book = (props) => {
           </button>
       </>
           : null}
+          <div className="all-reviews-div">
+            <button onClick={reviewToggle}>See Reviews</button>
+            {showReviews ?
+              <>
+                <AddReview handleReviewCreate={handleReviewCreate}/>
+                <h3>Reviews</h3>
+                <div className='all-reviews-flexbox'>
+                      {reviews.map((review) => {
+                        return (
+                          <>
+                          {bookData.reviews.map((bookDataReview) => {
+                            if (bookDataReview === review.id) {
+                              return (
+                                <div className="review-card" key={review.id}>
+                                  <h5>User: {review.user_id}</h5>
+                                  <h5>Review: {review.review}</h5>
+                                  <h5>review.id: {review.id}</h5>
+                                  <button onClick={() => {handleReviewDelete(review)}}>
+                                  x
+                                  </button>
+                                </div>
+                              )
+                            }
+                          })}
+                          </>
+                        )
+                      })
+                    }
+                </div>
+              </>
+            : null}
+
+          </div>
 
           </ShowModal>
         </div>
@@ -141,22 +241,7 @@ export default Book
  {/* <button onClick={() => addToCart(book)}>Add to cart</button>  */}
 
 
-// {props.reviews.map((review) => {
-//   return(
-//     <>
-//       {showReviews ?
-//         <>
-//           {bookdatareview === review._id ?
-//             <div className="review-div">
-//               {review.user}
-//               {review.review}
-//             </div>
-//           : null}
-//         </>
-//       : null}
-//     </>
-//   )
-// })}
+
 
 //==============================================================================//
 //                                Grave Yard
@@ -351,7 +436,11 @@ export default Book
     // .catch(error=> console.error(error))
     // }
 
-//----------- Attempt
+
+
+
+
+//----------- Attempt -----------//
     // const matchReviews = (newReviews) => {
     //   //console.log(newReviews);
     //   newReviews.map((review) => {
@@ -372,3 +461,54 @@ export default Book
     // )
     // .catch(error=> console.error(error))
     // }
+
+
+    // {props.reviews.map((review) => {
+    //   return(
+    //     <>
+    //       {showReviews ?
+    //         <>
+    //           {bookdatareview === review._id ?
+    //             <div className="review-div">
+    //               {review.user}
+    //               {review.review}
+    //             </div>
+    //           : null}
+    //         </>
+    //       : null}
+    //     </>
+    //   )
+    // })}
+
+
+    //
+    // {showReviews ?
+    //   <>
+    //     <h3>Reviews</h3>
+    //     <div className='all-reviews-flexbox'>
+    //     {reviews.map((review) => {
+    //       return (
+    //         <>
+    //           <div className="review-card" key={review.id}>
+    //             <h5>User: {review.user_id}</h5>
+    //             <h5>Review: {review.review}</h5>
+    //             <h5>review.id: {review.id}</h5>
+    //           </div>
+    //         </>
+    //       )
+    //     })
+    //   }
+    //     </div>
+    //   </>
+    // : null}
+
+
+
+
+
+    //console.log(reviews);
+    //const [reviews, setReviews] = useState([{...props.reviews}])
+    //console.log(props.reviews);
+    //console.log(...props.reviews);
+    //console.log(reviews);
+//----------- Attempt -----------//

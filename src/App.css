@@ -317,6 +317,14 @@ h5, h4 {
   display: inline-block;
   border: 0;
 
+
+/*--------------------------------- Reviews Flexbox --------------------------------------*/
+.all-reviews-flexbox {
+  background-color: lightgray;
+  display: flex;
+  flex-direction: column;
+  height: 100px;
+  overflow: scroll
 }
 
 .rate > input {
