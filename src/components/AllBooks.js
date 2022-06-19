@@ -1,5 +1,7 @@
-import {useState} from 'react'
+import {useState, useContext} from 'react'
 import Book from './Book'
+
+import ProductContext from '../contexts/ProductContext';
 
 
 const AllBooks = (props) => {
@@ -8,7 +10,7 @@ const AllBooks = (props) => {
   const [bookReviews, setBookReviews] = useState(["blank"])
   const [getBooks, setGetBooks] = useState(props.getBooks)
   const [loggedInUser, setLoggedInUser] = useState(props.loggedInUser)
-
+  const { books, addItem } = useContext(ProductContext);
 
 
   return (
@@ -20,9 +22,10 @@ const AllBooks = (props) => {
           // {console.log(loggedInUser)}
           return(
             <Book
+            key={book.id}
             book={book}
             section={'allbooks'}
-            addToCart={props.addToCart}
+            // addToCart={props.addToCart}
             selectBook={props.selectBook}
             bookReviews={props.bookReviews}
             getBooks={getBooks}
@@ -30,11 +33,14 @@ const AllBooks = (props) => {
             handleDelete={props.handleDelete}
             handleUpdate={props.handleUpdate}
             cartUpdate={props.cartUpdate}
-
+            addItem={addItem}
             />
           )
         })}
       </div>
+      <button onClick={() => props.addItem(props.book)}>
+				Add to cart
+			</button>
     </>
   )
 }
