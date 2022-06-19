@@ -1,5 +1,8 @@
 import './App.css';
 import { useState, useEffect} from 'react'
+
+// import { Route } from 'react-router-dom';
+
 import axios from 'axios'
 import Add from './components/Add'
 import BestSellers from './components/BestSellers'
@@ -9,13 +12,22 @@ import AllBooks from './components/AllBooks'
 import Book from './components/Book.js'
 import ShoppingCart from './components/ShoppingCart.js'
 import UserRegistration from './components/UserRegistration.js'
-// import ShowModal from './components/ShowModal'
+import ShowModal from './components/ShowModal'
 // import BookInfoModal from './components/BookInfoModal.js'
 
-import BookCart from './components/BookCart'
+// import BookCart from './components/BookCart'
+
+import ProductContext from './contexts/ProductContext';
+import CardContext from './contexts/CartContext';
+
+
 
 
 function App() {
+
+  // const initialCart = () =>
+  // JSON.parse(window.localStorage.getItem('cart')) || [];
+
 
   //--- State:
 
@@ -33,10 +45,12 @@ function App() {
   const [loggedInUser, setLoggedInuser] = useState({})
 
 
-  // add to cart
+
+  // // add to cart
   const [cart, setCart] = useState([])
-  const [cartTotal, setCartTotal] = useState([])
-  const [totalPrice, settotalPrice] = useState([])
+  // // tbd
+  // const [cartTotal, setCartTotal] = useState([])
+  // const [totalPrice, settotalPrice] = useState([])
 
 
 
@@ -83,7 +97,6 @@ function App() {
     } else {
       setShowSearch(false)
     }
-
   }
 
   //hides/shows Add form
@@ -95,7 +108,6 @@ function App() {
       setShowSignIn(false)
     } else {
       setShowAddForm(false)
-
     }
   }
 
@@ -128,7 +140,6 @@ function App() {
    //Create Route for books
    const handleCreate = (addBook) => {
     axios.post('https://ga-bookstore-backend.herokuapp.com/api/books', addBook)
-
     // axios.post("http://localhost:8000/api/books", addBook)
     .then((response) => {
       setBooks([...books, response.data])
@@ -155,14 +166,13 @@ function App() {
       })
   }
 
-
   //user/book cart route
-  const getCart = (user_id) => {
-    axios.get('https://ga-bookstore-backend.herokuapp.com/api/cart/')
-    .then((response) => {
-      setCart(response.data)
-    })
-  }
+  // const getCart = (user_id) => {
+  //   axios.get('https://ga-bookstore-backend.herokuapp.com/api/cart/')
+  //   .then((response) => {
+  //     setCart(response.data)
+  //   })
+  // }
 
   //userbook update cart route
   // const cartUpdate = (editCartBook, quantity) => {
@@ -176,25 +186,32 @@ function App() {
   //   })
   // }
 
-  const addToCart = (book) => {
-    setCart([...cart, book])
-    // setTotal({price, type: 'add'})
-    console.log('added to cart')
-}
+//   const addToCart = (book) => {
+//     setCart([...cart, book])
+//     // setTotal({price, type: 'add'})
+//     console.log('added to cart')
+// }
 
-  const cartUpdate = (editCartBook) => {
+  // const cartUpdate = (editCartBook) => {
     // setCartTotal(totalPrice + ((editCartBook) * editCartBook.price))
     // axios.put('http://localhost:8000/api/cart/' + editCartBook.id)
-    setCart([...cart, editCartBook])
-    axios.put('https://ga-bookstore-backend.herokuapp.com/api/cart/', {"items":cart})
-    .then((response) => {
+    // setCart([...cart, editCartBook])
+    // axios.put('https://ga-bookstore-backend.herokuapp.com/api/cart/', {"items":cart})
+    // .then((response) => {
       // setBooks(books.map((book) => {
       //   return book.id !== response.data.id ? book : response.data
       // }))
+<<<<<<< HEAD
       getCart(loggedInUser.id)
     })
   }
 
+=======
+  //     getCart(loggedInUser.id)
+  //   })
+  // }
+ 
+>>>>>>> a82ed02d31fa44495b617b3d56d01220690e94c9
   //Update Route
   const handleUpdate = (editBook) => {
     axios.put('https://ga-bookstore-backend.herokuapp.com/api/books/' + editBook.id, editBook)
@@ -223,6 +240,7 @@ function App() {
      getUserAccounts()
    }, [])
 
+<<<<<<< HEAD
    // testing passing this renderBooks function through props to fix the lack of immediate update on edit
    const renderBook = (book, props) => {
        return (
@@ -242,26 +260,94 @@ function App() {
          </div>
        )
    }
+=======
+
+  //  const addToCart = (item) => {
+  //   const productList = [...cart];
+  //   if(!productList.includes(item)) {
+  //     productList.push(item);
+  //   }
+  //   const index = productList.indexOf(item);
+  //   productList[index].quantity++;
+  //   setCart(productList);
+  //   localStorage.setItem("cart", JSON.stringify(productList));
+  // }
+
+  const addItem = book => {
+    if (!cart.find(cartItem => cartItem.id === book.id)) {
+      setCart([...cart, book]);
+    }
+  };
+
+  const removeItem = id => {
+    setCart(cart.filter(book => book.id !== id));
+  };
+>>>>>>> a82ed02d31fa44495b617b3d56d01220690e94c9
 
 
    return (
      <>
 
+<ProductContext.Provider value={{ books, addItem }}>
+      <CardContext.Provider value={{ cart, removeItem }}>
+
      <div className="wrapper">
        <div className="navigation">
-       <SearchBar books={books}  searchToggle={searchToggle} showSearch={showSearch} />
+       <SearchBar 
+       books={books}  
+       searchToggle={searchToggle} 
+       showSearch={showSearch} 
+       />
         {loggedInUser.staff === true ?
-            <Add handleCreate={handleCreate} addFormToggle={addFormToggle} showAddForm={showAddForm}/>
+       <Add 
+       handleCreate={handleCreate} 
+       addFormToggle={addFormToggle} 
+       showAddForm={showAddForm}
+       />
           : null}
-        <UserRegistration handleRegistration={handleRegistration} signInToggle={signInToggle} showSignIn={showSignIn} signedIn={signedIn} handleSignIn={handleSignIn}/>
+       <UserRegistration 
+       handleRegistration={handleRegistration} 
+       signInToggle={signInToggle} 
+       showSignIn={showSignIn} 
+       signedIn={signedIn} 
+       handleSignIn={handleSignIn}
+       />
        </div>
-        {/* <ShoppingCart signedIn={signedIn} cartToggle={cartToggle} showCart={showCart} user={loggedInUser}/> */}
-        <BookCart signedIn={signedIn} cartToggle={cartToggle} showCart={showCart} user={loggedInUser}/>
+        <ShoppingCart 
+        // signedIn={signedIn} 
+        // cartToggle={cartToggle} 
+        // showCart={showCart} 
+        // user={loggedInUser}
+        />
+       {/* <BookCart 
+       signedIn={signedIn} 
+       cartToggle={cartToggle} 
+       showCart={showCart} 
+       user={loggedInUser}
+       setCart={setCart}
+       />   */}
         {/* <BookItem/> */}
         <BestSellers books={books}/>
         <OurFavorites books={books}/>
+<<<<<<< HEAD
        <AllBooks books={books} renderBook={renderBook} addToCart={addToCart} bookReviews={bookReviews} origin={'allbooks'} getBooks={getBooks} loggedInUser={loggedInUser} handleDelete={handleDelete} handleUpdate={handleUpdate}/>
+=======
+       <AllBooks 
+       books={books} 
+      //  addToCart={addToCart} 
+       bookReviews={bookReviews} 
+       origin={'allbooks'} 
+       getBooks={getBooks} 
+       loggedInUser={loggedInUser} 
+       handleDelete={handleDelete} 
+       handleUpdate={handleUpdate}
+       
+       />
+
+>>>>>>> a82ed02d31fa44495b617b3d56d01220690e94c9
      </div>
+     </CardContext.Provider>
+    </ProductContext.Provider>
      </>
    )
 }

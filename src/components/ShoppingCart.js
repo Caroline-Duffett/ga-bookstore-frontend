@@ -1,68 +1,106 @@
-import {useState} from 'react'
-import Book from './Book'
+import React, { useContext } from 'react';
 
+// Components
+import Item from './ShoppingCartItem';
 
-const ShoppingCart = (props) => {
+// Contexts
+import CartContext from '../contexts/CartContext';
 
-  //State:
-    const [userCartBooks, setUserCartBooks] = useState([])
-    
-    // const [user, setUser] = useState('')
-    // const [cart, setCart] = useState([])
+const ShoppingCart = () => {
+  const { cart, removeItem } = useContext(CartContext);
+
+  const getCartTotal = () => {
+    return cart
+      .reduce((acc, value) => {
+        return acc + value.price;
+      }, 0)
+      .toFixed(2);
+  };
 
   return (
-    <>
-      <button onClick={props.cartToggle} className="search-btn">Cart{userCartBooks.length})</button>
-      <>
-        {props.showCart ?
-          <>
-            {console.log("ShoppingCart loggedInUser: ")}
-            {console.log(props.loggedInUser)}
-            {props.loggedInUser.username ?
-              <>
-                <div className="cart-modal-wrapper">
-                  <div className="cart-modal">
-                    <div className='cart-modal-x-div'>
-                      <button className='cart-x-btn' onClick={props.cartToggle}>
-                      x
-                      </button>
-                    </div>
-                    <h3>Your Cart</h3>
-                    <div className="cart-books-flexbox">
-                      {userCartBooks.map((cartBook) => {
-                        return (
-                          <div className="cartBook">
-                            <h3>{cartBook}</h3>
-                          </div>
-                        )
-                      })}
-                    </div>
-                  </div>
-                </div>
-              </>
-              :
-              <>
-                <div className="sign-in-modal-wrapper" onClick={props.cartToggle}>
-                  <div className="sign-in-modal" onClick={e => e.stopPropagation()}>
-                    <h2 className="sign-in-message">Please Sign In or Create an Account to view cart</h2>
-                    <div className='sign-in-x-btn-div'>
-                      <button className='sign-in-x-btn' onClick={props.cartToggle}>
-                      x
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </>
-            }
-        </>
-        :
-        null}
-      </>
-    </>
-  )
-}
+    <div className="shopping-cart">
+      {cart.map(book => (
+        <Item key={book.id} {...book} removeItem={removeItem} />
+      ))}
 
-export default ShoppingCart
+      <div className="shopping-cart__checkout">
+        <p>Total: ${getCartTotal()}</p>
+        <button>Checkout</button>
+      </div>
+    </div>
+  );
+};
+
+export default ShoppingCart;
+
+
+
+
+// import {useState} from 'react'
+// import Book from './Book'
+
+
+// const ShoppingCart = (props) => {
+
+//   //State:
+//     const [userCartBooks, setUserCartBooks] = useState([])
+    
+//     // const [user, setUser] = useState('')
+//     // const [cart, setCart] = useState([])
+
+//   return (
+//     <>
+//       <button onClick={props.cartToggle} className="search-btn">Cart{userCartBooks.length})</button>
+//       <>
+//         {props.showCart ?
+//           <>
+//             {console.log("ShoppingCart loggedInUser: ")}
+//             {console.log(props.loggedInUser)}
+//             {props.loggedInUser.username ?
+//               <>
+//                 <div className="cart-modal-wrapper">
+//                   <div className="cart-modal">
+//                     <div className='cart-modal-x-div'>
+//                       <button className='cart-x-btn' onClick={props.cartToggle}>
+//                       x
+//                       </button>
+//                     </div>
+//                     <h3>Your Cart</h3>
+//                     <div className="cart-books-flexbox">
+//                       {userCartBooks.map((cartBook) => {
+//                         return (
+//                           <div className="cartBook">
+//                             <h3>{cartBook}</h3>
+//                           </div>
+//                         )
+//                       })}
+//                     </div>
+//                   </div>
+//                 </div>
+//               </>
+//               :
+//               <>
+//                 <div className="sign-in-modal-wrapper" onClick={props.cartToggle}>
+//                   <div className="sign-in-modal" onClick={e => e.stopPropagation()}>
+//                     <h2 className="sign-in-message">Please Sign In or Create an Account to view cart</h2>
+//                     <div className='sign-in-x-btn-div'>
+//                       <button className='sign-in-x-btn' onClick={props.cartToggle}>
+//                       x
+//                       </button>
+//                     </div>
+//                   </div>
+//                 </div>
+//               </>
+//             }
+//         </>
+//         :
+//         null}
+//       </>
+//     </>
+//   )
+// }
+
+// export default ShoppingCart
 
 // CODE GRAVEYARD ------------------------------------>
 

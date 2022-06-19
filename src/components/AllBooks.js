@@ -1,5 +1,7 @@
-import {useState} from 'react'
+import {useState, useContext} from 'react'
 import Book from './Book'
+
+import ProductContext from '../contexts/ProductContext';
 
 
 const AllBooks = (props) => {
@@ -9,7 +11,7 @@ const AllBooks = (props) => {
   const [bookReviews, setBookReviews] = useState(["blank"])
   const [getBooks, setGetBooks] = useState(props.getBooks)
   const [loggedInUser, setLoggedInUser] = useState(props.loggedInUser)
-
+  const { books, addItem } = useContext(ProductContext);
 
 
   return (
@@ -20,10 +22,30 @@ const AllBooks = (props) => {
           // {console.log("AllBooks loggedInUser: ")}
           // {console.log(loggedInUser)}
           return(
+<<<<<<< HEAD
 
+=======
+            <Book
+            key={book.id}
+            book={book}
+            section={'allbooks'}
+            // addToCart={props.addToCart}
+            selectBook={props.selectBook}
+            bookReviews={props.bookReviews}
+            getBooks={getBooks}
+            loggedInUser={loggedInUser}
+            handleDelete={props.handleDelete}
+            handleUpdate={props.handleUpdate}
+            cartUpdate={props.cartUpdate}
+            addItem={addItem}
+            />
+>>>>>>> a82ed02d31fa44495b617b3d56d01220690e94c9
           )
         })}
       </div>
+      <button onClick={() => props.addItem(props.book)}>
+				Add to cart
+			</button>
     </>
   )
 }
