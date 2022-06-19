@@ -130,7 +130,7 @@ const Book = (props, book) => {
                     <br/>
                     <h5>${bookData.price}</h5>
                     <input type="number" placeholder="Qty"/>
-                    {loggedInUser === true ?
+                    {loggedInUser ?
                       <>
                         {loggedInUser.staff === true ?
                           <>

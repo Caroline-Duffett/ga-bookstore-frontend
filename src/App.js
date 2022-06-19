@@ -172,7 +172,13 @@ function App() {
      <>
 
         <SearchBar books={books}  searchToggle={searchToggle} showSearch={showSearch} />
-        <Add handleCreate={handleCreate} addFormToggle={addFormToggle} showAddForm={showAddForm}/>
+        {loggedInUser.name ?
+          <>
+          {loggedInUser.staff === true ?
+            <Add handleCreate={handleCreate} addFormToggle={addFormToggle} showAddForm={showAddForm}/>
+          : null}
+          </>
+        : null}
         <UserRegistration handleRegistration={handleRegistration} signInToggle={signInToggle} showSignIn={showSignIn} signedIn={signedIn} handleSignIn={handleSignIn}/>
         <ShoppingCart loggedInUser={loggedInUser} cartToggle={cartToggle} showCart={showCart} user={loggedInUser}/>
         <BestSellers books={books}/>
@@ -186,10 +192,6 @@ export default App;
 
 
 
-// {loggedInUser.name ?
-//   <>
-//   {loggedInUser.staff === true ?
-//     <Add handleCreate={handleCreate} addFormToggle={addFormToggle} showAddForm={showAddForm}/>
-//   : null}
-//   </>
-// : null}
+
+
+//<Add handleCreate={handleCreate} addFormToggle={addFormToggle} showAddForm={showAddForm}/>
