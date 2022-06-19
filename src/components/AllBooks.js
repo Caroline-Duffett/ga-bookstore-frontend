@@ -18,6 +18,7 @@ const AllBooks = (props) => {
             <Book
             book={book}
             section={'allbooks'}
+            addToCart={props.addToCart}
             selectBook={props.selectBook}
             bookReviews={props.bookReviews}
             cartUpdate={props.cartUpdate}

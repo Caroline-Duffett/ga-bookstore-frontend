@@ -45,6 +45,8 @@ function App() {
 
 
 
+
+
   // Testing route to get user accounts
   const getUserAccounts = () => {
       //axios.get('https://ga-bookstore-backend.herokuapp.com/api/useraccount')
@@ -154,12 +156,12 @@ function App() {
   }
 
   //user/book cart route
-  // const getCart = (user_id) => {
-  //   axios.get('https://ga-bookstore-backend.herokuapp.com/api/cart')
-  //   .then((response) => {
-  //     setCart(response.data.filter(cartBook => cartBook.user_id === user_id))
-  //   })
-  // }
+  const getCart = (user_id) => {
+    axios.get('https://ga-bookstore-backend.herokuapp.com/api/cart/')
+    .then((response) => {
+      setCart(response.data)
+    })
+  }
 
   //userbook update cart route
   // const cartUpdate = (editCartBook, quantity) => {
@@ -173,14 +175,22 @@ function App() {
   //   })
   // }
 
+  const addToCart = (book) => {
+    setCart([...cart, book])
+    // setTotal({price, type: 'add'})
+    console.log('added to cart')
+}
+
   const cartUpdate = (editCartBook) => {
     // setCartTotal(totalPrice + ((editCartBook) * editCartBook.price))
-    axios.put('http://localhost:8000/api/cart/' + editCartBook.id)
-    // axios.put('https://ga-bookstore-backend.herokuapp.com/api/cart' + editCartBook.id, editCartBook)
+    // axios.put('http://localhost:8000/api/cart/' + editCartBook.id)
+    setCart([...cart, editCartBook])
+    axios.put('https://ga-bookstore-backend.herokuapp.com/api/cart/', {"items":cart})
     .then((response) => {
-      setBooks(books.map((book) => {
-        return book.id !== response.data.id ? book : response.data
-      }))
+      // setBooks(books.map((book) => {
+      //   return book.id !== response.data.id ? book : response.data
+      // }))
+      getCart(loggedInUser.id)
     })
   }
  
@@ -227,7 +237,7 @@ function App() {
         {/* <BookItem/> */}
         <BestSellers books={books}/>
         <OurFavorites books={books}/>
-        <AllBooks cartUpdate={cartUpdate} books={books} bookReviews={bookReviews} origin={'allbooks'}/>
+        <AllBooks books={books} addToCart={addToCart} bookReviews={bookReviews} origin={'allbooks'}/>
      </div>
      </>
    )

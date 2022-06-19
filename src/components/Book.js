@@ -80,12 +80,13 @@ const Book = (props) => {
     // setUserCartBooks([...userCartBooks, book])
     // }
 
-     function add(book) {
-        const {title, price} = book
-        setCart({title, type: 'add'})
-        // setTotal({price, type: 'add'})
+    //  function add(book) {
+    //     const {title, price} = book
+    //     setCart({title, type: 'add'})
+    //     // setTotal({price, type: 'add'})
     //     console.log('added to cart')
-    }
+    // }
+
 
 
 
@@ -110,8 +111,8 @@ const Book = (props) => {
           <h5>Rating: {bookData.rating}</h5>
           <br/>
           <h5>${bookData.price}</h5>
-          <button onClick={() => {props.cartUpdate(book)}}>Add</button>
-          {/* <button onClick={() => add(book)}>Add</button> */}
+          {/* <button onClick={() => {props.cartUpdate(book)}}>Add</button> */}
+          <button onClick={() => {props.addToCart(book)}}>Add</button>
           {/* <input type="number" placeholder="Qty"/> */}
 
           {/* <button value={bookData.title} onClick={() => addToCart(book)}>Add to cart</button>  */}
