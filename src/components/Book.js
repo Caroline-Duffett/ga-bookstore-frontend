@@ -1,16 +1,38 @@
-import {useState, useEffect, useCallback} from 'react'
+import {useState, useReducer} from 'react'
 import Edit from './Edit.js'
 import ShowModal from './ShowModal'
 import ShoppingCart from './ShoppingCart'
+import BookCart from './BookCart'
 //import Review from './Review'
 import axios from 'axios'
 import AddReview from './AddReview'
 
+function cartReducer(state, action) {
+  switch(action.type) {
+      case 'add':
+          return [...state, action.book]
+      case 'remove':
+          const bookIndex = state.findIndex(item => item.title === action.book.title)
+          if(bookIndex < 0) {
+              return state
+          }
+          const update = [...state]
+          update.splice(bookIndex, 1)
+          return update
+          default:
+              return state
+  }
+}
 
 
+const Book = (props) => {
 
+  // const addToCart = async (event) => {
+  //   event.preventDefault()
+  //   console.log(event.target.value)
+  //   const url = ''
+  // }
 
-const Book = (props, book) => {
 
 
   //States:
@@ -19,6 +41,13 @@ const Book = (props, book) => {
     const [showReviews, setShowReviews] = useState(false)
     const [reviews, setReviews] = useState([])
     const [bookReviews, setBookReviews] = useState([])
+
+
+    const [cart, setCart] = useReducer(cartReducer, [])
+    const [book, setBook] = useState({...props.book})
+
+  
+
 
 
     const reviewToggle = () => {
@@ -75,6 +104,29 @@ const getReviews = () => {
   ).catch(error=> console.error(error))
 }
 
+
+    // only grabs the reviews that have this book's ID as the book_id
+    // const getBookReviews = () => {
+    //   setBookReviews(props.bookReviews.filter(review => review.book_id == bookData.id))
+    // }
+
+    // const [cart, setCart] = useState([])
+    // const [userCartBooks, setUserCartBooks] = useState([])
+
+    //appending book
+    // const addToCart = (book) => {
+    // console.log('we are in addToCart')
+    // setUserCartBooks([...userCartBooks, book])
+    // }
+
+    //  function add(book) {
+    //     const {title, price} = book
+    //     setCart({title, type: 'add'})
+    //     // setTotal({price, type: 'add'})
+    //     console.log('added to cart')
+    // }
+
+
 //Create Route for reviews ***
 const handleReviewCreate = (addReview) => {
  //axios.post('https://ga-bookstore-backend.herokuapp.com/api/books', addBook)
@@ -105,17 +157,18 @@ const handleReviewDelete = (deletedReview) => {
 // }, [])
 
 
+
   return (
       <>
+
         <div className='book' key={bookData.id}>
           <img src={bookData.cover_art} alt="book cover"
           onClick={() => {
             setShow(true)
-            getBookReviews()
+            // getBookReviews()
           }}
           />
-          <ShowModal title={bookData.title} onClose={() => setShow(false)} show={show}>
-          <h2>{bookData.id}</h2>
+          <ShowModal key={bookData.id} title={bookData.title} OnClose={() => setShow(false)} onClose={() => setShow(false)} show={show}>
           <img src={bookData.cover_art} alt="book cover"/>
           <h5>Author: {bookData.author_name}</h5>
           <h5>Publisher: {bookData.publisher}</h5>
@@ -125,9 +178,11 @@ const handleReviewDelete = (deletedReview) => {
           <h5>Rating: {bookData.rating}</h5>
           <br/>
           <h5>${bookData.price}</h5>
-          <input type="number" placeholder="Qty"/>
+          {/* <button onClick={() => {props.cartUpdate(book)}}>Add</button> */}
+          <button onClick={() => {props.addToCart(book)}}>Add</button>
+          {/* <input type="number" placeholder="Qty"/> */}
 
-          {/* <ShoppingCart></ShoppingCart> */}
+          {/* <button value={bookData.title} onClick={() => addToCart(book)}>Add to cart</button>  */}
 
           {props.user === 'admin' ?
       <>
@@ -174,15 +229,16 @@ const handleReviewDelete = (deletedReview) => {
           </ShowModal>
         </div>
 
-
     </>
   )
 }
 
-
-
-
 export default Book
+
+// CODE GRAVEYARD ------------------------------------>
+
+
+ {/* <button onClick={() => addToCart(book)}>Add to cart</button>  */}
 
 
 
@@ -191,24 +247,72 @@ export default Book
 //                                Grave Yard
 //==============================================================================//
 
-//Read Route for reviews tablereviews
-// const getReviews = () => {
-//   //axios.get('https://ga-bookstore-backend.herokuapp.com/api/books')
-//   const brl = {
-//                 bookId: bookData.id,
-//               }
-//   axios.get("http://localhost:8000/api/books/reviews/list", brl)
-//   .then((response) => {
-//         console.log(response.data);
-//         // setReviews(response.data.map((review) => {
-//         //     return bookData.id == review.book_id ? review:null
-//         // }))
-//   }
-// )
-// .catch(error=> console.error(error))
-// }
 
-// <button onClick={() => addToCart(book.id, "book")}>Add</button>
+//   setUserCartBooks((currentCart, ))
+
+    // const [books] = useState([bookData.title, bookData.price, bookData.cover_art])
+
+    // const addToCart = (book) => setUserCartBooks((currentCart) => [...currentCart, book]);
+
+// const listBooksToBuy = () => 
+// book.map((book) => (
+  
+//   <div key={book.id}>
+//     {book.title} - {book.price}
+//     <button onClick={() => addToCart(book)}>Add to cart</button> 
+//   </div>
+// ))
+
+{/* <button onClick={props.cartToggle} className="search-btn">Cart({userCartBooks.length})</button> */}
+
+{/* <div>{listBooksToBuy}</div> */}
+
+   // let newCart = [...userCartBooks]
+      // let bookInCart = newCart.find(
+      //   (book) => bookData.title === book.title
+      // )
+      // if (bookInCart) {
+      //   bookInCart.quantity++
+      // } else {
+      //   bookInCart = {
+      //     ...book,
+      //     quantity: 1
+      //   }
+      //   newCart.push(bookInCart)
+      // }
+      // setUserCartBooks(newCart)
+      // }
+
+
+    // const renderBooks =
+
+    // const [books] = useState([...props.book
+
+    // ])
+
+    // const [cartAmount, setCartAmount] = useState(0)
+
+    // const addToCart = () => {
+    //   setCartAmount((prevCartAmount) => prevCartAmount + 1)
+    // }
+
+//     const AddBook = useCallback(() => {
+//       const book = createRandomBook();
+//       setCart((prev) => [...prev, book]);
+//     }, []);
+
+//     let id = 0;
+// const createRandomBook = () => {
+//   id = id + 1;
+//   return {
+//     id,
+//     qty: 1,
+//     desc: `Book number: ${id}`,
+//     price: Number((Math.random() * 10 + 1).toFixed(2))
+//   };
+// };
+
+    // useEffect
 
 // import BookInfoModal from './BookInfoModal'
 

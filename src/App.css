@@ -1,3 +1,15 @@
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(8 col, 1fr);
+  grid-template-rows: auto;
+  grid-column-gap: 24px;
+  grid-row-gap: 24px;
+
+}
+
+/* .navigation */
+
+
 /*---------- Best sellers books and Our favorite books (Horiztonal scroll bars) ----------*/
 .scroll-flexbox {
   background-color: lightgray;
@@ -299,6 +311,12 @@ h5, h4 {
 
 }
 
+/*---------------------------------- Star rating --------------------------------------*/
+
+.rate {
+  display: inline-block;
+  border: 0;
+
 
 /*--------------------------------- Reviews Flexbox --------------------------------------*/
 .all-reviews-flexbox {
@@ -309,10 +327,45 @@ h5, h4 {
   overflow: scroll
 }
 
-.review-card {
-  background-color: white;
-  margin: 3px 5px;
+.rate > input {
+  display: none;
 }
 
+rate > label {
+  float: right;
+} 
 
-/*----------------------------------------------------------------------------------------*/
+/* FULL STAR */
+.rate > label:before {
+  display: inline-block;
+  font-size: 1rem;
+  padding: .3rem .2rem;
+  margin: 0;
+  cursor: pointer;
+  content: "\2605";
+  color: grey;
+}
+
+/* EMPTY STAR */
+/* .rate .empty:before {
+  display: inline-block;
+  font-size: 1rem;
+  padding: .3rem .2rem;
+  margin: 0;
+  cursor: pointer;
+  content: "\2606";
+} */
+
+/* CLICK + HOVER COLOR */
+input:checked ~ label,
+lable:hover, label:hover ~ label {color: rgb(162, 255, 0);}
+
+/* HOVER HIGHLIGHTS */
+/* input:checked + label:hover, input:checked ~
+label:hover,
+input:checked ~ label:hover ~ label,
+label:hover ~ input:checked ~ label
+{color: blue;} */
+
+
+
