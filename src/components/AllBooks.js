@@ -12,7 +12,6 @@ const AllBooks = (props) => {
   const [loggedInUser, setLoggedInUser] = useState(props.loggedInUser)
   const { books, addItem } = useContext(ProductContext);
 
-
   return (
     <>
       <h1>All Books</h1>
@@ -25,6 +24,7 @@ const AllBooks = (props) => {
             key={book.id}
             book={book}
             section={'allbooks'}
+            //old cart
             // addToCart={props.addToCart}
             selectBook={props.selectBook}
             bookReviews={props.bookReviews}
@@ -38,18 +38,14 @@ const AllBooks = (props) => {
           )
         })}
       </div>
-      <button onClick={() => props.addItem(props.book)}>
+      {/* <button onClick={() => props.addItem(props.book)}>
 				Add to cart
-			</button>
+			</button> */}
     </>
   )
 }
 
 export default AllBooks
-
-
-
-
 
 //==============================================================================//
 //                                Grave Yard

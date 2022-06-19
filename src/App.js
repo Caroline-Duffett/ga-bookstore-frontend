@@ -14,23 +14,14 @@ import ShoppingCart from './components/ShoppingCart.js'
 import UserRegistration from './components/UserRegistration.js'
 import ShowModal from './components/ShowModal'
 // import BookInfoModal from './components/BookInfoModal.js'
-
 // import BookCart from './components/BookCart'
 
+//Contexts
 import ProductContext from './contexts/ProductContext';
-import CardContext from './contexts/CartContext';
-
-
-
+import CartContext from './contexts/CartContext';
 
 function App() {
-
-  // const initialCart = () =>
-  // JSON.parse(window.localStorage.getItem('cart')) || [];
-
-
   //--- State:
-
   const [books, setBooks] = useState([])
   const [bookReviews, setBookReviews] = useState([])
   //const [user, setUser] = useState('admi') //temp. for testing purposes
@@ -43,16 +34,11 @@ function App() {
   const [showSignIn, setShowSignIn] = useState(false)
   //testing user auth user login
   const [loggedInUser, setLoggedInuser] = useState({})
-
-
-
-  // // add to cart
+  //add to cart
   const [cart, setCart] = useState([])
-  // // tbd
+  //old states for cart
   // const [cartTotal, setCartTotal] = useState([])
   // const [totalPrice, settotalPrice] = useState([])
-
-
 
   // Testing route to get user accounts
   const getUserAccounts = () => {
@@ -63,7 +49,6 @@ function App() {
         ).catch(error => console.error(error))
   }
 
-
   // pulls in the list of all reviews for the books
   // will filter this list when the bookInfoModal is opened
   const getBookreviews = () => {
@@ -73,7 +58,6 @@ function App() {
           setBookReviews(response.data)
       })
   }
-
 
   //hides/shows Cart form
   const cartToggle = () => {
@@ -123,9 +107,6 @@ function App() {
     }
   }
 
-
-
-  
     //Read Route
    const getBooks = () => {
      axios.get('https://ga-bookstore-backend.herokuapp.com/api/books')
@@ -135,7 +116,6 @@ function App() {
    )
    .catch(error=> console.error(error))
    }
-
 
    //Create Route for books
    const handleCreate = (addBook) => {
@@ -166,7 +146,115 @@ function App() {
       })
   }
 
-  //user/book cart route
+  //Update Route
+  const handleUpdate = (editBook) => {
+    axios.put('https://ga-bookstore-backend.herokuapp.com/api/books/' + editBook.id, editBook)
+    // axios.put('http://localhost:8000/api/books/' + editBook.id, editBook)
+    .then((response) => {
+      setBooks(books.map((book) => {
+        return book.id !== response.data.id ? book : response.data
+      }))
+    })
+  }
+
+  //Delete Route
+  const handleDelete = (deletedBook) => {
+    axios.delete('https://ga-bookstore-backend.herokuapp.com/api/books/' + deletedBook.id)
+    // axios.delete('http://localhost:8000/api/books/' + deletedBook.id)
+    .then((response) => {
+      setBooks(books.filter(book => book.id !== deletedBook.id))
+    })
+  }
+
+  //Gets all books then loads page
+   useEffect(() => {
+     getBooks()
+     getBookreviews()
+     getUserAccounts()
+   }, [])
+
+  const addItem = book => {
+    if (!cart.find(cartItem => cartItem.id === book.id)) {
+      setCart([...cart, book]);
+    }
+  };
+
+  const removeItem = id => {
+    setCart(cart.filter(book => book.id !== id));
+  };
+
+   return (
+     <>
+      <ProductContext.Provider value={{ books, addItem }}>
+      <CartContext.Provider value={{ cart, removeItem, cartToggle }}>
+     <div className="wrapper">
+       <div className="navigation">
+       <SearchBar 
+       books={books}  
+       searchToggle={searchToggle} 
+       showSearch={showSearch} 
+       />
+        {loggedInUser.staff === true ?
+       <Add 
+       handleCreate={handleCreate} 
+       addFormToggle={addFormToggle} 
+       showAddForm={showAddForm}
+       />
+          : null}
+       <UserRegistration 
+       handleRegistration={handleRegistration} 
+       signInToggle={signInToggle} 
+       showSignIn={showSignIn} 
+       signedIn={signedIn} 
+       handleSignIn={handleSignIn}
+       />
+       </div>
+       <ShoppingCart 
+        signedIn={signedIn} 
+        cartToggle={cartToggle} 
+        showCart={showCart} 
+        user={loggedInUser}
+        setCart={setCart}
+        />
+       <BestSellers books={books}/>
+       <OurFavorites books={books}/>
+       <AllBooks 
+       books={books} 
+      //  addToCart={addToCart} 
+       bookReviews={bookReviews} 
+       origin={'allbooks'} 
+       getBooks={getBooks} 
+       loggedInUser={loggedInUser} 
+       handleDelete={handleDelete} 
+       handleUpdate={handleUpdate}
+       />
+     </div>
+     </CartContext.Provider>
+     </ProductContext.Provider>
+     </>
+   )
+}
+
+export default App;
+
+// //=================================================================================================================//
+// //                                      CODE GRAVEYARD - ALT CART FUNCTIONS (Please keep for ref)
+// //=================================================================================================================//
+
+// ALT CART FUNCTION
+  //  const addToCart = (item) => {
+  //   const productList = [...cart];
+  //   if(!productList.includes(item)) {
+  //     productList.push(item);
+  //   }
+  //   const index = productList.indexOf(item);
+  //   productList[index].quantity++;
+  //   setCart(productList);
+  //   localStorage.setItem("cart", JSON.stringify(productList));
+  // }
+
+  // ALT CART FUNCTION
+//user/book cart route
   // const getCart = (user_id) => {
   //   axios.get('https://ga-bookstore-backend.herokuapp.com/api/cart/')
   //   .then((response) => {
@@ -204,120 +292,4 @@ function App() {
   //     getCart(loggedInUser.id)
   //   })
   // }
- 
-  //Update Route
-  const handleUpdate = (editBook) => {
-    axios.put('https://ga-bookstore-backend.herokuapp.com/api/books/' + editBook.id, editBook)
-    // axios.put('http://localhost:8000/api/books/' + editBook.id, editBook)
-    .then((response) => {
-      setBooks(books.map((book) => {
-        return book.id !== response.data.id ? book : response.data
-      }))
-    })
-  }
-
-
-  //Delete Route
-  const handleDelete = (deletedBook) => {
-    axios.delete('https://ga-bookstore-backend.herokuapp.com/api/books/' + deletedBook.id)
-    // axios.delete('http://localhost:8000/api/books/' + deletedBook.id)
-    .then((response) => {
-      setBooks(books.filter(book => book.id !== deletedBook.id))
-    })
-  }
-
-  //Gets all books then loads page
-   useEffect(() => {
-     getBooks()
-     getBookreviews()
-     getUserAccounts()
-   }, [])
-
-
-  //  const addToCart = (item) => {
-  //   const productList = [...cart];
-  //   if(!productList.includes(item)) {
-  //     productList.push(item);
-  //   }
-  //   const index = productList.indexOf(item);
-  //   productList[index].quantity++;
-  //   setCart(productList);
-  //   localStorage.setItem("cart", JSON.stringify(productList));
-  // }
-
-  const addItem = book => {
-    if (!cart.find(cartItem => cartItem.id === book.id)) {
-      setCart([...cart, book]);
-    }
-  };
-
-  const removeItem = id => {
-    setCart(cart.filter(book => book.id !== id));
-  };
-
-
-   return (
-     <>
-
-<ProductContext.Provider value={{ books, addItem }}>
-      <CardContext.Provider value={{ cart, removeItem }}>
-
-     <div className="wrapper">
-       <div className="navigation">
-       <SearchBar 
-       books={books}  
-       searchToggle={searchToggle} 
-       showSearch={showSearch} 
-       />
-        {loggedInUser.staff === true ?
-       <Add 
-       handleCreate={handleCreate} 
-       addFormToggle={addFormToggle} 
-       showAddForm={showAddForm}
-       />
-          : null}
-       <UserRegistration 
-       handleRegistration={handleRegistration} 
-       signInToggle={signInToggle} 
-       showSignIn={showSignIn} 
-       signedIn={signedIn} 
-       handleSignIn={handleSignIn}
-       />
-       </div>
-        <ShoppingCart 
-        // signedIn={signedIn} 
-        // cartToggle={cartToggle} 
-        // showCart={showCart} 
-        // user={loggedInUser}
-        />
-       {/* <BookCart 
-       signedIn={signedIn} 
-       cartToggle={cartToggle} 
-       showCart={showCart} 
-       user={loggedInUser}
-       setCart={setCart}
-       />   */}
-        {/* <BookItem/> */}
-        <BestSellers books={books}/>
-        <OurFavorites books={books}/>
-       <AllBooks 
-       books={books} 
-      //  addToCart={addToCart} 
-       bookReviews={bookReviews} 
-       origin={'allbooks'} 
-       getBooks={getBooks} 
-       loggedInUser={loggedInUser} 
-       handleDelete={handleDelete} 
-       handleUpdate={handleUpdate}
-       
-       />
-
-     </div>
-     </CardContext.Provider>
-    </ProductContext.Provider>
-     </>
-   )
-}
-
-export default App;
 

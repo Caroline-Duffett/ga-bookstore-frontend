@@ -2,10 +2,21 @@ import {useState} from 'react'
 
 const Add = (props) => {
   //--- State:
-  let emptyBook = {title: '', author_name: '', publisher: '', publication_date: '', genre: '', cover_art: '', page_count: '', language: '', isbn: '', rating: '', price: ''}
+  let emptyBook = {
+    title: '', 
+    author_name: '', 
+    publisher: '', 
+    publication_date: '', 
+    genre: '', 
+    cover_art: '', 
+    page_count: '', 
+    language: '', 
+    isbn: '', 
+    rating: '', 
+    price: ''
+  }
+
   const [book, setBook] = useState(emptyBook)
-
-
   //--- Functions:
   //registers a change in all input fields
   const handleChange = (event) => {
@@ -19,10 +30,13 @@ const Add = (props) => {
     setBook(emptyBook)
   }
 
-
   return(
     <>
-    <button onClick={props.addFormToggle} className="search-btn">Add</button>
+    <button 
+    onClick={props.addFormToggle} 
+    className="search-btn">
+      Add
+      </button>
     {props.showAddForm ?
       <>
         <div className="modal-wrapper" onClick={props.addFormToggle}>
@@ -81,11 +95,7 @@ const Add = (props) => {
                 <br/>
 
                 <label htmlFor='rating'>Rating: </label>
-                <input type='number' name='rating' value={book.rating} onChange={handleChange} required/>
-
-
-
-                
+                <input type='number' name='rating' value={book.rating} onChange={handleChange} required/>         
                 <br/>
                 <br/>
 

@@ -1,4 +1,5 @@
-import React, { useContext } from 'react';
+import React, {useState, useContext } from 'react';
+import Book from './Book'
 
 // Components
 import Item from './ShoppingCartItem';
@@ -6,7 +7,7 @@ import Item from './ShoppingCartItem';
 // Contexts
 import CartContext from '../contexts/CartContext';
 
-const ShoppingCart = () => {
+const ShoppingCart = (props) => {
   const { cart, removeItem } = useContext(CartContext);
 
   const getCartTotal = () => {
@@ -18,20 +19,97 @@ const ShoppingCart = () => {
   };
 
   return (
-    <div className="shopping-cart">
-      {cart.map(book => (
-        <Item key={book.id} {...book} removeItem={removeItem} />
-      ))}
-
-      <div className="shopping-cart__checkout">
-        <p>Total: ${getCartTotal()}</p>
-        <button>Checkout</button>
-      </div>
+    <>
+    <div>
+    <button 
+       onClick={props.cartToggle} 
+       className="search-btn">
+         Cart ({cart.length})
+         </button>
     </div>
-  );
-};
+       <> 
+         {props.showCart ?
+             <>
+             {/* {console.log("ShoppingCart loggedInUser: ")}
+             {console.log(props.loggedInUser)}
+             {props.loggedInUser ? 
+               <> */}
+                 <div className="cart-modal-wrapper">
+                   <div className="cart-modal">
+                     <div className='cart-modal-x-div'>
+                       <button className='cart-x-btn' onClick={props.cartToggle}>
+                       {/* <button className='cart-x-btn' onClick={props.onClose}> */}
+                       x
+                       </button>
+                       </div>
+                     <h3>Your Cart</h3>
+                     <div className="cart-books-flexbox">
+                     <div className="shopping-cart">
+                      {cart.map(book => (
+                        <Item 
+                        key={book.id} 
+                        {...book} 
+                        removeItem={removeItem} 
+                        />
+                      ))}
+                    <div className="shopping-cart__checkout">
+                    <p>Total: ${getCartTotal()}</p>
+                    <button>
+                      Checkout
+                      </button>
+                        </div>
+                      </div>
+                     </div>
+                   </div>
+                 </div>
+               {/* </>
+               :
+               <>
+                 <div className="sign-in-modal-wrapper" onClick={props.cartToggle}>
+                   <div className="sign-in-modal" onClick={e => e.stopPropagation()}>
+                     <h2 className="sign-in-message">Please Sign In or Create an Account to view cart</h2>
+                     <div className='sign-in-x-btn-div'> 
+                       <button className='sign-in-x-btn' onClick={props.cartToggle}>
+                       x
+                       </button> 
+                     </div> 
+                   </div>
+                 </div>
+               </>
+             }
+         </>
+         :
+         null} */}
+         </>
+         :
+         null}
+     </>
+     </>
+   )
+ }
 
 export default ShoppingCart;
+
+// //=================================================================================================================//
+// //                                      CODE BEFORE COMBINING CART TOGGLE (Please keep for ref)
+// //=================================================================================================================//
+
+//     <div className="shopping-cart">
+//       {cart.map(book => (
+//         <Item key={book.id} {...book} removeItem={removeItem} />
+//       ))}
+
+//       <div className="shopping-cart__checkout">
+//         <p>Total: ${getCartTotal()}</p>
+//         <button>Checkout</button>
+//       </div>
+//     </div>
+//   );
+// };
+
+// //=================================================================================================================//
+// //                                       OLD SHOPPING CART CODE
+// //=================================================================================================================//
 
 
 

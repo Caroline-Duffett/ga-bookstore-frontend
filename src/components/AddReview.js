@@ -8,8 +8,6 @@ const AddReview = (props) => {
   const [review, setReview] = useState(emptyReview)
   const [loggedInUser, setLoggedInUser] = useState(props.loggedInUser)
 
-
-
   //--- Functions:
   //registers a change in all input fields
   const handleChange = (event) => {
@@ -35,8 +33,15 @@ const AddReview = (props) => {
               <h3>Leave a Review</h3>
               <div className="review-form-div">
                 <form onSubmit={handleSubmit}>
-                  <label htmlFor='review'>Review: </label><br/>
-                  <textarea name='review' value={review.review} onChange={handleChange} required></textarea>
+                  <label htmlFor='review'>Review: </label>
+                  <br/>
+                  <textarea 
+                  name='review' 
+                  value={review.review} 
+                  onChange={handleChange} 
+                  required
+                  >
+                  </textarea>
                   <br/>
                   <br/>
                   <div className='lr-submit-btn-div'>
