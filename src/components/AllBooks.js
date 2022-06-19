@@ -22,12 +22,15 @@ const AllBooks = (props) => {
             <Book
             book={book}
             section={'allbooks'}
+            addToCart={props.addToCart}
             selectBook={props.selectBook}
             bookReviews={props.bookReviews}
             getBooks={getBooks}
             loggedInUser={loggedInUser}
             handleDelete={props.handleDelete}
             handleUpdate={props.handleUpdate}
+            cartUpdate={props.cartUpdate}
+
             />
           )
         })}

@@ -1,14 +1,38 @@
+
 // //=================================================================================================================//
 // //                                This version of code goes through reviews table
 // //=================================================================================================================//
-import {useState, useEffect, useCallback} from 'react'
+
+import {useState, useReducer} from 'react'
 import Edit from './Edit.js'
 import ShowModal from './ShowModal'
 import ShoppingCart from './ShoppingCart'
+import BookCart from './BookCart'
+//import Review from './Review'
+
 import axios from 'axios'
 import ReviewsModal from './ReviewsModal'
 import AddReview from './AddReview'
+
 import EditReview from './EditReview'
+
+function cartReducer(state, action) {
+  switch(action.type) {
+      case 'add':
+          return [...state, action.book]
+      case 'remove':
+          const bookIndex = state.findIndex(item => item.title === action.book.title)
+          if(bookIndex < 0) {
+              return state
+          }
+          const update = [...state]
+          update.splice(bookIndex, 1)
+          return update
+          default:
+              return state
+  }
+}
+
 
 
 const Book = (props, book) => {
@@ -21,6 +45,8 @@ const Book = (props, book) => {
   const [showAddReview, setShowAddReview] = useState(false)
   const [loggedInUser, setLoggedInUser] = useState(props.loggedInUser)
   const [showEditForm, setShowEditForm] = useState(false)
+  const [cart, setCart] = useReducer(cartReducer, [])
+  const [book, setBook] = useState({...props.book})
 
   //--- Functions:
   //Create Route for reviews
@@ -32,6 +58,7 @@ const Book = (props, book) => {
    })
   }
 
+
   //Read Route for reviews
   const getBookReviews = () => {
     axios.get('https://ga-bookstore-backend.herokuapp.com/api/books/reviews')
@@ -40,6 +67,7 @@ const Book = (props, book) => {
       err=> console.log(err)
     ).catch(error=> console.error(error))
   }
+
 
   //Update Route for reviews
   const handleUpdateReview = (editReview) => {
@@ -51,6 +79,17 @@ const Book = (props, book) => {
       }))
     })
   }
+    const reviewToggle = () => {
+      console.log('clicked');
+      if (showReviews === false) {
+        // getReviews()
+        console.log(props.bookReviews);
+        setShowReviews(true)
+        //console.log(reviews);
+      } else {
+        setShowReviews(false)
+      }
+    }
 
   //Delete Route for reviews
   const handleReviewDelete = (deletedReview) => {
@@ -105,10 +144,13 @@ const Book = (props, book) => {
   }
 
 
+
   return (
       <>
+
         <div className='book' key={bookData.id}>
           <img src={bookData.cover_art} alt="book cover"
+
           onClick={() => {setShow(true)}}/>
           <ShowModal title={bookData.title} onClose={() => {
             setShow(false)
@@ -117,6 +159,38 @@ const Book = (props, book) => {
             {showEditForm ?
               <Edit handleUpdate={props.handleUpdate} bookData={bookData} editFormToggle={editFormToggle}/>
             :
+          onClick={() => {
+            setShow(true)
+            // getBookReviews()
+          }}
+          />
+          <ShowModal key={bookData.id} title={bookData.title} OnClose={() => setShow(false)} onClose={() => setShow(false)} show={show}>
+          <img src={bookData.cover_art} alt="book cover"/>
+          <h5>Author: {bookData.author_name}</h5>
+          <h5>Publisher: {bookData.publisher}</h5>
+          <h5>Publication Date: {bookData.publication_date}</h5>
+          <h5>Pages: {bookData.page_count}</h5>
+          <h5>Genre: {bookData.genre}</h5>
+          <h5>Rating: {bookData.rating}</h5>
+          <br/>
+          <h5>${bookData.price}</h5>
+          {/* <button onClick={() => {props.cartUpdate(book)}}>Add</button> */}
+          <button onClick={() => {props.addToCart(book)}}>Add</button>
+          {/* <input type="number" placeholder="Qty"/> */}
+
+          {/* <button value={bookData.title} onClick={() => addToCart(book)}>Add to cart</button>  */}
+
+          {props.user === 'admin' ?
+      <>
+          <Edit handleUpdate={props.handleUpdate} book={book}/>
+          <button onClick={() => {props.handleDelete(book)}}>
+          Delete
+          </button>
+      </>
+          : null}
+          <div className="all-reviews-div">
+            <button onClick={reviewToggle}>See Reviews</button>
+            {showReviews ?
               <>
                 {showBookInfo ?
                   <>
@@ -200,6 +274,8 @@ const Book = (props, book) => {
   )
 }
 
+export default Book
+
 
 export default Book
 //=================================================================================================================//
@@ -228,6 +304,11 @@ export default Book
 //   :null}
 
 
+// CODE GRAVEYARD ------------------------------------>
+
+
+ {/* <button onClick={() => addToCart(book)}>Add to cart</button>  */}
+
 
 
 
@@ -236,24 +317,72 @@ export default Book
 //                                Grave Yard
 //==============================================================================//
 
-//Read Route for reviews tablereviews
-// const getReviews = () => {
-//   //axios.get('https://ga-bookstore-backend.herokuapp.com/api/books')
-//   const brl = {
-//                 bookId: bookData.id,
-//               }
-//   axios.get("http://localhost:8000/api/books/reviews/list", brl)
-//   .then((response) => {
-//         console.log(response.data);
-//         // setReviews(response.data.map((review) => {
-//         //     return bookData.id == review.book_id ? review:null
-//         // }))
-//   }
-// )
-// .catch(error=> console.error(error))
-// }
 
-// <button onClick={() => addToCart(book.id, "book")}>Add</button>
+//   setUserCartBooks((currentCart, ))
+
+    // const [books] = useState([bookData.title, bookData.price, bookData.cover_art])
+
+    // const addToCart = (book) => setUserCartBooks((currentCart) => [...currentCart, book]);
+
+// const listBooksToBuy = () => 
+// book.map((book) => (
+  
+//   <div key={book.id}>
+//     {book.title} - {book.price}
+//     <button onClick={() => addToCart(book)}>Add to cart</button> 
+//   </div>
+// ))
+
+{/* <button onClick={props.cartToggle} className="search-btn">Cart({userCartBooks.length})</button> */}
+
+{/* <div>{listBooksToBuy}</div> */}
+
+   // let newCart = [...userCartBooks]
+      // let bookInCart = newCart.find(
+      //   (book) => bookData.title === book.title
+      // )
+      // if (bookInCart) {
+      //   bookInCart.quantity++
+      // } else {
+      //   bookInCart = {
+      //     ...book,
+      //     quantity: 1
+      //   }
+      //   newCart.push(bookInCart)
+      // }
+      // setUserCartBooks(newCart)
+      // }
+
+
+    // const renderBooks =
+
+    // const [books] = useState([...props.book
+
+    // ])
+
+    // const [cartAmount, setCartAmount] = useState(0)
+
+    // const addToCart = () => {
+    //   setCartAmount((prevCartAmount) => prevCartAmount + 1)
+    // }
+
+//     const AddBook = useCallback(() => {
+//       const book = createRandomBook();
+//       setCart((prev) => [...prev, book]);
+//     }, []);
+
+//     let id = 0;
+// const createRandomBook = () => {
+//   id = id + 1;
+//   return {
+//     id,
+//     qty: 1,
+//     desc: `Book number: ${id}`,
+//     price: Number((Math.random() * 10 + 1).toFixed(2))
+//   };
+// };
+
+    // useEffect
 
 // import BookInfoModal from './BookInfoModal'
 

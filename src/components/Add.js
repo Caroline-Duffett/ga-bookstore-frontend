@@ -83,6 +83,9 @@ const Add = (props) => {
                 <label htmlFor='rating'>Rating: </label>
                 <input type='number' name='rating' value={book.rating} onChange={handleChange} required/>
 
+
+
+                
                 <br/>
                 <br/>
 
@@ -106,6 +109,21 @@ const Add = (props) => {
 }
 
 export default Add
+
+// {/* STAR RATING */}
+//                 {/* <label>Rating:</label>
+//                 <fieldset className="rate">
+//                 <label htmlFor='rating1' title="5 stars"></label>
+//                 <input type='radio' id="rating1" name='rating' value={book.rating} onChange={handleChange}/>
+//                 <label htmlFor='rating2' title="5 stars"></label>
+//                 <input type='radio' id="rating2" name='rating' value={book.rating} onChange={handleChange}/>
+//                 <label htmlFor='rating3' title="5 stars"></label>
+//                 <input type='radio' id="rating3" name='rating' value={book.rating} onChange={handleChange}/>
+//                 <label htmlFor='rating4' title="5 stars"></label>
+//                 <input type='radio' id="rating4" name='rating' value={book.rating} onChange={handleChange}/>
+//                 <label htmlFor='rating5' title="5 stars"></label>
+//                 <input type='radio' id="rating5" name='rating' value={book.rating} onChange={handleChange}/>
+//                 </fieldset> */}
 
 
 

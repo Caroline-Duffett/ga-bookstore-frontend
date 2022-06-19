@@ -1,0 +1,16 @@
+$columns: 8;
+$gap: 24px;
+$breakpoints: (
+    xs: 480px,
+    sm: 768px,
+    md: 960px,
+    lg: 1170px,
+    xl: 1280px
+);
+
+.wrapper {
+    display: grid;
+    grid-template-columns: repeat($columns, 1fr);
+    grid-gap: $gap;
+    gap: $gap;
+}

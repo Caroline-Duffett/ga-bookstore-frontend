@@ -1,5 +1,5 @@
 import './App.css';
-import { useState, useEffect } from 'react'
+import { useState, useEffect} from 'react'
 import axios from 'axios'
 import Add from './components/Add'
 import BestSellers from './components/BestSellers'
@@ -12,9 +12,13 @@ import UserRegistration from './components/UserRegistration.js'
 // import ShowModal from './components/ShowModal'
 // import BookInfoModal from './components/BookInfoModal.js'
 
+import BookCart from './components/BookCart'
+
 
 function App() {
+
   //--- State:
+
   const [books, setBooks] = useState([])
   const [bookReviews, setBookReviews] = useState([])
   //const [user, setUser] = useState('admi') //temp. for testing purposes
@@ -28,7 +32,14 @@ function App() {
   //testing user auth user login
   const [loggedInUser, setLoggedInuser] = useState({})
 
-  //---Functions:
+
+  // add to cart
+  const [cart, setCart] = useState([])
+  const [cartTotal, setCartTotal] = useState([])
+  const [totalPrice, settotalPrice] = useState([])
+
+
+
   // Testing route to get user accounts
   const getUserAccounts = () => {
       axios.get('https://ga-bookstore-backend.herokuapp.com/api/useraccount')
@@ -72,6 +83,7 @@ function App() {
     } else {
       setShowSearch(false)
     }
+
   }
 
   //hides/shows Add form
@@ -83,6 +95,7 @@ function App() {
       setShowSignIn(false)
     } else {
       setShowAddForm(false)
+
     }
   }
 
@@ -99,10 +112,12 @@ function App() {
   }
 
 
-  //Read Route for books
+
+  
+    //Read Route
    const getBooks = () => {
      axios.get('https://ga-bookstore-backend.herokuapp.com/api/books')
-     //axios.get("http://localhost:8000/api/books")
+    //  axios.get("http://localhost:8000/api/books")
      .then(response => setBooks(response.data),
      err=> console.log(err)
    )
@@ -113,7 +128,8 @@ function App() {
    //Create Route for books
    const handleCreate = (addBook) => {
     axios.post('https://ga-bookstore-backend.herokuapp.com/api/books', addBook)
-    //axios.post("http://localhost:8000/api/books", addBook)
+
+    // axios.post("http://localhost:8000/api/books", addBook)
     .then((response) => {
       setBooks([...books, response.data])
     })
@@ -139,10 +155,50 @@ function App() {
       })
   }
 
-  //Update Route for books
+
+  //user/book cart route
+  const getCart = (user_id) => {
+    axios.get('https://ga-bookstore-backend.herokuapp.com/api/cart/')
+    .then((response) => {
+      setCart(response.data)
+    })
+  }
+
+  //userbook update cart route
+  // const cartUpdate = (editCartBook, quantity) => {
+  //   setCartTotal(totalPrice + ((editCartBook.quantity-quantity) * editCartBook.price))
+  //   axios.put('http://localhost:8000/api/cart/' + editCartBook.id, editCartBook)
+    // axios.put('https://ga-bookstore-backend.herokuapp.com/api/cart' + editCartBook.id, editCartBook)
+  //   .then((response) => {
+  //     setBooks(books.map((book) => {
+  //       return book.id !== response.data.id ? book : response.data
+  //     }))
+  //   })
+  // }
+
+  const addToCart = (book) => {
+    setCart([...cart, book])
+    // setTotal({price, type: 'add'})
+    console.log('added to cart')
+}
+
+  const cartUpdate = (editCartBook) => {
+    // setCartTotal(totalPrice + ((editCartBook) * editCartBook.price))
+    // axios.put('http://localhost:8000/api/cart/' + editCartBook.id)
+    setCart([...cart, editCartBook])
+    axios.put('https://ga-bookstore-backend.herokuapp.com/api/cart/', {"items":cart})
+    .then((response) => {
+      // setBooks(books.map((book) => {
+      //   return book.id !== response.data.id ? book : response.data
+      // }))
+      getCart(loggedInUser.id)
+    })
+  }
+ 
+  //Update Route
   const handleUpdate = (editBook) => {
     axios.put('https://ga-bookstore-backend.herokuapp.com/api/books/' + editBook.id, editBook)
-    //axios.put('http://localhost:8000/api/books/' + editBook.id, editBook)
+    // axios.put('http://localhost:8000/api/books/' + editBook.id, editBook)
     .then((response) => {
       setBooks(books.map((book) => {
         return book.id !== response.data.id ? book : response.data
@@ -150,10 +206,11 @@ function App() {
     })
   }
 
-  //Delete Route for books
+
+  //Delete Route
   const handleDelete = (deletedBook) => {
     axios.delete('https://ga-bookstore-backend.herokuapp.com/api/books/' + deletedBook.id)
-    //axios.delete('http://localhost:8000/api/books/' + deletedBook.id)
+    // axios.delete('http://localhost:8000/api/books/' + deletedBook.id)
     .then((response) => {
       setBooks(books.filter(book => book.id !== deletedBook.id))
     })
@@ -168,26 +225,25 @@ function App() {
 
    return (
      <>
-        <SearchBar books={books}  searchToggle={searchToggle} showSearch={showSearch} />
 
-          {loggedInUser.staff === true ?
+     <div className="wrapper">
+       <div className="navigation">
+       <SearchBar books={books}  searchToggle={searchToggle} showSearch={showSearch} />
+        {loggedInUser.staff === true ?
             <Add handleCreate={handleCreate} addFormToggle={addFormToggle} showAddForm={showAddForm}/>
           : null}
         <UserRegistration handleRegistration={handleRegistration} signInToggle={signInToggle} showSignIn={showSignIn} signedIn={signedIn} handleSignIn={handleSignIn}/>
-        <ShoppingCart loggedInUser={loggedInUser} cartToggle={cartToggle} showCart={showCart} user={loggedInUser}/>
+       </div>
+        {/* <ShoppingCart signedIn={signedIn} cartToggle={cartToggle} showCart={showCart} user={loggedInUser}/> */}
+        <BookCart signedIn={signedIn} cartToggle={cartToggle} showCart={showCart} user={loggedInUser}/>
+        {/* <BookItem/> */}
         <BestSellers books={books}/>
         <OurFavorites books={books}/>
-        <AllBooks books={books} bookReviews={bookReviews} origin={'allbooks'} getBooks={getBooks} loggedInUser={loggedInUser} handleDelete={handleDelete} handleUpdate={handleUpdate}/>
+       <AllBooks books={books} addToCart={addToCart} bookReviews={bookReviews} origin={'allbooks'} getBooks={getBooks} loggedInUser={loggedInUser} handleDelete={handleDelete} handleUpdate={handleUpdate}/>
+     </div>
      </>
    )
 }
 
 export default App;
 
-
-// {loggedInUser.name ?
-//   <>
-//   </>
-// : null}
-
-//<Add handleCreate={handleCreate} addFormToggle={addFormToggle} showAddForm={showAddForm}/>
