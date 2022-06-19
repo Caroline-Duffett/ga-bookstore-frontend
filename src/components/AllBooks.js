@@ -20,20 +20,7 @@ const AllBooks = (props) => {
           // {console.log("AllBooks loggedInUser: ")}
           // {console.log(loggedInUser)}
           return(
-              <div key={book.id}>
-                <Book
-                    book={book}
-                    section={'allbooks'}
-                    addToCart={props.addToCart}
-                    selectBook={props.selectBook}
-                    bookReviews={props.bookReviews}
-                    getBooks={getBooks}
-                    loggedInUser={loggedInUser}
-                    handleDelete={props.handleDelete}
-                    handleUpdate={props.handleUpdate}
-                    cartUpdate={props.cartUpdate}
-                />
-            </div>
+
           )
         })}
       </div>
@@ -50,6 +37,23 @@ export default AllBooks
 //==============================================================================//
 //                                Grave Yard
 //==============================================================================//
+
+// <div key={book.id}>
+//   <Book
+//       book={book}
+//       section={'allbooks'}
+//       addToCart={props.addToCart}
+//       selectBook={props.selectBook}
+//       bookReviews={props.bookReviews}
+//       getBooks={getBooks}
+//       loggedInUser={loggedInUser}
+//       handleDelete={props.handleDelete}
+//       handleUpdate={props.handleUpdate}
+//       cartUpdate={props.cartUpdate}
+//   />
+// </div>
+
+
 //----------------------------------------- Displays Taken Out for Index Page --//
   // <h5>Publisher: {book.publisher}</h5>
   // <h5>Publication date: {book.publication_date}</h5>

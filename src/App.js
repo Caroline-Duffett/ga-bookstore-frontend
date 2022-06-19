@@ -113,7 +113,7 @@ function App() {
 
 
 
-  
+
     //Read Route
    const getBooks = () => {
      axios.get('https://ga-bookstore-backend.herokuapp.com/api/books')
@@ -194,7 +194,7 @@ function App() {
       getCart(loggedInUser.id)
     })
   }
- 
+
   //Update Route
   const handleUpdate = (editBook) => {
     axios.put('https://ga-bookstore-backend.herokuapp.com/api/books/' + editBook.id, editBook)
@@ -223,6 +223,27 @@ function App() {
      getUserAccounts()
    }, [])
 
+   // testing passing this renderBooks function through props to fix the lack of immediate update on edit
+   const renderBook = (book, props) => {
+       return (
+           <div key={book.id}>
+             <Book
+                 book={book}
+                 section={'allbooks'}
+                 addToCart={props.addToCart}
+                 selectBook={props.selectBook}
+                 bookReviews={props.bookReviews}
+                 getBooks={getBooks}
+                 loggedInUser={loggedInUser}
+                 handleDelete={props.handleDelete}
+                 handleUpdate={props.handleUpdate}
+                 cartUpdate={props.cartUpdate}
+             />
+         </div>
+       )
+   }
+
+
    return (
      <>
 
@@ -239,11 +260,10 @@ function App() {
         {/* <BookItem/> */}
         <BestSellers books={books}/>
         <OurFavorites books={books}/>
-       <AllBooks books={books} addToCart={addToCart} bookReviews={bookReviews} origin={'allbooks'} getBooks={getBooks} loggedInUser={loggedInUser} handleDelete={handleDelete} handleUpdate={handleUpdate}/>
+       <AllBooks books={books} renderBook={renderBook} addToCart={addToCart} bookReviews={bookReviews} origin={'allbooks'} getBooks={getBooks} loggedInUser={loggedInUser} handleDelete={handleDelete} handleUpdate={handleUpdate}/>
      </div>
      </>
    )
 }
 
 export default App;
-
