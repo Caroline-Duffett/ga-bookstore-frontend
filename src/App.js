@@ -214,18 +214,21 @@ function App() {
 
    return (
      <>
-
-        <SearchBar books={books}  searchToggle={searchToggle} showSearch={showSearch} />
+     <div className="wrapper">
+       <div className="navigation">
+       <SearchBar books={books}  searchToggle={searchToggle} showSearch={showSearch} />
         {user === 'admin' ?
         <Add handleCreate={handleCreate} addFormToggle={addFormToggle} showAddForm={showAddForm}/>
         : null}
         <UserRegistration handleRegistration={handleRegistration} signInToggle={signInToggle} showSignIn={showSignIn} signedIn={signedIn} handleSignIn={handleSignIn}/>
+       </div>
         {/* <ShoppingCart signedIn={signedIn} cartToggle={cartToggle} showCart={showCart} user={loggedInUser}/> */}
         <BookCart signedIn={signedIn} cartToggle={cartToggle} showCart={showCart} user={loggedInUser}/>
         {/* <BookItem/> */}
         <BestSellers books={books}/>
         <OurFavorites books={books}/>
         <AllBooks cartUpdate={cartUpdate} books={books} bookReviews={bookReviews} origin={'allbooks'}/>
+     </div>
      </>
    )
 }

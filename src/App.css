@@ -1,3 +1,15 @@
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(8 col, 1fr);
+  grid-template-rows: auto;
+  grid-column-gap: 24px;
+  grid-row-gap: 24px;
+
+}
+
+/* .navigation */
+
+
 /*---------- Best sellers books and Our favorite books (Horiztonal scroll bars) ----------*/
 .scroll-flexbox {
   background-color: lightgray;
