@@ -312,9 +312,9 @@ h5, h4 {
 
 /*---------------------------------- Star rating --------------------------------------*/
 
-.rate {
+/* .rate {
   display: inline-block;
-  border: 0;
+  border: 0; */
 
 
 
@@ -335,7 +335,7 @@ h5, h4 {
 
 rate > label {
   float: right;
-} 
+}
 
 /* FULL STAR */
 .rate > label:before {
@@ -368,7 +368,3 @@ label:hover,
 input:checked ~ label:hover ~ label,
 label:hover ~ input:checked ~ label
 {color: blue;} */
-
-
-
-

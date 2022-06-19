@@ -35,7 +35,7 @@ function cartReducer(state, action) {
 
 
 
-const Book = (props, book) => {
+const Book = (props) => {
   //--- State:
   const [bookData, setBookData] = useState({...props.book})
   const [show, setShow] = useState(false)
@@ -79,17 +79,17 @@ const Book = (props, book) => {
       }))
     })
   }
-    const reviewToggle = () => {
-      console.log('clicked');
-      if (showReviews === false) {
-        // getReviews()
-        console.log(props.bookReviews);
-        setShowReviews(true)
-        //console.log(reviews);
-      } else {
-        setShowReviews(false)
-      }
-    }
+    // const reviewToggle = () => {
+    //   console.log('clicked');
+    //   if (showReviews === false) {
+    //     // getReviews()
+    //     console.log(props.bookReviews);
+    //     setShowReviews(true)
+    //     //console.log(reviews);
+    //   } else {
+    //     setShowReviews(false)
+    //   }
+    // }
 
   //Delete Route for reviews
   const handleReviewDelete = (deletedReview) => {
@@ -144,140 +144,107 @@ const Book = (props, book) => {
   }
 
 
-
   return (
-      <>
-
-        <div className='book' key={bookData.id}>
-          <img src={bookData.cover_art} alt="book cover"
-
-          onClick={() => {setShow(true)}}/>
-          <ShowModal title={bookData.title} onClose={() => {
-            setShow(false)
-            resetFalse()
-            }} show={show}>
-            {showEditForm ?
-              <Edit handleUpdate={props.handleUpdate} bookData={bookData} editFormToggle={editFormToggle}/>
-            :
-          onClick={() => {
-            setShow(true)
-            // getBookReviews()
-          }}
-          />
-          <ShowModal key={bookData.id} title={bookData.title} OnClose={() => setShow(false)} onClose={() => setShow(false)} show={show}>
-          <img src={bookData.cover_art} alt="book cover"/>
-          <h5>Author: {bookData.author_name}</h5>
-          <h5>Publisher: {bookData.publisher}</h5>
-          <h5>Publication Date: {bookData.publication_date}</h5>
-          <h5>Pages: {bookData.page_count}</h5>
-          <h5>Genre: {bookData.genre}</h5>
-          <h5>Rating: {bookData.rating}</h5>
-          <br/>
-          <h5>${bookData.price}</h5>
-          {/* <button onClick={() => {props.cartUpdate(book)}}>Add</button> */}
-          <button onClick={() => {props.addToCart(book)}}>Add</button>
-          {/* <input type="number" placeholder="Qty"/> */}
-
-          {/* <button value={bookData.title} onClick={() => addToCart(book)}>Add to cart</button>  */}
-
-          {props.user === 'admin' ?
-      <>
-          <Edit handleUpdate={props.handleUpdate} book={book}/>
-          <button onClick={() => {props.handleDelete(book)}}>
-          Delete
-          </button>
-      </>
-          : null}
-          <div className="all-reviews-div">
-            <button onClick={reviewToggle}>See Reviews</button>
-            {showReviews ?
-              <>
-                {showBookInfo ?
-                  <>
-                    <img src={bookData.cover_art} alt="book cover"/>
-                    <h5>Author: {bookData.author_name}</h5>
-                    <h5>Publisher: {bookData.publisher}</h5>
-                    <h5>Publication Date: {bookData.publication_date}</h5>
-                    <h5>Pages: {bookData.page_count}</h5>
-                    <h5>Genre: {bookData.genre}</h5>
-                    <h5>Rating: {bookData.rating}</h5>
-                    <br/>
-                    <h5>${bookData.price}</h5>
-                    <input type="number" placeholder="Qty"/>
-                    {loggedInUser ?
-                      <>
-                        {loggedInUser.staff === true ?
-                          <>
-                            <br/>
-                            <br/>
-                            <button onClick={editFormToggle}>Edit</button>
-                            <button onClick={() => {
-                              props.handleDelete(bookData)
-                            }}>Delete</button>
-                          </>
-                        :
-                        null}
-                      </>
-                      :null}
-                  </>
-                : null}
-                <div className="all-reviews-div">
-                  <button
-                    onClick={() => {
-                      reviewToggle()
-                      getBookReviews()
-                      bookInfoOrReviewsToggle()
-                      setShowAddReview(false)
-                      console.log("Book logged in user: ");
-                      console.log(loggedInUser);
-                    }}>
-                    {showBookInfo ? <>See Reviews</> : <>Book Details</>}
-                  </button>
-                  {showReviews ?
+        <>
+          <div className='book' key={bookData.id}>
+            <img src={bookData.cover_art} alt="book cover"
+            onClick={() => {setShow(true)}}/>
+            <ShowModal title={bookData.title} onClose={() => {
+              setShow(false)
+              resetFalse()
+              }} show={show}>
+              {showEditForm ?
+                <Edit handleUpdate={props.handleUpdate} bookData={bookData} editFormToggle={editFormToggle}/>
+              :
+                <>
+                  {showBookInfo ?
                     <>
-                      {showAddReview ?
-                        <AddReview handleReviewCreate={handleReviewCreate} bookData={bookData} showAddReview={showAddReview} addReviewToggle={addReviewToggle} loggedInUser={loggedInUser}/>
-                      :
+                      <img src={bookData.cover_art} alt="book cover"/>
+                      <h5>Author: {bookData.author_name}</h5>
+                      <h5>Publisher: {bookData.publisher}</h5>
+                      <h5>Publication Date: {bookData.publication_date}</h5>
+                      <h5>Pages: {bookData.page_count}</h5>
+                      <h5>Genre: {bookData.genre}</h5>
+                      <h5>Rating: {bookData.rating}</h5>
+                      <br/>
+                      <h5>${bookData.price}</h5>
+
+                      <button onClick={() => {props.addToCart(book)}}>Add</button>
+
+                      <input type="number" placeholder="Qty"/>
+                      {loggedInUser ?
                         <>
-                          <h3>Reviews</h3>
-                          <div className='all-reviews-flexbox'>
-                          {reviews.map((review) => {
-                            if (review.book_id === bookData.id) {
-                              return (
-                                <>
-                                  <div className="review-card" key={review.id}>
-                                     <h5>User: {review.user_id}</h5>
-                                     <h5>Review: </h5>
-                                     <p>{review.review}</p>
-                                     <EditReview handleUpdateReview={handleUpdateReview} review={review}/>
-                                     <button onClick={() => {handleReviewDelete(review)}}>
-                                     Delete
-                                     </button>
-                                  </div>
-                                </>
-                              )
-                            }
-                          })}
-                          </div>
+                          {loggedInUser.staff === true ?
+                            <>
+                              <br/>
+                              <br/>
+                              <button onClick={editFormToggle}>Edit</button>
+                              <button onClick={() => {
+                                props.handleDelete(bookData)
+                              }}>Delete</button>
+                            </>
+                          :
+                          null}
                         </>
-                      }
-                      <button onClick={addReviewToggle}> {showAddReview ? <>cancel</> : <>Add Review</> } </button>
+                        :null}
                     </>
-                  :
-                  null}
-                </div>
-              </>
-            }
-          </ShowModal>
-        </div>
-      </>
-  )
-}
+                  : null}
+                  <div className="all-reviews-div">
+                    <button
+                      onClick={() => {
+                        reviewToggle()
+                        getBookReviews()
+                        bookInfoOrReviewsToggle()
+                        setShowAddReview(false)
+                        console.log("Book logged in user: ");
+                        console.log(loggedInUser);
+                      }}>
+                      {showBookInfo ? <>See Reviews</> : <>Book Details</>}
+                    </button>
+                    {showReviews ?
+                      <>
+                        {showAddReview ?
+                          <AddReview handleReviewCreate={handleReviewCreate} bookData={bookData} showAddReview={showAddReview} addReviewToggle={addReviewToggle} loggedInUser={loggedInUser}/>
+                        :
+                          <>
+                            <h3>Reviews</h3>
+                            <div className='all-reviews-flexbox'>
+                            {reviews.map((review) => {
+                              if (review.book_id === bookData.id) {
+                                return (
+                                  <>
+                                    <div className="review-card" key={review.id}>
+                                       <h5>User: {review.user_id}</h5>
+                                       <h5>Review: </h5>
+                                       <p>{review.review}</p>
+                                       <EditReview handleUpdateReview={handleUpdateReview} review={review}/>
+                                       <button onClick={() => {handleReviewDelete(review)}}>
+                                       Delete
+                                       </button>
+                                    </div>
+                                  </>
+                                )
+                              }
+                            })}
+                            </div>
+                          </>
+                        }
+                        <button onClick={addReviewToggle}> {showAddReview ? <>cancel</> : <>Add Review</> } </button>
+                      </>
+                    :
+                    null}
+                  </div>
+                </>
+              }
+            </ShowModal>
+          </div>
+        </>
+    )
+  }
 
-export default Book
 
+  export default Book
 
-export default Book
 //=================================================================================================================//
 
 
@@ -324,12 +291,12 @@ export default Book
 
     // const addToCart = (book) => setUserCartBooks((currentCart) => [...currentCart, book]);
 
-// const listBooksToBuy = () => 
+// const listBooksToBuy = () =>
 // book.map((book) => (
-  
+
 //   <div key={book.id}>
 //     {book.title} - {book.price}
-//     <button onClick={() => addToCart(book)}>Add to cart</button> 
+//     <button onClick={() => addToCart(book)}>Add to cart</button>
 //   </div>
 // ))
 
