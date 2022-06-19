@@ -12,6 +12,8 @@ const ShoppingCart = (props) => {
       <>
         {props.showCart ?
           <>
+            {console.log("ShoppingCart loggedInUser: ")}
+            {console.log(props.loggedInUser)}
             {props.loggedInUser.username ?
               <>
                 <div className="cart-modal-wrapper">
