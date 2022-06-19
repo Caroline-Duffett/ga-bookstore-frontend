@@ -60,6 +60,8 @@ function App() {
     } else {
       setShowCart(false)
     }
+    console.log("cart logged in user: ");
+    console.log(loggedInUser);
   }
 
   //hides/shows searchbar
@@ -124,6 +126,7 @@ function App() {
       axios.put(`https://ga-bookstore-backend.herokuapp.com/api/useraccount/login`, userObj)
           .then((response) => {
               console.log(response);
+              console.log(response.data);
               setLoggedInuser(response.data)
           })
   }
@@ -169,13 +172,7 @@ function App() {
      <>
 
         <SearchBar books={books}  searchToggle={searchToggle} showSearch={showSearch} />
-        {loggedInUser ?
-          <>
-          {loggedInUser.staff === true ?
-            <Add handleCreate={handleCreate} addFormToggle={addFormToggle} showAddForm={showAddForm}/>
-          : null}
-          </>
-        : null}
+        <Add handleCreate={handleCreate} addFormToggle={addFormToggle} showAddForm={showAddForm}/>
         <UserRegistration handleRegistration={handleRegistration} signInToggle={signInToggle} showSignIn={showSignIn} signedIn={signedIn} handleSignIn={handleSignIn}/>
         <ShoppingCart loggedInUser={loggedInUser} cartToggle={cartToggle} showCart={showCart} user={loggedInUser}/>
         <BestSellers books={books}/>
@@ -186,3 +183,13 @@ function App() {
 }
 
 export default App;
+
+
+
+// {loggedInUser.name ?
+//   <>
+//   {loggedInUser.staff === true ?
+//     <Add handleCreate={handleCreate} addFormToggle={addFormToggle} showAddForm={showAddForm}/>
+//   : null}
+//   </>
+// : null}

@@ -154,13 +154,15 @@ const Book = (props, book) => {
                       getBookReviews()
                       bookInfoOrReviewsToggle()
                       setShowAddReview(false)
+                      console.log("Book logged in user: ");
+                      console.log(loggedInUser);
                     }}>
                     {showBookInfo ? <>See Reviews</> : <>Book Details</>}
                   </button>
                   {showReviews ?
                     <>
                       {showAddReview ?
-                        <AddReview handleReviewCreate={handleReviewCreate} bookData={bookData} showAddReview={showAddReview} addReviewToggle={addReviewToggle}/>
+                        <AddReview handleReviewCreate={handleReviewCreate} bookData={bookData} showAddReview={showAddReview} addReviewToggle={addReviewToggle} loggedInUser={loggedInUser}/>
                       :
                         <>
                           <h3>Reviews</h3>

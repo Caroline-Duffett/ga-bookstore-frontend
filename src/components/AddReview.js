@@ -6,6 +6,7 @@ const AddReview = (props) => {
   const [bookData, setBookData] = useState({...props.bookData})
   let emptyReview = {review: '', user_id: 1, book_id: bookData.id} //user is hardcoded for testing
   const [review, setReview] = useState(emptyReview)
+  const [loggedInUser, setLoggedInUser] = useState(props.loggedInUser)
 
 
 
@@ -27,18 +28,28 @@ const AddReview = (props) => {
     <div className="leave-review-div">
       {props.showAddReview ?
         <>
-          <h3>Leave a Review</h3>
-          <div className="review-form-div">
-            <form onSubmit={handleSubmit}>
-              <label htmlFor='review'>Review: </label><br/>
-              <textarea name='review' value={review.review} onChange={handleChange} required></textarea>
-              <br/>
-              <br/>
-              <div className='lr-submit-btn-div'>
-                <input type='submit'/>
+          {loggedInUser.username ?
+            <>
+              // {console.log("AddReview loggedInUser: ")}
+              // {console.log(props.loggedInUser)}
+              <h3>Leave a Review</h3>
+              <div className="review-form-div">
+                <form onSubmit={handleSubmit}>
+                  <label htmlFor='review'>Review: </label><br/>
+                  <textarea name='review' value={review.review} onChange={handleChange} required></textarea>
+                  <br/>
+                  <br/>
+                  <div className='lr-submit-btn-div'>
+                    <input type='submit'/>
+                  </div>
+                </form>
               </div>
-            </form>
-          </div>
+            </>
+          :
+            <>
+              <h2 className="sign-in-message">Please Sign In or Create an Account to leave a review</h2>
+            </>
+          }
         </>
       :null}
     </div>

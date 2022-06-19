@@ -12,7 +12,7 @@ const ShoppingCart = (props) => {
       <>
         {props.showCart ?
           <>
-            {props.loggedInUser ?
+            {props.loggedInUser.username ?
               <>
                 <div className="cart-modal-wrapper">
                   <div className="cart-modal">
