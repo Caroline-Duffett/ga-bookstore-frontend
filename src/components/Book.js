@@ -148,19 +148,27 @@ const Book = (props) => {
         <>
           <div className='book' key={bookData.id}>
             <img src={bookData.cover_art} alt="book cover"
-            onClick={() => {setShow(true)}}/>
-            <ShowModal title={bookData.title} onClose={() => {
-              setShow(false)
-              resetFalse()
-              }} show={show}>
+            onClick={() => {setShow(true)}}
+            />
+            <ShowModal 
+            title={bookData.title} 
+            onClose={() => {
+            setShow(false)
+            resetFalse()
+            }} show={show}
+              >
               {showEditForm ?
-                <Edit handleUpdate={props.handleUpdate} bookData={bookData} editFormToggle={editFormToggle}/>
+                <Edit 
+                handleUpdate={props.handleUpdate} 
+                bookData={bookData} 
+                editFormToggle={editFormToggle}
+                />
               :
                 <>
                   {showBookInfo ?
                     <>
                       <img src={bookData.cover_art} alt="book cover"/>
-                      <h5>Author: {bookData.author_name}</h5>
+                      <h5>Author:{bookData.author_name}</h5>
                       <h5>Publisher: {bookData.publisher}</h5>
                       <h5>Publication Date: {bookData.publication_date}</h5>
                       <h5>Pages: {bookData.page_count}</h5>
@@ -169,19 +177,28 @@ const Book = (props) => {
                       <br/>
                       <h5>${bookData.price}</h5>
 
-                      <button onClick={() => {props.addToCart(book)}}>Add</button>
+                      {/* <button onClick={() => {props.addToCart(book)}}>
+                        Add
+                        </button> */}
 
-                      <input type="number" placeholder="Qty"/>
+<button onClick={() => props.addItem(props.book)}>
+				Add to cart
+			</button>
+
                       {bookData.id ?
                         <>
                           {bookData.id ?
                             <>
                               <br/>
                               <br/>
-                              <button onClick={editFormToggle}>Edit</button>
+                              <button onClick={editFormToggle}>
+                                Edit
+                                </button>
                               <button onClick={() => {
                                 props.handleDelete(bookData)
-                              }}>Delete</button>
+                              }}>
+                                Delete
+                                </button>
                             </>
                           :
                           null}
@@ -198,13 +215,20 @@ const Book = (props) => {
                         setShowAddReview(false)
                         console.log("Book logged in user: ");
                         console.log(loggedInUser);
-                      }}>
+                      }}
+                      >
                       {showBookInfo ? <>See Reviews</> : <>Book Details</>}
                     </button>
                     {showReviews ?
                       <>
                         {showAddReview ?
-                          <AddReview handleReviewCreate={handleReviewCreate} bookData={bookData} showAddReview={showAddReview} addReviewToggle={addReviewToggle} loggedInUser={loggedInUser}/>
+                          <AddReview 
+                          handleReviewCreate={handleReviewCreate} 
+                          bookData={bookData} 
+                          showAddReview={showAddReview} 
+                          addReviewToggle={addReviewToggle} 
+                          loggedInUser={loggedInUser}
+                          />
                         :
                           <>
                             <h3>Reviews</h3>
@@ -217,7 +241,10 @@ const Book = (props) => {
                                        <h5>User: {review.user_id}</h5>
                                        <h5>Review: </h5>
                                        <p>{review.review}</p>
-                                       <EditReview handleUpdateReview={handleUpdateReview} review={review}/>
+                                       <EditReview 
+                                       handleUpdateReview={handleUpdateReview} 
+                                       review={review}
+                                       />
                                        <button onClick={() => {handleReviewDelete(review)}}>
                                        Delete
                                        </button>
@@ -229,7 +256,13 @@ const Book = (props) => {
                             </div>
                           </>
                         }
-                        <button onClick={addReviewToggle}> {showAddReview ? <>cancel</> : <>Add Review</> } </button>
+                        <button onClick={addReviewToggle}> 
+                        {showAddReview ? 
+                        <>cancel</> 
+                        : 
+                        <>Add Review</> 
+                        } 
+                        </button>
                       </>
                     :
                     null}
