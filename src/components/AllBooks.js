@@ -4,16 +4,20 @@ import Book from './Book'
 
 const AllBooks = (props) => {
 
-//console.log(props.books);
-//console.log(props.reviews);
+  //--- State:
   const [bookReviews, setBookReviews] = useState(["blank"])
+  const [getBooks, setGetBooks] = useState(props.getBooks)
+  const [loggedInUser, setLoggedInUser] = useState(props.loggedInUser)
 
-    return (
+
+
+  return (
     <>
       <h1>All Books</h1>
       <div className='all-books-flexbox'>
         {props.books.map((book) => {
-
+          // {console.log("AllBooks loggedInUser: ")}
+          // {console.log(loggedInUser)}
           return(
             <Book
             book={book}
@@ -21,28 +25,25 @@ const AllBooks = (props) => {
             addToCart={props.addToCart}
             selectBook={props.selectBook}
             bookReviews={props.bookReviews}
+            getBooks={getBooks}
+            loggedInUser={loggedInUser}
+            handleDelete={props.handleDelete}
+            handleUpdate={props.handleUpdate}
             cartUpdate={props.cartUpdate}
+
             />
           )
         })}
       </div>
     </>
-)}
+  )
+}
 
 export default AllBooks
 
 
-//
-// <div className='all-reviews-flexbox'>
-//   {props.reviews.map((review) => {
-//     return(
-//       <Review
-//       review={review}
-//       section={'allbooks'}
-//       />
-//     )
-//   })}
-// </div>
+
+
 
 //==============================================================================//
 //                                Grave Yard
@@ -95,3 +96,16 @@ export default AllBooks
 //
 // export default BooksIndex
 //------------------------------------------------------------------------------//
+
+
+//
+// <div className='all-reviews-flexbox'>
+//   {props.reviews.map((review) => {
+//     return(
+//       <Review
+//       review={review}
+//       section={'allbooks'}
+//       />
+//     )
+//   })}
+// </div>

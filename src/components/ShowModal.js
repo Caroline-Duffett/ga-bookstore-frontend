@@ -1,10 +1,10 @@
 const ShowModal = (props, book) => {
 
-    if (!props.show) {
-        return null
-    }
+  if (!props.show) {
+      return null
+  }
 
-    return (
+  return (
     <div className="modal" onClick={props.onClose}>
         <div className="modal-content" onClick={e => e.stopPropagation()}>
             <div className="modal-header">
@@ -21,7 +21,7 @@ const ShowModal = (props, book) => {
             </div> */}
         </div>
     </div>
-    )
-    }
+  )
+}
 
-    export default ShowModal;
+export default ShowModal;

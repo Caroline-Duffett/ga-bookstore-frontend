@@ -7,23 +7,21 @@ import OurFavorites from './components/OurFavorites'
 import SearchBar from './components/SearchBar'
 import AllBooks from './components/AllBooks'
 import Book from './components/Book.js'
-// import BookInfoModal from './components/BookInfoModal.js'
 import ShoppingCart from './components/ShoppingCart.js'
 import UserRegistration from './components/UserRegistration.js'
 // import ShowModal from './components/ShowModal'
-
-import Review from './components/Review'
+// import BookInfoModal from './components/BookInfoModal.js'
 
 import BookCart from './components/BookCart'
 
 
 function App() {
 
-  
-  //States:
+  //--- State:
+
   const [books, setBooks] = useState([])
   const [bookReviews, setBookReviews] = useState([])
-  const [user, setUser] = useState('admin') //temp. for testing purposes
+  //const [user, setUser] = useState('admi') //temp. for testing purposes
   const [userAccounts, setUserAccounts] = useState([]) // user accounts from the backend
   // boolean to show / hide book info modal, default false
   const [signedIn, setSignedIn] = useState(true) //temp. for testing purposes
@@ -31,9 +29,9 @@ function App() {
   const [showSearch, setShowSearch] = useState(false)
   const [showAddForm, setShowAddForm] = useState(false)
   const [showSignIn, setShowSignIn] = useState(false)
-
   //testing user auth user login
   const [loggedInUser, setLoggedInuser] = useState({})
+
 
   // add to cart
   const [cart, setCart] = useState([])
@@ -42,75 +40,77 @@ function App() {
 
 
 
-
-
-
   // Testing route to get user accounts
   const getUserAccounts = () => {
-      //axios.get('https://ga-bookstore-backend.herokuapp.com/api/useraccount')
-      axios.get("http://localhost:8000/api/books")
+      axios.get('https://ga-bookstore-backend.herokuapp.com/api/useraccount')
+      //axios.get("http://localhost:8000/api/books")
         .then(response => setUserAccounts(response.data),
             err => console.log(err)
         ).catch(error => console.error(error))
   }
 
+
   // pulls in the list of all reviews for the books
   // will filter this list when the bookInfoModal is opened
   const getBookreviews = () => {
-      axios.get('http://localhost:8000/api/books/reviews')
+      //axios.get('http://localhost:8000/api/books/reviews')
+      axios.get('https://ga-bookstore-backend.herokuapp.com/api/books/reviews')
       .then((response) => {
-          // console.log(response.data);
           setBookReviews(response.data)
       })
   }
 
+
   //hides/shows Cart form
-    const cartToggle = () => {
-      if (showCart === false) {
-        setShowCart(true)
-        setShowSearch(false)
-        setShowAddForm(false)
-        setShowSignIn(false)
-      } else {
-        setShowCart(false)
-      }
+  const cartToggle = () => {
+    if (showCart === false) {
+      setShowCart(true)
+      setShowSearch(false)
+      setShowAddForm(false)
+      setShowSignIn(false)
+    } else {
+      setShowCart(false)
     }
+  }
 
   //hides/shows searchbar
-    const searchToggle = () => {
-      if (showSearch === false) {
-        setShowSearch(true)
-        setShowAddForm(false)
-        setShowCart(false)
-        setShowSignIn(false)
-      } else {
-        setShowSearch(false)
-      }
-    }
-  
-    //hides/shows Add form
-    const addFormToggle = () => {
-      if (showAddForm === false) {
-        setShowAddForm(true)
-        setShowSearch(false)
-        setShowCart(false)
-        setShowSignIn(false)
-      } else {
-        setShowAddForm(false)
-      }
+  const searchToggle = () => {
+    if (showSearch === false) {
+      setShowSearch(true)
+      setShowAddForm(false)
+      setShowCart(false)
+      setShowSignIn(false)
+    } else {
+      setShowSearch(false)
     }
 
+  }
+
   //hides/shows Add form
-    const signInToggle = () => {
-      if (showSignIn === false) {
-        setShowSignIn(true)
-        setShowAddForm(false)
-        setShowSearch(false)
-        setShowCart(false)
-      } else {
-        setShowSignIn(false)
-      }
+  const addFormToggle = () => {
+    if (showAddForm === false) {
+      setShowAddForm(true)
+      setShowSearch(false)
+      setShowCart(false)
+      setShowSignIn(false)
+    } else {
+      setShowAddForm(false)
+
     }
+  }
+
+  //hides/shows Add form
+  const signInToggle = () => {
+    if (showSignIn === false) {
+      setShowSignIn(true)
+      setShowAddForm(false)
+      setShowSearch(false)
+      setShowCart(false)
+    } else {
+      setShowSignIn(false)
+    }
+  }
+
 
 
   
@@ -124,9 +124,11 @@ function App() {
    .catch(error=> console.error(error))
    }
 
-   //Create Route
+
+   //Create Route for books
    const handleCreate = (addBook) => {
     axios.post('https://ga-bookstore-backend.herokuapp.com/api/books', addBook)
+
     // axios.post("http://localhost:8000/api/books", addBook)
     .then((response) => {
       setBooks([...books, response.data])
@@ -135,10 +137,10 @@ function App() {
 
   //handles user sign in reuest
   const handleSignIn = (userObj) => {
-      // console.log(userObj)
       axios.put(`https://ga-bookstore-backend.herokuapp.com/api/useraccount/login`, userObj)
           .then((response) => {
               console.log(response);
+              console.log(response.data);
               setLoggedInuser(response.data)
           })
   }
@@ -152,6 +154,7 @@ function App() {
           setUserAccounts([...userAccounts, response.data])
       })
   }
+
 
   //user/book cart route
   const getCart = (user_id) => {
@@ -222,12 +225,13 @@ function App() {
 
    return (
      <>
+
      <div className="wrapper">
        <div className="navigation">
        <SearchBar books={books}  searchToggle={searchToggle} showSearch={showSearch} />
-        {user === 'admin' ?
-        <Add handleCreate={handleCreate} addFormToggle={addFormToggle} showAddForm={showAddForm}/>
-        : null}
+        {loggedInUser.staff === true ?
+            <Add handleCreate={handleCreate} addFormToggle={addFormToggle} showAddForm={showAddForm}/>
+          : null}
         <UserRegistration handleRegistration={handleRegistration} signInToggle={signInToggle} showSignIn={showSignIn} signedIn={signedIn} handleSignIn={handleSignIn}/>
        </div>
         {/* <ShoppingCart signedIn={signedIn} cartToggle={cartToggle} showCart={showCart} user={loggedInUser}/> */}
@@ -235,7 +239,7 @@ function App() {
         {/* <BookItem/> */}
         <BestSellers books={books}/>
         <OurFavorites books={books}/>
-        <AllBooks books={books} addToCart={addToCart} bookReviews={bookReviews} origin={'allbooks'}/>
+       <AllBooks books={books} addToCart={addToCart} bookReviews={bookReviews} origin={'allbooks'} getBooks={getBooks} loggedInUser={loggedInUser} handleDelete={handleDelete} handleUpdate={handleUpdate}/>
      </div>
      </>
    )
@@ -243,28 +247,3 @@ function App() {
 
 export default App;
 
-// CODE GRAVEYARD ------------------------------------>
-
-    // const handleAddToCart = () => {
-    //   return renderCart()
-    // }
-
-    // const handleRemoveFromCart = (book) => {
-    //   let indexOfBook = 
-    //   current
-    //   [ 
-    //     ...currentCart.slice(0, indexOfBookToRemove),
-    //     ...currentCart.slice(indexOfBookToRemove + 1)
-    //   ]
-      
-    // }
-
-    // renderContent() {
-      
-    //       return (
-    //         <Book book={book}
-    //         addToCart={handleAddToCart}/>
-    //       )
-          
-    //         return renderCart()
-    // }

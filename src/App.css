@@ -25,7 +25,7 @@
 }
 
 img {
-  width: 300px;
+  width: 100px;
 }
 
 h5, h4 {
@@ -50,7 +50,7 @@ h5, h4 {
 .search-bar-modal {
   background-color: white;
   position: absolute;
-  width: 99vw;
+  width: 100vw;
   height: 650px;
 }
 
@@ -256,7 +256,7 @@ h5, h4 {
 .modal-content {
   width: 500px;
   background-color: white;
-
+  height: 500px;
 }
 
 .modal-header, .modal-footer {
@@ -308,7 +308,6 @@ h5, h4 {
   margin-bottom: px;
   width: 100%;
   border-radius: none;
-
 }
 
 /*---------------------------------- Star rating --------------------------------------*/
@@ -318,18 +317,21 @@ h5, h4 {
   border: 0;
 
 
+
 /*--------------------------------- Reviews Flexbox --------------------------------------*/
 .all-reviews-flexbox {
   background-color: lightgray;
   display: flex;
   flex-direction: column;
-  height: 100px;
+  height: 250px;
   overflow: scroll
 }
 
 .rate > input {
   display: none;
 }
+
+/*----------------------------------------------------------------------------------------*/
 
 rate > label {
   float: right;
@@ -366,6 +368,7 @@ label:hover,
 input:checked ~ label:hover ~ label,
 label:hover ~ input:checked ~ label
 {color: blue;} */
+
 
 
 

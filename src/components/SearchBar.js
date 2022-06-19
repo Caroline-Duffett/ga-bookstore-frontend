@@ -2,7 +2,7 @@ import {useState} from 'react'
 
 const SearchBar = (props) => {
 
-  //State:
+  //--- State:
   const [query, setQuery] = useState("")
 
   return (
