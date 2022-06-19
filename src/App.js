@@ -201,17 +201,11 @@ function App() {
       // setBooks(books.map((book) => {
       //   return book.id !== response.data.id ? book : response.data
       // }))
-<<<<<<< HEAD
-      getCart(loggedInUser.id)
-    })
-  }
 
-=======
   //     getCart(loggedInUser.id)
   //   })
   // }
- 
->>>>>>> a82ed02d31fa44495b617b3d56d01220690e94c9
+
   //Update Route
   const handleUpdate = (editBook) => {
     axios.put('https://ga-bookstore-backend.herokuapp.com/api/books/' + editBook.id, editBook)
@@ -240,27 +234,7 @@ function App() {
      getUserAccounts()
    }, [])
 
-<<<<<<< HEAD
-   // testing passing this renderBooks function through props to fix the lack of immediate update on edit
-   const renderBook = (book, props) => {
-       return (
-           <div key={book.id}>
-             <Book
-                 book={book}
-                 section={'allbooks'}
-                 addToCart={props.addToCart}
-                 selectBook={props.selectBook}
-                 bookReviews={props.bookReviews}
-                 getBooks={getBooks}
-                 loggedInUser={loggedInUser}
-                 handleDelete={props.handleDelete}
-                 handleUpdate={props.handleUpdate}
-                 cartUpdate={props.cartUpdate}
-             />
-         </div>
-       )
-   }
-=======
+
 
   //  const addToCart = (item) => {
   //   const productList = [...cart];
@@ -282,7 +256,6 @@ function App() {
   const removeItem = id => {
     setCart(cart.filter(book => book.id !== id));
   };
->>>>>>> a82ed02d31fa44495b617b3d56d01220690e94c9
 
 
    return (
@@ -293,58 +266,53 @@ function App() {
 
      <div className="wrapper">
        <div className="navigation">
-       <SearchBar 
-       books={books}  
-       searchToggle={searchToggle} 
-       showSearch={showSearch} 
+       <SearchBar
+       books={books}
+       searchToggle={searchToggle}
+       showSearch={showSearch}
        />
         {loggedInUser.staff === true ?
-       <Add 
-       handleCreate={handleCreate} 
-       addFormToggle={addFormToggle} 
+       <Add
+       handleCreate={handleCreate}
+       addFormToggle={addFormToggle}
        showAddForm={showAddForm}
        />
           : null}
-       <UserRegistration 
-       handleRegistration={handleRegistration} 
-       signInToggle={signInToggle} 
-       showSignIn={showSignIn} 
-       signedIn={signedIn} 
+       <UserRegistration
+       handleRegistration={handleRegistration}
+       signInToggle={signInToggle}
+       showSignIn={showSignIn}
+       signedIn={signedIn}
        handleSignIn={handleSignIn}
        />
        </div>
-        <ShoppingCart 
-        // signedIn={signedIn} 
-        // cartToggle={cartToggle} 
-        // showCart={showCart} 
+        <ShoppingCart
+        // signedIn={signedIn}
+        // cartToggle={cartToggle}
+        // showCart={showCart}
         // user={loggedInUser}
         />
-       {/* <BookCart 
-       signedIn={signedIn} 
-       cartToggle={cartToggle} 
-       showCart={showCart} 
+       {/* <BookCart
+       signedIn={signedIn}
+       cartToggle={cartToggle}
+       showCart={showCart}
        user={loggedInUser}
        setCart={setCart}
        />   */}
         {/* <BookItem/> */}
         <BestSellers books={books}/>
         <OurFavorites books={books}/>
-<<<<<<< HEAD
-       <AllBooks books={books} renderBook={renderBook} addToCart={addToCart} bookReviews={bookReviews} origin={'allbooks'} getBooks={getBooks} loggedInUser={loggedInUser} handleDelete={handleDelete} handleUpdate={handleUpdate}/>
-=======
-       <AllBooks 
-       books={books} 
-      //  addToCart={addToCart} 
-       bookReviews={bookReviews} 
-       origin={'allbooks'} 
-       getBooks={getBooks} 
-       loggedInUser={loggedInUser} 
-       handleDelete={handleDelete} 
-       handleUpdate={handleUpdate}
-       
-       />
+        <AllBooks
+           books={books}
+           //  addToCart={addToCart}
+           bookReviews={bookReviews}
+           origin={'allbooks'}
+           getBooks={getBooks}
+           loggedInUser={loggedInUser}
+           handleDelete={handleDelete}
+           handleUpdate={handleUpdate}
+        />
 
->>>>>>> a82ed02d31fa44495b617b3d56d01220690e94c9
      </div>
      </CardContext.Provider>
     </ProductContext.Provider>
