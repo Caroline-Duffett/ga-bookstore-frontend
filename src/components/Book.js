@@ -130,17 +130,21 @@ const Book = (props, book) => {
                     <br/>
                     <h5>${bookData.price}</h5>
                     <input type="number" placeholder="Qty"/>
-                    {loggedInUser.staff === true ?
+                    {loggedInUser ?
                       <>
-                        <br/>
-                        <br/>
-                        <button onClick={editFormToggle}>Edit</button>
-                        <button onClick={() => {
-                          props.handleDelete(bookData)
-                        }}>Delete</button>
+                        {loggedInUser.staff === true ?
+                          <>
+                            <br/>
+                            <br/>
+                            <button onClick={editFormToggle}>Edit</button>
+                            <button onClick={() => {
+                              props.handleDelete(bookData)
+                            }}>Delete</button>
+                          </>
+                        :
+                        null}
                       </>
-                    :
-                    null}
+                      :null}
                   </>
                 : null}
                 <div className="all-reviews-div">
