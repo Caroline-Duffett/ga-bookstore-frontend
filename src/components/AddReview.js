@@ -28,7 +28,7 @@ const AddReview = (props) => {
     <div className="leave-review-div">
       {props.showAddReview ?
         <>
-          {loggedInUser.username ?
+          {props.showAddReview ?
             <>
               // {console.log("AddReview loggedInUser: ")}
               // {console.log(props.loggedInUser)}

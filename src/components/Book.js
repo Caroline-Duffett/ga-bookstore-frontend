@@ -172,9 +172,9 @@ const Book = (props) => {
                       <button onClick={() => {props.addToCart(book)}}>Add</button>
 
                       <input type="number" placeholder="Qty"/>
-                      {loggedInUser ?
+                      {bookData.id ?
                         <>
-                          {loggedInUser.staff === true ?
+                          {bookData.id ?
                             <>
                               <br/>
                               <br/>
