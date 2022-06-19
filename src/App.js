@@ -60,8 +60,6 @@ function App() {
     } else {
       setShowCart(false)
     }
-    console.log("cart logged in user: ");
-    console.log(loggedInUser);
   }
 
   //hides/shows searchbar
@@ -170,15 +168,11 @@ function App() {
 
    return (
      <>
-
         <SearchBar books={books}  searchToggle={searchToggle} showSearch={showSearch} />
-        {loggedInUser.name ?
-          <>
+
           {loggedInUser.staff === true ?
             <Add handleCreate={handleCreate} addFormToggle={addFormToggle} showAddForm={showAddForm}/>
           : null}
-          </>
-        : null}
         <UserRegistration handleRegistration={handleRegistration} signInToggle={signInToggle} showSignIn={showSignIn} signedIn={signedIn} handleSignIn={handleSignIn}/>
         <ShoppingCart loggedInUser={loggedInUser} cartToggle={cartToggle} showCart={showCart} user={loggedInUser}/>
         <BestSellers books={books}/>
@@ -191,7 +185,9 @@ function App() {
 export default App;
 
 
-
-
+// {loggedInUser.name ?
+//   <>
+//   </>
+// : null}
 
 //<Add handleCreate={handleCreate} addFormToggle={addFormToggle} showAddForm={showAddForm}/>
