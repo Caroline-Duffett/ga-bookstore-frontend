@@ -5,6 +5,7 @@ import Book from './Book'
 const AllBooks = (props) => {
 
   //--- State:
+  const [books, setBooks] = useState([...props.books])
   const [bookReviews, setBookReviews] = useState(["blank"])
   const [getBooks, setGetBooks] = useState(props.getBooks)
   const [loggedInUser, setLoggedInUser] = useState(props.loggedInUser)
@@ -19,19 +20,20 @@ const AllBooks = (props) => {
           // {console.log("AllBooks loggedInUser: ")}
           // {console.log(loggedInUser)}
           return(
-            <Book
-            book={book}
-            section={'allbooks'}
-            addToCart={props.addToCart}
-            selectBook={props.selectBook}
-            bookReviews={props.bookReviews}
-            getBooks={getBooks}
-            loggedInUser={loggedInUser}
-            handleDelete={props.handleDelete}
-            handleUpdate={props.handleUpdate}
-            cartUpdate={props.cartUpdate}
-
-            />
+              <div key={book.id}>
+                <Book
+                    book={book}
+                    section={'allbooks'}
+                    addToCart={props.addToCart}
+                    selectBook={props.selectBook}
+                    bookReviews={props.bookReviews}
+                    getBooks={getBooks}
+                    loggedInUser={loggedInUser}
+                    handleDelete={props.handleDelete}
+                    handleUpdate={props.handleUpdate}
+                    cartUpdate={props.cartUpdate}
+                />
+            </div>
           )
         })}
       </div>
