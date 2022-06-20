@@ -107,12 +107,6 @@ function App() {
     }
   }
 
-<<<<<<< HEAD
-
-
-
-=======
->>>>>>> 0c3fd7ae9c408e2d64ec64dc01433b5826b543ee
     //Read Route
    const getBooks = () => {
      axios.get('https://ga-bookstore-backend.herokuapp.com/api/books')
@@ -152,49 +146,6 @@ function App() {
       })
   }
 
-<<<<<<< HEAD
-  //user/book cart route
-  // const getCart = (user_id) => {
-  //   axios.get('https://ga-bookstore-backend.herokuapp.com/api/cart/')
-  //   .then((response) => {
-  //     setCart(response.data)
-  //   })
-  // }
-
-  //userbook update cart route
-  // const cartUpdate = (editCartBook, quantity) => {
-  //   setCartTotal(totalPrice + ((editCartBook.quantity-quantity) * editCartBook.price))
-  //   axios.put('http://localhost:8000/api/cart/' + editCartBook.id, editCartBook)
-    // axios.put('https://ga-bookstore-backend.herokuapp.com/api/cart' + editCartBook.id, editCartBook)
-  //   .then((response) => {
-  //     setBooks(books.map((book) => {
-  //       return book.id !== response.data.id ? book : response.data
-  //     }))
-  //   })
-  // }
-
-//   const addToCart = (book) => {
-//     setCart([...cart, book])
-//     // setTotal({price, type: 'add'})
-//     console.log('added to cart')
-// }
-
-  // const cartUpdate = (editCartBook) => {
-    // setCartTotal(totalPrice + ((editCartBook) * editCartBook.price))
-    // axios.put('http://localhost:8000/api/cart/' + editCartBook.id)
-    // setCart([...cart, editCartBook])
-    // axios.put('https://ga-bookstore-backend.herokuapp.com/api/cart/', {"items":cart})
-    // .then((response) => {
-      // setBooks(books.map((book) => {
-      //   return book.id !== response.data.id ? book : response.data
-      // }))
-
-  //     getCart(loggedInUser.id)
-  //   })
-  // }
-
-=======
->>>>>>> 0c3fd7ae9c408e2d64ec64dc01433b5826b543ee
   //Update Route
   const handleUpdate = (editBook) => {
     axios.put('https://ga-bookstore-backend.herokuapp.com/api/books/' + editBook.id, editBook)
@@ -222,22 +173,6 @@ function App() {
      getUserAccounts()
    }, [])
 
-<<<<<<< HEAD
-
-
-  //  const addToCart = (item) => {
-  //   const productList = [...cart];
-  //   if(!productList.includes(item)) {
-  //     productList.push(item);
-  //   }
-  //   const index = productList.indexOf(item);
-  //   productList[index].quantity++;
-  //   setCart(productList);
-  //   localStorage.setItem("cart", JSON.stringify(productList));
-  // }
-
-=======
->>>>>>> 0c3fd7ae9c408e2d64ec64dc01433b5826b543ee
   const addItem = book => {
     if (!cart.find(cartItem => cartItem.id === book.id)) {
       setCart([...cart, book]);
@@ -250,15 +185,8 @@ function App() {
 
    return (
      <>
-<<<<<<< HEAD
-
-<ProductContext.Provider value={{ books, addItem, loggedInUser }}>
-      <CardContext.Provider value={{ cart, removeItem }}>
-
-=======
-      <ProductContext.Provider value={{ books, addItem }}>
+      <ProductContext.Provider value={{ books, addItem, loggedInUser }}>
       <CartContext.Provider value={{ cart, removeItem, cartToggle }}>
->>>>>>> 0c3fd7ae9c408e2d64ec64dc01433b5826b543ee
      <div className="wrapper">
        <div className="navigation">
        <SearchBar
@@ -281,53 +209,25 @@ function App() {
        handleSignIn={handleSignIn}
        />
        </div>
-<<<<<<< HEAD
-        <ShoppingCart
-        // signedIn={signedIn}
-        // cartToggle={cartToggle}
-        // showCart={showCart}
-        // user={loggedInUser}
-        />
-       {/* <BookCart
-       signedIn={signedIn}
-       cartToggle={cartToggle}
-       showCart={showCart}
-       user={loggedInUser}
-       setCart={setCart}
-       />   */}
-        {/* <BookItem/> */}
-        <BestSellers books={books}/>
-        <OurFavorites books={books}/>
-        <AllBooks
-           bookReviews={bookReviews}
-           origin={'allbooks'}
-           getBooks={getBooks}
-           loggedInUser={loggedInUser}
-           handleDelete={handleDelete}
-           handleUpdate={handleUpdate}
-        />
-
-=======
-       <ShoppingCart 
-        signedIn={signedIn} 
-        cartToggle={cartToggle} 
-        showCart={showCart} 
+       <ShoppingCart
+        signedIn={signedIn}
+        cartToggle={cartToggle}
+        showCart={showCart}
         user={loggedInUser}
         setCart={setCart}
         />
        <BestSellers books={books}/>
        <OurFavorites books={books}/>
-       <AllBooks 
-       books={books} 
-      //  addToCart={addToCart} 
-       bookReviews={bookReviews} 
-       origin={'allbooks'} 
-       getBooks={getBooks} 
-       loggedInUser={loggedInUser} 
-       handleDelete={handleDelete} 
+       <AllBooks
+       books={books}
+      //  addToCart={addToCart}
+       bookReviews={bookReviews}
+       origin={'allbooks'}
+       getBooks={getBooks}
+       loggedInUser={loggedInUser}
+       handleDelete={handleDelete}
        handleUpdate={handleUpdate}
        />
->>>>>>> 0c3fd7ae9c408e2d64ec64dc01433b5826b543ee
      </div>
      </CartContext.Provider>
      </ProductContext.Provider>
@@ -336,8 +236,6 @@ function App() {
 }
 
 export default App;
-<<<<<<< HEAD
-=======
 
 // //=================================================================================================================//
 // //                                      CODE GRAVEYARD - ALT CART FUNCTIONS (Please keep for ref)
@@ -394,5 +292,3 @@ export default App;
   //     getCart(loggedInUser.id)
   //   })
   // }
-
->>>>>>> 0c3fd7ae9c408e2d64ec64dc01433b5826b543ee
