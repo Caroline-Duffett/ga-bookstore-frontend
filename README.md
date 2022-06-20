@@ -1,70 +1,25 @@
-# Getting Started with Create React App
+#E-commerce Book Store Site
+This is the frontend to our unit 4 project. It was made by Steven Laff, Tricia Gray, and Caroline Duffett.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Explanation of the technologies used
+We used React to create this app and its being deployed with Heroku. It has full CRUD capabilities. It also has user authentication for some features of the app. Users can view the books and add them to their carts for checkout. The cart will add up the book prices and let the user know the total owed. They can also remove books added to their cart. We set up a second model for book reviews. All users can read reviews that are left on the books. If a user chooses to create an account, they can post book reviews. We were able to make it so only the user that posted the review can edit and delete it. We also set it so that only admin (staff) accounts can add books, edit books, and delete books. This way users can't mess with the inventory.
 
-## Available Scripts
+For the backend we used Django (for more information checkout our Django backed on GitHub).
 
-In the project directory, you can run:
+## Approach taken
+To start, we decided on a topic and planned out wireframes for how we wanted our app to look. Then we set up the backend. Once that was working, we started on the frontend. We got basic CRUD routes for the books working. Then we started making some of the popup modals. Once we got out MVP features done, we started adding in some of our stretch goals. We created a functioning cart, user authentication, and added the second model for reviews. CSS was the last thing we did.
 
-### `npm start`
+## Links
+  GitHub frontend: https://github.com/Caroline-Duffett/ga-bookstore-frontend
+  GitHub backend: https://github.com/LaffSteven/ga-project-4-backend
+  Heroku app frontend: https://ga-bookstore-frontend.herokuapp.com/
+  Heroku app backend: https://ga-bookstore-backend.herokuapp.com/
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Installation Instructions
+To view the app, all the user needs to do is open it. If they would like to create an account, they can.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Unsolved Problems
+We would have liked to make the cart persisting and able to add a book more than once. We also would have liked to store orders placed by the users. If we had more time, we were also going to add in a mockup checkout process.
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Sources
+https://reactjs.org/docs/context.html
