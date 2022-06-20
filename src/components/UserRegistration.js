@@ -60,28 +60,33 @@ const UserRegistration = (props) => {
                 {login ?
                   <>
                     <h3 className="modal-sign-in-header">Account</h3>
-                    <div className="create-acc-si-div">
-                      <form className="sign-in-form-container" onSubmit={handleSubmit}>
-                          <label htmlFor="username"> Username: </label>
-                          <input className="account-input" type="text" name="username" onChange={handleChange} required/>
-                          <br/>
-                          <br/>
-
-                          <label htmlFor="password"> Password: </label>
-                          <input className="account-input" type="password" name="password" onChange={handleChange} required/>
-                          <br/>
-                          <br/>
-                          <div className='add-submit-btn-div'>
-                            <input type='submit' value="Sign in"/>
-                          </div>
-                        </form>
+                    {props.loggedInUser.username ?
+                      <div className="account-toggle-btn">
+                        <button className="modal-sign-out-btn" onClick={props.handleLogout}>Sign out</button>
                       </div>
-                    <div className="account-toggle-btn">
-                      <button className="modal-sign-in-btn" onClick={loginToggle}>Create Account</button>
-                    </div>
-                    <div className="account-toggle-btn">
-                      <button className="modal-sign-out-btn">Sign out</button>
-                    </div>
+                    :
+                      <>
+                      <div className="create-acc-si-div">
+                        <form className="sign-in-form-container" onSubmit={handleSubmit}>
+                            <label htmlFor="username"> Username: </label>
+                            <input className="account-input" type="text" name="username" onChange={handleChange} required/>
+                            <br/>
+                            <br/>
+
+                            <label htmlFor="password"> Password: </label>
+                            <input className="account-input" type="password" name="password" onChange={handleChange} required/>
+                            <br/>
+                            <br/>
+                            <div className='add-submit-btn-div'>
+                              <input type='submit' value="Sign in"/>
+                            </div>
+                          </form>
+                        </div>
+                      <div className="account-toggle-btn">
+                        <button className="modal-sign-in-btn" onClick={loginToggle}>Create Account</button>
+                      </div>
+                      </>
+                    }
                   </>
                   :
                   <>

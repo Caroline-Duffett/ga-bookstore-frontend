@@ -191,6 +191,12 @@ function App() {
     setCart(cart.filter(book => book.id !== id));
   };
 
+
+  // Logs the user out
+  const handleLogout = () => {
+    setLoggedInuser({})
+  }
+
    return (
      <>
      <div className="wrapper">
@@ -219,6 +225,8 @@ function App() {
        showSignIn={showSignIn}
        signedIn={signedIn}
        handleSignIn={handleSignIn}
+       handleLogout={handleLogout}
+       loggedInUser={loggedInUser}
        />
          <SearchBar
        books={books}
@@ -233,7 +241,7 @@ function App() {
        showSearch={showSearch}
        /> */}
         {/* </div> */}
-{/*       
+{/*
         </div> */}
        <BestSellers books={books}/>
        <OurFavorites books={books}/>
