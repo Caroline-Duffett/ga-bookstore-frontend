@@ -159,30 +159,31 @@ const Book = (props) => {
                       <h5>Genre: {props.book.genre}</h5>
                       <h5>Rating: {props.book.rating}</h5>
                       <br/>
-
                       <h5>${props.book.price}</h5>
-                      <button onClick={() => props.addItem(props.book)}> Add to cart </button>
-                      {props.book.id ?
-                        <>
-                          <h5>${props.book.price}</h5>
-                          <button onClick={() => props.addItem(props.book)}>
-				            Add to cart
-			              </button>
 
-                          {props.book.id ?
-                              props.book.id ?
-                                  <>
-                                  <br/>
-                                  <br/>
-                                  <button onClick={editFormToggle}> Edit </button>
-                                  </>
-                                :
-                                  <>
-                                  <button onClick={() => {props.handleDelete(props.book)}}> Delete </button>
-                                  </>
-                            :
-                            null
-                          }
+                     <button onClick={() => props.addItem(props.book)}>
+				             Add to cart
+			               </button>
+
+                      {props.book.id ?
+
+                        <>
+                          {loggedInUser.staff === true ?
+                            <>
+                              <br/>
+                              <br/>
+                              <button onClick={editFormToggle}>
+                                Edit
+                                </button>
+                              <button onClick={() => {
+                                props.handleDelete(props.book)
+                              }}>
+
+                                Delete
+                                </button>
+                            </>
+                          :
+                          null}
                         </>
                         :null
                     }
@@ -222,16 +223,20 @@ const Book = (props) => {
                                 return (
                                   <>
                                     <div className="review-card" key={review.id}>
-                                       <h5>User: {review.user_id}</h5>
+                                       <h5>User: {review.username}</h5>
                                        <h5>Review: </h5>
                                        <p>{review.review}</p>
-                                       <EditReview
-                                       handleUpdateReview={handleUpdateReview}
-                                       review={review}
-                                       />
-                                       <button onClick={() => {handleReviewDelete(review)}}>
-                                       Delete
-                                       </button>
+                                       {loggedInUser.id === review.user_id ?
+                                         <>
+                                           <EditReview
+                                           handleUpdateReview={handleUpdateReview}
+                                           review={review}
+                                           />
+                                           <button onClick={() => {handleReviewDelete(review)}}>
+                                           Delete
+                                           </button>
+                                         </>
+                                        : null}
                                     </div>
                                   </>
                                 )
