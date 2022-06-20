@@ -19,7 +19,6 @@ import ShowModal from './components/ShowModal'
 //Contexts
 import ProductContext from './contexts/ProductContext';
 import CartContext from './contexts/CartContext';
-import LoggedInUserContext from './contexts/LoggedInUserContext'
 
 function App() {
   //--- State:

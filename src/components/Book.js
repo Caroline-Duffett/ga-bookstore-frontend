@@ -181,7 +181,7 @@ const Book = (props) => {
 
                       {props.book.id ?
                         <>
-                          {props.book.id ?
+                          {loggedInUser.staff === true ?
                             <>
                               <br/>
                               <br/>
