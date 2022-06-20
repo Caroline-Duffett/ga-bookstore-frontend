@@ -20,13 +20,13 @@ const ShoppingCart = (props) => {
 
   return (
     <>
-    <div>
+    {/* <div className="cart-btn"> */}
     <button 
        onClick={props.cartToggle} 
-       className="search-btn">
-         Cart ({cart.length})
+       className="cart-btn">
+         &#x1F6D2; {cart.length}
          </button>
-    </div>
+    {/* </div> */}
        <> 
          {props.showCart ?
              <>

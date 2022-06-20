@@ -171,20 +171,13 @@ const Book = (props) => {
                       <h5>Genre: {props.book.genre}</h5>
                       <h5>Rating: {props.book.rating}</h5>
                       <br/>
-
-                      <h5>${book.price}</h5>
-                    <button onClick={() => props.addItem(props.book)}>
-			              Add to cart
-			              </button>
-                      {book.id ?
-
                       <h5>${props.book.price}</h5>
 
 
-                    <button onClick={() => props.addItem(props.book)}>
-				            Add to cart
-			              </button>
-
+                     <button onClick={() => props.addItem(props.book)}>
+				             Add to cart
+			               </button>
+                      
                       {props.book.id ?
 
                         <>
@@ -196,11 +189,6 @@ const Book = (props) => {
                                 Edit
                                 </button>
                               <button onClick={() => {
-
-                                props.handleDelete(book)
-                              }}
-                              >
-
                                 props.handleDelete(props.book)
                               }}>
 

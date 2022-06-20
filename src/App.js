@@ -185,15 +185,18 @@ function App() {
 
    return (
      <>
-      <ProductContext.Provider value={{ books, addItem, loggedInUser }}>
-      <CartContext.Provider value={{ cart, removeItem, cartToggle }}>
      <div className="wrapper">
+     <ProductContext.Provider value={{ books, addItem, loggedInUser }}>
+      <CartContext.Provider value={{ cart, removeItem, cartToggle }}>
        <div className="navigation">
-       <SearchBar
-       books={books}
-       searchToggle={searchToggle}
-       showSearch={showSearch}
-       />
+         <p className="logo">&#x212C; &#x2134; &#x2134;  &#x212A; &int;</p>
+        <ShoppingCart
+        signedIn={signedIn}
+        cartToggle={cartToggle}
+        showCart={showCart}
+        user={loggedInUser}
+        setCart={setCart}
+        />
         {loggedInUser.staff === true ?
        <Add
        handleCreate={handleCreate}
@@ -208,14 +211,20 @@ function App() {
        signedIn={signedIn}
        handleSignIn={handleSignIn}
        />
-       </div>
-       <ShoppingCart
-        signedIn={signedIn}
-        cartToggle={cartToggle}
-        showCart={showCart}
-        user={loggedInUser}
-        setCart={setCart}
-        />
+         <SearchBar
+       books={books}
+       searchToggle={searchToggle}
+       showSearch={showSearch}
+       />
+        </div>
+        <div className="search-container">
+        {/* <SearchBar
+       books={books}
+       searchToggle={searchToggle}
+       showSearch={showSearch}
+       /> */}
+        </div>
+      
        <BestSellers books={books}/>
        <OurFavorites books={books}/>
        <AllBooks
@@ -228,9 +237,9 @@ function App() {
        handleDelete={handleDelete}
        handleUpdate={handleUpdate}
        />
-     </div>
      </CartContext.Provider>
      </ProductContext.Provider>
+     </div>
      </>
    )
 }

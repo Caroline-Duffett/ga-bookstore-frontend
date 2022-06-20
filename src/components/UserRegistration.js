@@ -47,21 +47,21 @@ const UserRegistration = (props) => {
 
     return (
       <>
-        <button onClick={props.signInToggle} className="search-btn">Sign In</button>
+        <button onClick={props.signInToggle} className="sign-in-btn">Sign in</button>
         {props.showSignIn ?
           <>
             <div className="modal-wrapper" onClick={props.signInToggle}>
               <div className="create-acc-si-modal" onClick={e => e.stopPropagation()}>
                 <div className='create-acc-si-x-btn-div'>
                   <button className='create-acc-si-x-btn' onClick={props.signInToggle}>
-                  x
+                  &#x2715;
                   </button>
                 </div>
                 {login ?
                   <>
-                    <h3>Sign In</h3>
+                    <h3 className="modal-sign-in-header">Sign In</h3>
                     <div className="create-acc-si-div">
-                      <form onSubmit={handleSubmit}>
+                      <form className="sign-in-form-container" onSubmit={handleSubmit}>
                           <label htmlFor="username"> Username: </label>
                           <input type="text" name="username" onChange={handleChange} required/>
                           <br/>
@@ -77,7 +77,7 @@ const UserRegistration = (props) => {
                         </form>
                       </div>
                     <div className="account-toggle-btn">
-                      <button onClick={loginToggle}>Create Account</button>
+                      <button className="modal-sign-in-btn" onClick={loginToggle}>Create Account</button>
                     </div>
                   </>
                   :
@@ -111,7 +111,7 @@ const UserRegistration = (props) => {
                           <br/>
 
                           <div className='add-submit-btn-div'>
-                            <input type='submit'/>
+                            <input className="sign-in-submit-btn" type='submit'/>
                           </div>
                       </form>
                       <div className="account-toggle-btn">
