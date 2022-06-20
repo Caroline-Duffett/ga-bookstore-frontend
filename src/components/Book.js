@@ -147,11 +147,7 @@ const Book = (props) => {
             onClick={() => {setShow(true)}}
             />
             <ShowModal
-<<<<<<< HEAD
             title={props.book.title}
-=======
-            title={book.title}
->>>>>>> f403e89c3db9384f138f33e92d509d5f23b9d636
             onClose={() => {
             setShow(false)
             resetFalse()
@@ -160,11 +156,7 @@ const Book = (props) => {
               {showEditForm ?
                 <Edit
                 handleUpdate={props.handleUpdate}
-<<<<<<< HEAD
                 bookData={props.book}
-=======
-                book={book}
->>>>>>> f403e89c3db9384f138f33e92d509d5f23b9d636
                 editFormToggle={editFormToggle}
                 />
               :
@@ -226,11 +218,7 @@ const Book = (props) => {
                         {showAddReview ?
                           <AddReview
                           handleReviewCreate={handleReviewCreate}
-<<<<<<< HEAD
                           bookData={props.book}
-=======
-                          book={book}
->>>>>>> f403e89c3db9384f138f33e92d509d5f23b9d636
                           showAddReview={showAddReview}
                           addReviewToggle={addReviewToggle}
                           loggedInUser={loggedInUser}
