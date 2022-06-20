@@ -7,18 +7,22 @@ const SearchBar = (props) => {
 
   return (
     <>
-      <button onClick={props.searchToggle} className="search-btn">Search</button>
+      <button 
+      onClick={props.searchToggle} 
+      className="search-btn">
+         {/* &#x1F50D; */} Search
+        </button>
       {props.showSearch ?
         <>
           <div className="modal-wrapper"  onClick={props.searchToggle}>
             <div className="search-bar-modal" onClick={e => e.stopPropagation()}>
               <div className='search-bar-x-btn-div'>
                 <button className='search-bar-x-btn' onClick={props.searchToggle}>
-                x
+                &#x2715;
                 </button>
               </div>
               <div className="search-bar-div">
-                <input className="search-bar" placeholder="Search by Title, Author, Genre" onChange={event => setQuery(event.target.value)}/>
+                <input className="search-bar" placeholder="Search by title, author, or genre" onChange={event => setQuery(event.target.value)}/>
               </div>
               {query === "" ? null:
                 <div className="search-flexbox">
