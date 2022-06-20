@@ -4,9 +4,10 @@ import axios from 'axios'
 const AddReview = (props) => {
   //--- State:
   const [bookData, setBookData] = useState({...props.bookData})
-  let emptyReview = {review: '', user_id: 1, book_id: bookData.id} //user is hardcoded for testing
-  const [review, setReview] = useState(emptyReview)
+
   const [loggedInUser, setLoggedInUser] = useState(props.loggedInUser)
+  let emptyReview = {review: '', user_id: loggedInUser.id, book_id: bookData.id} //user is hardcoded for testing
+  const [review, setReview] = useState(emptyReview)
 
   //--- Functions:
   //registers a change in all input fields

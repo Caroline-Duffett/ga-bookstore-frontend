@@ -232,7 +232,7 @@ const Book = (props) => {
                                 return (
                                   <>
                                     <div className="review-card" key={review.id}>
-                                       <h5>User: {review.user_id}</h5>
+                                       <h5>User: {loggedInUser.username}</h5>
                                        <h5>Review: </h5>
                                        <p>{review.review}</p>
                                        <EditReview
