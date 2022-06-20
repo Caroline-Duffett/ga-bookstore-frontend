@@ -1,3 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Cardo:ital,wght@0,400;0,700;1,400&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500&family=Work+Sans:wght@400;600;800&display=swap');
+
+/* font-family: 'Ubuntu', sans-serif; */
+/* font-family: 'Cardo', serif; */
+
+body {
+  font-family: 'Cardo', serif;
+}
+
 .wrapper {
   display: grid;
   grid-template-columns: repeat(8 col, 1fr);
