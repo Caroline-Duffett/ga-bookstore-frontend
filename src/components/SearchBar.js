@@ -1,14 +1,17 @@
-import {useState} from 'react'
+import {useState, useContext} from 'react'
+import ProductContext from '../contexts/ProductContext';
+import Book from './Book.js'
 
 const SearchBar = (props) => {
 
   //--- State:
   const [query, setQuery] = useState("")
+  const { books, addItem, loggedInUser } = useContext(ProductContext);
 
   return (
     <>
-      <button 
-      onClick={props.searchToggle} 
+      <button
+      onClick={props.searchToggle}
       className="search-btn">
          {/* &#x1F50D; */} Search
         </button>
@@ -26,7 +29,7 @@ const SearchBar = (props) => {
               </div>
               {query === "" ? null:
                 <div className="search-flexbox">
-                  {props.books.filter(book => {
+                  {books.filter(book => {
                     if (query === '') {
                       return book
                     } else if (book.title.toLowerCase().includes(query.toLowerCase())) {
@@ -39,10 +42,13 @@ const SearchBar = (props) => {
                   }).map((book) => {
                     return(
                       <div className='book searchbook' key={book.id}>
-                        <img className="searchbook-img" src={book.cover_art} alt="book cover"/>
-                        <h4>Title: {book.title}</h4>
-                        <h5>Author: {book.author_name}</h5>
-                        <h5>Price: {book.price}</h5>
+                      <Book
+                      book={book}
+                      bookReviews={props.bookReviews}
+                      loggedInUser={loggedInUser}
+                      cartUpdate={props.cartUpdate}
+                      addItem={addItem}
+                      />
                       </div>
                     )
                   })}

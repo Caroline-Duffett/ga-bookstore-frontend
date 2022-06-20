@@ -229,7 +229,6 @@ function App() {
        loggedInUser={loggedInUser}
        />
          <SearchBar
-       books={books}
        searchToggle={searchToggle}
        showSearch={showSearch}
        />
