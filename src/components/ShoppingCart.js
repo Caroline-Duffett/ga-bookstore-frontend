@@ -6,6 +6,7 @@ import Item from './ShoppingCartItem';
 
 // Contexts
 import CartContext from '../contexts/CartContext';
+import ProductContext from '../contexts/ProductContext';
 
 const ShoppingCart = (props) => {
   const { cart, removeItem } = useContext(CartContext);
@@ -29,8 +30,6 @@ const ShoppingCart = (props) => {
       </div>
      <>
         {props.showCart ?
-          <>
-            {props.loggedInUser.username ?
               <>
                <div className="cart-modal-wrapper">
                  <div className="cart-modal">
@@ -53,7 +52,11 @@ const ShoppingCart = (props) => {
                         <div className="shopping-cart__checkout">
                           <p>Total: ${getCartTotal()}</p>
                           <button>
-                            Checkout
+                            {props.loggedInUser.username ?
+                              <>Checkout</>
+                            :
+                              <>Guest Checkout</>
+                            }
                           </button>
                         </div>
                     </div>
@@ -61,21 +64,6 @@ const ShoppingCart = (props) => {
                  </div>
                </div>
               </>
-             :
-               <>
-                 <div className="sign-in-modal-wrapper" onClick={props.cartToggle}>
-                   <div className="sign-in-modal" onClick={e => e.stopPropagation()}>
-                     <h2 className="sign-in-message">Please Sign In or Create an Account to view cart</h2>
-                     <div className='sign-in-x-btn-div'>
-                       <button className='sign-in-x-btn' onClick={props.cartToggle}>
-                       x
-                       </button>
-                     </div>
-                   </div>
-                 </div>
-               </>
-             }
-          </>
         :null}
       </>
     </>
