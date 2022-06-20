@@ -17,9 +17,13 @@ const AllBooks = (props) => {
     <>
       <h1>All Books</h1>
       <div className='all-books-flexbox'>
+<<<<<<< HEAD
         {books.map((book) => {
           // {console.log("AllBooks loggedInUser: ")}
           // {console.log(loggedInUser)}
+=======
+        {props.books.map((book) => {
+>>>>>>> f403e89c3db9384f138f33e92d509d5f23b9d636
           return(
 
             <Book

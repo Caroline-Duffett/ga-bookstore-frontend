@@ -28,8 +28,6 @@ const AddReview = (props) => {
         <>
           {props.showAddReview ?
             <>
-              // {console.log("AddReview loggedInUser: ")}
-              // {console.log(props.loggedInUser)}
               <h3>Leave a Review</h3>
               <div className="review-form-div">
                 <form onSubmit={handleSubmit}>
