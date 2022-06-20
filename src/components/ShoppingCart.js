@@ -21,19 +21,23 @@ const ShoppingCart = (props) => {
 
   return (
     <>
-      <div>
-        <button
-           onClick={props.cartToggle}
-           className="search-btn">
-             Cart ({cart.length})
+    {/* <div className="cart-btn"> */}
+    <button 
+       onClick={props.cartToggle} 
+       className="cart-btn">
+         &#x1F6D2; {cart.length}
          </button>
-      </div>
-     <>
-        {props.showCart ?
-              <>
-               <div className="cart-modal-wrapper">
-                 <div className="cart-modal">
-                    <div className='cart-modal-x-div'>
+    {/* </div> */}
+       <> 
+         {props.showCart ?
+             <>
+             {/* {console.log("ShoppingCart loggedInUser: ")}
+             {console.log(props.loggedInUser)}
+             {props.loggedInUser ? 
+               <> */}
+                 <div className="cart-modal-wrapper">
+                   <div className="cart-modal">
+                     <div className='cart-modal-x-div'> 
                        <button className='cart-x-btn' onClick={props.cartToggle}>
                        {/* <button className='cart-x-btn' onClick={props.onClose}> */}
                        x

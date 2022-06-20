@@ -173,13 +173,12 @@ const Book = (props) => {
                       <br/>
                       <h5>${props.book.price}</h5>
 
-
-
-<button onClick={() => props.addItem(props.book)}>
-				Add to cart
-			</button>
-
+                     <button onClick={() => props.addItem(props.book)}>
+				             Add to cart
+			               </button>
+                      
                       {props.book.id ?
+
                         <>
                           {loggedInUser.staff === true ?
                             <>
@@ -191,6 +190,7 @@ const Book = (props) => {
                               <button onClick={() => {
                                 props.handleDelete(props.book)
                               }}>
+
                                 Delete
                                 </button>
                             </>

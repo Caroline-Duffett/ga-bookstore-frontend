@@ -1,31 +1,113 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Cardo:ital,wght@0,400;0,700;1,400&display=swap'); */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap');
+
+/* font-family: 'DM Sans', sans-serif; */
+/* font-family: 'Cardo', serif; */
+
+body {
+  font-family: 'DM Sans', sans-serif;
+}
+
 .wrapper {
   display: grid;
-  grid-template-columns: repeat(8 col, 1fr);
+  grid-template-columns: repeat(6 col, 1fr);
   grid-template-rows: auto;
   grid-column-gap: 24px;
   grid-row-gap: 24px;
+  margin: 24px;
 
 }
+
+/* NAVIGATION */
+.navigation {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+}
+
+/* LOGO/BOOKS */
+p {
+  font-size: 56px;
+  text-align: center;
+  grid-column: 3 / span 4;
+}
+
+.search-btn {
+  font-size: 24px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  /* padding-right: 224px; */
+  margin-top: -180px;
+  text-align: right;
+  grid-column: 7;
+  /* grid-row: 2; */
+  background: none;
+  border:  none;
+  /* border-radius: 24px; */
+  cursor: pointer;
+  width: 100%;
+}
+
+.search-container {
+  text-align: right;
+  /* width: 100%; */
+}
+
+
+.sign-in-btn {
+  font-size: 24px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  grid-column: 1;
+  text-align: left;
+  /* float: left; */
+  margin-top: -180px;
+  /* padding-right: 800px; */
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.cart-btn {
+  font-size: 32px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  grid-column: 8;
+  text-align: right;
+  /* margin-top: -180px; */
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+
+
 
 /* .navigation */
 
 
 /*---------- Best sellers books and Our favorite books (Horiztonal scroll bars) ----------*/
 .scroll-flexbox {
-  background-color: lightgray;
+  /* background-color: lightgray; */
   display: flex;
   flex-direction: row;
-  overflow: scroll;
+  overflow: auto;
+  gap: 24px;
 }
 
+
 .book {
-  background-color: white;
-  margin: 15px;
-  width: 300px;
+  background-color: blue;
+  border: solid black .5px;
+  /* margin: 2px; */
+  width: 400px;
+  height: 400px;
+  text-align: center;
+  margin-bottom: 24px;
 }
 
 img {
-  width: 100px;
+  width: 200px;
 }
 
 h5, h4 {
@@ -37,7 +119,7 @@ h5, h4 {
 
 /*-------- All books flexbox (book cards are the same as horizontal scrollbar's)----------*/
 .all-books-flexbox {
-  background-color: lightgray;
+  /* background-color: lightgray; */
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
@@ -48,15 +130,18 @@ h5, h4 {
 
 /*------------------------------------- Search Bar ---------------------------------------*/
 .search-bar-modal {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
   background-color: white;
   position: absolute;
+  justify-content: center;
   width: 100vw;
-  height: 650px;
+  height: 100vh;
 }
 
 .searchbook {
   width: 200px;
-  margin: 25px 25px;
+  margin: 24px 24px;
 }
 
 .searchbook-img {
@@ -65,26 +150,46 @@ h5, h4 {
 
 .search-bar-div {
   text-align: center;
-  margin: 30px;
+  grid-column: 1 / span 6;
+  grid-row: 1;
+  margin: 48px;
 }
 
 .search-bar {
-  font-size: 25px;
-  width: 45%;
+  font-size: 24px;
+  width: 50%;
+  border-radius: 24px;
+  border: solid black .5px;
+  line-height: 32px;;
 }
 
 .search-flexbox {
-  background-color: lightgray;
+  /* background-color: none;
+  border: none; */
+  /* background-color: lightgray; */
   display: flex;
   flex-direction: row;
-  overflow: scroll;
-  width: 80%;
-  margin: 20px auto;
-  margin-bottom: 50px;
+  overflow: auto;
+  width: 100%;
+  margin: 32px;
+  margin-bottom: 32px;
 }
 
 .search-bar-x-btn-div {
   text-align: right;
+  margin-top: 32px;
+  grid-column: 6;
+  grid-row: 1;
+}
+
+.search-bar-x-btn {
+  margin-right: 64px;
+  background: none;
+  border: none;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  cursor: pointer;
 }
 
 .modal-wrapper {
@@ -92,11 +197,11 @@ h5, h4 {
   height: 100vh;
   /* From https://css.glass */
   background: rgba(0, 0, 0, 0.41);
-  border-radius: 16px;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(9.7px);
-  -webkit-backdrop-filter: blur(9.7px);
-  border: 1px solid rgba(0, 0, 0, 0.56);
+  /* border-radius: 16px; */
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(1px);
+  -webkit-backdrop-filter: blur(1px);
+  /* border: 1px solid rgba(0, 0, 0, 0.56); */
   position: fixed;
 }
 /*----------------------------------------------------------------------------------------*/
@@ -178,9 +283,8 @@ h5, h4 {
   background-color: white;
   position: absolute;
   width: 600px;
-  height: 200px;
-  margin: 5% 30%;
-  border-radius: 10px;
+  height: 600px;
+  /* margin: 5% 30%; */
   text-align: center;
 }
 
@@ -189,7 +293,7 @@ h5, h4 {
 }
 
 .sign-in-x-btn-div {
-  margin-top: 75px;
+  margin-top: 24px;
   text-align: center;
 }
 
@@ -200,8 +304,8 @@ h5, h4 {
   background: rgba(0, 0, 0, 0.41);
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(9.7px);
-  -webkit-backdrop-filter: blur(9.7px);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
   border: 1px solid rgba(0, 0, 0, 0.56);
   position: fixed;
 }
@@ -214,26 +318,78 @@ h5, h4 {
   background-color: white;
   position: absolute;
   width: 400px;
-  height: 400px;
+  height: 364px;
   margin: 5% 40%;
-  border-radius: 10px;
-  text-align: center;
+  align-items: center;
+}
+
+.modal-sign-in-header {
+  margin: 24px;
+  margin-top: -48px;
+  margin-bottom: 48px;
 }
 
 .create-acc-si-div {
-  text-align: right;
-  width: 275px;
+  text-align: center;
+  width: 280px;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 24px;
 }
 
+.sign-in-form-container form {
+  align-items: center;
+  justify-content: center; 
+  text-align: center;
+  font-family: 'DM Sans', sans-serif;
+}
 .create-acc-si-x-btn-div {
   text-align: right;
+  background: none;
+  border: none;
+}
+
+.create-acc-si-x-btn {
+  background: none;
+  border: none;
+  font-size: 24px;
+  margin: 24px;
+  cursor: pointer;
 }
 
 .account-toggle-btn {
   text-align: center;
-  margin-top: 30px;
+  margin-top: 16px;
+}
+
+input {
+  border: black solid .5px;
+}
+
+input[type=submit] {
+  width: 100%;
+  background: blue;
+  border: none;
+  line-height: 32px;
+  border-radius: 16px;
+  color: white;
+  margin-top: 24px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  cursor: pointer;
+
+}
+
+.modal-sign-in-btn {
+  border: none;
+  background: none;
+  line-height: 32px;
+  border-radius: 16px;
+  margin-top: 16px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  cursor: pointer;
+
 }
 
 /*----------------------------------------------------------------------------------------*/
@@ -294,7 +450,6 @@ h5, h4 {
   font-size: 16px;
   width: 100%;
   height: 32px;
-  /* margin-top: 8px; */
   margin-bottom: 16px;
   cursor: pointer;
 }
@@ -320,12 +475,13 @@ h5, h4 {
 
 /*--------------------------------- Reviews Flexbox --------------------------------------*/
 .all-reviews-flexbox {
-  background-color: lightgray;
+  /* background-color: lightgray; */
   display: flex;
   flex-direction: column;
   height: 250px;
   overflow: scroll
 }
+
 
 
 .review-card {
@@ -336,14 +492,14 @@ h5, h4 {
 
 .rate > input {
   display: none;
-}
+} */
 
 rate > label {
   float: right;
-}
+} */
 
 /* FULL STAR */
-.rate > label:before {
+/* .rate > label:before {
   display: inline-block;
   font-size: 1rem;
   padding: .3rem .2rem;
@@ -351,7 +507,7 @@ rate > label {
   cursor: pointer;
   content: "\2605";
   color: grey;
-}
+} */
 
 /* EMPTY STAR */
 /* .rate .empty:before {
@@ -364,8 +520,8 @@ rate > label {
 } */
 
 /* CLICK + HOVER COLOR */
-input:checked ~ label,
-lable:hover, label:hover ~ label {color: rgb(162, 255, 0);}
+/* input:checked ~ label,
+lable:hover, label:hover ~ label {color: rgb(162, 255, 0);} */
 
 /* HOVER HIGHLIGHTS */
 /* input:checked + label:hover, input:checked ~

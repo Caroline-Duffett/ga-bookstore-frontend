@@ -10,7 +10,7 @@ const SearchBar = (props) => {
       <button 
       onClick={props.searchToggle} 
       className="search-btn">
-        Search
+         {/* &#x1F50D; */} Search
         </button>
       {props.showSearch ?
         <>
@@ -18,7 +18,7 @@ const SearchBar = (props) => {
             <div className="search-bar-modal" onClick={e => e.stopPropagation()}>
               <div className='search-bar-x-btn-div'>
                 <button className='search-bar-x-btn' onClick={props.searchToggle}>
-                x
+                &#x2715;
                 </button>
               </div>
               <div className="search-bar-div">
