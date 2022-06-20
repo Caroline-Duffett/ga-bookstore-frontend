@@ -1,4 +1,4 @@
-#E-commerce Book Store Site
+# E-commerce Book Store Site
 This is the frontend to our unit 4 project. It was made by Steven Laff, Tricia Gray, and Caroline Duffett.
 
 ## Explanation of the technologies used
