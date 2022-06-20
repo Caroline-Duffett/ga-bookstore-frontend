@@ -143,17 +143,17 @@ const Book = (props) => {
             <img src={book.cover_art} alt="book cover"
             onClick={() => {setShow(true)}}
             />
-            <ShowModal 
-            title={book.title} 
+            <ShowModal
+            title={book.title}
             onClose={() => {
             setShow(false)
             resetFalse()
             }} show={show}
               >
               {showEditForm ?
-                <Edit 
-                handleUpdate={props.handleUpdate} 
-                book={book} 
+                <Edit
+                handleUpdate={props.handleUpdate}
+                book={book}
                 editFormToggle={editFormToggle}
                 />
               :
@@ -169,6 +169,7 @@ const Book = (props) => {
                       <h5>Rating: {book.rating}</h5>
                       <br/>
                       <h5>${book.price}</h5>
+
 
 
 <button onClick={() => props.addItem(props.book)}>
@@ -212,11 +213,11 @@ const Book = (props) => {
                     {showReviews ?
                       <>
                         {showAddReview ?
-                          <AddReview 
-                          handleReviewCreate={handleReviewCreate} 
-                          book={book} 
-                          showAddReview={showAddReview} 
-                          addReviewToggle={addReviewToggle} 
+                          <AddReview
+                          handleReviewCreate={handleReviewCreate}
+                          book={book}
+                          showAddReview={showAddReview}
+                          addReviewToggle={addReviewToggle}
                           loggedInUser={loggedInUser}
                           />
                         :
@@ -231,8 +232,8 @@ const Book = (props) => {
                                        <h5>User: {review.user_id}</h5>
                                        <h5>Review: </h5>
                                        <p>{review.review}</p>
-                                       <EditReview 
-                                       handleUpdateReview={handleUpdateReview} 
+                                       <EditReview
+                                       handleUpdateReview={handleUpdateReview}
                                        review={review}
                                        />
                                        <button onClick={() => {handleReviewDelete(review)}}>
@@ -246,12 +247,12 @@ const Book = (props) => {
                             </div>
                           </>
                         }
-                        <button onClick={addReviewToggle}> 
-                        {showAddReview ? 
-                        <>cancel</> 
-                        : 
-                        <>Add Review</> 
-                        } 
+                        <button onClick={addReviewToggle}>
+                        {showAddReview ?
+                        <>cancel</>
+                        :
+                        <>Add Review</>
+                        }
                         </button>
                       </>
                     :

@@ -19,6 +19,7 @@ import ShowModal from './components/ShowModal'
 //Contexts
 import ProductContext from './contexts/ProductContext';
 import CartContext from './contexts/CartContext';
+import LoggedInUserContext from './contexts/LoggedInUserContext'
 
 function App() {
   //--- State:
@@ -39,6 +40,14 @@ function App() {
   //old states for cart
   // const [cartTotal, setCartTotal] = useState([])
   // const [totalPrice, settotalPrice] = useState([])
+
+
+
+
+
+
+
+
 
   // Testing route to get user accounts
   const getUserAccounts = () => {
