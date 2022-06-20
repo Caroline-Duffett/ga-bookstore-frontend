@@ -143,9 +143,18 @@ const Book = (props) => {
   return (
         <>
           <div className='book' key={props.book.id}>
+            <div id="book-hover">
             <img src={props.book.cover_art} alt="book cover"
             onClick={() => {setShow(true)}}
             />
+            <div className="book-title">
+              <h3>{props.book.title}</h3>
+            {/* </div>
+            <div className="book-price"> */}
+            <h2>${props.book.price}</h2>
+            </div>
+            </div>
+            
             <ShowModal
             title={props.book.title}
             onClose={() => {
