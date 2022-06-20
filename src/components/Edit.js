@@ -2,9 +2,7 @@ import {useState} from 'react'
 
 const Edit = (props) => {
   //--- State:
-
   const [book, setBook] = useState({...props.bookData})
-
 
   //--- Functions:
   //registers a change in all input fields
@@ -17,7 +15,6 @@ const Edit = (props) => {
     event.preventDefault()
     props.handleUpdate(book)
   }
-
 
   return (
     <>

@@ -7,7 +7,11 @@ const SearchBar = (props) => {
 
   return (
     <>
-      <button onClick={props.searchToggle} className="search-btn">Search</button>
+      <button 
+      onClick={props.searchToggle} 
+      className="search-btn">
+        Search
+        </button>
       {props.showSearch ?
         <>
           <div className="modal-wrapper"  onClick={props.searchToggle}>
