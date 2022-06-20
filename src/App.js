@@ -40,6 +40,14 @@ function App() {
   // const [cartTotal, setCartTotal] = useState([])
   // const [totalPrice, settotalPrice] = useState([])
 
+
+
+
+
+
+
+
+
   // Testing route to get user accounts
   const getUserAccounts = () => {
       axios.get('https://ga-bookstore-backend.herokuapp.com/api/useraccount')
@@ -196,6 +204,7 @@ function App() {
         showCart={showCart}
         user={loggedInUser}
         setCart={setCart}
+        loggedInUser={loggedInUser}
         />
         {loggedInUser.staff === true ?
        <Add
@@ -224,7 +233,8 @@ function App() {
        showSearch={showSearch}
        /> */}
         {/* </div> */}
-      
+{/*       
+        </div> */}
        <BestSellers books={books}/>
        <OurFavorites books={books}/>
        <AllBooks

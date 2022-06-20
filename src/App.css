@@ -528,15 +528,21 @@ input[type=submit]:hover {
   overflow: scroll
 }
 
-/* .rate > input {
-  display: none;
-} */
 
+
+.review-card {
+  background-color: white;
+  margin: 3px 5px;
+}
 /*----------------------------------------------------------------------------------------*/
 
-/* rate > label {
+/* .rate > input {
+  display: none;
+} 
+
+rate > label {
   float: right;
-} */
+}  */
 
 /* FULL STAR */
 /* .rate > label:before {
