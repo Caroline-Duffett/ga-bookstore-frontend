@@ -3,7 +3,7 @@
 // //                                This version of code goes through reviews table
 // //=================================================================================================================//
 
-import {useState, useReducer} from 'react'
+import {useState, useReducer, useContext} from 'react'
 import Edit from './Edit.js'
 import ShowModal from './ShowModal'
 import ShoppingCart from './ShoppingCart'
@@ -13,6 +13,8 @@ import axios from 'axios'
 // import ReviewsModal from './ReviewsModal'
 import AddReview from './AddReview'
 import EditReview from './EditReview'
+
+import ProductContext from '../contexts/ProductContext';
 
 function cartReducer(state, action) {
   switch(action.type) {
@@ -43,6 +45,7 @@ const Book = (props) => {
   const [showEditForm, setShowEditForm] = useState(false)
   const [cart, setCart] = useReducer(cartReducer, [])
   // const [book, setBook] = useState(props.book)
+  const { books, addItem, loggedInUser } = useContext(ProductContext);
 
   //--- Functions:
   //Create Route for reviews
@@ -140,7 +143,7 @@ const Book = (props) => {
   return (
         <>
           <div className='book' key={props.book.id}>
-            <img src={book.cover_art} alt="book cover"
+            <img src={props.book.cover_art} alt="book cover"
             onClick={() => {setShow(true)}}
             />
             <ShowModal
@@ -175,9 +178,9 @@ const Book = (props) => {
 				Add to cart
 			</button>
 
-                      {book.id ?
+                      {props.book.id ?
                         <>
-                          {book.id ?
+                          {props.book.id ?
                             <>
                               <br/>
                               <br/>
@@ -204,7 +207,7 @@ const Book = (props) => {
                         bookInfoOrReviewsToggle()
                         setShowAddReview(false)
                         console.log("Book logged in user: ");
-                        console.log(loggedInUser);
+
                       }}
                       >
                       {showBookInfo ? <>See Reviews</> : <>Book Details</>}
