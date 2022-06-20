@@ -226,13 +226,15 @@ function App() {
        showSearch={showSearch}
        />
         </div>
-        <div className="search-container">
+        {/* <div className="search-container"> */}
         {/* <SearchBar
        books={books}
        searchToggle={searchToggle}
        showSearch={showSearch}
        /> */}
-        </div>
+        {/* </div> */}
+{/*       
+        </div> */}
        <BestSellers books={books}/>
        <OurFavorites books={books}/>
        <AllBooks
