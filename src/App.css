@@ -382,7 +382,7 @@ img {
 
 .sign-in-form-container form {
   align-items: center;
-  justify-content: center; 
+  justify-content: center;
   text-align: center;
   font-family: 'DM Sans', sans-serif;
 }
@@ -580,6 +580,9 @@ input[type=submit]:hover {
 rate > label {
   float: right;
 }  */
+
+}
+
 
 /* FULL STAR */
 /* .rate > label:before {
