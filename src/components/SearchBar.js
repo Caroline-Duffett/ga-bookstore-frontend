@@ -41,11 +41,8 @@ const SearchBar = (props) => {
                     }
                   }).map((book) => {
                     return(
-<<<<<<< HEAD
-                      <div className='book searchbook' key={book.id}>
-=======
+
                       <div key={book.id}>
->>>>>>> 46baaa43c25e96b5fbcefcfdfd6f2927aec34334
                       <Book
                       book={book}
                       bookReviews={props.bookReviews}

@@ -143,7 +143,6 @@ const Book = (props) => {
   return (
         <>
           <div className='book' key={props.book.id}>
-=======
             <div id="book-hover">
             <img src={props.book.cover_art} alt="book cover"
             onClick={() => {setShow(true)}}
