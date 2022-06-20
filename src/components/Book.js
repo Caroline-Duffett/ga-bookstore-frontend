@@ -37,7 +37,7 @@ function cartReducer(state, action) {
 
 const Book = (props) => {
   //--- State:
-  const [bookData, setBookData] = useState({...props.book})
+  const [bookData, setBookData] = useState(props.book)
   const [show, setShow] = useState(false)
   const [showReviews, setShowReviews] = useState(false)
   const [reviews, setReviews] = useState([])
@@ -46,7 +46,7 @@ const Book = (props) => {
   const [loggedInUser, setLoggedInUser] = useState(props.loggedInUser)
   const [showEditForm, setShowEditForm] = useState(false)
   const [cart, setCart] = useReducer(cartReducer, [])
-  const [book, setBook] = useState({...props.book})
+  const [book, setBook] = useState(props.book)
 
   //--- Functions:
   //Create Route for reviews
@@ -146,36 +146,36 @@ const Book = (props) => {
 
   return (
         <>
-          <div className='book' key={bookData.id}>
-            <img src={bookData.cover_art} alt="book cover"
+          <div className='book' key={props.book.id}>
+            <img src={book.cover_art} alt="book cover"
             onClick={() => {setShow(true)}}
             />
-            <ShowModal 
-            title={bookData.title} 
+            <ShowModal
+            title={props.book.title}
             onClose={() => {
             setShow(false)
             resetFalse()
             }} show={show}
               >
               {showEditForm ?
-                <Edit 
-                handleUpdate={props.handleUpdate} 
-                bookData={bookData} 
+                <Edit
+                handleUpdate={props.handleUpdate}
+                bookData={props.book}
                 editFormToggle={editFormToggle}
                 />
               :
                 <>
                   {showBookInfo ?
                     <>
-                      <img src={bookData.cover_art} alt="book cover"/>
-                      <h5>Author:{bookData.author_name}</h5>
-                      <h5>Publisher: {bookData.publisher}</h5>
-                      <h5>Publication Date: {bookData.publication_date}</h5>
-                      <h5>Pages: {bookData.page_count}</h5>
-                      <h5>Genre: {bookData.genre}</h5>
-                      <h5>Rating: {bookData.rating}</h5>
+                      <img src={props.book.cover_art} alt="book cover"/>
+                      <h5>Author:{props.book.author_name}</h5>
+                      <h5>Publisher: {props.book.publisher}</h5>
+                      <h5>Publication Date: {props.book.publication_date}</h5>
+                      <h5>Pages: {props.book.page_count}</h5>
+                      <h5>Genre: {props.book.genre}</h5>
+                      <h5>Rating: {props.book.rating}</h5>
                       <br/>
-                      <h5>${bookData.price}</h5>
+                      <h5>${props.book.price}</h5>
 
                       {/* <button onClick={() => {props.addToCart(book)}}>
                         Add
@@ -185,9 +185,9 @@ const Book = (props) => {
 				Add to cart
 			</button>
 
-                      {bookData.id ?
+                      {book.id ?
                         <>
-                          {bookData.id ?
+                          {book.id ?
                             <>
                               <br/>
                               <br/>
@@ -195,7 +195,7 @@ const Book = (props) => {
                                 Edit
                                 </button>
                               <button onClick={() => {
-                                props.handleDelete(bookData)
+                                props.handleDelete(props.book)
                               }}>
                                 Delete
                                 </button>
@@ -222,11 +222,11 @@ const Book = (props) => {
                     {showReviews ?
                       <>
                         {showAddReview ?
-                          <AddReview 
-                          handleReviewCreate={handleReviewCreate} 
-                          bookData={bookData} 
-                          showAddReview={showAddReview} 
-                          addReviewToggle={addReviewToggle} 
+                          <AddReview
+                          handleReviewCreate={handleReviewCreate}
+                          bookData={props.book}
+                          showAddReview={showAddReview}
+                          addReviewToggle={addReviewToggle}
                           loggedInUser={loggedInUser}
                           />
                         :
@@ -234,15 +234,15 @@ const Book = (props) => {
                             <h3>Reviews</h3>
                             <div className='all-reviews-flexbox'>
                             {reviews.map((review) => {
-                              if (review.book_id === bookData.id) {
+                              if (review.book_id === props.book.id) {
                                 return (
                                   <>
                                     <div className="review-card" key={review.id}>
                                        <h5>User: {review.user_id}</h5>
                                        <h5>Review: </h5>
                                        <p>{review.review}</p>
-                                       <EditReview 
-                                       handleUpdateReview={handleUpdateReview} 
+                                       <EditReview
+                                       handleUpdateReview={handleUpdateReview}
                                        review={review}
                                        />
                                        <button onClick={() => {handleReviewDelete(review)}}>
@@ -256,12 +256,12 @@ const Book = (props) => {
                             </div>
                           </>
                         }
-                        <button onClick={addReviewToggle}> 
-                        {showAddReview ? 
-                        <>cancel</> 
-                        : 
-                        <>Add Review</> 
-                        } 
+                        <button onClick={addReviewToggle}>
+                        {showAddReview ?
+                        <>cancel</>
+                        :
+                        <>Add Review</>
+                        }
                         </button>
                       </>
                     :

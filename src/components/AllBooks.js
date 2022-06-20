@@ -7,7 +7,7 @@ import ProductContext from '../contexts/ProductContext';
 const AllBooks = (props) => {
 
   //--- State:
-  const [books, setBooks] = useState([...props.books])
+  // const [books, setBooks] = useState([...props.books])
   const [bookReviews, setBookReviews] = useState(["blank"])
   const [getBooks, setGetBooks] = useState(props.getBooks)
   const [loggedInUser, setLoggedInUser] = useState(props.loggedInUser)
@@ -18,13 +18,11 @@ const AllBooks = (props) => {
     <>
       <h1>All Books</h1>
       <div className='all-books-flexbox'>
-        {props.books.map((book) => {
+        {books.map((book) => {
           // {console.log("AllBooks loggedInUser: ")}
           // {console.log(loggedInUser)}
           return(
-<<<<<<< HEAD
 
-=======
             <Book
             key={book.id}
             book={book}
@@ -39,7 +37,7 @@ const AllBooks = (props) => {
             cartUpdate={props.cartUpdate}
             addItem={addItem}
             />
->>>>>>> a82ed02d31fa44495b617b3d56d01220690e94c9
+
           )
         })}
       </div>

@@ -261,7 +261,7 @@ function App() {
    return (
      <>
 
-<ProductContext.Provider value={{ books, addItem }}>
+<ProductContext.Provider value={{ books, addItem, loggedInUser }}>
       <CardContext.Provider value={{ cart, removeItem }}>
 
      <div className="wrapper">
@@ -303,8 +303,6 @@ function App() {
         <BestSellers books={books}/>
         <OurFavorites books={books}/>
         <AllBooks
-           books={books}
-           //  addToCart={addToCart}
            bookReviews={bookReviews}
            origin={'allbooks'}
            getBooks={getBooks}
