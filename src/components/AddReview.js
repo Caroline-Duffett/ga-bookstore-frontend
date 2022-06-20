@@ -6,7 +6,7 @@ const AddReview = (props) => {
   const [bookData, setBookData] = useState({...props.bookData})
 
   const [loggedInUser, setLoggedInUser] = useState(props.loggedInUser)
-  let emptyReview = {review: '', user_id: loggedInUser.id, book_id: bookData.id} //user is hardcoded for testing
+  let emptyReview = {review: '', user_id: loggedInUser.id, username: loggedInUser.username, book_id: bookData.id} //user is hardcoded for testing
   const [review, setReview] = useState(emptyReview)
 
   //--- Functions:
