@@ -339,7 +339,7 @@ h5, h4 {
 
 .sign-in-form-container form {
   align-items: center;
-  justify-content: center; 
+  justify-content: center;
   text-align: center;
   font-family: 'DM Sans', sans-serif;
 }
@@ -492,11 +492,11 @@ input[type=submit] {
 
 .rate > input {
   display: none;
-} */
+}
 
 rate > label {
   float: right;
-} */
+} 
 
 /* FULL STAR */
 /* .rate > label:before {
