@@ -41,6 +41,7 @@ const UserRegistration = (props) => {
             props.handleSignIn(userObj)
             // console.log(userObj);
         } else {
+            console.log(newUser);
             props.handleRegistration(newUser)
         }
     }
