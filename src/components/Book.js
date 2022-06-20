@@ -173,7 +173,6 @@ const Book = (props) => {
                       <br/>
                       <h5>${props.book.price}</h5>
 
-
                      <button onClick={() => props.addItem(props.book)}>
 				             Add to cart
 			               </button>
@@ -181,7 +180,7 @@ const Book = (props) => {
                       {props.book.id ?
 
                         <>
-                          {props.book.id ?
+                          {loggedInUser.staff === true ?
                             <>
                               <br/>
                               <br/>
@@ -233,7 +232,7 @@ const Book = (props) => {
                                 return (
                                   <>
                                     <div className="review-card" key={review.id}>
-                                       <h5>User: {review.user_id}</h5>
+                                       <h5>User: {loggedInUser.username}</h5>
                                        <h5>Review: </h5>
                                        <p>{review.review}</p>
                                        <EditReview

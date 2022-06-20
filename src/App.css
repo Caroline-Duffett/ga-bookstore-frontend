@@ -482,13 +482,19 @@ input[type=submit] {
   overflow: scroll
 }
 
-/* .rate > input {
+
+
+.review-card {
+  background-color: white;
+  margin: 3px 5px;
+}
+/*----------------------------------------------------------------------------------------*/
+
+.rate > input {
   display: none;
 } */
 
-/*----------------------------------------------------------------------------------------*/
-
-/* rate > label {
+rate > label {
   float: right;
 } */
 
