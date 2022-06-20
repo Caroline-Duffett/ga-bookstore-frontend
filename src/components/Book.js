@@ -143,9 +143,6 @@ const Book = (props) => {
   return (
         <>
           <div className='book' key={props.book.id}>
-<<<<<<< HEAD
-            <img src={props.book.cover_art} alt="book cover" onClick={() => {setShow(true)}} />
-            <ShowModal title={props.book.title} onClose={() => {setShow(false); resetFalse()}} show={show}>
 =======
             <div id="book-hover">
             <img src={props.book.cover_art} alt="book cover"
@@ -158,7 +155,7 @@ const Book = (props) => {
             <h2>${props.book.price}</h2>
             </div>
             </div>
-            
+
             <ShowModal
             title={props.book.title}
             onClose={() => {
@@ -166,7 +163,6 @@ const Book = (props) => {
             resetFalse()
             }} show={show}
               >
->>>>>>> f9e4ee8d34b40b10de9b8192b283543a19d8bbbf
               {showEditForm ?
                 <Edit handleUpdate={props.handleUpdate} bookData={props.book} editFormToggle={editFormToggle}/>
               :

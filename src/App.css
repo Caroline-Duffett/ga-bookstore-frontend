@@ -172,14 +172,14 @@ img {
   height: 100vh;
 }
 
-.searchbook {
+/* .searchbook {
   width: 200px;
   margin: 24px 24px;
 }
 
 .searchbook-img {
   width: 200px;
-}
+} */
 
 .search-bar-div {
   text-align: center;
@@ -581,7 +581,7 @@ rate > label {
   float: right;
 }  */
 
-
+/* } */
 
 
 /* FULL STAR */
