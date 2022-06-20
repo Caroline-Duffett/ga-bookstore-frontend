@@ -1,68 +1,184 @@
-import {useState} from 'react'
+import React, {useState, useContext } from 'react';
 import Book from './Book'
 
+// Components
+import Item from './ShoppingCartItem';
+
+// Contexts
+import CartContext from '../contexts/CartContext';
 
 const ShoppingCart = (props) => {
+  const { cart, removeItem } = useContext(CartContext);
 
-  //State:
-    const [userCartBooks, setUserCartBooks] = useState([])
-    
-    // const [user, setUser] = useState('')
-    // const [cart, setCart] = useState([])
+  const getCartTotal = () => {
+    return cart
+      .reduce((acc, value) => {
+        return acc + value.price;
+      }, 0)
+      .toFixed(2);
+  };
 
   return (
     <>
-      <button onClick={props.cartToggle} className="search-btn">Cart{userCartBooks.length})</button>
-      <>
-        {props.showCart ?
-          <>
-            {console.log("ShoppingCart loggedInUser: ")}
-            {console.log(props.loggedInUser)}
-            {props.loggedInUser.username ?
-              <>
-                <div className="cart-modal-wrapper">
-                  <div className="cart-modal">
-                    <div className='cart-modal-x-div'>
-                      <button className='cart-x-btn' onClick={props.cartToggle}>
-                      x
+    <div>
+    <button 
+       onClick={props.cartToggle} 
+       className="search-btn">
+         Cart ({cart.length})
+         </button>
+    </div>
+       <> 
+         {props.showCart ?
+             <>
+             {/* {console.log("ShoppingCart loggedInUser: ")}
+             {console.log(props.loggedInUser)}
+             {props.loggedInUser ? 
+               <> */}
+                 <div className="cart-modal-wrapper">
+                   <div className="cart-modal">
+                     <div className='cart-modal-x-div'>
+                       <button className='cart-x-btn' onClick={props.cartToggle}>
+                       {/* <button className='cart-x-btn' onClick={props.onClose}> */}
+                       x
+                       </button>
+                       </div>
+                     <h3>Your Cart</h3>
+                     <div className="cart-books-flexbox">
+                     <div className="shopping-cart">
+                      {cart.map(book => (
+                        <Item 
+                        key={book.id} 
+                        {...book} 
+                        removeItem={removeItem} 
+                        />
+                      ))}
+                    <div className="shopping-cart__checkout">
+                    <p>Total: ${getCartTotal()}</p>
+                    <button>
+                      Checkout
                       </button>
-                    </div>
-                    <h3>Your Cart</h3>
-                    <div className="cart-books-flexbox">
-                      {userCartBooks.map((cartBook) => {
-                        return (
-                          <div className="cartBook">
-                            <h3>{cartBook}</h3>
-                          </div>
-                        )
-                      })}
-                    </div>
-                  </div>
-                </div>
-              </>
-              :
-              <>
-                <div className="sign-in-modal-wrapper" onClick={props.cartToggle}>
-                  <div className="sign-in-modal" onClick={e => e.stopPropagation()}>
-                    <h2 className="sign-in-message">Please Sign In or Create an Account to view cart</h2>
-                    <div className='sign-in-x-btn-div'>
-                      <button className='sign-in-x-btn' onClick={props.cartToggle}>
-                      x
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </>
-            }
-        </>
-        :
-        null}
-      </>
-    </>
-  )
-}
+                        </div>
+                      </div>
+                     </div>
+                   </div>
+                 </div>
+               {/* </>
+               :
+               <>
+                 <div className="sign-in-modal-wrapper" onClick={props.cartToggle}>
+                   <div className="sign-in-modal" onClick={e => e.stopPropagation()}>
+                     <h2 className="sign-in-message">Please Sign In or Create an Account to view cart</h2>
+                     <div className='sign-in-x-btn-div'> 
+                       <button className='sign-in-x-btn' onClick={props.cartToggle}>
+                       x
+                       </button> 
+                     </div> 
+                   </div>
+                 </div>
+               </>
+             }
+         </>
+         :
+         null} */}
+         </>
+         :
+         null}
+     </>
+     </>
+   )
+ }
 
-export default ShoppingCart
+export default ShoppingCart;
+
+// //=================================================================================================================//
+// //                                      CODE BEFORE COMBINING CART TOGGLE (Please keep for ref)
+// //=================================================================================================================//
+
+//     <div className="shopping-cart">
+//       {cart.map(book => (
+//         <Item key={book.id} {...book} removeItem={removeItem} />
+//       ))}
+
+//       <div className="shopping-cart__checkout">
+//         <p>Total: ${getCartTotal()}</p>
+//         <button>Checkout</button>
+//       </div>
+//     </div>
+//   );
+// };
+
+// //=================================================================================================================//
+// //                                       OLD SHOPPING CART CODE
+// //=================================================================================================================//
+
+
+
+
+// import {useState} from 'react'
+// import Book from './Book'
+
+
+// const ShoppingCart = (props) => {
+
+//   //State:
+//     const [userCartBooks, setUserCartBooks] = useState([])
+    
+//     // const [user, setUser] = useState('')
+//     // const [cart, setCart] = useState([])
+
+//   return (
+//     <>
+//       <button onClick={props.cartToggle} className="search-btn">Cart{userCartBooks.length})</button>
+//       <>
+//         {props.showCart ?
+//           <>
+//             {console.log("ShoppingCart loggedInUser: ")}
+//             {console.log(props.loggedInUser)}
+//             {props.loggedInUser.username ?
+//               <>
+//                 <div className="cart-modal-wrapper">
+//                   <div className="cart-modal">
+//                     <div className='cart-modal-x-div'>
+//                       <button className='cart-x-btn' onClick={props.cartToggle}>
+//                       x
+//                       </button>
+//                     </div>
+//                     <h3>Your Cart</h3>
+//                     <div className="cart-books-flexbox">
+//                       {userCartBooks.map((cartBook) => {
+//                         return (
+//                           <div className="cartBook">
+//                             <h3>{cartBook}</h3>
+//                           </div>
+//                         )
+//                       })}
+//                     </div>
+//                   </div>
+//                 </div>
+//               </>
+//               :
+//               <>
+//                 <div className="sign-in-modal-wrapper" onClick={props.cartToggle}>
+//                   <div className="sign-in-modal" onClick={e => e.stopPropagation()}>
+//                     <h2 className="sign-in-message">Please Sign In or Create an Account to view cart</h2>
+//                     <div className='sign-in-x-btn-div'>
+//                       <button className='sign-in-x-btn' onClick={props.cartToggle}>
+//                       x
+//                       </button>
+//                     </div>
+//                   </div>
+//                 </div>
+//               </>
+//             }
+//         </>
+//         :
+//         null}
+//       </>
+//     </>
+//   )
+// }
+
+// export default ShoppingCart
 
 // CODE GRAVEYARD ------------------------------------>
 
