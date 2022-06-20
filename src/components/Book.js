@@ -169,12 +169,9 @@ const Book = (props) => {
                       <h5>Rating: {book.rating}</h5>
                       <br/>
                       <h5>${book.price}</h5>
-
-
-<button onClick={() => props.addItem(props.book)}>
-				Add to cart
-			</button>
-
+                    <button onClick={() => props.addItem(props.book)}>
+			              Add to cart
+			              </button>
                       {book.id ?
                         <>
                           {book.id ?
@@ -186,7 +183,8 @@ const Book = (props) => {
                                 </button>
                               <button onClick={() => {
                                 props.handleDelete(book)
-                              }}>
+                              }}
+                              >
                                 Delete
                                 </button>
                             </>
