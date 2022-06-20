@@ -10,10 +10,10 @@ For the backend we used Django (for more information checkout our Django backed 
 To start, we decided on a topic and planned out wireframes for how we wanted our app to look. Then we set up the backend. Once that was working, we started on the frontend. We got basic CRUD routes for the books working. Then we started making some of the popup modals. Once we got out MVP features done, we started adding in some of our stretch goals. We created a functioning cart, user authentication, and added the second model for reviews. CSS was the last thing we did.
 
 ## Links
-  GitHub frontend: https://github.com/Caroline-Duffett/ga-bookstore-frontend
-  GitHub backend: https://github.com/LaffSteven/ga-project-4-backend
-  Heroku app frontend: https://ga-bookstore-frontend.herokuapp.com/
-  Heroku app backend: https://ga-bookstore-backend.herokuapp.com/
+  - GitHub frontend: https://github.com/Caroline-Duffett/ga-bookstore-frontend
+  - GitHub backend: https://github.com/LaffSteven/ga-project-4-backend
+  - Heroku app frontend: https://ga-bookstore-frontend.herokuapp.com/
+  - Heroku app backend: https://ga-bookstore-backend.herokuapp.com/
 
 ## Installation Instructions
 To view the app, all the user needs to do is open it. If they would like to create an account, they can.
