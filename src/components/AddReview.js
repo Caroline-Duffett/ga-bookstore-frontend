@@ -26,17 +26,17 @@ const AddReview = (props) => {
     <div className="leave-review-div">
       {props.showAddReview ?
         <>
-          {props.showAddReview ?
+          {props.loggedInUser.id ?
             <>
               <h3>Leave a Review</h3>
               <div className="review-form-div">
                 <form onSubmit={handleSubmit}>
                   <label htmlFor='review'>Review: </label>
                   <br/>
-                  <textarea 
-                  name='review' 
-                  value={review.review} 
-                  onChange={handleChange} 
+                  <textarea
+                  name='review'
+                  value={review.review}
+                  onChange={handleChange}
                   required
                   >
                   </textarea>
