@@ -47,7 +47,7 @@ const UserRegistration = (props) => {
 
     return (
       <>
-        <button onClick={props.signInToggle} className="sign-in-btn">Sign in</button>
+        <button onClick={props.signInToggle} className="sign-in-btn">Account</button>
         {props.showSignIn ?
           <>
             <div className="modal-wrapper" onClick={props.signInToggle}>
@@ -59,25 +59,28 @@ const UserRegistration = (props) => {
                 </div>
                 {login ?
                   <>
-                    <h3 className="modal-sign-in-header">Sign In</h3>
+                    <h3 className="modal-sign-in-header">Account</h3>
                     <div className="create-acc-si-div">
                       <form className="sign-in-form-container" onSubmit={handleSubmit}>
                           <label htmlFor="username"> Username: </label>
-                          <input type="text" name="username" onChange={handleChange} required/>
+                          <input className="account-input" type="text" name="username" onChange={handleChange} required/>
                           <br/>
                           <br/>
 
                           <label htmlFor="password"> Password: </label>
-                          <input type="password" name="password" onChange={handleChange} required/>
+                          <input className="account-input" type="password" name="password" onChange={handleChange} required/>
                           <br/>
                           <br/>
                           <div className='add-submit-btn-div'>
-                            <input type='submit'/>
+                            <input type='submit' value="Sign in"/>
                           </div>
                         </form>
                       </div>
                     <div className="account-toggle-btn">
                       <button className="modal-sign-in-btn" onClick={loginToggle}>Create Account</button>
+                    </div>
+                    <div className="account-toggle-btn">
+                      <button className="modal-sign-out-btn">Sign out</button>
                     </div>
                   </>
                   :

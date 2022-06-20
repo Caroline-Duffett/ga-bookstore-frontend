@@ -38,8 +38,8 @@ p {
   font-weight: 700;
   /* padding-right: 224px; */
   margin-top: -180px;
-  text-align: right;
-  grid-column: 7;
+  text-align: left;
+  grid-column: 1;
   /* grid-row: 2; */
   background: none;
   border:  none;
@@ -58,8 +58,8 @@ p {
   font-size: 24px;
   font-family: 'DM Sans', sans-serif;
   font-weight: 700;
-  grid-column: 1;
-  text-align: left;
+  grid-column: 7;
+  text-align: right;
   /* float: left; */
   margin-top: -180px;
   /* padding-right: 800px; */
@@ -80,10 +80,6 @@ p {
   cursor: pointer;
 }
 
-
-
-
-/* .navigation */
 
 
 /*---------- Best sellers books and Our favorite books (Horiztonal scroll bars) ----------*/
@@ -152,16 +148,21 @@ h5, h4 {
   text-align: center;
   grid-column: 1 / span 6;
   grid-row: 1;
-  margin: 48px;
+  margin: 108px;
 }
 
 .search-bar {
-  font-size: 24px;
+  font-size: 16px;
+  font-weight: 400;
   width: 50%;
   border-radius: 24px;
-  border: solid black .5px;
-  line-height: 32px;;
+  color: rgb(29, 66, 253);
+  border: solid rgb(29, 66, 253) 1px;
+  /* line-height: 16px; */
+  padding: 8px;
+  font-family: 'DM Sans', sans-serif;
 }
+
 
 .search-flexbox {
   /* background-color: none;
@@ -177,15 +178,16 @@ h5, h4 {
 
 .search-bar-x-btn-div {
   text-align: right;
-  margin-top: 32px;
+  margin-top: 40px;
   grid-column: 6;
   grid-row: 1;
 }
 
 .search-bar-x-btn {
-  margin-right: 64px;
+  margin-right: 72px;
   background: none;
   border: none;
+  color: rgb(29, 66, 253);
   font-family: 'DM Sans', sans-serif;
   font-size: 24px;
   font-weight: 700;
@@ -195,10 +197,14 @@ h5, h4 {
 .modal-wrapper {
   width: 100vw;
   height: 100vh;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
   /* From https://css.glass */
-  background: rgba(0, 0, 0, 0.41);
+  background-color: rgba(66, 66, 66, 0.74);
   /* border-radius: 16px; */
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  /* box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1); */
   backdrop-filter: blur(1px);
   -webkit-backdrop-filter: blur(1px);
   /* border: 1px solid rgba(0, 0, 0, 0.56); */
@@ -301,7 +307,7 @@ h5, h4 {
   width: 100vw;
   height: 100vh;
   /* From https://css.glass */
-  background: rgba(0, 0, 0, 0.41);
+  background-color: rgba(66, 66, 66, 0.74);
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(2px);
@@ -318,8 +324,8 @@ h5, h4 {
   background-color: white;
   position: absolute;
   width: 400px;
-  height: 364px;
-  margin: 5% 40%;
+  height: 400px;
+  margin: 8% 40%;
   align-items: center;
 }
 
@@ -351,6 +357,7 @@ h5, h4 {
 
 .create-acc-si-x-btn {
   background: none;
+  color: rgb(29, 66, 253);
   border: none;
   font-size: 24px;
   margin: 24px;
@@ -362,22 +369,47 @@ h5, h4 {
   margin-top: 16px;
 }
 
+.account-input {
+  background-color: white;
+  font-weight: 500;
+}
+
 input {
   border: black solid .5px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;  
 }
 
 input[type=submit] {
   width: 100%;
-  background: blue;
-  border: none;
+  background: none;
+  /* background: rgb(29, 66, 253); */
+  border: solid 1.5px rgb(29, 66, 253);
+  /* border: none; */
+  line-height: 32px;
+  border-radius: 16px;
+  color: rgb(29, 66, 253);
+  margin-top: 16px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+input[type=submit]:hover {
+  width: 100%;
+  background: none;
+  background: rgb(29, 66, 253);
+  /* border: solid 1px rgb(29, 66, 253); */
+  /* border: none; */
   line-height: 32px;
   border-radius: 16px;
   color: white;
-  margin-top: 24px;
+  margin-top: 16px;
   font-family: 'DM Sans', sans-serif;
-  font-weight: 700;
+  font-weight: 500;
   cursor: pointer;
-
+  font-size: 16px;
 }
 
 .modal-sign-in-btn {
@@ -387,7 +419,21 @@ input[type=submit] {
   border-radius: 16px;
   margin-top: 16px;
   font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
   font-weight: 500;
+  cursor: pointer;
+
+}
+
+.modal-sign-out-btn {
+  border: none;
+  background: none;
+  font-size: 16px;
+  line-height: 32px;
+  border-radius: 12px;
+  /* margin-top: 16px; */
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
   cursor: pointer;
 
 }

@@ -22,7 +22,7 @@ const SearchBar = (props) => {
                 </button>
               </div>
               <div className="search-bar-div">
-                <input className="search-bar" placeholder="Search by Title, Author, Genre" onChange={event => setQuery(event.target.value)}/>
+                <input className="search-bar" placeholder="Search by title, author, or genre" onChange={event => setQuery(event.target.value)}/>
               </div>
               {query === "" ? null:
                 <div className="search-flexbox">
