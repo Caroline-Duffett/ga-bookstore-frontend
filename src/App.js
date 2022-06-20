@@ -138,7 +138,7 @@ function App() {
 
   //Create New User Registration
   const handleRegistration = (newUser) => {
-      console.log(`handleRegistration ${newUser.username}`);
+      console.log(newUser);
       axios.post('https://ga-bookstore-backend.herokuapp.com/api/useraccount', newUser)
       .then((response) => {
           console.log(response);

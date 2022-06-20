@@ -143,22 +143,10 @@ const Book = (props) => {
   return (
         <>
           <div className='book' key={props.book.id}>
-            <img src={props.book.cover_art} alt="book cover"
-            onClick={() => {setShow(true)}}
-            />
-            <ShowModal
-            title={props.book.title}
-            onClose={() => {
-            setShow(false)
-            resetFalse()
-            }} show={show}
-              >
+            <img src={props.book.cover_art} alt="book cover" onClick={() => {setShow(true)}} />
+            <ShowModal title={props.book.title} onClose={() => {setShow(false); resetFalse()}} show={show}>
               {showEditForm ?
-                <Edit
-                handleUpdate={props.handleUpdate}
-                bookData={props.book}
-                editFormToggle={editFormToggle}
-                />
+                <Edit handleUpdate={props.handleUpdate} bookData={props.book} editFormToggle={editFormToggle}/>
               :
                 <>
                   {showBookInfo ?
@@ -172,47 +160,36 @@ const Book = (props) => {
                       <h5>Rating: {props.book.rating}</h5>
                       <br/>
 
-                      <h5>${book.price}</h5>
-                    <button onClick={() => props.addItem(props.book)}>
-			              Add to cart
-			              </button>
-                      {book.id ?
-
                       <h5>${props.book.price}</h5>
-
-
-                    <button onClick={() => props.addItem(props.book)}>
+                      <button onClick={() => props.addItem(props.book)}> Add to cart </button>
+                      {props.book.id ?
+                        <>
+                          <h5>${props.book.price}</h5>
+                          <button onClick={() => props.addItem(props.book)}>
 				            Add to cart
 			              </button>
 
-                      {props.book.id ?
-
-                        <>
                           {props.book.id ?
-                            <>
-                              <br/>
-                              <br/>
-                              <button onClick={editFormToggle}>
-                                Edit
-                                </button>
-                              <button onClick={() => {
-
-                                props.handleDelete(book)
-                              }}
-                              >
-
-                                props.handleDelete(props.book)
-                              }}>
-
-                                Delete
-                                </button>
-                            </>
-                          :
-                          null}
+                              props.book.id ?
+                                  <>
+                                  <br/>
+                                  <br/>
+                                  <button onClick={editFormToggle}> Edit </button>
+                                  </>
+                                :
+                                  <>
+                                  <button onClick={() => {props.handleDelete(props.book)}}> Delete </button>
+                                  </>
+                            :
+                            null
+                          }
                         </>
-                        :null}
+                        :null
+                    }
                     </>
-                  : null}
+                  :
+                  null
+                }
                   <div className="all-reviews-div">
                     <button
                       onClick={() => {

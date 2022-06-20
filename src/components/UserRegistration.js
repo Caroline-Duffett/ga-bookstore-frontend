@@ -10,6 +10,7 @@ const UserRegistration = (props) => {
         first_name: "",
         last_name: "",
         staff: false
+        // cart: null
     }
 
     const [newUser, setNewUser] = useState(emptyUser)
@@ -41,7 +42,6 @@ const UserRegistration = (props) => {
             props.handleSignIn(userObj)
             // console.log(userObj);
         } else {
-            console.log(newUser);
             props.handleRegistration(newUser)
         }
     }
