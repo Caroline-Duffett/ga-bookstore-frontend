@@ -30,3 +30,4 @@ const BestSellers = (props) => {
 }
 
 export default BestSellers
+

@@ -39,7 +39,7 @@ const SearchBar = (props) => {
                   }).map((book) => {
                     return(
                       <div className='book searchbook' key={book.id}>
-                        <img className="searchbook-img" src={book.cover_art} alt="book cover"/>
+                        <img className="searchbook-img" src={book.cover_art} alt="book cover" />
                         <h4>Title: {book.title}</h4>
                         <h5>Author: {book.author_name}</h5>
                         <h5>Price: {book.price}</h5>
