@@ -3,7 +3,7 @@
 // //                                This version of code goes through reviews table
 // //=================================================================================================================//
 
-import {useState, useReducer} from 'react'
+import {useState, useReducer, useContext} from 'react'
 import Edit from './Edit.js'
 import ShowModal from './ShowModal'
 import ShoppingCart from './ShoppingCart'
@@ -13,6 +13,8 @@ import axios from 'axios'
 // import ReviewsModal from './ReviewsModal'
 import AddReview from './AddReview'
 import EditReview from './EditReview'
+
+import ProductContext from '../contexts/ProductContext';
 
 function cartReducer(state, action) {
   switch(action.type) {
@@ -39,10 +41,11 @@ const Book = (props) => {
   const [reviews, setReviews] = useState([])
   const [showBookInfo, setShowBookInfo] = useState(true)
   const [showAddReview, setShowAddReview] = useState(false)
-  const [loggedInUser, setLoggedInUser] = useState(props.loggedInUser)
+  // const [loggedInUser, setLoggedInUser] = useState(props.loggedInUser)
   const [showEditForm, setShowEditForm] = useState(false)
   const [cart, setCart] = useReducer(cartReducer, [])
-  const [book, setBook] = useState({...props.book})
+  // const [book, setBook] = useState(props.book)
+  const { books, addItem, loggedInUser } = useContext(ProductContext);
 
   //--- Functions:
   //Create Route for reviews
@@ -139,42 +142,53 @@ const Book = (props) => {
 
   return (
         <>
-          <div className='book' key={book.id}>
-            <img src={book.cover_art} alt="book cover"
+          <div className='book' key={props.book.id}>
+            <img src={props.book.cover_art} alt="book cover"
             onClick={() => {setShow(true)}}
             />
-            <ShowModal 
-            title={book.title} 
+            <ShowModal
+            title={props.book.title}
             onClose={() => {
             setShow(false)
             resetFalse()
             }} show={show}
               >
               {showEditForm ?
-                <Edit 
-                handleUpdate={props.handleUpdate} 
-                book={book} 
+                <Edit
+                handleUpdate={props.handleUpdate}
+                bookData={props.book}
                 editFormToggle={editFormToggle}
                 />
               :
                 <>
                   {showBookInfo ?
                     <>
-                      <img src={book.cover_art} alt="book cover"/>
-                      <h5>Author:{book.author_name}</h5>
-                      <h5>Publisher: {book.publisher}</h5>
-                      <h5>Publication Date: {book.publication_date}</h5>
-                      <h5>Pages: {book.page_count}</h5>
-                      <h5>Genre: {book.genre}</h5>
-                      <h5>Rating: {book.rating}</h5>
+                      <img src={props.book.cover_art} alt="book cover"/>
+                      <h5>Author:{props.book.author_name}</h5>
+                      <h5>Publisher: {props.book.publisher}</h5>
+                      <h5>Publication Date: {props.book.publication_date}</h5>
+                      <h5>Pages: {props.book.page_count}</h5>
+                      <h5>Genre: {props.book.genre}</h5>
+                      <h5>Rating: {props.book.rating}</h5>
                       <br/>
+
                       <h5>${book.price}</h5>
                     <button onClick={() => props.addItem(props.book)}>
 			              Add to cart
 			              </button>
                       {book.id ?
+
+                      <h5>${props.book.price}</h5>
+
+
+                    <button onClick={() => props.addItem(props.book)}>
+				            Add to cart
+			              </button>
+
+                      {props.book.id ?
+
                         <>
-                          {book.id ?
+                          {props.book.id ?
                             <>
                               <br/>
                               <br/>
@@ -182,9 +196,14 @@ const Book = (props) => {
                                 Edit
                                 </button>
                               <button onClick={() => {
+
                                 props.handleDelete(book)
                               }}
                               >
+
+                                props.handleDelete(props.book)
+                              }}>
+
                                 Delete
                                 </button>
                             </>
@@ -202,7 +221,7 @@ const Book = (props) => {
                         bookInfoOrReviewsToggle()
                         setShowAddReview(false)
                         console.log("Book logged in user: ");
-                        console.log(loggedInUser);
+
                       }}
                       >
                       {showBookInfo ? <>See Reviews</> : <>Book Details</>}
@@ -210,11 +229,11 @@ const Book = (props) => {
                     {showReviews ?
                       <>
                         {showAddReview ?
-                          <AddReview 
-                          handleReviewCreate={handleReviewCreate} 
-                          book={book} 
-                          showAddReview={showAddReview} 
-                          addReviewToggle={addReviewToggle} 
+                          <AddReview
+                          handleReviewCreate={handleReviewCreate}
+                          bookData={props.book}
+                          showAddReview={showAddReview}
+                          addReviewToggle={addReviewToggle}
                           loggedInUser={loggedInUser}
                           />
                         :
@@ -222,15 +241,15 @@ const Book = (props) => {
                             <h3>Reviews</h3>
                             <div className='all-reviews-flexbox'>
                             {reviews.map((review) => {
-                              if (review.book_id === book.id) {
+                              if (review.book_id === props.book.id) {
                                 return (
                                   <>
                                     <div className="review-card" key={review.id}>
                                        <h5>User: {review.user_id}</h5>
                                        <h5>Review: </h5>
                                        <p>{review.review}</p>
-                                       <EditReview 
-                                       handleUpdateReview={handleUpdateReview} 
+                                       <EditReview
+                                       handleUpdateReview={handleUpdateReview}
                                        review={review}
                                        />
                                        <button onClick={() => {handleReviewDelete(review)}}>
@@ -244,12 +263,12 @@ const Book = (props) => {
                             </div>
                           </>
                         }
-                        <button onClick={addReviewToggle}> 
-                        {showAddReview ? 
-                        <>cancel</> 
-                        : 
-                        <>Add Review</> 
-                        } 
+                        <button onClick={addReviewToggle}>
+                        {showAddReview ?
+                        <>cancel</>
+                        :
+                        <>Add Review</>
+                        }
                         </button>
                       </>
                     :

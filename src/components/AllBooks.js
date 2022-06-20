@@ -7,6 +7,7 @@ import ProductContext from '../contexts/ProductContext';
 const AllBooks = (props) => {
 
   //--- State:
+  // const [books, setBooks] = useState([...props.books])
   const [bookReviews, setBookReviews] = useState(["blank"])
   const [getBooks, setGetBooks] = useState(props.getBooks)
   const [loggedInUser, setLoggedInUser] = useState(props.loggedInUser)
@@ -16,10 +17,11 @@ const AllBooks = (props) => {
     <>
       <h1>All Books</h1>
       <div className='all-books-flexbox'>
-        {props.books.map((book) => {
+        {books.map((book) => {
           // {console.log("AllBooks loggedInUser: ")}
           // {console.log(loggedInUser)}
           return(
+
             <Book
             key={book.id}
             book={book}
@@ -35,6 +37,7 @@ const AllBooks = (props) => {
             cartUpdate={props.cartUpdate}
             addItem={addItem}
             />
+
           )
         })}
       </div>
@@ -50,6 +53,23 @@ export default AllBooks
 //==============================================================================//
 //                                Grave Yard
 //==============================================================================//
+
+// <div key={book.id}>
+//   <Book
+//       book={book}
+//       section={'allbooks'}
+//       addToCart={props.addToCart}
+//       selectBook={props.selectBook}
+//       bookReviews={props.bookReviews}
+//       getBooks={getBooks}
+//       loggedInUser={loggedInUser}
+//       handleDelete={props.handleDelete}
+//       handleUpdate={props.handleUpdate}
+//       cartUpdate={props.cartUpdate}
+//   />
+// </div>
+
+
 //----------------------------------------- Displays Taken Out for Index Page --//
   // <h5>Publisher: {book.publisher}</h5>
   // <h5>Publication date: {book.publication_date}</h5>

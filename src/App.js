@@ -185,47 +185,47 @@ function App() {
 
    return (
      <>
-      <ProductContext.Provider value={{ books, addItem }}>
+      <ProductContext.Provider value={{ books, addItem, loggedInUser }}>
       <CartContext.Provider value={{ cart, removeItem, cartToggle }}>
      <div className="wrapper">
        <div className="navigation">
-       <SearchBar 
-       books={books}  
-       searchToggle={searchToggle} 
-       showSearch={showSearch} 
+       <SearchBar
+       books={books}
+       searchToggle={searchToggle}
+       showSearch={showSearch}
        />
         {loggedInUser.staff === true ?
-       <Add 
-       handleCreate={handleCreate} 
-       addFormToggle={addFormToggle} 
+       <Add
+       handleCreate={handleCreate}
+       addFormToggle={addFormToggle}
        showAddForm={showAddForm}
        />
           : null}
-       <UserRegistration 
-       handleRegistration={handleRegistration} 
-       signInToggle={signInToggle} 
-       showSignIn={showSignIn} 
-       signedIn={signedIn} 
+       <UserRegistration
+       handleRegistration={handleRegistration}
+       signInToggle={signInToggle}
+       showSignIn={showSignIn}
+       signedIn={signedIn}
        handleSignIn={handleSignIn}
        />
        </div>
-       <ShoppingCart 
-        signedIn={signedIn} 
-        cartToggle={cartToggle} 
-        showCart={showCart} 
+       <ShoppingCart
+        signedIn={signedIn}
+        cartToggle={cartToggle}
+        showCart={showCart}
         user={loggedInUser}
         setCart={setCart}
         />
        <BestSellers books={books}/>
        <OurFavorites books={books}/>
-       <AllBooks 
-       books={books} 
-      //  addToCart={addToCart} 
-       bookReviews={bookReviews} 
-       origin={'allbooks'} 
-       getBooks={getBooks} 
-       loggedInUser={loggedInUser} 
-       handleDelete={handleDelete} 
+       <AllBooks
+       books={books}
+      //  addToCart={addToCart}
+       bookReviews={bookReviews}
+       origin={'allbooks'}
+       getBooks={getBooks}
+       loggedInUser={loggedInUser}
+       handleDelete={handleDelete}
        handleUpdate={handleUpdate}
        />
      </div>
@@ -292,4 +292,3 @@ export default App;
   //     getCart(loggedInUser.id)
   //   })
   // }
-
