@@ -1,3 +1,15 @@
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(8 col, 1fr);
+  grid-template-rows: auto;
+  grid-column-gap: 24px;
+  grid-row-gap: 24px;
+
+}
+
+/* .navigation */
+
+
 /*---------- Best sellers books and Our favorite books (Horiztonal scroll bars) ----------*/
 .scroll-flexbox {
   background-color: lightgray;
@@ -13,7 +25,7 @@
 }
 
 img {
-  width: 300px;
+  width: 100px;
 }
 
 h5, h4 {
@@ -38,17 +50,17 @@ h5, h4 {
 .search-bar-modal {
   background-color: white;
   position: absolute;
-  width: 99vw;
+  width: 100vw;
   height: 650px;
 }
 
 .searchbook {
-  width: 150px;
+  width: 200px;
   margin: 25px 25px;
 }
 
 .searchbook-img {
-  width: 150px;
+  width: 200px;
 }
 
 .search-bar-div {
@@ -88,3 +100,271 @@ h5, h4 {
   position: fixed;
 }
 /*----------------------------------------------------------------------------------------*/
+
+
+
+/*-------------------------------------- Add Form ----------------------------------------*/
+/*Note: modal wrapper is same as Search Bar's*/
+.add-book-modal {
+  background-color: white;
+  position: absolute;
+  width: 350px;
+  height: 600px;
+  margin: 5% 40%;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.add-book-x-btn-div {
+  text-align: right;
+}
+
+.add-submit-btn-div {
+  text-align: center;
+}
+
+.Add-form-div {
+  text-align: right;
+  width: 275px;
+  margin-left: auto;
+  margin-right: auto;
+}
+/*----------------------------------------------------------------------------------------*/
+
+
+
+/*----------------------------------- Shopping Cart --------------------------------------*/
+.cart-modal {
+  background-color: white;
+  position: absolute;
+  width: 400px;
+  height: 100vh;
+  right: 0;
+  text-align: center;
+}
+
+.cart-modal-x-div {
+  text-align: left;
+}
+
+.cart-modal-wrapper {
+  width: 400px;
+  right: 0;
+  height: 100vh;
+  /* From https://css.glass */
+
+  position: fixed;
+}
+
+.cart-books-flexbox {
+  background-color: lightgrey;
+  display: flex;
+  flex-direction: column;
+  width: 370px;
+  margin: auto;
+}
+
+.cartBook {
+  background-color: white;
+  text-align: left;
+  margin: 3px;
+}
+/*----------------------------------------------------------------------------------------*/
+
+
+
+/*---------------------------------- Sign In Message --------------------------------------*/
+.sign-in-modal {
+  background-color: white;
+  position: absolute;
+  width: 600px;
+  height: 200px;
+  margin: 5% 30%;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.sign-in-message {
+  margin-top: 45px;
+}
+
+.sign-in-x-btn-div {
+  margin-top: 75px;
+  text-align: center;
+}
+
+.sign-in-modal-wrapper {
+  width: 100vw;
+  height: 100vh;
+  /* From https://css.glass */
+  background: rgba(0, 0, 0, 0.41);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(9.7px);
+  -webkit-backdrop-filter: blur(9.7px);
+  border: 1px solid rgba(0, 0, 0, 0.56);
+  position: fixed;
+}
+/*----------------------------------------------------------------------------------------*/
+
+
+
+/*-------------------------- Sign In / Create Account Modal ------------------------------*/
+.create-acc-si-modal {
+  background-color: white;
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  margin: 5% 40%;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.create-acc-si-div {
+  text-align: right;
+  width: 275px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.create-acc-si-x-btn-div {
+  text-align: right;
+}
+
+.account-toggle-btn {
+  text-align: center;
+  margin-top: 30px;
+}
+
+/*----------------------------------------------------------------------------------------*/
+
+
+
+/* MODAL */
+.modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(66, 66, 66, 0.74);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  width: 500px;
+  background-color: white;
+  height: 500px;
+}
+
+.modal-header, .modal-footer {
+  padding: 16px;
+
+}
+
+.modal-title {
+  margin: 0;
+  font-size: 24px;
+}
+
+.modal-body {
+  padding: 8px;
+  border-top: 1px solid #eee;
+  margin: 0 24px;
+}
+
+.modal-button {
+  font-family: 'Work Sans', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  background: none;
+  border: none;
+  float: right;
+  cursor: pointer;
+}
+
+.add-button {
+  background: black;
+  border: none;
+  color: white;
+  font-family: 'Work Sans', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  width: 100%;
+  height: 32px;
+  /* margin-top: 8px; */
+  margin-bottom: 16px;
+  cursor: pointer;
+}
+
+.input-add {
+  background: none;
+  border: .5px solid black;
+  border-right: none;
+  border-top: none;
+  border-left: none;
+  margin-bottom: px;
+  width: 100%;
+  border-radius: none;
+}
+
+/*---------------------------------- Star rating --------------------------------------*/
+
+/* .rate {
+  display: inline-block;
+  border: 0; */
+
+
+
+/*--------------------------------- Reviews Flexbox --------------------------------------*/
+.all-reviews-flexbox {
+  background-color: lightgray;
+  display: flex;
+  flex-direction: column;
+  height: 250px;
+  overflow: scroll
+}
+
+.rate > input {
+  display: none;
+}
+
+/*----------------------------------------------------------------------------------------*/
+
+rate > label {
+  float: right;
+}
+
+/* FULL STAR */
+.rate > label:before {
+  display: inline-block;
+  font-size: 1rem;
+  padding: .3rem .2rem;
+  margin: 0;
+  cursor: pointer;
+  content: "\2605";
+  color: grey;
+}
+
+/* EMPTY STAR */
+/* .rate .empty:before {
+  display: inline-block;
+  font-size: 1rem;
+  padding: .3rem .2rem;
+  margin: 0;
+  cursor: pointer;
+  content: "\2606";
+} */
+
+/* CLICK + HOVER COLOR */
+input:checked ~ label,
+lable:hover, label:hover ~ label {color: rgb(162, 255, 0);}
+
+/* HOVER HIGHLIGHTS */
+/* input:checked + label:hover, input:checked ~
+label:hover,
+input:checked ~ label:hover ~ label,
+label:hover ~ input:checked ~ label
+{color: blue;} */

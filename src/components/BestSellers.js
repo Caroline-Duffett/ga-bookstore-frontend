@@ -1,34 +1,25 @@
-import {useState} from 'react'
-import Edit from './Edit'
+import {useState, useContext} from 'react'
+import Book from './Book'
+import ProductContext from '../contexts/ProductContext';
 
 
 const BestSellers = (props) => {
-  //States
-  const [user, setUser] = useState('admin') //temp., just for testing. Waiting for user auth to be finished
-
+  const { books, addItem } = useContext(ProductContext);
+  const [book, setBook] = useState({...props.book})
 
   return (
     <>
-      <h1 className="best-sellers-heading">Best Sellers</h1>
+    <h1 className="best-sellers-heading">Best Sellers</h1>
       <div className='scroll-flexbox'>
         {props.books.map((book) => {
             return(
               <>
-              {book.id === 36 || book.id === 35 || book.id === 34 || book.id === 33 || book.id === 37 || book.id === 38 ?
-              <div className='book' key={book.id}>
-                <img src={book.cover_art} alt="book cover"/>
-                <h4>Title: {book.title}</h4>
-                <h5>Author: {book.author_name}</h5>
-                <h5>Price: {book.price}</h5>
-                {user === 'admin' ?
-                  <>
-                    <Edit handleUpdate={props.handleUpdate} book={book}/>
-                    <button onClick={() => {props.handleDelete(book)}}>
-                    X
-                    </button>
-                  </>
-                  : null}
-             </div>
+              {book.id === 36 || book.id === 35 || book.id === 34 || book.id === 33 || book.id === 37 || book.id === 38 || book.id === 40 || book.id === 41 || book.id === 42 || book.id === 43 || book.id === 44 ?
+              <Book 
+              book={book} 
+              section={"bestsellers"}
+              addItem={addItem}
+              />  
              : null}
              </>
            )
