@@ -4,9 +4,10 @@ import axios from 'axios'
 const AddReview = (props) => {
   //--- State:
   const [bookData, setBookData] = useState({...props.bookData})
-  let emptyReview = {review: '', user_id: 1, book_id: bookData.id} //user is hardcoded for testing
-  const [review, setReview] = useState(emptyReview)
+
   const [loggedInUser, setLoggedInUser] = useState(props.loggedInUser)
+  let emptyReview = {review: '', user_id: loggedInUser.id, username: loggedInUser.username, book_id: bookData.id} //user is hardcoded for testing
+  const [review, setReview] = useState(emptyReview)
 
   //--- Functions:
   //registers a change in all input fields
@@ -28,8 +29,6 @@ const AddReview = (props) => {
         <>
           {props.loggedInUser.id ?
             <>
-              // {console.log("AddReview loggedInUser: ")}
-              // {console.log(props.loggedInUser)}
               <h3>Leave a Review</h3>
               <div className="review-form-div">
                 <form onSubmit={handleSubmit}>
