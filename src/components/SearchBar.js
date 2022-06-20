@@ -41,7 +41,7 @@ const SearchBar = (props) => {
                     }
                   }).map((book) => {
                     return(
-                      <div className='book searchbook' key={book.id}>
+                      <div key={book.id}>
                       <Book
                       book={book}
                       bookReviews={props.bookReviews}
