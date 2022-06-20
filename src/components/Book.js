@@ -143,22 +143,10 @@ const Book = (props) => {
   return (
         <>
           <div className='book' key={props.book.id}>
-            <img src={props.book.cover_art} alt="book cover"
-            onClick={() => {setShow(true)}}
-            />
-            <ShowModal
-            title={props.book.title}
-            onClose={() => {
-            setShow(false)
-            resetFalse()
-            }} show={show}
-              >
+            <img src={props.book.cover_art} alt="book cover" onClick={() => {setShow(true)}} />
+            <ShowModal title={props.book.title} onClose={() => {setShow(false); resetFalse()}} show={show}>
               {showEditForm ?
-                <Edit
-                handleUpdate={props.handleUpdate}
-                bookData={props.book}
-                editFormToggle={editFormToggle}
-                />
+                <Edit handleUpdate={props.handleUpdate} bookData={props.book} editFormToggle={editFormToggle}/>
               :
                 <>
                   {showBookInfo ?
@@ -197,9 +185,12 @@ const Book = (props) => {
                           :
                           null}
                         </>
-                        :null}
+                        :null
+                    }
                     </>
-                  : null}
+                  :
+                  null
+                }
                   <div className="all-reviews-div">
                     <button
                       onClick={() => {

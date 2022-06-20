@@ -10,6 +10,7 @@ const UserRegistration = (props) => {
         first_name: "",
         last_name: "",
         staff: false
+        // cart: null
     }
 
     const [newUser, setNewUser] = useState(emptyUser)
