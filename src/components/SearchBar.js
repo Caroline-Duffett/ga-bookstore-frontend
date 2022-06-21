@@ -41,6 +41,7 @@ const SearchBar = (props) => {
                     }
                   }).map((book) => {
                     return(
+
                       <div key={book.id}>
                       <Book
                       book={book}
