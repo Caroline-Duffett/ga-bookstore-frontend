@@ -16,7 +16,7 @@ To start, we decided on a topic and planned out wireframes for how we wanted our
   - Heroku app backend: https://ga-bookstore-backend.herokuapp.com/
 
 ## Installation Instructions
-To view the app, all the user needs to do is open it. If they would like to create an account, they can.
+To view the app, all the user needs to do is open it. If they would like to create an account they can.
 
 ## Unsolved Problems
 We would have liked to make the cart persisting and able to add a book more than once. We also would have liked to store orders placed by the users. If we had more time, we were also going to add in a mockup checkout process.
