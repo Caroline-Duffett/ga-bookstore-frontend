@@ -388,6 +388,19 @@ img {
   font-size: 16px;
 }
 
+.checkout-btn:hover {
+  background: rgb(29, 66, 253);
+  border: none;
+  /* border: none; */
+  line-height: 32px;
+  border-radius: 16px;
+  color: white;
+  margin-top: 16px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  cursor: pointer;
+}
+
 .remove-item-btn {
   width: 100%;
   background: none;
@@ -745,6 +758,19 @@ input[type=submit]:hover {
   margin-top: 24px;
 }
 
+.add-to-cart-btn:hover {
+  background: none;
+  border: solid 1px rgb(29, 66, 253);
+  /* border: none; */
+  line-height: 32px;
+  border-radius: 16px;
+  color: rgb(29, 66, 253);
+  margin-top: 16px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  cursor: pointer;
+}
+
 .add-to-cart-container {
   grid-column: 2;
   grid-row: 3;
@@ -824,7 +850,7 @@ input[type=submit]:hover {
 .review-card {
   background-color: white;
   font-size: 24px;
-  /* margin-bottom: 148px; */
+  margin-bottom: 148px;
 }
 
 .review-container {
