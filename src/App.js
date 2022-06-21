@@ -256,7 +256,7 @@ function App() {
        />
      </CartContext.Provider>
      </ProductContext.Provider>
-     <div className="footer">&copy; 2022 Caroline Duffet, Tricia Gray & Steven Laff</div>
+     <div className="footer">&copy; 2022 Caroline Duffett, Tricia Gray & Steven Laff</div>
      </div>
      </>
    )
