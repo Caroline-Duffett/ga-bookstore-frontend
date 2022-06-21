@@ -2,7 +2,7 @@
 This is the frontend to our unit 4 project. It was made by Steven Laff, Tricia Gray, and Caroline Duffett.
 
 ## Explanation of the technologies used
-We used React to create this app and its being deployed with Heroku. It has full CRUD capabilities. It also has user authentication for some features of the app. Users can view the books and add them to their carts for checkout. The cart will add up the book prices and let the user know the total owed. They can also remove books added to their cart. We set up a second model for book reviews. All users can read reviews that are left on the books. If a user chooses to create an account, they can post book reviews. We were able to make it so only the user that posted the review can edit and delete it. We also set it so that only admin (staff) accounts can add books, edit books, and delete books. This way users can't mess with the inventory.
+We used React to create this app and its being deployed with Heroku. Axios and JSX with HTML were used for the development. It has full CRUD capabilities. It also has user authentication for some features of the app. Users can view the books and add them to their carts for checkout. The cart will add up the book prices and let the user know the total owed. They can also remove books added to their cart. We set up a second model for book reviews. All users can read reviews that are left on the books. If a user chooses to create an account, they can post book reviews. We were able to make it so only the user that posted the review can edit and delete it. We also set it so that only admin (staff) accounts can add books, edit books, and delete books. This way users can't mess with the inventory.
 
 For the backend we used Django (for more information checkout our Django backed on GitHub).
 
@@ -22,4 +22,7 @@ To view the app, all the user needs to do is open it. If they would like to crea
 We would have liked to make the cart persisting and able to add a book more than once. We also would have liked to store orders placed by the users. If we had more time, we were also going to add in a mockup checkout process.
 
 ## Sources
-https://reactjs.org/docs/context.html
+- https://reactjs.org/docs/context.html
+- https://www.w3schools.com/react/react_usecontext.asp
+- https://stackoverflow.com/questions/71002955/uncaught-in-promise-typeerror-dispatch-is-not-a-function-usecontext-usereduce
+- https://www.digitalocean.com/community/tutorials/how-to-share-state-across-react-components-with-context
