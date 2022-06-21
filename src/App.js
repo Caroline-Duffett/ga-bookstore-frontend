@@ -203,7 +203,9 @@ function App() {
      <ProductContext.Provider value={{ books, addItem, loggedInUser }}>
       <CartContext.Provider value={{ cart, removeItem, cartToggle }}>
        <div className="navigation">
-         <p className="logo">&#x212C; &#x2134; &#x2134;  &#x212A; &int;</p>
+         <div  className="logo">
+         <p>&#x61; &#x222C; &#x2130; &#x2133; &#x212C; &#x2112; &#x2147; &nbsp; &#x212C; &#x2134; &#x2134;  &#x212A; &int;</p>
+         </div>
         <ShoppingCart
         signedIn={signedIn}
         cartToggle={cartToggle}

@@ -19,10 +19,10 @@ const EditReview = (props) => {
 
   return (
     <details>
-      <summary>Edit Review</summary>
+      <summary className="details-summary">Edit Review</summary>
       <div className="edit-review-form-div">
         <form onSubmit={handleSubmit}>
-          <label htmlFor='review'>Review: </label><br/>
+          <label htmlFor='review'></label><br/>
           <textarea name='review' value={review.review} onChange={handleChange} required></textarea>
           <br/>
           <br/>
