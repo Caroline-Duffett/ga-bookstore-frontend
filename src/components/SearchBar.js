@@ -1,39 +1,35 @@
-import {useState} from 'react'
+import {useState, useContext} from 'react'
+import ProductContext from '../contexts/ProductContext';
+import Book from './Book.js'
 
 const SearchBar = (props) => {
 
-  //State:
+  //--- State:
   const [query, setQuery] = useState("")
-  const [showSearch, setShowSearch] = useState(false)
-
-  //Functions:
-    //hides/shows searchbar
-    const searchToggle = () => {
-      if (showSearch === false) {
-        setShowSearch(true)
-      } else {
-        setShowSearch(false)
-      }
-    }
+  const { books, addItem, loggedInUser } = useContext(ProductContext);
 
   return (
     <>
-      <button onClick={searchToggle} className="search-btn">Search</button>
-      {showSearch ?
+      <button
+      onClick={props.searchToggle}
+      className="search-btn">
+         {/* &#x1F50D; */} Search
+        </button>
+      {props.showSearch ?
         <>
-          <div className="modal-wrapper">
-            <div className="search-bar-modal">
+          <div className="modal-wrapper"  onClick={props.searchToggle}>
+            <div className="search-bar-modal" onClick={e => e.stopPropagation()}>
               <div className='search-bar-x-btn-div'>
-                <button className='search-bar-x-btn' onClick={searchToggle}>
-                x
+                <button className='search-bar-x-btn' onClick={props.searchToggle}>
+                &#x2715;
                 </button>
               </div>
               <div className="search-bar-div">
-                <input className="search-bar" placeholder="Search by Title, Author, Genre" onChange={event => setQuery(event.target.value)}/>
+                <input className="search-bar" placeholder="Search by title, author, or genre" onChange={event => setQuery(event.target.value)}/>
               </div>
               {query === "" ? null:
                 <div className="search-flexbox">
-                  {props.books.filter(book => {
+                  {books.filter(book => {
                     if (query === '') {
                       return book
                     } else if (book.title.toLowerCase().includes(query.toLowerCase())) {
@@ -45,11 +41,14 @@ const SearchBar = (props) => {
                     }
                   }).map((book) => {
                     return(
-                      <div className='book searchbook' key={book.id}>
-                        <img className="searchbook-img" src={book.cover_art} alt="book cover"/>
-                        <h4>Title: {book.title}</h4>
-                        <h5>Author: {book.author_name}</h5>
-                        <h5>Price: {book.price}</h5>
+                      <div key={book.id}>
+                      <Book
+                      book={book}
+                      bookReviews={props.bookReviews}
+                      loggedInUser={loggedInUser}
+                      cartUpdate={props.cartUpdate}
+                      addItem={addItem}
+                      />
                       </div>
                     )
                   })}
