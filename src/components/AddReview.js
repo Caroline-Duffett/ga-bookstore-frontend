@@ -51,7 +51,7 @@ const AddReview = (props) => {
             </>
           :
             <>
-              <h2 className="sign-in-message">Please Sign In or Create an Account to leave a review</h2>
+              <h2 className="sign-in-message">Please Sign in or create an account to leave a review.</h2>
             </>
           }
         </>
