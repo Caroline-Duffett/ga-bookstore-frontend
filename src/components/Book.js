@@ -229,7 +229,6 @@ const Book = (props) => {
                         console.log("Book logged in user: ");
                       }}
                       >
-                      {/* {showBookInfo ? <>Reviews</> : <></>} */}
                       {showBookInfo ? <>Reviews</> : <div className="back-review">Book details</div>}
                     </button>
                     </div>
@@ -245,10 +244,8 @@ const Book = (props) => {
                           />
                         :
                           <>
-                          {/* <div className="review-header"> */}
                           <div className="review-container">
                             <h3>Reviews</h3>
-                            {/* </div> */}
                             <div className='all-reviews-flexbox'>
                             {reviews.map((review) => {
                               if (review.book_id === props.book.id) {
