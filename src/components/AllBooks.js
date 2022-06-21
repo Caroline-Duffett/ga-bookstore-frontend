@@ -17,9 +17,7 @@ const AllBooks = (props) => {
     <>
       <h1>All Books</h1>
       <div className='all-books-flexbox'>
-        {books.map((book) => {
-          // {console.log("AllBooks loggedInUser: ")}
-          // {console.log(loggedInUser)}
+        {props.books.map((book) => {
           return(
 
             <Book

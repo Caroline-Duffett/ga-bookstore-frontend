@@ -40,6 +40,14 @@ function App() {
   // const [cartTotal, setCartTotal] = useState([])
   // const [totalPrice, settotalPrice] = useState([])
 
+
+
+
+
+
+
+
+
   // Testing route to get user accounts
   const getUserAccounts = () => {
       axios.get('https://ga-bookstore-backend.herokuapp.com/api/useraccount')
@@ -138,7 +146,7 @@ function App() {
 
   //Create New User Registration
   const handleRegistration = (newUser) => {
-      console.log(`handleRegistration ${newUser.username}`);
+      console.log(newUser);
       axios.post('https://ga-bookstore-backend.herokuapp.com/api/useraccount', newUser)
       .then((response) => {
           console.log(response);
@@ -183,17 +191,29 @@ function App() {
     setCart(cart.filter(book => book.id !== id));
   };
 
+
+  // Logs the user out
+  const handleLogout = () => {
+    setLoggedInuser({})
+  }
+
    return (
      <>
-      <ProductContext.Provider value={{ books, addItem, loggedInUser }}>
-      <CartContext.Provider value={{ cart, removeItem, cartToggle }}>
      <div className="wrapper">
+     <ProductContext.Provider value={{ books, addItem, loggedInUser }}>
+      <CartContext.Provider value={{ cart, removeItem, cartToggle }}>
        <div className="navigation">
-       <SearchBar
-       books={books}
-       searchToggle={searchToggle}
-       showSearch={showSearch}
-       />
+         <div  className="logo">
+         <p>&#x61; &#x222C; &#x2130; &#x2133; &#x212C; &#x2112; &#x2147; &nbsp; &#x212C; &#x2134; &#x2134;  &#x212A; &int;</p>
+         </div>
+        <ShoppingCart
+        signedIn={signedIn}
+        cartToggle={cartToggle}
+        showCart={showCart}
+        user={loggedInUser}
+        setCart={setCart}
+        loggedInUser={loggedInUser}
+        />
         {loggedInUser.staff === true ?
        <Add
        handleCreate={handleCreate}
@@ -207,15 +227,23 @@ function App() {
        showSignIn={showSignIn}
        signedIn={signedIn}
        handleSignIn={handleSignIn}
+       handleLogout={handleLogout}
+       loggedInUser={loggedInUser}
        />
-       </div>
-       <ShoppingCart
-        signedIn={signedIn}
-        cartToggle={cartToggle}
-        showCart={showCart}
-        user={loggedInUser}
-        setCart={setCart}
-        />
+         <SearchBar
+       searchToggle={searchToggle}
+       showSearch={showSearch}
+       />
+        </div>
+        {/* <div className="search-container"> */}
+        {/* <SearchBar
+       books={books}
+       searchToggle={searchToggle}
+       showSearch={showSearch}
+       /> */}
+        {/* </div> */}
+{/*
+        </div> */}
        <BestSellers books={books}/>
        <OurFavorites books={books}/>
        <AllBooks
@@ -228,9 +256,10 @@ function App() {
        handleDelete={handleDelete}
        handleUpdate={handleUpdate}
        />
-     </div>
      </CartContext.Provider>
      </ProductContext.Provider>
+     <div className="footer">&copy; 2022 Caroline Duffett, Tricia Gray & Steven Laff</div>
+     </div>
      </>
    )
 }
