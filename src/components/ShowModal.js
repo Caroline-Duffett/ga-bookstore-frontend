@@ -9,7 +9,7 @@ const ShowModal = (props, book) => {
         <div className="modal-content" onClick={e => e.stopPropagation()}>
             <div className="modal-header">
             <div className="modal-footer">
-                <button onClick={props.onClose} className="modal-button" >&#x2573;</button>
+                <button onClick={props.onClose} className="modal-button" >&#x2715;</button>
             </div>
                 <h4 className="modal-title">{props.title}</h4>
             </div>

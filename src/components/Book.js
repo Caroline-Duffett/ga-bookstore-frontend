@@ -168,15 +168,19 @@ const Book = (props) => {
                 <>
                   {showBookInfo ?
                     <>
+                    <div>
                       <img src={props.book.cover_art} alt="book cover"/>
-                      <h5>Author:{props.book.author_name}</h5>
-                      <h5>Publisher: {props.book.publisher}</h5>
-                      <h5>Publication Date: {props.book.publication_date}</h5>
-                      <h5>Pages: {props.book.page_count}</h5>
-                      <h5>Genre: {props.book.genre}</h5>
-                      <h5>Rating: {props.book.rating}</h5>
-                      <br/>
-                      <h5>${props.book.price}</h5>
+                      </div>
+                      <div className="book-info-container">
+                      <h2>By {props.book.author_name}</h2>
+                      <h2>Published by {props.book.publisher}</h2>
+                      <h2>{props.book.page_count} pages</h2>
+                      <h2>{props.book.publication_date}, {props.book.isbn}, {props.book.language}</h2>
+                      <h4>Genre: {props.book.genre}</h4>
+                      {/* <h5>Rating: {props.book.rating}</h5> */}
+                      {/* <br/> */}
+                      <h1>${props.book.price}</h1>
+                      </div>
 
                      <button onClick={() => props.addItem(props.book)}>
 				             Add to cart
@@ -189,7 +193,7 @@ const Book = (props) => {
                             <>
                               <br/>
                               <br/>
-                              <button onClick={editFormToggle}>
+                              <button className="edit-book-info" onClick={editFormToggle}>
                                 Edit
                                 </button>
                               <button onClick={() => {
