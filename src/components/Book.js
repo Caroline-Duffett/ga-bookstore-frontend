@@ -181,25 +181,23 @@ const Book = (props) => {
                       {/* <br/> */}
                       <h1>${props.book.price}</h1>
                       </div>
-
                      <button onClick={() => props.addItem(props.book)}>
 				             Add to cart
 			               </button>
-
                       {props.book.id ?
-
                         <>
                           {loggedInUser.staff === true ?
                             <>
                               <br/>
                               <br/>
+                              <div className="edit-book-info">
                               <button className="edit-book-info" onClick={editFormToggle}>
                                 Edit
                                 </button>
+                              </div>
                               <button onClick={() => {
                                 props.handleDelete(props.book)
                               }}>
-
                                 Delete
                                 </button>
                             </>
@@ -220,7 +218,6 @@ const Book = (props) => {
                         bookInfoOrReviewsToggle()
                         setShowAddReview(false)
                         console.log("Book logged in user: ");
-
                       }}
                       >
                       {showBookInfo ? <>See Reviews</> : <>Book Details</>}

@@ -564,6 +564,7 @@ input[type=submit]:hover {
   margin-left: 24px;
   font-size: 24px;
   text-align: left;
+  font-weight: 700;
 }
 
 .modal-body {
@@ -591,8 +592,30 @@ input[type=submit]:hover {
 }
 
 .edit-book-info {
-  grid-column: 2;
-  float: right;
+  grid-column: 3;
+  grid-row: 1;
+  margin-top: -120px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: rgb(29, 66, 253);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 24px;
+  margin-right: 8px;
+}
+
+.back-edit-info {
+  grid-column: 3;
+  grid-row: 1;
+  margin-top: -86px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: rgb(29, 66, 253);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 24px;
+  margin-right: 32px;
+  text-align: right;
 }
 
 .add-button {
@@ -617,6 +640,10 @@ input[type=submit]:hover {
   margin-bottom: px;
   width: 100%;
   border-radius: none;
+}
+
+.edit-input {
+  grid-column: 1 / span 3;
 }
 
 /*---------------------------------- Star rating --------------------------------------*/
