@@ -26,3 +26,4 @@ We would have liked to make the cart persisting and able to add a book more than
 - https://www.w3schools.com/react/react_usecontext.asp
 - https://stackoverflow.com/questions/71002955/uncaught-in-promise-typeerror-dispatch-is-not-a-function-usecontext-usereduce
 - https://www.digitalocean.com/community/tutorials/how-to-share-state-across-react-components-with-context
+- https://www.freecodecamp.org/news/the-react-cheatsheet/
