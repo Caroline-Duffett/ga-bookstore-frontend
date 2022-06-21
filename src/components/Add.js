@@ -34,8 +34,8 @@ const Add = (props) => {
     <>
     <button 
     onClick={props.addFormToggle} 
-    className="search-btn">
-      Add
+    className="add-btn">
+      Add Book
       </button>
     {props.showAddForm ?
       <>
@@ -43,12 +43,12 @@ const Add = (props) => {
           <div className="add-book-modal" onClick={e => e.stopPropagation()}>
             <div className='add-book-x-btn-div'>
               <button className='add-book-x-btn' onClick={props.addFormToggle}>
-              x
+              &#x2715;
               </button>
             </div>
-            <h3>Add a New Book</h3>
+            <h3 className="modal-add-header">Add a New Book</h3>
             <div className="Add-form-div">
-              <form onSubmit={handleSubmit}>
+              <form className="add-input" onSubmit={handleSubmit}>
                 <label htmlFor='title'>Title: </label>
                 <input type='text' name='title' value={book.title} onChange={handleChange} required/>
                 <br/>

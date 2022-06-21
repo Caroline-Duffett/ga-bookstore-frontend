@@ -40,10 +40,10 @@ const ShoppingCart = (props) => {
                      <div className='cart-modal-x-div'> 
                        <button className='cart-x-btn' onClick={props.cartToggle}>
                        {/* <button className='cart-x-btn' onClick={props.onClose}> */}
-                       x
+                       &#x2715;
                        </button>
                     </div>
-                   <h3>Your Cart</h3>
+                   <h3>Your cart</h3>
                    <div className="cart-books-flexbox">
                     <div className="shopping-cart">
                       {cart.map(book => (
@@ -54,8 +54,8 @@ const ShoppingCart = (props) => {
                         />
                       ))}
                         <div className="shopping-cart__checkout">
-                          <p>Total: ${getCartTotal()}</p>
-                          <button>
+                          <h1>Total: ${getCartTotal()}</h1>
+                          <button className="checkout-btn">
                             {props.loggedInUser.username ?
                               <>Checkout</>
                             :

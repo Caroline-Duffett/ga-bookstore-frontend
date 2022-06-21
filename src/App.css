@@ -21,6 +21,11 @@ body {
 
 h5, h4 {
   margin: 8px;
+  font-weight: 400;
+}
+
+h4 {
+  font-size: 16px;
 }
 
 
@@ -45,10 +50,13 @@ h2 {
 }
 
 /* LOGO/BOOKS */
+.logo {
+  grid-column: 3 / span 4;
+
+}
 p {
   font-size: 56px;
   text-align: center;
-  grid-column: 3 / span 4;
 }
 
 .search-btn {
@@ -58,6 +66,23 @@ p {
   /* padding-right: 224px; */
   margin-top: -180px;
   text-align: left;
+  grid-column: 1;
+  /* grid-row: 2; */
+  background: none;
+  border:  none;
+  /* border-radius: 24px; */
+  cursor: pointer;
+  width: 100%;
+}
+
+.add-btn {
+  font-size: 24px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  /* padding-right: 224px; */
+  margin-left: 88px;
+  margin-top: -180px;
+  text-align: right;
   grid-column: 1;
   /* grid-row: 2; */
   background: none;
@@ -123,7 +148,7 @@ p {
   padding: 32px;
 }
 
-.book:hover {
+#book-hover:hover {
   color: rgb(29, 66, 253);
 }
 
@@ -189,28 +214,25 @@ img {
 }
 
 .search-bar {
-  font-size: 16px;
+  font-size: 24px;
   font-weight: 400;
   width: 50%;
-  border-radius: 24px;
+  border-radius: 32px;
   color: rgb(29, 66, 253);
   border: solid rgb(29, 66, 253) 1px;
-  /* line-height: 16px; */
-  padding: 8px;
+  padding: 16px;
   font-family: 'DM Sans', sans-serif;
 }
 
 
 .search-flexbox {
-  /* background-color: none;
-  border: none; */
-  /* background-color: lightgray; */
+  grid-column: 1 / span 7;
   display: flex;
   flex-direction: row;
   overflow: auto;
-  width: 100%;
   margin: 32px;
   margin-bottom: 32px;
+  gap: 24px;
 }
 
 .search-bar-x-btn-div {
@@ -256,15 +278,33 @@ img {
 .add-book-modal {
   background-color: white;
   position: absolute;
-  width: 350px;
-  height: 600px;
-  margin: 5% 40%;
-  border-radius: 10px;
+  width: 600px;
+  height: 900px;
+  margin: 2% 35%;
   text-align: center;
+  overflow: auto;
 }
 
 .add-book-x-btn-div {
   text-align: right;
+}
+
+.modal-add-header {
+  margin: 24px;
+  margin-top: -48px;
+  margin-bottom: 48px;
+  text-align: left;
+
+}
+
+.add-book-x-btn {
+  background: none;
+  color: rgb(29, 66, 253);
+  border: none;
+  font-size: 24px;
+  margin: 24px;
+  cursor: pointer;
+
 }
 
 .add-submit-btn-div {
@@ -272,27 +312,41 @@ img {
 }
 
 .Add-form-div {
-  text-align: right;
-  width: 275px;
-  margin-left: auto;
-  margin-right: auto;
+  text-align: left;
+  width: 400px;
+  margin: 24px;
+  margin-top: -16px;
+  display: inline-block;
 }
+
 /*----------------------------------------------------------------------------------------*/
 
 
 
 /*----------------------------------- Shopping Cart --------------------------------------*/
 .cart-modal {
+  margin-top: -32px;
   background-color: white;
   position: absolute;
   width: 400px;
   height: 100vh;
   right: 0;
   text-align: center;
+  overflow: auto;
+  border-left: solid black 1px;
 }
 
 .cart-modal-x-div {
-  text-align: left;
+  text-align: right;
+}
+
+.cart-x-btn {
+  background: none;
+  color: rgb(29, 66, 253);
+  border: none;
+  font-size: 24px;
+  margin: 24px;
+  cursor: pointer;
 }
 
 .cart-modal-wrapper {
@@ -305,7 +359,7 @@ img {
 }
 
 .cart-books-flexbox {
-  background-color: lightgrey;
+  /* background-color: lightgrey; */
   display: flex;
   flex-direction: column;
   width: 370px;
@@ -315,7 +369,54 @@ img {
 .cartBook {
   background-color: white;
   text-align: left;
-  margin: 3px;
+  margin: 4px;
+}
+
+.checkout-btn {
+  width: 100%;
+  background: none;
+  /* background: rgb(29, 66, 253); */
+  border: solid 1.5px rgb(29, 66, 253);
+  /* border: none; */
+  line-height: 32px;
+  border-radius: 16px;
+  color: rgb(29, 66, 253);
+  margin-top: 16px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.checkout-btn:hover {
+  background: rgb(29, 66, 253);
+  border: none;
+  /* border: none; */
+  line-height: 32px;
+  border-radius: 16px;
+  color: white;
+  margin-top: 16px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.remove-item-btn {
+  width: 100%;
+  background: none;
+  border: none;
+  line-height: 32px;
+  color: rgb(29, 66, 253);
+  margin-top: 16px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.cart-img {
+  height: 108px;
+  width: 64px;
 }
 /*----------------------------------------------------------------------------------------*/
 
@@ -373,7 +474,7 @@ img {
 }
 
 .create-acc-si-div {
-  text-align: center;
+  text-align: left;
   width: 280px;
   margin-left: auto;
   margin-right: auto;
@@ -383,7 +484,7 @@ img {
 .sign-in-form-container form {
   align-items: center;
   justify-content: center;
-  text-align: center;
+  text-align: left;
   font-family: 'DM Sans', sans-serif;
 }
 .create-acc-si-x-btn-div {
@@ -415,6 +516,7 @@ input {
   border: black solid .5px;
   font-family: 'DM Sans', sans-serif;
   font-size: 16px;
+  width: 100%;
 }
 
 input[type=submit] {
@@ -463,68 +565,155 @@ input[type=submit]:hover {
 }
 
 .modal-sign-out-btn {
-  border: none;
+  /* border: none;
   background: none;
   font-size: 16px;
   line-height: 32px;
-  border-radius: 12px;
+  border-radius: 12px; */
   /* margin-top: 16px; */
+  /* font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+  cursor: pointer; */
+
+  width: 300px;
+  background: none;
+  /* background: rgb(29, 66, 253); */
+  /* border: solid 1px rgb(29, 66, 253); */
+  border: rgb(29, 66, 253) solid 1px;
+  line-height: 32px;
+  border-radius: 16px;
+  color: rgb(29, 66, 253);
+  margin-top: 64px;
   font-family: 'DM Sans', sans-serif;
   font-weight: 400;
   cursor: pointer;
-
+  font-size: 16px;
 }
 
 /*----------------------------------------------------------------------------------------*/
 
 
 
-/* MODAL */
+/* SHOW BOOK MODAL */
 .modal {
+  /* display: grid;
+  grid-template-columns: 1fr, 1fr; */
   position: fixed;
   left: 0;
   top: 0;
   right: 0;
   bottom: 0;
   background-color: rgba(66, 66, 66, 0.74);
+  backdrop-filter: blur(1px);
+  -webkit-backdrop-filter: blur(1px);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .modal-content {
-  width: 500px;
+  display: grid;
+  grid-template-columns: 1fr, 1fr, 1fr, 1fr;
+  /* grid-template-rows: 1fr, 1fr, 1fr; */
+  width: 880px;
   background-color: white;
-  height: 500px;
+  height: 668px;
+  padding: 8px;
+  overflow: auto;
 }
 
 .modal-header, .modal-footer {
   padding: 16px;
-
+  grid-row: 2;
+  /* margin-top: -32px; */
 }
 
 .modal-title {
-  margin: 0;
+  /* display: grid;
+  grid-column: 2; */
+  margin-left: 24px;
   font-size: 24px;
+  text-align: left;
+  font-weight: 700;
+  width: 500px;
 }
 
 .modal-body {
+  display: grid;
+  /* grid-template-columns: ; */
   padding: 8px;
-  border-top: 1px solid #eee;
-  margin: 0 24px;
+  /* border-top: 1px solid #eee; */
+  margin-left: 24px;
+  text-align: left;
+  grid-row: 3;
 }
 
 .modal-button {
-  font-family: 'Work Sans', sans-serif;
+  font-family: 'DM Sans', sans-serif;
   font-weight: 600;
-  font-size: 16px;
+  font-size: 24px;
   background: none;
   border: none;
   float: right;
   cursor: pointer;
+  color: rgb(29, 66, 253);
+  grid-row: 1;
+  grid-column: 4;
+  /* margin-right: 24px; */
 }
 
-.add-button {
+.book-info-container {
+  grid-column: 2 / span 3;
+  grid-row: 1;
+  margin-left: 24px;
+  /* grid-row: 2; */
+  /* margin-top: -32px; */
+}
+
+.edit-book-info {
+  grid-column: 4;
+  float: right;
+  grid-row: 1;
+  margin-right: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: rgb(29, 66, 253);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 24px;
+}
+
+.book-details-btn {
+  margin-bottom: 100px;
+  /* display: grid; */
+  /* grid-column: 3/ span 4; */
+  /* float: right; */
+  /* grid-row: 1; */
+  /* margin-right: 8px; */
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: rgb(29, 66, 253);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 24px;
+  margin-left: 672px;
+}
+
+.back-edit-info {
+  grid-column: 4;
+  grid-row: 1;
+  float: right;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: rgb(29, 66, 253);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 24px;
+  margin-right: 8px;
+  
+}
+
+/* .add-button {
   background: black;
   border: none;
   color: white;
@@ -535,7 +724,7 @@ input[type=submit]:hover {
   height: 32px;
   margin-bottom: 16px;
   cursor: pointer;
-}
+} */
 
 .input-add {
   background: none;
@@ -548,6 +737,102 @@ input[type=submit]:hover {
   border-radius: none;
 }
 
+.edit-input {
+  grid-column: 1 / span 3;
+}
+
+.add-to-cart-btn {
+  grid-row: 1;
+  width: 156px;
+  background: rgb(29, 66, 253);
+  border: none;
+  /* border: rgb(29, 66, 253) solid 1px; */
+  line-height: 32px;
+  border-radius: 16px;
+  /* color: rgb(29, 66, 253); */
+  color: white;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 24px;
+}
+
+.add-to-cart-btn:hover {
+  background: none;
+  border: solid 1px rgb(29, 66, 253);
+  /* border: none; */
+  line-height: 32px;
+  border-radius: 16px;
+  color: rgb(29, 66, 253);
+  margin-top: 16px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.add-to-cart-container {
+  grid-column: 2;
+  grid-row: 3;
+  /* margin-top: -32px;
+  margin-left: 24px; */
+}
+
+.delete-btn {
+  grid-column: 3;
+  /* grid-row: 3; */
+  text-align: left;
+  width: 156px;
+  background: none;
+  border: none;
+  /* border: rgb(29, 66, 253) solid 1px; */
+  line-height: 32px;
+  /* border-radius: 16px; */
+  color: rgb(29, 66, 253);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 400;
+  margin-left: 24px;
+  margin-top: 24px;
+  /* margin-left: 132px; */
+}
+
+.delete-btn-container {
+  grid-column: 2;
+}
+
+.all-reviews-container {
+  grid-column: 2;
+  grid-row: 2;
+  margin-left: 24px;
+  /* margin-top: 16px; */
+  /* margin-top: -80px; */
+  /* text-align: left; */
+  /* margin-left: 180px; */
+}
+
+.all-reviews-btn {
+  text-align: left;
+  width: 156px;
+  background: none;
+  /* border: rgb(29, 66, 253) solid 1px; */
+  border: none;
+  line-height: 32px;
+  border-radius: 16px;
+  color: rgb(29, 66, 253);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+  cursor: pointer;
+  font-size: 24px;
+}
+
+.img-book-modal {
+  grid-column: 1;
+}
+
+
 /*---------------------------------- Star rating --------------------------------------*/
 
 /* .rate {
@@ -558,19 +843,73 @@ input[type=submit]:hover {
 
 /*--------------------------------- Reviews Flexbox --------------------------------------*/
 .all-reviews-flexbox {
-  /* background-color: lightgray; */
-  display: flex;
-  flex-direction: column;
-  height: 250px;
-  overflow: scroll
+  /* margin-top: 0px; */
+  overflow: auto;
 }
-
-
 
 .review-card {
   background-color: white;
-  margin: 3px 5px;
+  font-size: 24px;
+  margin-bottom: 148px;
 }
+
+.review-container {
+  /* display: grid;
+  grid-column: 1; */
+  margin-top: -80px;
+  margin-bottom: 32px;
+}
+
+
+.add-cancel-review-btn, .add-cancel-container {
+  display: grid;
+  grid-column: 1;
+  align-items: left;
+  width: 156px;
+  background: none;
+  border: none;
+  line-height: 32px;
+  border-radius: 16px;
+  color: rgb(29, 66, 253);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  cursor: pointer;
+  font-size: 24px;
+  margin-top: 8px;
+  margin-left: -24px;
+}
+
+.add-cancel-container {
+  height: 32px;
+}
+
+details {
+  margin-top: 56px;
+  font-size: 24px;
+  color: rgb(29, 66, 253);
+}
+
+.delete-btn-review {
+  text-align: left;
+  background: none;
+  border: none;
+  line-height: 32px;
+  color: rgb(29, 66, 253);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 400;
+  margin-top: 8px;
+
+}
+
+.back-review {
+  margin-top: 64px;
+  margin-left: -432px;
+}
+
+
 /*----------------------------------------------------------------------------------------*/
 
 /* .rate > input {
@@ -580,9 +919,6 @@ input[type=submit]:hover {
 rate > label {
   float: right;
 }  */
-
-/* } */
-
 
 /* FULL STAR */
 /* .rate > label:before {

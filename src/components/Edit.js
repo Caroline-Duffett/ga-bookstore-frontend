@@ -18,8 +18,9 @@ const Edit = (props) => {
 
   return (
     <>
+    <div className="edit-input">
         <h3>Edit Book</h3>
-        <form onSubmit={handleSubmit}>
+        <form  onSubmit={handleSubmit}>
           <label htmlFor='title'>Title: </label>
           <input type='text' name='title' defaultValue={book.title} onChange={handleChange}/>
           <br/>
@@ -77,7 +78,10 @@ const Edit = (props) => {
 
           <input type='submit'/>
         </form>
-        <button onClick={props.editFormToggle}>Back</button>
+        </div>
+        <div className="back-edit-info">
+        <button className="back-edit-info" onClick={props.editFormToggle}>&larr; Back</button>
+        </div>
     </>
   )
 }

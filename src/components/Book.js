@@ -168,36 +168,47 @@ const Book = (props) => {
                 <>
                   {showBookInfo ?
                     <>
+                    <div className="img-book-modal">
                       <img src={props.book.cover_art} alt="book cover"/>
-                      <h5>Author:{props.book.author_name}</h5>
-                      <h5>Publisher: {props.book.publisher}</h5>
-                      <h5>Publication Date: {props.book.publication_date}</h5>
-                      <h5>Pages: {props.book.page_count}</h5>
-                      <h5>Genre: {props.book.genre}</h5>
-                      <h5>Rating: {props.book.rating}</h5>
-                      <br/>
-                      <h5>${props.book.price}</h5>
-
-                     <button onClick={() => props.addItem(props.book)}>
+                      </div>
+                      <div className="book-info-container">
+                      <h1>${props.book.price}</h1>
+                      <div className="add-to-cart-container">
+                      <button className="add-to-cart-btn" onClick={() => props.addItem(props.book)}>
 				             Add to cart
 			               </button>
-
+                      <h2>By {props.book.author_name}</h2>
+                      <h2>Published by {props.book.publisher}</h2>
+                      <h2>{props.book.page_count} pages</h2>
+                      <h2>{props.book.publication_date}, {props.book.isbn}, {props.book.language}</h2>
+                      <h4>Genre: {props.book.genre}</h4>
+                      {/* <h5>Rating: {props.book.rating}</h5> */}
+                      {/* <br/> */}
+                      {/* <h1>${props.book.price}</h1> */}
+                      </div>
+                      {/* <div className="add-to-cart-container">
+                      <button className="add-to-cart-btn" onClick={() => props.addItem(props.book)}>
+				             Add to cart
+			               </button> */}
+                      </div>
                       {props.book.id ?
-
                         <>
                           {loggedInUser.staff === true ?
                             <>
-                              <br/>
-                              <br/>
-                              <button onClick={editFormToggle}>
-                                Edit
+                              {/* <br/>
+                              <br/> */}
+                              <div className="edit-book-info">
+                              <button className="edit-book-info" onClick={editFormToggle}>
+                                Edit &rarr;
                                 </button>
-                              <button onClick={() => {
+                              </div>
+                              <div className="delete-btn-container">
+                              <button className="delete-btn" onClick={() => {
                                 props.handleDelete(props.book)
                               }}>
-
                                 Delete
                                 </button>
+                              </div>
                             </>
                           :
                           null}
@@ -208,19 +219,19 @@ const Book = (props) => {
                   :
                   null
                 }
-                  <div className="all-reviews-div">
-                    <button
+                  <div className="all-reviews-container">
+                    <button className="all-reviews-btn"
                       onClick={() => {
                         reviewToggle()
                         getBookReviews()
                         bookInfoOrReviewsToggle()
                         setShowAddReview(false)
                         console.log("Book logged in user: ");
-
                       }}
                       >
-                      {showBookInfo ? <>See Reviews</> : <>Book Details</>}
+                      {showBookInfo ? <>Reviews</> : <div className="back-review">Book details</div>}
                     </button>
+                    </div>
                     {showReviews ?
                       <>
                         {showAddReview ?
@@ -233,6 +244,7 @@ const Book = (props) => {
                           />
                         :
                           <>
+                          <div className="review-container">
                             <h3>Reviews</h3>
                             <div className='all-reviews-flexbox'>
                             {reviews.map((review) => {
@@ -240,18 +252,20 @@ const Book = (props) => {
                                 return (
                                   <>
                                     <div className="review-card" key={review.id}>
-                                       <h5>User: {review.username}</h5>
-                                       <h5>Review: </h5>
-                                       <p>{review.review}</p>
+                                       <h5 className="user-review">{review.username}'s review:</h5>
+                                       {/* <h4>Review: </h4> */}
+                                       <h4>{review.review}</h4>
                                        {loggedInUser.id === review.user_id ?
                                          <>
                                            <EditReview
                                            handleUpdateReview={handleUpdateReview}
                                            review={review}
                                            />
-                                           <button onClick={() => {handleReviewDelete(review)}}>
+                                           <div className="delete-btn-review">
+                                           <button className="delete-btn-review" onClick={() => {handleReviewDelete(review)}}>
                                            Delete
                                            </button>
+                                           </div>
                                          </>
                                         : null}
                                     </div>
@@ -260,19 +274,23 @@ const Book = (props) => {
                               }
                             })}
                             </div>
+                            </div>
                           </>
                         }
-                        <button onClick={addReviewToggle}>
+                        <div className="add-cancel-container">
+                        <button className="add-cancel-review-btn" onClick={addReviewToggle}>
                         {showAddReview ?
-                        <>cancel</>
+                        <>Cancel</>
                         :
-                        <>Add Review</>
+                        <>+Add</>
+                        // <>Add Review</>
                         }
                         </button>
+                        </div>
                       </>
                     :
                     null}
-                  </div>
+                  {/* </div> */}
                 </>
               }
             </ShowModal>
